@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator - ToolKit Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg-primary: #f8fafc; --bg-surface: #ffffff; --text-primary: #0f172a; --border-light: #e2e8f0; --primary: #0f3b5f; --accent: #ff8c42; }
+        body.dark { --bg-primary: #0a0c10; --bg-surface: #111418; --text-primary: #edf2f7; --border-light: #1e293b; }
+        body { background: var(--bg-primary); font-family: system-ui; transition: 0.2s; }
+        .container { max-width: 800px; margin: 0 auto; padding: 2rem; }
+        .card { background: var(--bg-surface); border-radius: 1.5rem; padding: 2rem; border: 1px solid var(--border-light); text-align: center; }
+        input, button { padding: 0.75rem; margin: 1rem 0; width: 100%; border-radius: 1rem; border: 1px solid var(--border-light); }
+        .btn-primary { background: var(--primary); color: white; border: none; cursor: pointer; }
+        #qrcode { display: flex; justify-content: center; margin: 1rem 0; padding: 1rem; background: white; border-radius: 1rem; }
+        .theme-toggle { position: fixed; top: 1rem; right: 1rem; background: var(--bg-surface); border: 1px solid var(--border-light); padding: 0.5rem 1rem; border-radius: 2rem; cursor: pointer; }
+        @media (max-width: 768px) { .container { padding: 1rem; } }
+    </style>
+</head>
+<body>
+<button class="theme-toggle" id="darkToggle"><i class="fas fa-moon"></i> Dark</button>
+<div class="container">
+    <div class="card">
+        <h1><i class="fas fa-qrcode"></i> QR Code Generator</h1>
+        <input type="text" id="qrText" placeholder="Enter URL or text..." value="https://toolkitpro.com">
+        <button class="btn-primary" id="generateBtn">Generate QR Code</button>
+        <div id="qrcode"></div>
+        <button id="downloadBtn" class="btn-primary" style="background: var(--accent);">Download QR Code</button>
+    </div>
+</div>
+<script>
+    const darkToggle = document.getElementById('darkToggle');
+    if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+    darkToggle.onclick = () => { document.body.classList.toggle('dark'); localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light'); };
+    let qr = null;
+    function generateQR() { const text = document.getElementById('qrText').value; if(!text) return; document.getElementById('qrcode').innerHTML = ""; qr = new QRCode(document.getElementById('qrcode'), { text: text, width: 200, height: 200 }); }
+    document.getElementById('generateBtn').onclick = generateQR;
+    document.getElementById('downloadBtn').onclick = () => { const canvas = document.querySelector('#qrcode canvas'); if(canvas) { const link = document.createElement('a'); link.download = 'qrcode.png'; link.href = canvas.toDataURL(); link.click(); } else alert('Generate QR first'); };
+    generateQR();
+</script>
+</body>
+</html>
