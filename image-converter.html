@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Converter - ToolKit Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg-primary: #f8fafc; --bg-surface: #ffffff; --text-primary: #0f172a; --text-secondary: #334155; --border-light: #e2e8f0; --primary: #0f3b5f; --accent: #ff8c42; }
+        body.dark { --bg-primary: #0a0c10; --bg-surface: #111418; --text-primary: #edf2f7; --text-secondary: #cbd5e1; --border-light: #1e293b; }
+        body { background: var(--bg-primary); color: var(--text-primary); font-family: system-ui; transition: 0.2s; }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        .tool-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+        .logo { font-size: 1.5rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .theme-toggle { background: var(--bg-surface); border: 1px solid var(--border-light); padding: 0.5rem 1rem; border-radius: 2rem; cursor: pointer; }
+        .card { background: var(--bg-surface); border-radius: 1.5rem; padding: 2rem; border: 1px solid var(--border-light); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .upload-area { border: 2px dashed var(--border-light); border-radius: 1rem; padding: 2rem; text-align: center; margin: 1rem 0; cursor: pointer; }
+        select, button { padding: 0.75rem 1rem; border-radius: 0.75rem; border: 1px solid var(--border-light); background: var(--bg-surface); color: var(--text-primary); margin: 0.5rem 0; cursor: pointer; }
+        .btn-primary { background: var(--primary); color: white; border: none; }
+        .result { margin-top: 1.5rem; }
+        img { max-width: 100%; border-radius: 1rem; margin-top: 1rem; }
+        @media (max-width: 768px) { .container { padding: 1rem; } }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="tool-header">
+        <a href="index.html" class="logo">ToolKit<span style="color:var(--accent);">Pro</span></a>
+        <button class="theme-toggle" id="darkToggle"><i class="fas fa-moon"></i> Dark</button>
+    </div>
+    <div class="card">
+        <h1><i class="fas fa-exchange-alt"></i> Image Converter</h1>
+        <p>Convert between JPG, PNG, WEBP, GIF, BMP</p>
+        <div class="upload-area" id="dropZone">
+            <i class="fas fa-cloud-upload-alt" style="font-size: 3rem;"></i>
+            <p>Drag & drop or click to upload image</p>
+            <input type="file" id="fileInput" accept="image/*" style="display:none">
+        </div>
+        <select id="formatSelect">
+            <option value="image/png">PNG</option>
+            <option value="image/jpeg">JPEG</option>
+            <option value="image/webp">WEBP</option>
+            <option value="image/bmp">BMP</option>
+        </select>
+        <button class="btn-primary" id="convertBtn">Convert & Download</button>
+        <div class="result" id="result"></div>
+    </div>
+</div>
+<script>
+    const darkToggle = document.getElementById('darkToggle');
+    if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+    darkToggle.onclick = () => { document.body.classList.toggle('dark'); localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light'); darkToggle.innerHTML = document.body.classList.contains('dark') ? '<i class="fas fa-sun"></i> Light' : '<i class="fas fa-moon"></i> Dark'; };
+    let uploadedFile = null;
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('fileInput');
+    dropZone.onclick = () => fileInput.click();
+    dropZone.ondragover = (e) => { e.preventDefault(); dropZone.style.borderColor = 'var(--primary)'; };
+    dropZone.ondragleave = () => dropZone.style.borderColor = 'var(--border-light)';
+    dropZone.ondrop = (e) => { e.preventDefault(); uploadFile(e.dataTransfer.files[0]); };
+    fileInput.onchange = (e) => uploadFile(e.target.files[0]);
+    function uploadFile(file) { if(file && file.type.startsWith('image/')) { uploadedFile = file; dropZone.innerHTML = `<i class="fas fa-check-circle"></i> ${file.name}`; } }
+    document.getElementById('convertBtn').onclick = () => {
+        if(!uploadedFile) return alert('Please select an image');
+        const format = document.getElementById('formatSelect').value;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const img = new Image();
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width; canvas.height = img.height;
+                canvas.getContext('2d').drawImage(img, 0, 0);
+                canvas.toBlob((blob) => {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url; a.download = `converted.${format.split('/')[1]}`;
+                    a.click(); URL.revokeObjectURL(url);
+                    document.getElementById('result').innerHTML = `<img src="${URL.createObjectURL(blob)}" alt="converted">`;
+                }, format);
+            };
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(uploadedFile);
+    };
+</script>
+</body>
+</html>
