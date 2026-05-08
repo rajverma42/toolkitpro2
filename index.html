@@ -3,611 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>ToolKit Pro | Dark Mode & Professional Tools Suite</title>
+    <title>ToolKit Pro | Professional Online Tools Suite</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        /* Light Theme (default) */
-        :root {
-            --bg-primary: #f8fafc;
-            --bg-surface: #ffffff;
-            --bg-elevated: #f1f5f9;
-            --text-primary: #0f172a;
-            --text-secondary: #334155;
-            --text-muted: #64748b;
-            --border-light: #e2e8f0;
-            --card-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05), 0 1px 2px -1px rgb(0 0 0 / 0.05);
-            --card-shadow-hover: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.02);
-            --primary: #0f3b5f;
-            --primary-dark: #0a2c46;
-            --primary-light: #2c6e9e;
-            --accent: #ff8c42;
-            --accent-glow: rgba(255, 140, 66, 0.2);
-            --header-bg: rgba(255, 255, 255, 0.95);
-            --hero-gradient-start: #eef2ff;
-            --hero-gradient-end: #ffffff;
-            --badge-bg: white;
-        }
-
-        body.dark {
-            --bg-primary: #0a0c10;
-            --bg-surface: #111418;
-            --bg-elevated: #1a1f2a;
-            --text-primary: #edf2f7;
-            --text-secondary: #cbd5e1;
-            --text-muted: #94a3b8;
-            --border-light: #1e293b;
-            --card-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.3);
-            --card-shadow-hover: 0 20px 25px -5px rgb(0 0 0 / 0.4);
-            --header-bg: rgba(17, 20, 28, 0.95);
-            --hero-gradient-start: #0b1120;
-            --hero-gradient-end: #111418;
-            --badge-bg: #1e293b;
-        }
-
-        body {
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        /* header */
-        .header {
-            background: var(--header-bg);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 1px 2px var(--border-light);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .header-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .logo {
-            font-size: 1.75rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .logo span {
-            color: var(--accent);
-            background: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            font-weight: 500;
-            color: var(--text-secondary);
-            transition: 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-light);
-        }
-
-        .theme-toggle {
-            background: var(--bg-elevated);
-            border: 1px solid var(--border-light);
-            border-radius: 3rem;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 500;
-            color: var(--text-primary);
-        }
-
-        .contact-email {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--bg-elevated);
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        .mobile-toggle {
-            display: none;
-            font-size: 1.5rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--text-primary);
-        }
-
-        /* hero */
-        .hero {
-            background: linear-gradient(120deg, var(--hero-gradient-start) 0%, var(--hero-gradient-end) 100%);
-            padding: 4rem 0 3rem;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto 2rem;
-        }
-
-        .cta-btn {
-            background: var(--primary);
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 2rem;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-            transition: 0.2s;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        .badge-icon {
-            background: var(--badge-bg);
-            width: 55px;
-            height: 55px;
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--card-shadow);
-            color: var(--primary-light);
-            font-size: 1.5rem;
-            border: 1px solid var(--border-light);
-        }
-
-        /* search */
-        .search-card {
-            background: var(--bg-surface);
-            max-width: 800px;
-            margin: -2rem auto 2rem;
-            padding: 1.5rem;
-            border-radius: 1.5rem;
-            box-shadow: var(--card-shadow);
-            border: 1px solid var(--border-light);
-        }
-
-        .search-wrapper {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .search-wrapper input {
-            flex: 1;
-            padding: 1rem;
-            background: var(--bg-primary);
-            border: 1px solid var(--border-light);
-            border-radius: 3rem;
-            font-size: 1rem;
-            color: var(--text-primary);
-        }
-
-        .search-wrapper button {
-            background: var(--primary);
-            border: none;
-            padding: 0 1.8rem;
-            border-radius: 3rem;
-            color: white;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        /* tools grid */
-        .tools-section {
-            padding: 3rem 0;
-        }
-
-        .section-title h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .section-title p {
-            color: var(--text-muted);
-        }
-
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.8rem;
-        }
-
-        .tool-card {
-            background: var(--bg-surface);
-            border-radius: 1.25rem;
-            padding: 1.5rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: var(--card-shadow);
-            border: 1px solid var(--border-light);
-        }
-
-        .tool-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--card-shadow-hover);
-            border-color: var(--primary-light);
-        }
-
-        .tool-icon {
-            background: var(--bg-elevated);
-            width: 52px;
-            height: 52px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 1rem;
-            color: var(--primary-light);
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-        }
-
-        .tool-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .tool-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .tool-link {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 0.5rem 1.2rem;
-            border-radius: 2rem;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .bg-alt {
-            background: var(--bg-elevated);
-        }
-
-        /* footer */
-        footer {
-            background: var(--bg-surface);
-            border-top: 1px solid var(--border-light);
-            padding: 3rem 0 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 2rem;
-        }
-
-        .footer-logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .footer-contact p {
-            margin: 0.7rem 0;
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border-light);
-            margin-top: 2rem;
-            font-size: 0.85rem;
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                background: var(--bg-surface);
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                padding: 1rem;
-                gap: 1rem;
-                border-bottom: 1px solid var(--border-light);
-                z-index: 99;
-            }
-            .nav-links.show {
-                display: flex;
-            }
-            .mobile-toggle {
-                display: block;
-            }
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            .header-inner {
-                flex-wrap: nowrap;
-            }
-            .contact-email span {
-                display: none;
-            }
-            .tools-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s; }
+        :root { --bg-primary: #f8fafc; --bg-surface: #ffffff; --bg-elevated: #f1f5f9; --text-primary: #0f172a; --text-secondary: #334155; --text-muted: #64748b; --border-light: #e2e8f0; --card-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05); --card-shadow-hover: 0 20px 25px -5px rgb(0 0 0 / 0.05); --primary: #0f3b5f; --primary-dark: #0a2c46; --primary-light: #2c6e9e; --accent: #ff8c42; --accent-glow: rgba(255, 140, 66, 0.2); --header-bg: rgba(255, 255, 255, 0.95); --hero-gradient-start: #eef2ff; --hero-gradient-end: #ffffff; --badge-bg: white; }
+        body.dark { --bg-primary: #0a0c10; --bg-surface: #111418; --bg-elevated: #1a1f2a; --text-primary: #edf2f7; --text-secondary: #cbd5e1; --text-muted: #94a3b8; --border-light: #1e293b; --card-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.3); --card-shadow-hover: 0 20px 25px -5px rgb(0 0 0 / 0.4); --header-bg: rgba(17, 20, 28, 0.95); --hero-gradient-start: #0b1120; --hero-gradient-end: #111418; --badge-bg: #1e293b; }
+        body { background: var(--bg-primary); color: var(--text-primary); font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; scroll-behavior: smooth; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+        .header { background: var(--header-bg); backdrop-filter: blur(12px); box-shadow: 0 1px 2px var(--border-light); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border-light); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; gap: 2rem; flex-wrap: wrap; }
+        .logo { font-size: 1.75rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--primary-light)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .logo span { color: var(--accent); background: none; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { text-decoration: none; font-weight: 500; color: var(--text-secondary); transition: 0.2s; }
+        .nav-links a:hover { color: var(--primary-light); }
+        .theme-toggle { background: var(--bg-elevated); border: 1px solid var(--border-light); border-radius: 3rem; padding: 0.5rem 1rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-weight: 500; color: var(--text-primary); }
+        .contact-email { display: flex; align-items: center; gap: 0.5rem; background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.9rem; color: var(--text-secondary); }
+        .mobile-toggle { display: none; font-size: 1.5rem; background: none; border: none; cursor: pointer; color: var(--text-primary); }
+        .hero { background: linear-gradient(120deg, var(--hero-gradient-start) 0%, var(--hero-gradient-end) 100%); padding: 4rem 0 3rem; text-align: center; }
+        .hero h1 { font-size: 3rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 1rem; }
+        .hero p { font-size: 1.2rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto 2rem; }
+        .cta-btn { background: var(--primary); color: white; padding: 0.8rem 2rem; border-radius: 2rem; text-decoration: none; font-weight: 600; display: inline-block; transition: 0.2s; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .badge-icon { background: var(--badge-bg); width: 55px; height: 55px; border-radius: 30px; display: flex; align-items: center; justify-content: center; box-shadow: var(--card-shadow); color: var(--primary-light); font-size: 1.5rem; border: 1px solid var(--border-light); }
+        .search-card { background: var(--bg-surface); max-width: 800px; margin: -2rem auto 2rem; padding: 1.5rem; border-radius: 1.5rem; box-shadow: var(--card-shadow); border: 1px solid var(--border-light); }
+        .search-wrapper { display: flex; gap: 0.5rem; }
+        .search-wrapper input { flex: 1; padding: 1rem; background: var(--bg-primary); border: 1px solid var(--border-light); border-radius: 3rem; font-size: 1rem; color: var(--text-primary); }
+        .search-wrapper button { background: var(--primary); border: none; padding: 0 1.8rem; border-radius: 3rem; color: white; cursor: pointer; font-weight: 600; }
+        .tools-section { padding: 3rem 0; }
+        .section-title h2 { font-size: 2rem; font-weight: 700; color: var(--text-primary); }
+        .section-title p { color: var(--text-muted); }
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.8rem; }
+        .tool-card { background: var(--bg-surface); border-radius: 1.25rem; padding: 1.5rem; transition: transform 0.2s, box-shadow 0.2s; box-shadow: var(--card-shadow); border: 1px solid var(--border-light); }
+        .tool-card:hover { transform: translateY(-4px); box-shadow: var(--card-shadow-hover); border-color: var(--primary-light); }
+        .tool-icon { background: var(--bg-elevated); width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; border-radius: 1rem; color: var(--primary-light); font-size: 1.4rem; margin-bottom: 1rem; }
+        .tool-card h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+        .tool-card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.2rem; }
+        .tool-link { display: inline-block; background: var(--primary); color: white; padding: 0.5rem 1.2rem; border-radius: 2rem; text-decoration: none; font-size: 0.85rem; font-weight: 500; }
+        .bg-alt { background: var(--bg-elevated); }
+        footer { background: var(--bg-surface); border-top: 1px solid var(--border-light); padding: 3rem 0 1.5rem; margin-top: 2rem; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; }
+        .footer-logo { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .footer-contact p { margin: 0.7rem 0; display: flex; gap: 0.5rem; align-items: center; }
+        .footer-links a { color: var(--text-secondary); text-decoration: none; }
+        .copyright { text-align: center; padding-top: 1.5rem; border-top: 1px solid var(--border-light); margin-top: 2rem; font-size: 0.85rem; }
+        @media (max-width: 768px) { .nav-links { display: none; flex-direction: column; background: var(--bg-surface); position: absolute; top: 70px; left: 0; width: 100%; padding: 1rem; gap: 1rem; border-bottom: 1px solid var(--border-light); z-index: 99; } .nav-links.show { display: flex; } .mobile-toggle { display: block; } .hero h1 { font-size: 2.2rem; } .header-inner { flex-wrap: nowrap; } .contact-email span { display: none; } .tools-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 <header class="header">
     <div class="container header-inner">
         <div class="logo">ToolKit<span>Pro</span></div>
-        <nav class="nav-links" id="navMenu">
-            <a href="#home">Home</a>
-            <a href="#all-tools">All Tools</a>
-            <a href="#contact">Contact</a>
-        </nav>
+        <nav class="nav-links" id="navMenu"><a href="#home">Home</a><a href="#all-tools">All Tools</a><a href="#contact">Contact</a></nav>
         <div style="display: flex; gap: 0.8rem; align-items: center;">
-            <div class="contact-email">
-                <i class="fas fa-envelope"></i>
-                <span>supporttoolkitpro@gmail.com</span>
-            </div>
-            <button id="darkModeToggle" class="theme-toggle" aria-label="Dark mode">
-                <i class="fas fa-moon"></i> <span>Dark</span>
-            </button>
+            <div class="contact-email"><i class="fas fa-envelope"></i><span>supporttoolkitpro@gmail.com</span></div>
+            <button id="darkModeToggle" class="theme-toggle"><i class="fas fa-moon"></i> <span>Dark</span></button>
             <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
         </div>
     </div>
 </header>
-
 <main>
-    <section class="hero" id="home">
-        <div class="container">
-            <h1>Your Daily Toolkit — <span style="color:var(--accent);">Pro Grade</span></h1>
-            <p>Convert, compress, analyze, and boost productivity with 40+ professional online tools. Dark mode ready, fully responsive.</p>
-            <a href="#all-tools" class="cta-btn">Explore Tools <i class="fas fa-arrow-right"></i></a>
-            <div class="tool-badge-grid" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
-                <div class="badge-icon"><i class="fas fa-image"></i></div>
-                <div class="badge-icon"><i class="fas fa-file-pdf"></i></div>
-                <div class="badge-icon"><i class="fas fa-calculator"></i></div>
-                <div class="badge-icon"><i class="fas fa-code"></i></div>
-                <div class="badge-icon"><i class="fas fa-palette"></i></div>
-            </div>
-        </div>
-    </section>
-
-    <div class="search-card">
-        <div class="search-wrapper">
-            <input type="text" id="searchInput" placeholder="🔍 Search any tool... (PDF, Image, JSON, QR, Calculator)">
-            <button id="searchBtn"><i class="fas fa-search"></i> Find</button>
-        </div>
-        <div id="searchResultsPanel" class="search-results" style="margin-top:1rem; display:none; background:var(--bg-elevated); border-radius:1rem; padding:1rem;"></div>
-    </div>
-
+    <section class="hero" id="home"><div class="container"><h1>Your Daily Toolkit — <span style="color:var(--accent);">Pro Grade</span></h1><p>Convert, compress, analyze, and boost productivity with 40+ professional online tools. Dark mode ready, fully responsive.</p><a href="#all-tools" class="cta-btn">Explore Tools <i class="fas fa-arrow-right"></i></a><div class="tool-badge-grid" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;"><div class="badge-icon"><i class="fas fa-image"></i></div><div class="badge-icon"><i class="fas fa-file-pdf"></i></div><div class="badge-icon"><i class="fas fa-calculator"></i></div><div class="badge-icon"><i class="fas fa-code"></i></div><div class="badge-icon"><i class="fas fa-palette"></i></div></div></div></section>
+    <div class="search-card"><div class="search-wrapper"><input type="text" id="searchInput" placeholder="🔍 Search any tool..."><button id="searchBtn"><i class="fas fa-search"></i> Find</button></div><div id="searchResultsPanel" style="margin-top:1rem; display:none; background:var(--bg-elevated); border-radius:1rem; padding:1rem;"></div></div>
     <div id="all-tools"></div>
-
-    <!-- IMAGE TOOLS -->
     <section class="tools-section" id="image-tools"><div class="container"><div class="section-title"><h2>🖼 Image Tools</h2><p>Optimize, convert, transform your images</p></div><div class="tools-grid" id="imgGrid"></div></div></section>
-    <!-- DOCUMENT TOOLS -->
     <section class="tools-section bg-alt" id="doc-tools"><div class="container"><div class="section-title"><h2>📄 Document Tools</h2><p>PDF & document workflows</p></div><div class="tools-grid" id="docGrid"></div></div></section>
-    <!-- CALCULATOR TOOLS -->
     <section class="tools-section" id="calc-tools"><div class="container"><div class="section-title"><h2>🧮 Calculator Tools</h2><p>Smart financial & scientific</p></div><div class="tools-grid" id="calcGrid"></div></div></section>
-    <!-- TEXT TOOLS -->
     <section class="tools-section bg-alt" id="text-tools"><div class="container"><div class="section-title"><h2>🔤 Text Tools</h2><p>Process & convert text instantly</p></div><div class="tools-grid" id="textGrid"></div></div></section>
-    <!-- DEVELOPER TOOLS -->
     <section class="tools-section" id="dev-tools"><div class="container"><div class="section-title"><h2>🌐 Developer Tools</h2><p>Minify, JSON, Base64, Regex</p></div><div class="tools-grid" id="devGrid"></div></div></section>
-    <!-- COLOR & UTILITY -->
     <section class="tools-section bg-alt" id="color-util"><div class="container"><div class="section-title"><h2>🎨 Color & Utility</h2><p>Palettes, QR, UUID & generators</p></div><div class="tools-grid" id="utilGrid"></div></div></section>
 </main>
-
-<footer id="contact">
-    <div class="container">
-        <div class="footer-grid">
-            <div><div class="footer-logo">ToolKit<span>Pro</span></div><p style="margin-top:1rem; opacity:0.7;">Professional toolkit for everyday digital needs. Fast, reliable, dark mode + mobile ready.</p></div>
-            <div class="footer-contact"><h3 style="color:var(--text-primary);">Contact</h3><p><i class="fas fa-envelope"></i> supporttoolkitpro@gmail.com</p></div>
-            <div class="footer-links"><h3 style="color:var(--text-primary);">Resources</h3><ul style="list-style:none;"><li><a href="#home">Home</a></li><li><a href="#all-tools">All Tools</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms</a></li></ul></div>
-        </div>
-        <div class="copyright">© 2025 ToolKit Pro — Full dark mode experience | All devices supported</div>
-    </div>
-</footer>
-
+<footer id="contact"><div class="container"><div class="footer-grid"><div><div class="footer-logo">ToolKit<span>Pro</span></div><p style="margin-top:1rem; opacity:0.7;">Professional toolkit for everyday digital needs.</p></div><div class="footer-contact"><h3 style="color:var(--text-primary);">Contact</h3><p><i class="fas fa-envelope"></i> supporttoolkitpro@gmail.com</p></div><div class="footer-links"><h3 style="color:var(--text-primary);">Resources</h3><ul style="list-style:none;"><li><a href="#home">Home</a></li><li><a href="#all-tools">All Tools</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms</a></li></ul></div></div><div class="copyright">© 2025 ToolKit Pro — Full dark mode experience | All devices supported</div></div></footer>
 <script>
-    // All tools data with file names (exactly as per requirement)
     const toolsCategories = [
-        { id: "imgGrid", tools: [
-            { name:"Image Converter", desc:"JPG, PNG, WEBP, GIF", file:"image-converter.html", icon:"fas fa-exchange-alt" },
-            { name:"Image Compressor", desc:"Reduce size w/ quality", file:"image-compressor.html", icon:"fas fa-compress-alt" },
-            { name:"Image Resizer", desc:"Scale dimensions", file:"image-resizer.html", icon:"fas fa-expand-alt" },
-            { name:"Image Cropper", desc:"Crop & rotate", file:"image-cropper.html", icon:"fas fa-crop-alt" },
-            { name:"OCR (Image to Text)", desc:"Extract text", file:"ocr-tool.html", icon:"fas fa-font" },
-            { name:"Image Rotator", desc:"Flip / rotate", file:"image-rotator.html", icon:"fas fa-sync-alt" }
-        ]},
-        { id: "docGrid", tools: [
-            { name:"PDF ⇄ Word", desc:"Convert PDF/Word", file:"pdf-word.html", icon:"fas fa-file-pdf" },
-            { name:"PDF Compressor", desc:"Reduce PDF size", file:"pdf-compressor.html", icon:"fas fa-file-archive" },
-            { name:"PDF Merger & Splitter", desc:"Combine or split", file:"pdf-merger-splitter.html", icon:"fas fa-cut" },
-            { name:"Document Converter", desc:"DOC, ODT, TXT", file:"doc-converter.html", icon:"fas fa-exchange-alt" },
-            { name:"PDF Lock/Unlock", desc:"Passwords", file:"pdf-security.html", icon:"fas fa-lock" },
-            { name:"eSign PDF", desc:"Digital signatures", file:"esign-pdf.html", icon:"fas fa-signature" }
-        ]},
-        { id: "calcGrid", tools: [
-            { name:"Scientific Calculator", desc:"Trig, logs", file:"scientific-calc.html", icon:"fas fa-square-root-alt" },
-            { name:"Age Calculator", desc:"From DOB", file:"age-calc.html", icon:"fas fa-birthday-cake" },
-            { name:"BMI Calculator", desc:"Health range", file:"bmi-calc.html", icon:"fas fa-weight" },
-            { name:"Loan EMI Calculator", desc:"Monthly instalments", file:"emi-calc.html", icon:"fas fa-home" },
-            { name:"GST Calculator", desc:"Inclusive/Exclusive", file:"gst-calc.html", icon:"fas fa-percentage" },
-            { name:"Currency Converter", desc:"Live rates", file:"currency-converter.html", icon:"fas fa-money-bill-wave" }
-        ]},
-        { id: "textGrid", tools: [
-            { name:"Text Case Converter", desc:"UPPER, lower, Title", file:"text-case-converter.html", icon:"fas fa-text-height" },
-            { name:"Word & Character Counter", desc:"Words, characters", file:"word-counter.html", icon:"fas fa-sort-amount-down" },
-            { name:"Remove Duplicate Lines", desc:"Clean text", file:"remove-duplicates.html", icon:"fas fa-filter" },
-            { name:"Text Sorter", desc:"Alphabetical", file:"text-sorter.html", icon:"fas fa-sort-alpha-down" },
-            { name:"Text Reverser", desc:"Reverse words", file:"text-reverser.html", icon:"fas fa-undo" },
-            { name:"Text Encryptor/Decryptor", desc:"AES encryption", file:"text-encrypt.html", icon:"fas fa-lock" }
-        ]},
-        { id: "devGrid", tools: [
-            { name:"HTML/CSS/JS Minifier", desc:"Optimize code", file:"code-minifier.html", icon:"fas fa-file-code" },
-            { name:"JSON Formatter & Validator", desc:"Prettify JSON", file:"json-formatter.html", icon:"fas fa-brackets-curly" },
-            { name:"Base64 Encoder/Decoder", desc:"Encode text", file:"base64-tool.html", icon:"fas fa-key" },
-            { name:"URL Encoder/Decoder", desc:"Safe URLs", file:"url-encoder.html", icon:"fas fa-link" },
-            { name:"Color Picker & Converter", desc:"HEX, RGB, HSL", file:"color-converter.html", icon:"fas fa-palette" },
-            { name:"Regex Tester", desc:"Test regex", file:"regex-tester.html", icon:"fas fa-regex" }
-        ]},
-        { id: "utilGrid", tools: [
-            { name:"Color Picker from Image", desc:"Extract palette", file:"image-color-picker.html", icon:"fas fa-eye-dropper" },
-            { name:"HEX to RGB Converter", desc:"Format convert", file:"hex-rgb.html", icon:"fas fa-exchange-alt" },
-            { name:"Gradient Generator", desc:"CSS gradients", file:"gradient-gen.html", icon:"fas fa-sliders-h" },
-            { name:"QR Code Generator", desc:"Create & scan", file:"qr-generator.html", icon:"fas fa-qrcode" },
-            { name:"UUID Generator", desc:"Unique IDs", file:"uuid-gen.html", icon:"fas fa-fingerprint" },
-            { name:"Random Password Generator", desc:"Secure passwords", file:"password-gen.html", icon:"fas fa-random" }
-        ]}
+        { id: "imgGrid", tools: [{ name:"Image Converter", file:"image-converter.html", icon:"fas fa-exchange-alt", desc:"JPG, PNG, WEBP"},{ name:"Image Compressor", file:"image-compressor.html", icon:"fas fa-compress-alt", desc:"Reduce size"},{ name:"Image Resizer", file:"image-resizer.html", icon:"fas fa-expand-alt", desc:"Scale dimensions"},{ name:"Image Cropper", file:"image-cropper.html", icon:"fas fa-crop-alt", desc:"Crop & rotate"},{ name:"OCR (Image to Text)", file:"ocr-tool.html", icon:"fas fa-font", desc:"Extract text"},{ name:"Image Rotator", file:"image-rotator.html", icon:"fas fa-sync-alt", desc:"Flip / rotate"}]},
+        { id: "docGrid", tools: [{ name:"PDF ⇄ Word", file:"pdf-word.html", icon:"fas fa-file-pdf", desc:"Convert PDF/Word"},{ name:"PDF Compressor", file:"pdf-compressor.html", icon:"fas fa-file-archive", desc:"Reduce PDF size"},{ name:"PDF Merger & Splitter", file:"pdf-merger-splitter.html", icon:"fas fa-cut", desc:"Combine or split"},{ name:"Document Converter", file:"doc-converter.html", icon:"fas fa-exchange-alt", desc:"DOC, ODT, TXT"},{ name:"PDF Lock/Unlock", file:"pdf-security.html", icon:"fas fa-lock", desc:"Passwords"},{ name:"eSign PDF", file:"esign-pdf.html", icon:"fas fa-signature", desc:"Digital signatures"}]},
+        { id: "calcGrid", tools: [{ name:"Scientific Calculator", file:"scientific-calc.html", icon:"fas fa-square-root-alt", desc:"Trig, logs"},{ name:"Age Calculator", file:"age-calc.html", icon:"fas fa-birthday-cake", desc:"From DOB"},{ name:"BMI Calculator", file:"bmi-calc.html", icon:"fas fa-weight", desc:"Health range"},{ name:"Loan EMI Calculator", file:"emi-calc.html", icon:"fas fa-home", desc:"Monthly instalments"},{ name:"GST Calculator", file:"gst-calc.html", icon:"fas fa-percentage", desc:"Inclusive/Exclusive"},{ name:"Currency Converter", file:"currency-converter.html", icon:"fas fa-money-bill-wave", desc:"Live rates"}]},
+        { id: "textGrid", tools: [{ name:"Text Case Converter", file:"text-case-converter.html", icon:"fas fa-text-height", desc:"UPPER, lower"},{ name:"Word & Character Counter", file:"word-counter.html", icon:"fas fa-sort-amount-down", desc:"Words, characters"},{ name:"Remove Duplicate Lines", file:"remove-duplicates.html", icon:"fas fa-filter", desc:"Clean text"},{ name:"Text Sorter", file:"text-sorter.html", icon:"fas fa-sort-alpha-down", desc:"Alphabetical"},{ name:"Text Reverser", file:"text-reverser.html", icon:"fas fa-undo", desc:"Reverse words"},{ name:"Text Encryptor/Decryptor", file:"text-encrypt.html", icon:"fas fa-lock", desc:"AES encryption"}]},
+        { id: "devGrid", tools: [{ name:"HTML/CSS/JS Minifier", file:"code-minifier.html", icon:"fas fa-file-code", desc:"Optimize code"},{ name:"JSON Formatter", file:"json-formatter.html", icon:"fas fa-brackets-curly", desc:"Prettify JSON"},{ name:"Base64 Encoder/Decoder", file:"base64-tool.html", icon:"fas fa-key", desc:"Encode text"},{ name:"URL Encoder/Decoder", file:"url-encoder.html", icon:"fas fa-link", desc:"Safe URLs"},{ name:"Color Picker & Converter", file:"color-converter.html", icon:"fas fa-palette", desc:"HEX, RGB, HSL"},{ name:"Regex Tester", file:"regex-tester.html", icon:"fas fa-regex", desc:"Test regex"}]},
+        { id: "utilGrid", tools: [{ name:"Color Picker from Image", file:"image-color-picker.html", icon:"fas fa-eye-dropper", desc:"Extract palette"},{ name:"HEX to RGB Converter", file:"hex-rgb.html", icon:"fas fa-exchange-alt", desc:"Format convert"},{ name:"Gradient Generator", file:"gradient-gen.html", icon:"fas fa-sliders-h", desc:"CSS gradients"},{ name:"QR Code Generator", file:"qr-generator.html", icon:"fas fa-qrcode", desc:"Create & scan"},{ name:"UUID Generator", file:"uuid-gen.html", icon:"fas fa-fingerprint", desc:"Unique IDs"},{ name:"Password Generator", file:"password-gen.html", icon:"fas fa-random", desc:"Secure passwords"}]}
     ];
-
-    function buildTools() {
-        for(let cat of toolsCategories) {
-            const container = document.getElementById(cat.id);
-            if(container) {
-                container.innerHTML = '';
-                for(let tool of cat.tools) {
-                    const card = document.createElement('div');
-                    card.className = 'tool-card';
-                    card.setAttribute('data-toolname', tool.name.toLowerCase());
-                    card.innerHTML = `
-                        <div class="tool-icon"><i class="${tool.icon}"></i></div>
-                        <h3>${tool.name}</h3>
-                        <p>${tool.desc}</p>
-                        <a href="${tool.file}" class="tool-link">Use Tool →</a>
-                    `;
-                    container.appendChild(card);
-                }
-            }
-        }
-    }
-
-    // Dark mode logic
+    function buildTools() { for(let cat of toolsCategories) { const container = document.getElementById(cat.id); if(container) { container.innerHTML = ''; for(let tool of cat.tools) { container.innerHTML += `<div class="tool-card"><div class="tool-icon"><i class="${tool.icon}"></i></div><h3>${tool.name}</h3><p>${tool.desc}</p><a href="${tool.file}" class="tool-link">Use Tool →</a></div>`; } } } }
     const darkToggle = document.getElementById('darkModeToggle');
-    function setDarkMode(isDark) {
-        if(isDark) {
-            document.body.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
-            darkToggle.innerHTML = '<i class="fas fa-sun"></i> <span>Light</span>';
-        } else {
-            document.body.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
-            darkToggle.innerHTML = '<i class="fas fa-moon"></i> <span>Dark</span>';
-        }
-    }
-    const savedTheme = localStorage.getItem('theme');
-    if(savedTheme === 'dark') setDarkMode(true);
-    else setDarkMode(false);
-    darkToggle.addEventListener('click', () => {
-        const isDarkNow = document.body.classList.contains('dark');
-        setDarkMode(!isDarkNow);
-    });
-
-    // Search functionality across all tool cards (dynamic after build)
-    function initSearch() {
-        const searchInput = document.getElementById('searchInput');
-        const searchBtn = document.getElementById('searchBtn');
-        const resultsPanel = document.getElementById('searchResultsPanel');
-        function performSearch() {
-            const term = searchInput.value.trim().toLowerCase();
-            if (term === "") { resultsPanel.style.display = 'none'; return; }
-            const allCards = document.querySelectorAll('.tool-card');
-            let matches = [];
-            allCards.forEach(card => {
-                const title = card.querySelector('h3')?.innerText.toLowerCase() || '';
-                const desc = card.querySelector('p')?.innerText.toLowerCase() || '';
-                if (title.includes(term) || desc.includes(term)) matches.push(card);
-            });
-            if(matches.length === 0) {
-                resultsPanel.innerHTML = `<div style="padding:1rem; text-align:center;">🔍 No tools found for "<strong>${escapeHtml(term)}</strong>"</div>`;
-                resultsPanel.style.display = 'block';
-                return;
-            }
-            let html = `<h4 style="margin-bottom:0.75rem;">✨ ${matches.length} tool(s) found:</h4><ul style="list-style:none;">`;
-            matches.forEach(card => {
-                const toolName = card.querySelector('h3').innerText;
-                const link = card.querySelector('.tool-link')?.getAttribute('href') || '#';
-                html += `<li style="margin-bottom:0.6rem;"><i class="fas fa-wrench" style="color:var(--accent); width:28px;"></i> <a href="${link}" style="color:var(--primary-light); font-weight:500;">${toolName}</a> — click to open</li>`;
-            });
-            html += `<div style="margin-top:0.8rem;"><button id="clearSearchBtn" style="background:var(--bg-surface); border:1px solid var(--border-light); border-radius:2rem; padding:0.4rem 1.2rem; cursor:pointer;">Clear Results</button></div>`;
-            resultsPanel.innerHTML = html;
-            resultsPanel.style.display = 'block';
-            const clearBtn = document.getElementById('clearSearchBtn');
-            if(clearBtn) clearBtn.onclick = () => { searchInput.value = ''; resultsPanel.style.display = 'none'; };
-        }
-        function escapeHtml(str) { return str.replace(/[&<>]/g, function(m){if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
-        searchBtn.addEventListener('click', performSearch);
-        searchInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') performSearch(); });
-    }
-
-    // mobile menu toggle
-    const mobileToggle = document.getElementById('mobileToggle');
-    const navMenu = document.getElementById('navMenu');
-    mobileToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('show');
-    });
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => navMenu.classList.remove('show'));
-    });
-
-    buildTools();
-    initSearch();
-    // additionally rebuild search after dynamic content fully ready
-    window.addEventListener('load', () => {
-        initSearch();
-    });
+    if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+    darkToggle.onclick = () => { document.body.classList.toggle('dark'); localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light'); darkToggle.innerHTML = document.body.classList.contains('dark') ? '<i class="fas fa-sun"></i> <span>Light</span>' : '<i class="fas fa-moon"></i> <span>Dark</span>'; };
+    function initSearch() { const searchInput = document.getElementById('searchInput'); const searchBtn = document.getElementById('searchBtn'); const resultsPanel = document.getElementById('searchResultsPanel'); function performSearch() { const term = searchInput.value.trim().toLowerCase(); if(term === "") { resultsPanel.style.display = 'none'; return; } const allCards = document.querySelectorAll('.tool-card'); let matches = []; allCards.forEach(card => { const title = card.querySelector('h3')?.innerText.toLowerCase() || ''; const desc = card.querySelector('p')?.innerText.toLowerCase() || ''; if(title.includes(term) || desc.includes(term)) matches.push(card); }); if(matches.length === 0) { resultsPanel.innerHTML = `<div style="padding:1rem; text-align:center;">🔍 No tools found for "<strong>${term}</strong>"</div>`; resultsPanel.style.display = 'block'; return; } let html = `<h4>✨ ${matches.length} tool(s) found:</h4><ul style="list-style:none;">`; matches.forEach(card => { const toolName = card.querySelector('h3').innerText; const link = card.querySelector('.tool-link')?.getAttribute('href') || '#'; html += `<li style="margin-bottom:0.6rem;"><i class="fas fa-wrench" style="color:var(--accent);"></i> <a href="${link}" style="color:var(--primary-light); font-weight:500;">${toolName}</a></li>`; }); html += `<div style="margin-top:0.8rem;"><button id="clearSearchBtn" style="background:var(--bg-surface); border:1px solid var(--border-light); border-radius:2rem; padding:0.4rem 1.2rem; cursor:pointer;">Clear</button></div>`; resultsPanel.innerHTML = html; resultsPanel.style.display = 'block'; document.getElementById('clearSearchBtn')?.addEventListener('click', () => { searchInput.value = ''; resultsPanel.style.display = 'none'; }); } searchBtn.addEventListener('click', performSearch); searchInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') performSearch(); }); }
+    const mobileToggle = document.getElementById('mobileToggle'); const navMenu = document.getElementById('navMenu'); mobileToggle.addEventListener('click', () => { navMenu.classList.toggle('show'); }); document.querySelectorAll('.nav-links a').forEach(link => { link.addEventListener('click', () => navMenu.classList.remove('show')); }); buildTools(); initSearch();
 </script>
 </body>
 </html>
