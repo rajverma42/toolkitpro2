@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Case Converter - ToolKit Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg-primary: #f8fafc; --bg-surface: #ffffff; --text-primary: #0f172a; --text-secondary: #334155; --border-light: #e2e8f0; --primary: #0f3b5f; --accent: #ff8c42; }
+        body.dark { --bg-primary: #0a0c10; --bg-surface: #111418; --text-primary: #edf2f7; --text-secondary: #cbd5e1; --border-light: #1e293b; }
+        body { background: var(--bg-primary); color: var(--text-primary); font-family: system-ui; transition: 0.2s; }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        .tool-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+        .logo { font-size: 1.5rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .theme-toggle { background: var(--bg-surface); border: 1px solid var(--border-light); padding: 0.5rem 1rem; border-radius: 2rem; cursor: pointer; }
+        .card { background: var(--bg-surface); border-radius: 1.5rem; padding: 2rem; border: 1px solid var(--border-light); }
+        textarea { width: 100%; padding: 1rem; border-radius: 1rem; border: 1px solid var(--border-light); background: var(--bg-primary); color: var(--text-primary); margin: 1rem 0; font-size: 1rem; }
+        .btn-group { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 1rem 0; }
+        button { padding: 0.5rem 1rem; border-radius: 2rem; border: 1px solid var(--border-light); background: var(--bg-surface); cursor: pointer; }
+        .btn-primary { background: var(--primary); color: white; }
+        @media (max-width: 768px) { .container { padding: 1rem; } }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="tool-header">
+        <a href="index.html" class="logo">ToolKit<span style="color:var(--accent);">Pro</span></a>
+        <button class="theme-toggle" id="darkToggle"><i class="fas fa-moon"></i> Dark</button>
+    </div>
+    <div class="card">
+        <h1><i class="fas fa-text-height"></i> Text Case Converter</h1>
+        <textarea id="inputText" rows="6" placeholder="Enter your text here..."></textarea>
+        <div class="btn-group">
+            <button class="btn-primary" onclick="convert('upper')">UPPERCASE</button>
+            <button class="btn-primary" onclick="convert('lower')">lowercase</button>
+            <button class="btn-primary" onclick="convert('title')">Title Case</button>
+            <button class="btn-primary" onclick="convert('sentence')">Sentence case</button>
+            <button class="btn-primary" onclick="convert('toggle')">tOGGLE cASE</button>
+        </div>
+        <h3>Result:</h3>
+        <textarea id="outputText" rows="6" readonly placeholder="Converted text will appear here..."></textarea>
+        <button onclick="copyText()"><i class="fas fa-copy"></i> Copy Result</button>
+    </div>
+</div>
+<script>
+    const darkToggle = document.getElementById('darkToggle');
+    if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+    darkToggle.onclick = () => { document.body.classList.toggle('dark'); localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light'); };
+    function convert(type) {
+        let text = document.getElementById('inputText').value;
+        if(!text) return;
+        switch(type) {
+            case 'upper': text = text.toUpperCase(); break;
+            case 'lower': text = text.toLowerCase(); break;
+            case 'title': text = text.replace(/\b\w/g, c => c.toUpperCase()); break;
+            case 'sentence': text = text.charAt(0).toUpperCase() + text.slice(1).toLowerCase(); break;
+            case 'toggle': text = text.split('').map(c => c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()).join(''); break;
+        }
+        document.getElementById('outputText').value = text;
+    }
+    function copyText() { const out = document.getElementById('outputText'); out.select(); document.execCommand('copy'); alert('Copied!'); }
+</script>
+</body>
+</html>
