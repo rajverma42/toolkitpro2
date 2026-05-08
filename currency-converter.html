@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter - ToolKit Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg-primary: #f8fafc; --bg-surface: #ffffff; --text-primary: #0f172a; --border-light: #e2e8f0; --primary: #0f3b5f; --accent: #ff8c42; }
+        body.dark { --bg-primary: #0a0c10; --bg-surface: #111418; --text-primary: #edf2f7; --border-light: #1e293b; }
+        body { background: var(--bg-primary); font-family: system-ui; transition: 0.2s; }
+        .container { max-width: 700px; margin: 0 auto; padding: 2rem; }
+        .card { background: var(--bg-surface); border-radius: 1.5rem; padding: 2rem; text-align: center; }
+        input, select, button { padding: 0.75rem; margin: 0.5rem; border-radius: 0.75rem; border: 1px solid var(--border-light); }
+        .btn-primary { background: var(--primary); color: white; cursor: pointer; }
+        .theme-toggle { position: fixed; top: 1rem; right: 1rem; background: var(--bg-surface); padding: 0.5rem 1rem; border-radius: 2rem; cursor: pointer; }
+        .result { font-size: 1.8rem; margin: 1rem 0; font-weight: bold; color: var(--accent); }
+    </style>
+</head>
+<body>
+<button class="theme-toggle" id="darkToggle"><i class="fas fa-moon"></i> Dark</button>
+<div class="container">
+    <div class="card">
+        <h1><i class="fas fa-money-bill-wave"></i> Currency Converter</h1>
+        <input type="number" id="amount" value="100" placeholder="Amount">
+        <select id="fromCurrency"><option value="USD">USD</option><option value="EUR">EUR</option><option value="GBP">GBP</option><option value="INR" selected>INR</option></select>
+        <span>→</span>
+        <select id="toCurrency"><option value="USD">USD</option><option value="EUR">EUR</option><option value="GBP">GBP</option><option value="INR">INR</option></select>
+        <button class="btn-primary" id="convertBtn">Convert</button>
+        <div class="result" id="result">—</div>
+        <p style="font-size:0.8rem;">Demo rates: 1 USD = 0.92 EUR, 1 USD = 83 INR (static for demo)</p>
+    </div>
+</div>
+<script>
+    const darkToggle = document.getElementById('darkToggle');
+    if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+    darkToggle.onclick = () => { document.body.classList.toggle('dark'); localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light'); };
+    const rates = { USD_EUR: 0.92, USD_GBP: 0.79, USD_INR: 83.5, EUR_USD: 1.09, EUR_GBP: 0.86, EUR_INR: 90.2, GBP_USD: 1.27, GBP_EUR: 1.16, GBP_INR: 105.5, INR_USD: 0.012, INR_EUR: 0.011, INR_GBP: 0
