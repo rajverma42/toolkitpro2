@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Formatter - ToolKit Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg-primary: #f8fafc; --bg-surface: #ffffff; --text-primary: #0f172a; --border-light: #e2e8f0; --primary: #0f3b5f; --accent: #ff8c42; }
+        body.dark { --bg-primary: #0a0c10; --bg-surface: #111418; --text-primary: #edf2f7; --border-light: #1e293b; }
+        body { background: var(--bg-primary); font-family: monospace; transition: 0.2s; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .tool-header { display: flex; justify-content: space-between; margin-bottom: 1rem; }
+        .logo { font-size: 1.5rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .theme-toggle { background: var(--bg-surface); border: 1px solid var(--border-light); padding: 0.5rem 1rem; border-radius: 2rem; cursor: pointer; }
+        textarea { width: 100%; padding: 1rem; border-radius: 1rem; border: 1px solid var(--border-light); background: var(--bg-surface); color: var(--text-primary); font-family: monospace; margin: 1rem 0; height: 300px; }
+        button { padding: 0.75rem 1.5rem; border-radius: 2rem; border: none; background: var(--primary); color: white; cursor: pointer; margin: 0.5rem; }
+        .error { color: #ef4444; margin: 0.5rem 0; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="tool-header">
+        <a href="index.html" class="logo">ToolKit<span style="color:var(--accent);">Pro</span></a>
+        <button class="theme-toggle" id="darkToggle"><i class="fas fa-moon"></i> Dark</button>
+    </div>
+    <h1><i class="fas fa-brackets-curly"></i> JSON Formatter & Validator</h1>
+    <textarea id="jsonInput" placeholder='{"name": "ToolKit Pro", "tools": 40}'></textarea>
+    <div>
+        <button id="formatBtn">Format JSON</button>
+        <button id="minifyBtn">Minify</button>
+        <button id="validateBtn">Validate</button>
+    </div>
+    <textarea id="jsonOutput" placeholder="Formatted output will appear here..." readonly></textarea>
+    <div id="errorMsg" class="error"></div>
+</div>
+<script>
+    const darkToggle = document.getElementById('darkToggle');
+    if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+    darkToggle.onclick = () => { document.body.classList.toggle('dark'); localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light'); };
+    function process(mode) { const input = document.getElementById('jsonInput').value; try { const parsed = JSON.parse(input); if(mode === 'format') document.getElementById('jsonOutput').value = JSON.stringify(parsed, null, 2); else if(mode === 'minify') document.getElementById('jsonOutput').value = JSON.stringify(parsed); document.getElementById('errorMsg').innerHTML = ''; } catch(e) { document.getElementById('errorMsg').innerHTML = '❌ Invalid JSON: ' + e.message; } }
+    document.getElementById('formatBtn').onclick = () => process('format');
+    document.getElementById('minifyBtn').onclick = () => process('minify');
+    document.getElementById('validateBtn').onclick = () => { try { JSON.parse(document.getElementById('jsonInput').value); document.getElementById('errorMsg').innerHTML = '✅ Valid JSON!'; } catch(e) { document.getElementById('errorMsg').innerHTML = '❌ Invalid JSON'; } };
+</script>
+</body>
+</html>
