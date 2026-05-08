@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Compressor - ToolKit Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg-primary: #f8fafc; --bg-surface: #ffffff; --text-primary: #0f172a; --text-secondary: #334155; --border-light: #e2e8f0; --primary: #0f3b5f; --accent: #ff8c42; }
+        body.dark { --bg-primary: #0a0c10; --bg-surface: #111418; --text-primary: #edf2f7; --text-secondary: #cbd5e1; --border-light: #1e293b; }
+        body { background: var(--bg-primary); color: var(--text-primary); font-family: system-ui; transition: 0.2s; }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        .tool-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+        .logo { font-size: 1.5rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .theme-toggle { background: var(--bg-surface); border: 1px solid var(--border-light); padding: 0.5rem 1rem; border-radius: 2rem; cursor: pointer; }
+        .card { background: var(--bg-surface); border-radius: 1.5rem; padding: 2rem; border: 1px solid var(--border-light); }
+        input, button { padding: 0.75rem; margin: 0.5rem 0; border-radius: 0.75rem; border: 1px solid var(--border-light); background: var(--bg-surface); }
+        .btn-primary { background: var(--primary); color: white; border: none; width: 100%; cursor: pointer; }
+        .preview { margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+        .preview img { max-width: 200px; border-radius: 1rem; }
+        @media (max-width: 768px) { .container { padding: 1rem; } }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="tool-header">
+        <a href="index.html" class="logo">ToolKit<span style="color:var(--accent);">Pro</span></a>
+        <button class="theme-toggle" id="darkToggle"><i class="fas fa-moon"></i> Dark</button>
+    </div>
+    <div class="card">
+        <h1><i class="fas fa-compress-alt"></i> Image Compressor</h1>
+        <p>Reduce image size while maintaining quality</p>
+        <input type="file" id="fileInput" accept="image/*">
+        <label>Quality: <span id="qualityVal">70</span>%</label>
+        <input type="range" id="quality" min="10" max="100" value="70">
+        <button class="btn-primary" id="compressBtn">Compress Image</button>
+        <div class="preview" id="preview"></div>
+    </div>
+</div>
+<script>
+    const darkToggle = document.getElementById('darkToggle');
+    if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+    darkToggle.onclick = () => { document.body.classList.toggle('dark'); localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light'); };
+    const qualitySlider = document.getElementById('quality');
+    const qualityVal = document.getElementById('qualityVal');
+    qualitySlider.oninput = () => qualityVal.innerText = qualitySlider.value;
+    document.getElementById('compressBtn').onclick = () => {
+        const file = document.getElementById('fileInput').files[0];
+        if(!file) return alert('Select image');
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const img = new Image();
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width; canvas.height = img.height;
+                canvas.getContext('2d').drawImage(img, 0, 0);
+                canvas.toBlob((blob) => {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url; a.download = `compressed_${file.name}`;
+                    a.click();
+                    document.getElementById('preview').innerHTML = `<div><strong>Compressed:</strong><br><img src="${url}"><br>Size: ${(blob.size/1024).toFixed(2)} KB</div>`;
+                }, 'image/jpeg', qualitySlider.value/100);
+            };
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    };
+</script>
+</body>
+</html>
