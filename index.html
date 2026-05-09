@@ -3,79 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>ToolKit Pro | Trending Tools & Professional Suite</title>
+    <title>ToolKit Pro 2 | Premium Tools Suite with Fivecon Icons</title>
+    <!-- Font Awesome for fallback + Fivecon SVG integration -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Fivecon Icons - Professional SVG Icon Set -->
     <style>
+        /* Fivecon Icon Font Integration - Professional Grade Icons */
+        @font-face {
+            font-family: 'Fivecon';
+            src: url('https://cdn.jsdelivr.net/gh/lucaburgio/iconfont@main/fonts/fivecon.eot');
+            src: url('https://cdn.jsdelivr.net/gh/lucaburgio/iconfont@main/fonts/fivecon.eot?#iefix') format('embedded-opentype'),
+                 url('https://cdn.jsdelivr.net/gh/lucaburgio/iconfont@main/fonts/fivecon.woff2') format('woff2'),
+                 url('https://cdn.jsdelivr.net/gh/lucaburgio/iconfont@main/fonts/fivecon.woff') format('woff'),
+                 url('https://cdn.jsdelivr.net/gh/lucaburgio/iconfont@main/fonts/fivecon.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        [class^="fc-"], [class*=" fc-"] {
+            font-family: 'Fivecon' !important;
+            speak: never;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Fivecon Icon Mappings - Professional Icons */
+        .fc-image:before { content: "\e900"; }
+        .fc-pdf:before { content: "\e901"; }
+        .fc-calculator:before { content: "\e902"; }
+        .fc-text:before { content: "\e903"; }
+        .fc-code:before { content: "\e904"; }
+        .fc-color:before { content: "\e905"; }
+        .fc-qr:before { content: "\e906"; }
+        .fc-compress:before { content: "\e907"; }
+        .fc-crop:before { content: "\e908"; }
+        .fc-rotate:before { content: "\e909"; }
+        .fc-word:before { content: "\e90a"; }
+        .fc-merge:before { content: "\e90b"; }
+        .fc-lock:before { content: "\e90c"; }
+        .fc-signature:before { content: "\e90d"; }
+        .fc-scientific:before { content: "\e90e"; }
+        .fc-age:before { content: "\e90f"; }
+        .fc-bmi:before { content: "\e910"; }
+        .fc-home:before { content: "\e911"; }
+        .fc-gst:before { content: "\e912"; }
+        .fc-currency:before { content: "\e913"; }
+        .fc-case:before { content: "\e914"; }
+        .fc-counter:before { content: "\e915"; }
+        .fc-sort:before { content: "\e916"; }
+        .fc-reverse:before { content: "\e917"; }
+        .fc-encrypt:before { content: "\e918"; }
+        .fc-minify:before { content: "\e919"; }
+        .fc-json:before { content: "\e91a"; }
+        .fc-base64:before { content: "\e91b"; }
+        .fc-url:before { content: "\e91c"; }
+        .fc-regex:before { content: "\e91d"; }
+        .fc-gradient:before { content: "\e91e"; }
+        .fc-uuid:before { content: "\e91f"; }
+        .fc-password:before { content: "\e920"; }
+        .fc-fire:before { content: "\e921"; }
+        .fc-star:before { content: "\e922"; }
+        .fc-trending:before { content: "\e923"; }
+        .fc-document:before { content: "\e924"; }
+        .fc-developer:before { content: "\e925"; }
+        .fc-utility:before { content: "\e926"; }
+        
+        /* Base Styles */
         * { margin: 0; padding: 0; box-sizing: border-box; transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s; }
-        :root { --bg-primary: #f8fafc; --bg-surface: #ffffff; --bg-elevated: #f1f5f9; --text-primary: #0f172a; --text-secondary: #334155; --text-muted: #64748b; --border-light: #e2e8f0; --card-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05); --card-shadow-hover: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.02); --primary: #0f3b5f; --primary-dark: #0a2c46; --primary-light: #2c6e9e; --accent: #ff8c42; --accent-glow: rgba(255, 140, 66, 0.2); --header-bg: rgba(255, 255, 255, 0.95); --hero-gradient-start: #eef2ff; --hero-gradient-end: #ffffff; --badge-bg: white; --trending-bg: linear-gradient(135deg, #fff5eb, #ffe8d9); }
+        :root { --bg-primary: #f8fafc; --bg-surface: #ffffff; --bg-elevated: #f1f5f9; --text-primary: #0f172a; --text-secondary: #334155; --text-muted: #64748b; --border-light: #e2e8f0; --card-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05); --card-shadow-hover: 0 20px 25px -5px rgb(0 0 0 / 0.05); --primary: #0f3b5f; --primary-dark: #0a2c46; --primary-light: #2c6e9e; --accent: #ff8c42; --header-bg: rgba(255, 255, 255, 0.95); --hero-gradient-start: #eef2ff; --hero-gradient-end: #ffffff; --badge-bg: white; --trending-bg: linear-gradient(135deg, #fff5eb, #ffe8d9); }
         body.dark { --bg-primary: #0a0c10; --bg-surface: #111418; --bg-elevated: #1a1f2a; --text-primary: #edf2f7; --text-secondary: #cbd5e1; --text-muted: #94a3b8; --border-light: #1e293b; --card-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.3); --card-shadow-hover: 0 20px 25px -5px rgb(0 0 0 / 0.4); --header-bg: rgba(17, 20, 28, 0.95); --hero-gradient-start: #0b1120; --hero-gradient-end: #111418; --badge-bg: #1e293b; --trending-bg: linear-gradient(135deg, #1e293b, #2d1b0e); }
         body { background: var(--bg-primary); color: var(--text-primary); font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; scroll-behavior: smooth; }
         .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+        
         /* Header */
         .header { background: var(--header-bg); backdrop-filter: blur(12px); box-shadow: 0 1px 2px var(--border-light); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border-light); }
         .header-inner { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; gap: 2rem; flex-wrap: wrap; }
-        .logo { font-size: 1.75rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--primary-light)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .logo { font-size: 1.75rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--primary-light)); -webkit-background-clip: text; background-clip: text; color: transparent; display: flex; align-items: center; gap: 0.5rem; }
         .logo span { color: var(--accent); background: none; }
+        .logo-icon { font-size: 2rem; font-family: 'Fivecon'; color: var(--accent); }
+        .logo-icon:before { content: "\e926"; }
         .nav-links { display: flex; gap: 2rem; align-items: center; }
         .nav-links a { text-decoration: none; font-weight: 500; color: var(--text-secondary); transition: 0.2s; }
         .nav-links a:hover, .nav-links a.active { color: var(--primary-light); }
         .theme-toggle { background: var(--bg-elevated); border: 1px solid var(--border-light); border-radius: 3rem; padding: 0.5rem 1rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-weight: 500; color: var(--text-primary); }
         .contact-email { display: flex; align-items: center; gap: 0.5rem; background: var(--bg-elevated); padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.9rem; color: var(--text-secondary); }
         .mobile-toggle { display: none; font-size: 1.5rem; background: none; border: none; cursor: pointer; color: var(--text-primary); }
+        
         /* Hero */
         .hero { background: linear-gradient(120deg, var(--hero-gradient-start) 0%, var(--hero-gradient-end) 100%); padding: 4rem 0 3rem; text-align: center; }
         .hero h1 { font-size: 3rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 1rem; }
         .hero p { font-size: 1.2rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto 2rem; }
         .cta-btn { background: var(--primary); color: white; padding: 0.8rem 2rem; border-radius: 2rem; text-decoration: none; font-weight: 600; display: inline-block; transition: 0.2s; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-        .badge-icon { background: var(--badge-bg); width: 55px; height: 55px; border-radius: 30px; display: flex; align-items: center; justify-content: center; box-shadow: var(--card-shadow); color: var(--primary-light); font-size: 1.5rem; border: 1px solid var(--border-light); }
+        .badge-icon { background: var(--badge-bg); width: 55px; height: 55px; border-radius: 30px; display: flex; align-items: center; justify-content: center; box-shadow: var(--card-shadow); color: var(--primary-light); font-size: 1.8rem; border: 1px solid var(--border-light); font-family: 'Fivecon'; }
+        
         /* Trending Section */
         .trending-section { padding: 3rem 0; background: var(--bg-elevated); }
         .section-header { text-align: center; margin-bottom: 2.5rem; }
-        .section-header h2 { font-size: 2rem; font-weight: 700; color: var(--text-primary); }
-        .section-header p { color: var(--text-muted); }
+        .section-header h2 { font-size: 2rem; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; justify-content: center; gap: 0.75rem; }
+        .section-header h2 i { font-family: 'Fivecon'; font-size: 2rem; color: var(--accent); }
         .trending-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.8rem; max-width: 1000px; margin: 0 auto; }
         .trending-card { background: var(--bg-surface); border-radius: 1.25rem; padding: 1.8rem; transition: transform 0.2s, box-shadow 0.2s; box-shadow: var(--card-shadow); border: 1px solid var(--border-light); position: relative; overflow: hidden; }
         .trending-card:hover { transform: translateY(-5px); box-shadow: var(--card-shadow-hover); }
         .trending-badge { position: absolute; top: 1rem; right: 1rem; background: var(--accent); color: white; padding: 0.25rem 0.75rem; border-radius: 2rem; font-size: 0.7rem; font-weight: 600; }
-        .trending-icon { background: var(--bg-elevated); width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 1rem; color: var(--primary-light); font-size: 1.8rem; margin-bottom: 1rem; }
+        .trending-icon { background: var(--bg-elevated); width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 1rem; color: var(--primary-light); font-size: 2rem; margin-bottom: 1rem; font-family: 'Fivecon'; }
         .trending-card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
         .trending-card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.2rem; }
         .trending-stats { display: flex; gap: 1rem; margin-bottom: 1.2rem; font-size: 0.8rem; color: var(--text-muted); }
-        .trending-stats i { margin-right: 0.25rem; color: var(--accent); }
+        .trending-stats i { margin-right: 0.25rem; color: var(--accent); font-family: 'Fivecon'; }
         .tool-link { display: inline-block; background: var(--primary); color: white; padding: 0.6rem 1.5rem; border-radius: 2rem; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: 0.2s; }
         .tool-link:hover { background: var(--primary-dark); }
         .view-all-btn { display: block; width: fit-content; margin: 2rem auto 0; background: transparent; border: 2px solid var(--primary); color: var(--primary); padding: 0.8rem 2rem; border-radius: 3rem; text-decoration: none; font-weight: 600; transition: 0.2s; }
         .view-all-btn:hover { background: var(--primary); color: white; }
-        /* All Tools Page (hidden by default, shown when clicking "All Tools") */
+        
+        /* All Tools Page */
         .all-tools-page { display: none; padding: 2rem 0; }
         .all-tools-page.active { display: block; }
         .home-page { display: block; }
         .home-page.hide { display: none; }
         .category-grid { margin-bottom: 2.5rem; }
-        .category-title { font-size: 1.6rem; margin-bottom: 1.2rem; padding-bottom: 0.5rem; border-bottom: 3px solid var(--accent); display: inline-block; }
+        .category-title { font-size: 1.6rem; margin-bottom: 1.2rem; padding-bottom: 0.5rem; border-bottom: 3px solid var(--accent); display: inline-flex; align-items: center; gap: 0.75rem; }
+        .category-title i { font-family: 'Fivecon'; font-size: 1.6rem; color: var(--accent); }
         .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
         .tool-card { background: var(--bg-surface); border-radius: 1rem; padding: 1.2rem; transition: transform 0.2s; box-shadow: var(--card-shadow); border: 1px solid var(--border-light); }
         .tool-card:hover { transform: translateY(-3px); }
-        .tool-icon-sm { background: var(--bg-elevated); width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 0.75rem; color: var(--primary-light); font-size: 1.2rem; margin-bottom: 0.8rem; }
+        .tool-icon-sm { background: var(--bg-elevated); width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 0.75rem; color: var(--primary-light); font-size: 1.5rem; margin-bottom: 0.8rem; font-family: 'Fivecon'; }
         .back-home { background: var(--bg-surface); border: 1px solid var(--border-light); padding: 0.5rem 1rem; border-radius: 2rem; cursor: pointer; margin-bottom: 1.5rem; display: inline-flex; align-items: center; gap: 0.5rem; }
+        
         footer { background: var(--bg-surface); border-top: 1px solid var(--border-light); padding: 3rem 0 1.5rem; margin-top: 2rem; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; }
-        .footer-logo { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .footer-logo { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; display: flex; align-items: center; gap: 0.5rem; }
+        .footer-logo i { font-family: 'Fivecon'; font-size: 1.8rem; color: var(--accent); background: none; -webkit-background-clip: unset; }
         .copyright { text-align: center; padding-top: 1.5rem; border-top: 1px solid var(--border-light); margin-top: 2rem; font-size: 0.85rem; }
+        
         @media (max-width: 768px) { .nav-links { display: none; flex-direction: column; background: var(--bg-surface); position: absolute; top: 70px; left: 0; width: 100%; padding: 1rem; gap: 1rem; border-bottom: 1px solid var(--border-light); z-index: 99; } .nav-links.show { display: flex; } .mobile-toggle { display: block; } .hero h1 { font-size: 2rem; } .trending-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 <header class="header">
     <div class="container header-inner">
-        <div class="logo">ToolKit<span>Pro</span></div>
+        <div class="logo"><i class="logo-icon"></i>ToolKit<span>Pro2</span></div>
         <nav class="nav-links" id="navMenu">
             <a href="#" id="homeNavBtn" class="active">Home</a>
             <a href="#" id="allToolsNavBtn">All Tools</a>
             <a href="#contact">Contact</a>
         </nav>
         <div style="display: flex; gap: 0.8rem; align-items: center;">
-            <div class="contact-email"><i class="fas fa-envelope"></i><span>supporttoolkitpro@gmail.com</span></div>
+            <div class="contact-email"><i class="fas fa-envelope"></i><span>toolkitpro2@support.com</span></div>
             <button id="darkModeToggle" class="theme-toggle"><i class="fas fa-moon"></i> <span>Dark</span></button>
             <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
         </div>
@@ -87,25 +166,25 @@
     <div id="homePage" class="home-page">
         <section class="hero">
             <div class="container">
-                <h1>Your Daily Toolkit — <span style="color:var(--accent);">Pro Grade</span></h1>
-                <p>Convert, compress, analyze, and boost productivity with 40+ professional online tools. Dark mode ready, fully responsive.</p>
+                <h1>ToolKit Pro 2 — <span style="color:var(--accent);">Fivecon Icons</span></h1>
+                <p>40+ professional tools with premium Fivecon SVG icons. Convert, compress, analyze — all in one place.</p>
                 <a href="#" id="exploreBtn" class="cta-btn">Explore All Tools <i class="fas fa-arrow-right"></i></a>
                 <div class="tool-badge-grid" style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
-                    <div class="badge-icon"><i class="fas fa-image"></i></div>
-                    <div class="badge-icon"><i class="fas fa-file-pdf"></i></div>
-                    <div class="badge-icon"><i class="fas fa-calculator"></i></div>
-                    <div class="badge-icon"><i class="fas fa-code"></i></div>
-                    <div class="badge-icon"><i class="fas fa-palette"></i></div>
+                    <div class="badge-icon"><i class="fc-image"></i></div>
+                    <div class="badge-icon"><i class="fc-pdf"></i></div>
+                    <div class="badge-icon"><i class="fc-calculator"></i></div>
+                    <div class="badge-icon"><i class="fc-code"></i></div>
+                    <div class="badge-icon"><i class="fc-color"></i></div>
                 </div>
             </div>
         </section>
 
-        <!-- TRENDING TOOLS SECTION - Only 5 trending tools -->
+        <!-- TRENDING TOOLS SECTION - 5 Tools with Fivecon Icons -->
         <section class="trending-section">
             <div class="container">
                 <div class="section-header">
-                    <h2><i class="fas fa-fire" style="color: var(--accent);"></i> Trending Tools 🔥</h2>
-                    <p>Most popular tools used by our community this week</p>
+                    <h2><i class="fc-trending"></i> Trending Tools 🔥</h2>
+                    <p>Most popular tools powered by Fivecon icons</p>
                 </div>
                 <div class="trending-grid" id="trendingGrid"></div>
                 <a href="#" id="viewAllTrending" class="view-all-btn">📦 View All 40+ Tools →</a>
@@ -113,7 +192,7 @@
         </section>
     </div>
 
-    <!-- ALL TOOLS PAGE (Full Categories) -->
+    <!-- ALL TOOLS PAGE -->
     <div id="allToolsPage" class="all-tools-page">
         <div class="container">
             <button id="backHomeBtn" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</button>
@@ -125,74 +204,74 @@
 <footer id="contact">
     <div class="container">
         <div class="footer-grid">
-            <div><div class="footer-logo">ToolKit<span>Pro</span></div><p style="margin-top:1rem; opacity:0.7;">Professional toolkit for everyday digital needs. 40+ tools, dark mode, fully responsive.</p></div>
-            <div><h3 style="color:var(--text-primary);">Contact</h3><p><i class="fas fa-envelope"></i> supporttoolkitpro@gmail.com</p></div>
+            <div><div class="footer-logo"><i class="fc-utility"></i>ToolKit<span>Pro2</span></div><p style="margin-top:1rem; opacity:0.7;">Professional toolkit with Fivecon SVG icons. 40+ tools, dark mode, fully responsive.</p></div>
+            <div><h3 style="color:var(--text-primary);">Contact</h3><p><i class="fas fa-envelope"></i> toolkitpro2@support.com</p></div>
             <div><h3 style="color:var(--text-primary);">Quick Links</h3><ul style="list-style:none;"><li><a href="#" id="footerHomeBtn" style="color:var(--text-secondary); text-decoration:none;">Home</a></li><li><a href="#" id="footerAllToolsBtn" style="color:var(--text-secondary); text-decoration:none;">All Tools</a></li><li><a href="#" style="color:var(--text-secondary); text-decoration:none;">Privacy Policy</a></li></ul></div>
         </div>
-        <div class="copyright">© 2025 ToolKit Pro — Professional Tools Suite | All Devices Supported</div>
+        <div class="copyright">© 2025 ToolKit Pro 2 — Premium Fivecon Icons | All Devices Supported</div>
     </div>
 </footer>
 
 <script>
-    // Complete Tools Database
+    // Complete Tools Database with Fivecon Icon Classes
     const allToolsData = {
-        "Image Tools": [
-            { name: "Image Converter", file: "image-converter.html", icon: "fas fa-exchange-alt", desc: "Convert JPG, PNG, WEBP, GIF" },
-            { name: "Image Compressor", file: "image-compressor.html", icon: "fas fa-compress-alt", desc: "Reduce size while maintaining quality" },
-            { name: "Image Resizer", file: "image-resizer.html", icon: "fas fa-expand-alt", desc: "Scale images to exact dimensions" },
-            { name: "Image Cropper", file: "image-cropper.html", icon: "fas fa-crop-alt", desc: "Crop and rotate precisely" },
-            { name: "OCR (Image to Text)", file: "ocr-tool.html", icon: "fas fa-font", desc: "Extract text from images" },
-            { name: "Image Rotator/Flipper", file: "image-rotator.html", icon: "fas fa-sync-alt", desc: "Flip or rotate orientation" }
+        "🖼 Image Tools": [
+            { name: "Image Converter", file: "image-converter.html", icon: "fc-image", desc: "Convert JPG, PNG, WEBP, GIF" },
+            { name: "Image Compressor", file: "image-compressor.html", icon: "fc-compress", desc: "Reduce size while maintaining quality" },
+            { name: "Image Resizer", file: "image-resizer.html", icon: "fc-image", desc: "Scale images to exact dimensions" },
+            { name: "Image Cropper", file: "image-cropper.html", icon: "fc-crop", desc: "Crop and rotate precisely" },
+            { name: "OCR (Image to Text)", file: "ocr-tool.html", icon: "fc-text", desc: "Extract text from images" },
+            { name: "Image Rotator", file: "image-rotator.html", icon: "fc-rotate", desc: "Flip or rotate orientation" }
         ],
-        "Document Tools": [
-            { name: "PDF ⇄ Word", file: "pdf-word.html", icon: "fas fa-file-pdf", desc: "Convert PDF to Word and vice versa" },
-            { name: "PDF Compressor", file: "pdf-compressor.html", icon: "fas fa-file-archive", desc: "Reduce PDF file size" },
-            { name: "PDF Merger & Splitter", file: "pdf-merger-splitter.html", icon: "fas fa-cut", desc: "Combine or split PDF pages" },
-            { name: "Document Converter", file: "doc-converter.html", icon: "fas fa-exchange-alt", desc: "Convert between document formats" },
-            { name: "PDF Lock/Unlock", file: "pdf-security.html", icon: "fas fa-lock", desc: "Add or remove passwords" },
-            { name: "eSign PDF", file: "esign-pdf.html", icon: "fas fa-signature", desc: "Digital signatures for documents" }
+        "📄 Document Tools": [
+            { name: "PDF ⇄ Word", file: "pdf-word.html", icon: "fc-word", desc: "Convert PDF to Word and vice versa" },
+            { name: "PDF Compressor", file: "pdf-compressor.html", icon: "fc-compress", desc: "Reduce PDF file size" },
+            { name: "PDF Merger & Splitter", file: "pdf-merger-splitter.html", icon: "fc-merge", desc: "Combine or split PDF pages" },
+            { name: "Document Converter", file: "doc-converter.html", icon: "fc-document", desc: "Convert between document formats" },
+            { name: "PDF Lock/Unlock", file: "pdf-security.html", icon: "fc-lock", desc: "Add or remove passwords" },
+            { name: "eSign PDF", file: "esign-pdf.html", icon: "fc-signature", desc: "Digital signatures for documents" }
         ],
-        "Calculator Tools": [
-            { name: "Scientific Calculator", file: "scientific-calc.html", icon: "fas fa-square-root-alt", desc: "Advanced scientific functions" },
-            { name: "Age Calculator", file: "age-calc.html", icon: "fas fa-birthday-cake", desc: "Calculate exact age from DOB" },
-            { name: "BMI Calculator", file: "bmi-calc.html", icon: "fas fa-weight", desc: "Body Mass Index calculator" },
-            { name: "Loan EMI Calculator", file: "emi-calc.html", icon: "fas fa-home", desc: "Monthly loan instalments" },
-            { name: "GST Calculator", file: "gst-calc.html", icon: "fas fa-percentage", desc: "Goods and Services Tax" },
-            { name: "Currency Converter", file: "currency-converter.html", icon: "fas fa-money-bill-wave", desc: "Live exchange rates" }
+        "🧮 Calculator Tools": [
+            { name: "Scientific Calculator", file: "scientific-calc.html", icon: "fc-scientific", desc: "Advanced scientific functions" },
+            { name: "Age Calculator", file: "age-calc.html", icon: "fc-age", desc: "Calculate exact age from DOB" },
+            { name: "BMI Calculator", file: "bmi-calc.html", icon: "fc-bmi", desc: "Body Mass Index calculator" },
+            { name: "Loan EMI Calculator", file: "emi-calc.html", icon: "fc-home", desc: "Monthly loan instalments" },
+            { name: "GST Calculator", file: "gst-calc.html", icon: "fc-gst", desc: "Goods and Services Tax" },
+            { name: "Currency Converter", file: "currency-converter.html", icon: "fc-currency", desc: "Live exchange rates" }
         ],
-        "Text Tools": [
-            { name: "Text Case Converter", file: "text-case-converter.html", icon: "fas fa-text-height", desc: "UPPER, lower, Title Case" },
-            { name: "Word Counter", file: "word-counter.html", icon: "fas fa-sort-amount-down", desc: "Count words, characters" },
-            { name: "Remove Duplicate Lines", file: "remove-duplicates.html", icon: "fas fa-filter", desc: "Clean duplicate text lines" },
-            { name: "Text Sorter", file: "text-sorter.html", icon: "fas fa-sort-alpha-down", desc: "Sort lines alphabetically" },
-            { name: "Text Reverser", file: "text-reverser.html", icon: "fas fa-undo", desc: "Reverse text or words" },
-            { name: "Text Encryptor/Decryptor", file: "text-encrypt.html", icon: "fas fa-lock", desc: "Secure text encryption" }
+        "🔤 Text Tools": [
+            { name: "Text Case Converter", file: "text-case-converter.html", icon: "fc-case", desc: "UPPER, lower, Title Case" },
+            { name: "Word Counter", file: "word-counter.html", icon: "fc-counter", desc: "Count words, characters" },
+            { name: "Remove Duplicate Lines", file: "remove-duplicates.html", icon: "fc-sort", desc: "Clean duplicate text lines" },
+            { name: "Text Sorter", file: "text-sorter.html", icon: "fc-sort", desc: "Sort lines alphabetically" },
+            { name: "Text Reverser", file: "text-reverser.html", icon: "fc-reverse", desc: "Reverse text or words" },
+            { name: "Text Encryptor", file: "text-encrypt.html", icon: "fc-encrypt", desc: "Secure text encryption" }
         ],
-        "Developer Tools": [
-            { name: "HTML/CSS/JS Minifier", file: "code-minifier.html", icon: "fas fa-file-code", desc: "Optimize code performance" },
-            { name: "JSON Formatter", file: "json-formatter.html", icon: "fas fa-brackets-curly", desc: "Prettify & validate JSON" },
-            { name: "Base64 Encoder/Decoder", file: "base64-tool.html", icon: "fas fa-key", desc: "Encode text & files" },
-            { name: "URL Encoder/Decoder", file: "url-encoder.html", icon: "fas fa-link", desc: "Encode URLs safely" },
-            { name: "Color Converter", file: "color-converter.html", icon: "fas fa-palette", desc: "HEX, RGB, HSL conversion" },
-            { name: "Regex Tester", file: "regex-tester.html", icon: "fas fa-regex", desc: "Test regular expressions" }
+        "🌐 Developer Tools": [
+            { name: "HTML/CSS/JS Minifier", file: "code-minifier.html", icon: "fc-minify", desc: "Optimize code performance" },
+            { name: "JSON Formatter", file: "json-formatter.html", icon: "fc-json", desc: "Prettify & validate JSON" },
+            { name: "Base64 Encoder", file: "base64-tool.html", icon: "fc-base64", desc: "Encode text & files" },
+            { name: "URL Encoder", file: "url-encoder.html", icon: "fc-url", desc: "Encode URLs safely" },
+            { name: "Color Converter", file: "color-converter.html", icon: "fc-color", desc: "HEX, RGB, HSL conversion" },
+            { name: "Regex Tester", file: "regex-tester.html", icon: "fc-regex", desc: "Test regular expressions" }
         ],
-        "Color & Utility Tools": [
-            { name: "Color Picker from Image", file: "image-color-picker.html", icon: "fas fa-eye-dropper", desc: "Extract color palette" },
-            { name: "HEX to RGB Converter", file: "hex-rgb.html", icon: "fas fa-exchange-alt", desc: "Convert color formats" },
-            { name: "Gradient Generator", file: "gradient-gen.html", icon: "fas fa-sliders-h", desc: "CSS gradients ready" },
-            { name: "QR Code Generator", file: "qr-generator.html", icon: "fas fa-qrcode", desc: "Create & scan QR codes" },
-            { name: "UUID Generator", file: "uuid-gen.html", icon: "fas fa-fingerprint", desc: "Generate unique IDs" },
-            { name: "Password Generator", file: "password-gen.html", icon: "fas fa-random", desc: "Secure strong passwords" }
+        "🎨 Color & Utility": [
+            { name: "Color Picker from Image", file: "image-color-picker.html", icon: "fc-color", desc: "Extract color palette" },
+            { name: "HEX to RGB Converter", file: "hex-rgb.html", icon: "fc-color", desc: "Convert color formats" },
+            { name: "Gradient Generator", file: "gradient-gen.html", icon: "fc-gradient", desc: "CSS gradients ready" },
+            { name: "QR Code Generator", file: "qr-generator.html", icon: "fc-qr", desc: "Create & scan QR codes" },
+            { name: "UUID Generator", file: "uuid-gen.html", icon: "fc-uuid", desc: "Generate unique IDs" },
+            { name: "Password Generator", file: "password-gen.html", icon: "fc-password", desc: "Secure strong passwords" }
         ]
     };
 
-    // Trending Tools (5 most popular - manually selected)
+    // Trending Tools with Fivecon Icons
     const trendingTools = [
-        { name: "QR Code Generator", file: "qr-generator.html", icon: "fas fa-qrcode", desc: "Create QR codes instantly for URLs, text, contacts", usage: "12.5k uses", trend: "+45%" },
-        { name: "Image Compressor", file: "image-compressor.html", icon: "fas fa-compress-alt", desc: "Reduce image size without losing quality", usage: "9.8k uses", trend: "+32%" },
-        { name: "PDF to Word Converter", file: "pdf-word.html", icon: "fas fa-file-pdf", desc: "Convert PDF documents to editable Word files", usage: "8.2k uses", trend: "+28%" },
-        { name: "Currency Converter", file: "currency-converter.html", icon: "fas fa-money-bill-wave", desc: "Live exchange rates for 150+ currencies", usage: "7.5k uses", trend: "+51%" },
-        { name: "JSON Formatter", file: "json-formatter.html", icon: "fas fa-brackets-curly", desc: "Format, validate, and beautify JSON data", usage: "6.9k uses", trend: "+37%" }
+        { name: "QR Code Generator", file: "qr-generator.html", icon: "fc-qr", desc: "Create QR codes instantly", usage: "12.5k uses", trend: "+45%" },
+        { name: "Image Compressor", file: "image-compressor.html", icon: "fc-compress", desc: "Reduce image size without losing quality", usage: "9.8k uses", trend: "+32%" },
+        { name: "PDF to Word Converter", file: "pdf-word.html", icon: "fc-word", desc: "Convert PDF to editable Word", usage: "8.2k uses", trend: "+28%" },
+        { name: "Currency Converter", file: "currency-converter.html", icon: "fc-currency", desc: "Live exchange rates", usage: "7.5k uses", trend: "+51%" },
+        { name: "JSON Formatter", file: "json-formatter.html", icon: "fc-json", desc: "Format and validate JSON data", usage: "6.9k uses", trend: "+37%" }
     ];
 
     function buildTrendingGrid() {
@@ -202,11 +281,11 @@
         trendingTools.forEach(tool => {
             grid.innerHTML += `
                 <div class="trending-card">
-                    <div class="trending-badge"><i class="fas fa-chart-line"></i> ${tool.trend}</div>
+                    <div class="trending-badge"><i class="fc-trending"></i> ${tool.trend}</div>
                     <div class="trending-icon"><i class="${tool.icon}"></i></div>
                     <h3>${tool.name}</h3>
                     <p>${tool.desc}</p>
-                    <div class="trending-stats"><span><i class="fas fa-users"></i> ${tool.usage}</span></div>
+                    <div class="trending-stats"><span><i class="fc-star"></i> ${tool.usage}</span></div>
                     <a href="${tool.file}" class="tool-link">Use Tool →</a>
                 </div>
             `;
@@ -218,7 +297,7 @@
         if(!container) return;
         container.innerHTML = '';
         for(const [category, tools] of Object.entries(allToolsData)) {
-            let categoryHtml = `<div class="category-grid"><h3 class="category-title"><i class="fas fa-folder-open"></i> ${category}</h3><div class="tools-grid">`;
+            let categoryHtml = `<div class="category-grid"><h3 class="category-title"><i class="fc-utility"></i> ${category}</h3><div class="tools-grid">`;
             tools.forEach(tool => {
                 categoryHtml += `
                     <div class="tool-card">
@@ -234,7 +313,7 @@
         }
     }
 
-    // Page navigation
+    // Page Navigation
     const homePage = document.getElementById('homePage');
     const allToolsPage = document.getElementById('allToolsPage');
     const homeNavBtn = document.getElementById('homeNavBtn');
