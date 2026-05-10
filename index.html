@@ -380,7 +380,7 @@
         <a href="#" id="navBlog">📝 Blog</a>
         <a href="#" id="navAbout">👤 About</a>
         <a href="#" id="navContact">📞 Contact</a>
-        <span class="contact-email"><i class="far fa-envelope"></i> support@toolkitpro.in</span>
+        <span class="contact-email"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</span>
         <button id="darkModeToggle" class="dark-toggle"><i class="fas fa-moon"></i> Dark</button>
       </div>
       <div class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></div>
@@ -393,7 +393,7 @@
       <a href="#" data-mobile="about">👤 About</a>
       <a href="#" data-mobile="contact">📞 Contact</a>
       <button id="mobileDarkToggle" class="dark-toggle" style="margin-top: 6px;"><i class="fas fa-moon"></i> Dark Mode</button>
-      <div class="contact-email" style="margin-top:6px;"><i class="far fa-envelope"></i> support@toolkitpro.in</div>
+      <div class="contact-email" style="margin-top:6px;"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</div>
     </div>
   </header>
 
@@ -654,7 +654,7 @@
   document.getElementById("navCategories")?.addEventListener("click", (e) => { e.preventDefault(); showCategoriesView(); });
   document.getElementById("navBlog")?.addEventListener("click", (e) => { e.preventDefault(); alert("📖 Coming soon: Tech tips & productivity hacks"); });
   document.getElementById("navAbout")?.addEventListener("click", (e) => { e.preventDefault(); alert("🔧 ToolkitPro — 26+ privacy-first utilities. Ad-supported & always free."); });
-  document.getElementById("navContact")?.addEventListener("click", (e) => { e.preventDefault(); alert("📧 support@toolkitpro.in"); });
+  document.getElementById("navContact")?.addEventListener("click", (e) => { e.preventDefault(); alert("📧 supporttoolkitpro@gmail.com"); });
   document.getElementById("searchBtn")?.addEventListener("click", performSearch);
   document.getElementById("searchInput")?.addEventListener("input", (e) => {
     if (e.target.value === "") {
@@ -678,7 +678,7 @@
       if (val === "categories") showCategoriesView();
       if (val === "blog") alert("📖 Blog (coming)");
       if (val === "about") alert("ToolkitPro: Simplify your digital life");
-      if (val === "contact") alert("📞 support@toolkitpro.in");
+      if (val === "contact") alert("📧 supporttoolkitpro@gmail.com");
       mobileMenuDiv.classList.remove("show");
     });
   });
