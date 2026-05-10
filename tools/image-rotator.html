@@ -1,4 +1,881 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Image Rotator - ToolKit Pro</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"><style>*{margin:0;padding:0;box-sizing:border-box}:root{--bg-primary:#f8fafc;--bg-surface:#fff;--text-primary:#0f172a;--border-light:#e2e8f0;--primary:#0f3b5f;--accent:#ff8c42}body.dark{--bg-primary:#0a0c10;--bg-surface:#111418;--text-primary:#edf2f7;--border-light:#1e293b}body{background:var(--bg-primary);color:var(--text-primary);font-family:system-ui}.container{max-width:900px;margin:0 auto;padding:2rem}.tool-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem}.logo{font-size:1.5rem;font-weight:800;background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}.theme-toggle{background:var(--bg-surface);border:1px solid var(--border-light);padding:0.5rem 1rem;border-radius:2rem;cursor:pointer}.card{background:var(--bg-surface);border-radius:1.5rem;padding:2rem;border:1px solid var(--border-light)}input,button{padding:0.75rem;margin:0.5rem;border-radius:0.75rem}.btn-primary{background:var(--primary);color:white;border:none;cursor:pointer}.btn-group{display:flex;gap:0.5rem;flex-wrap:wrap}.preview-img{max-width:100%;border-radius:1rem;margin-top:1rem}@media(max-width:768px){.container{padding:1rem}}</style></head>
-<body><div class="container"><div class="tool-header"><a href="index.html" class="logo">ToolKit<span style="color:var(--accent);">Pro</span></a><button class="theme-toggle" id="darkToggle"><i class="fas fa-moon"></i> Dark</button></div><div class="card"><h1><i class="fas fa-sync-alt"></i> Image Rotator / Flipper</h1><input type="file" id="fileInput" accept="image/*"><div class="btn-group"><button class="btn-primary" id="rotate90">Rotate 90°</button><button class="btn-primary" id="rotate180">Rotate 180°</button><button class="btn-primary" id="flipH">Flip Horizontal</button><button class="btn-primary" id="flipV">Flip Vertical</button></div><div id="preview"></div></div></div><script>const darkToggle=document.getElementById('darkToggle');if(localStorage.getItem('theme')==='dark')document.body.classList.add('dark');darkToggle.onclick=()=>{document.body.classList.toggle('dark');localStorage.setItem('theme',document.body.classList.contains('dark')?'dark':'light');};let currentImage=null;let angle=0;let flipH=false;let flipV=false;document.getElementById('fileInput').onchange=(e)=>{const file=e.target.files[0];if(file){const reader=new FileReader();reader.onload=(ev)=>{currentImage=new Image();currentImage.src=ev.target.result;currentImage.onload=()=>updatePreview();};reader.readAsDataURL(file);}};function updatePreview(){if(!currentImage)return;const canvas=document.createElement('canvas');let w=currentImage.width,h=currentImage.height;if(angle===90||angle===270){[w,h]=[h,w];}canvas.width=w;canvas.height=h;const ctx=canvas.getContext('2d');ctx.translate(w/2,h/2);ctx.rotate(angle*Math.PI/180);if(flipH)ctx.scale(-1,1);if(flipV)ctx.scale(1,-1);ctx.drawImage(currentImage,-currentImage.width/2,-currentImage.height/2,currentImage.width,currentImage.height);const url=canvas.toDataURL();document.getElementById('preview').innerHTML=`<img src="${url}" class="preview-img"><br><button id="downloadBtn" class="btn-primary" style="margin-top:1rem">Download Rotated Image</button>`;document.getElementById('downloadBtn')?.addEventListener('click',()=>{const link=document.createElement('a');link.download='rotated_image.png';link.href=url;link.click();});}document.getElementById('rotate90').onclick=()=>{angle=(angle+90)%360;updatePreview();};document.getElementById('rotate180').onclick=()=>{angle=(angle+180)%360;updatePreview();};document.getElementById('flipH').onclick=()=>{flipH=!flipH;updatePreview();};document.getElementById('flipV').onclick=()=>{flipV=!flipV;updatePreview();};</script></body></html>
+<head>
+    <!-- ========== FAVICON / META ========== -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔄</text></svg>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Free Image Rotator & Flipper - Rotate images 90°, 180°, flip horizontal or vertical. Online image editor, 100% private.">
+    <meta name="keywords" content="image rotator, flip image, rotate image, image flipper, online image editor, free image tool">
+    <title>Image Rotator & Flipper | ToolkitPro - Free Image Rotation Tool</title>
+    
+    <!-- Google Fonts + Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ========== THEME VARIABLES (Matching main site) ========== */
+        :root {
+            --bg-body: #f1f5f9;
+            --bg-surface: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+            --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.05);
+            --hover-shadow: 0 20px 30px -12px rgba(30, 107, 255, 0.2);
+            --primary: #2563eb;
+            --primary-deep: #1e40af;
+            --primary-soft: #eff6ff;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --nav-bg: #ffffff;
+            --nav-text: #1e293b;
+            --nav-hover: #2563eb;
+        }
+
+        body.dark {
+            --bg-body: #0a0f1c;
+            --bg-surface: #111827;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border-light: #1e293b;
+            --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            --hover-shadow: 0 20px 32px -12px rgba(59, 130, 246, 0.5);
+            --primary: #3b82f6;
+            --primary-deep: #60a5fa;
+            --primary-soft: #1e293b;
+            --accent: #fbbf24;
+            --success: #34d399;
+            --nav-bg: #111827;
+            --nav-text: #e2e8f0;
+            --nav-hover: #60a5fa;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-body);
+            color: var(--text-primary);
+            transition: background-color 0.25s ease, color 0.2s ease;
+        }
+
+        /* ========== HEADER & NAVIGATION ========== */
+        .site-header {
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 0;
+        }
+        .logo h1 {
+            font-size: 1.85rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), #4f46e5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--nav-text);
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--nav-hover);
+        }
+        .contact-email {
+            background: var(--primary-soft);
+            padding: 5px 14px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .dark-toggle {
+            background: var(--primary-soft);
+            border: none;
+            border-radius: 40px;
+            padding: 6px 16px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.85rem;
+        }
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            background: var(--bg-surface);
+            padding: 20px;
+            border-radius: 24px;
+            margin: 10px 0 15px;
+            gap: 14px;
+            border: 1px solid var(--border-light);
+        }
+        .mobile-menu.show {
+            display: flex;
+        }
+        .mobile-menu a {
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--nav-text);
+            font-size: 1rem;
+        }
+
+        /* ========== IMAGE ROTATOR CARD ========== */
+        .hero-section {
+            padding: 40px 0 20px;
+        }
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        .tool-card {
+            background: var(--bg-surface);
+            border-radius: 32px;
+            padding: 2.5rem;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-light);
+            max-width: 950px;
+            margin: 0 auto;
+        }
+        .tool-card h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .tool-card .subhead {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            border-left: 3px solid var(--accent);
+            padding-left: 16px;
+        }
+        
+        /* Upload Area */
+        .upload-area {
+            border: 2px dashed var(--border-light);
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+            background: var(--bg-body);
+            margin-bottom: 24px;
+        }
+        .upload-area:hover {
+            border-color: var(--primary);
+            background: var(--primary-soft);
+        }
+        .upload-area i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+        .upload-area p {
+            color: var(--text-secondary);
+        }
+        .file-info {
+            background: var(--primary-soft);
+            border-radius: 16px;
+            padding: 10px 16px;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Button Group */
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .btn-rotate {
+            background: var(--primary-soft);
+            border: 1.5px solid var(--border-light);
+            padding: 12px 24px;
+            border-radius: 60px;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-rotate:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        .btn-rotate.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            border: none;
+            padding: 12px 28px;
+            border-radius: 60px;
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary:hover {
+            background: var(--primary-deep);
+            transform: translateY(-2px);
+        }
+        
+        /* Reset Button */
+        .reset-btn {
+            background: var(--bg-surface);
+            border: 1.5px solid var(--border-light);
+            color: var(--text-secondary);
+        }
+        .reset-btn:hover {
+            background: var(--danger);
+            border-color: var(--danger);
+            color: white;
+        }
+        
+        /* Preview Area */
+        .preview-area {
+            margin-top: 24px;
+            text-align: center;
+            display: none;
+        }
+        .preview-area.show {
+            display: block;
+        }
+        .preview-container {
+            background: var(--bg-body);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        .preview-img {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 16px;
+            object-fit: contain;
+            box-shadow: var(--card-shadow);
+        }
+        .info-badge {
+            background: var(--primary-soft);
+            border-radius: 40px;
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+        }
+        
+        /* Result Section */
+        .result-section {
+            margin-top: 24px;
+            display: none;
+        }
+        .result-section.show {
+            display: block;
+        }
+        .result-content {
+            background: var(--bg-body);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+        .result-content img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 16px;
+            object-fit: contain;
+            margin-bottom: 16px;
+        }
+        .result-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+        .result-badge {
+            background: var(--primary-soft);
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            color: var(--text-primary);
+        }
+        .download-btn {
+            background: var(--success);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            margin-top: 16px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .download-btn:hover {
+            opacity: 0.9;
+            transform: scale(0.98);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-light);
+            padding: 35px 0 25px;
+            margin-top: 50px;
+        }
+        .footer-flex {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        .footer-links {
+            display: flex;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        .copyright {
+            text-align: center;
+            margin-top: 22px;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 18px; }
+            .nav-links { display: none; }
+            .hamburger { display: block; }
+            .tool-card { padding: 1.5rem; }
+            .tool-card h1 { font-size: 1.5rem; }
+            .btn-group { gap: 8px; }
+            .btn-rotate { padding: 8px 16px; font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<div class="site-header">
+    <div class="container">
+        <div class="navbar">
+            <div class="logo"><h1>ToolkitPro</h1></div>
+            <div class="nav-links">
+                <a href="/">🏠 Home</a>
+                <a href="/tools/all">🛠️ All Tools</a>
+                <a href="/categories">📁 Categories</a>
+                <a href="#" id="navBlog">📝 Blog</a>
+                <a href="#" id="navAbout">👤 About</a>
+                <a href="#" id="navContact">📞 Contact</a>
+                <span class="contact-email"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</span>
+                <button id="darkModeToggle" class="dark-toggle"><i class="fas fa-moon"></i> Dark</button>
+            </div>
+            <div class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="/">🏠 Home</a>
+            <a href="/tools/all">🛠️ All Tools</a>
+            <a href="/categories">📁 Categories</a>
+            <a href="#" id="mobileBlog">📝 Blog</a>
+            <a href="#" id="mobileAbout">👤 About</a>
+            <a href="#" id="mobileContact">📞 Contact</a>
+            <button id="mobileDarkToggle" class="dark-toggle" style="margin-top: 6px;"><i class="fas fa-moon"></i> Dark Mode</button>
+            <div class="contact-email" style="margin-top:6px;"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== MAIN ROTATOR SECTION ========== -->
+<div class="container">
+    <div class="hero-section">
+        <div class="breadcrumb">
+            <a href="/">Home</a> / <a href="/tools/all">Tools</a> / <span>Image Rotator & Flipper</span>
+        </div>
+        
+        <div class="tool-card">
+            <h1><i class="fas fa-sync-alt"></i> Image Rotator & Flipper</h1>
+            <div class="subhead">
+                Rotate images 90°, 180°, or flip horizontally/vertically. 100% private — all editing happens in your browser.
+            </div>
+            
+            <!-- Hidden file input -->
+            <input type="file" id="fileInput" accept="image/*" style="display: none;">
+            
+            <!-- Upload area -->
+            <div class="upload-area" id="dropZone">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p><strong>Click or drag & drop</strong><br>Upload an image (JPG, PNG, WEBP, GIF)</p>
+                <div id="filePreview" class="file-info" style="display: none;"></div>
+            </div>
+            
+            <!-- Button Group -->
+            <div class="btn-group" id="buttonGroup" style="display: none;">
+                <button class="btn-rotate" id="rotate90Btn">
+                    <i class="fas fa-undo-alt"></i> Rotate 90°
+                </button>
+                <button class="btn-rotate" id="rotate180Btn">
+                    <i class="fas fa-sync-alt"></i> Rotate 180°
+                </button>
+                <button class="btn-rotate" id="rotate270Btn">
+                    <i class="fas fa-redo-alt"></i> Rotate 270°
+                </button>
+                <button class="btn-rotate" id="flipHBtn">
+                    <i class="fas fa-arrows-alt-h"></i> Flip Horizontal
+                </button>
+                <button class="btn-rotate" id="flipVBtn">
+                    <i class="fas fa-arrows-alt-v"></i> Flip Vertical
+                </button>
+                <button class="btn-rotate reset-btn" id="resetBtn">
+                    <i class="fas fa-undo"></i> Reset
+                </button>
+            </div>
+            
+            <!-- Live Preview Area -->
+            <div class="preview-area" id="previewArea">
+                <div class="preview-container">
+                    <img id="previewImage" class="preview-img" alt="Image preview">
+                    <div class="info-badge" id="transformInfo">
+                        <i class="fas fa-info-circle"></i> Original
+                    </div>
+                </div>
+                <button class="btn-primary" id="applyBtn">
+                    <i class="fas fa-check-circle"></i> Apply & Download
+                </button>
+            </div>
+            
+            <!-- Result Section -->
+            <div class="result-section" id="resultSection">
+                <div class="result-content" id="resultContent"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+    <div class="container">
+        <div class="footer-flex">
+            <div class="footer-logo">
+                <h3 style="font-size: 1.3rem; background: linear-gradient(135deg, var(--primary), #4f46e5); -webkit-background-clip: text; background-clip: text; color: transparent;">ToolkitPro</h3>
+                <p style="font-size: 0.8rem; color: var(--text-secondary);">26+ non-AI tools · Free forever</p>
+            </div>
+            <div class="footer-contact">
+                <p style="font-size: 0.85rem;"><i class="far fa-envelope"></i> <a href="mailto:supporttoolkitpro@gmail.com" style="color: var(--primary);">supporttoolkitpro@gmail.com</a></p>
+                <div class="footer-links">
+                    <a href="#">Contact</a>
+                    <a href="#">Disclaimer</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">© 2025 ToolkitPro — Reliable utilities, image rotator & flipper</div>
+    </div>
+</footer>
+
+<script>
+    // ========== DOM Elements ==========
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('fileInput');
+    const filePreview = document.getElementById('filePreview');
+    const buttonGroup = document.getElementById('buttonGroup');
+    const previewArea = document.getElementById('previewArea');
+    const previewImage = document.getElementById('previewImage');
+    const transformInfo = document.getElementById('transformInfo');
+    const applyBtn = document.getElementById('applyBtn');
+    const resultSection = document.getElementById('resultSection');
+    const resultContent = document.getElementById('resultContent');
+    
+    // Transform state
+    let currentImage = null;
+    let currentFile = null;
+    let rotation = 0;      // 0, 90, 180, 270
+    let flipH = false;
+    let flipV = false;
+    let currentPreviewUrl = null;
+    
+    // Upload handlers
+    dropZone.addEventListener('click', () => {
+        fileInput.click();
+    });
+    
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.style.borderColor = 'var(--primary)';
+        dropZone.style.background = 'var(--primary-soft)';
+    });
+    
+    dropZone.addEventListener('dragleave', () => {
+        dropZone.style.borderColor = 'var(--border-light)';
+        dropZone.style.background = 'var(--bg-body)';
+    });
+    
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.style.borderColor = 'var(--border-light)';
+        dropZone.style.background = 'var(--bg-body)';
+        const files = e.dataTransfer.files;
+        if (files.length > 0 && files[0].type.startsWith('image/')) {
+            handleFile(files[0]);
+        } else {
+            alert('Please drop an image file');
+        }
+    });
+    
+    fileInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) {
+            handleFile(e.target.files[0]);
+        }
+    });
+    
+    function handleFile(file) {
+        if (!file.type.startsWith('image/')) {
+            alert('Please select a valid image file');
+            return;
+        }
+        
+        currentFile = file;
+        const sizeKB = (file.size / 1024).toFixed(2);
+        filePreview.style.display = 'inline-flex';
+        filePreview.innerHTML = `<i class="fas fa-check-circle" style="color: var(--success);"></i> ${file.name} (${sizeKB} KB)`;
+        
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            const img = new Image();
+            img.onload = () => {
+                currentImage = img;
+                resetTransforms();
+                updatePreview();
+                buttonGroup.style.display = 'flex';
+                previewArea.classList.add('show');
+                resultSection.classList.remove('show');
+            };
+            img.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+    
+    function resetTransforms() {
+        rotation = 0;
+        flipH = false;
+        flipV = false;
+        updateTransformInfo();
+    }
+    
+    function updateTransformInfo() {
+        let transforms = [];
+        if (rotation !== 0) transforms.push(`${rotation}° rotation`);
+        if (flipH) transforms.push('Horizontal flip');
+        if (flipV) transforms.push('Vertical flip');
+        if (transforms.length === 0) {
+            transformInfo.innerHTML = '<i class="fas fa-info-circle"></i> Original image';
+        } else {
+            transformInfo.innerHTML = `<i class="fas fa-magic"></i> ${transforms.join(' + ')}`;
+        }
+    }
+    
+    function updatePreview() {
+        if (!currentImage) return;
+        
+        const canvas = document.createElement('canvas');
+        let w = currentImage.width;
+        let h = currentImage.height;
+        
+        // Swap dimensions if rotated 90 or 270
+        if (rotation === 90 || rotation === 270) {
+            [w, h] = [h, w];
+        }
+        
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext('2d');
+        
+        // Apply transformations
+        ctx.save();
+        ctx.translate(w / 2, h / 2);
+        ctx.rotate(rotation * Math.PI / 180);
+        
+        let scaleX = flipH ? -1 : 1;
+        let scaleY = flipV ? -1 : 1;
+        ctx.scale(scaleX, scaleY);
+        
+        ctx.drawImage(currentImage, -currentImage.width / 2, -currentImage.height / 2, currentImage.width, currentImage.height);
+        ctx.restore();
+        
+        // Update preview
+        if (currentPreviewUrl) {
+            URL.revokeObjectURL(currentPreviewUrl);
+        }
+        canvas.toBlob((blob) => {
+            currentPreviewUrl = URL.createObjectURL(blob);
+            previewImage.src = currentPreviewUrl;
+        }, 'image/png');
+    }
+    
+    // Button actions
+    document.getElementById('rotate90Btn')?.addEventListener('click', () => {
+        rotation = (rotation + 90) % 360;
+        updatePreview();
+        updateTransformInfo();
+    });
+    
+    document.getElementById('rotate180Btn')?.addEventListener('click', () => {
+        rotation = (rotation + 180) % 360;
+        updatePreview();
+        updateTransformInfo();
+    });
+    
+    document.getElementById('rotate270Btn')?.addEventListener('click', () => {
+        rotation = (rotation + 270) % 360;
+        updatePreview();
+        updateTransformInfo();
+    });
+    
+    document.getElementById('flipHBtn')?.addEventListener('click', () => {
+        flipH = !flipH;
+        updatePreview();
+        updateTransformInfo();
+    });
+    
+    document.getElementById('flipVBtn')?.addEventListener('click', () => {
+        flipV = !flipV;
+        updatePreview();
+        updateTransformInfo();
+    });
+    
+    document.getElementById('resetBtn')?.addEventListener('click', () => {
+        resetTransforms();
+        updatePreview();
+    });
+    
+    // Apply & Download
+    applyBtn.addEventListener('click', () => {
+        if (!currentImage) {
+            alert('Please load an image first');
+            return;
+        }
+        
+        const canvas = document.createElement('canvas');
+        let w = currentImage.width;
+        let h = currentImage.height;
+        
+        if (rotation === 90 || rotation === 270) {
+            [w, h] = [h, w];
+        }
+        
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext('2d');
+        
+        ctx.save();
+        ctx.translate(w / 2, h / 2);
+        ctx.rotate(rotation * Math.PI / 180);
+        
+        let scaleX = flipH ? -1 : 1;
+        let scaleY = flipV ? -1 : 1;
+        ctx.scale(scaleX, scaleY);
+        
+        ctx.drawImage(currentImage, -currentImage.width / 2, -currentImage.height / 2, currentImage.width, currentImage.height);
+        ctx.restore();
+        
+        canvas.toBlob((blob) => {
+            if (!blob) {
+                alert('Failed to process image');
+                return;
+            }
+            
+            const finalUrl = URL.createObjectURL(blob);
+            const fileSizeKB = (blob.size / 1024).toFixed(2);
+            
+            // Build transform description
+            let transformText = [];
+            if (rotation !== 0) transformText.push(`${rotation}°`);
+            if (flipH) transformText.push('Flip H');
+            if (flipV) transformText.push('Flip V');
+            const transformDesc = transformText.length ? transformText.join(' + ') : 'No changes';
+            
+            resultContent.innerHTML = `
+                <img src="${finalUrl}" alt="Transformed image">
+                <div class="result-info">
+                    <span class="result-badge"><i class="fas fa-crop"></i> ${transformDesc}</span>
+                    <span class="result-badge"><i class="fas fa-weight-hanging"></i> Size: ${fileSizeKB} KB</span>
+                    <span class="result-badge"><i class="fas fa-arrows-alt"></i> ${w} x ${h} px</span>
+                </div>
+                <button class="download-btn" id="downloadTransformedBtn">
+                    <i class="fas fa-download"></i> Download Image (PNG)
+                </button>
+            `;
+            
+            resultSection.classList.add('show');
+            
+            const downloadBtn = document.getElementById('downloadTransformedBtn');
+            if (downloadBtn) {
+                downloadBtn.addEventListener('click', () => {
+                    const link = document.createElement('a');
+                    link.href = finalUrl;
+                    const originalName = currentFile ? currentFile.name.split('.')[0] : 'image';
+                    link.download = `${originalName}_transformed.png`;
+                    link.click();
+                });
+            }
+            
+            setTimeout(() => {
+                URL.revokeObjectURL(finalUrl);
+            }, 5000);
+        }, 'image/png');
+    });
+    
+    // Clean up preview URL on page unload
+    window.addEventListener('beforeunload', () => {
+        if (currentPreviewUrl) {
+            URL.revokeObjectURL(currentPreviewUrl);
+        }
+    });
+    
+    // ========== DARK MODE ==========
+    function initDarkMode() {
+        const darkToggle = document.getElementById("darkModeToggle");
+        const mobileDarkToggle = document.getElementById("mobileDarkToggle");
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark');
+        } else if (savedTheme === 'light') {
+            document.body.classList.remove('dark');
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark');
+        }
+        
+        function toggleDark() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+        }
+        
+        if (darkToggle) darkToggle.addEventListener('click', toggleDark);
+        if (mobileDarkToggle) mobileDarkToggle.addEventListener('click', toggleDark);
+    }
+    
+    // ========== Mobile Menu ==========
+    function initMobileMenu() {
+        const hamburger = document.getElementById("hamburgerBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+        if (hamburger && mobileMenu) {
+            hamburger.addEventListener("click", () => mobileMenu.classList.toggle("show"));
+        }
+        const mobileLinks = document.querySelectorAll("#mobileMenu a, #mobileBlog, #mobileAbout, #mobileContact");
+        mobileLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                if (mobileMenu) mobileMenu.classList.remove("show");
+            });
+        });
+    }
+    
+    // ========== Navigation Actions ==========
+    function initNavActions() {
+        document.getElementById("navBlog")?.addEventListener("click", (e) => { e.preventDefault(); alert("📖 Coming soon: Image editing tips & tech news"); });
+        document.getElementById("navAbout")?.addEventListener("click", (e) => { e.preventDefault(); alert("🔧 ToolkitPro — 26+ privacy-first utilities. Image rotator works 100% locally."); });
+        document.getElementById("navContact")?.addEventListener("click", (e) => { e.preventDefault(); alert("📧 supporttoolkitpro@gmail.com | We reply within 24 hours"); });
+        document.getElementById("mobileBlog")?.addEventListener("click", (e) => { e.preventDefault(); alert("📖 Blog coming soon"); });
+        document.getElementById("mobileAbout")?.addEventListener("click", (e) => { e.preventDefault(); alert("ToolkitPro — Simplify your digital life"); });
+        document.getElementById("mobileContact")?.addEventListener("click", (e) => { e.preventDefault(); alert("📧 supporttoolkitpro@gmail.com"); });
+    }
+    
+    // Home & other links
+    document.querySelectorAll('.nav-links a[href="/"], .mobile-menu a[href="/"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = '/';
+        });
+    });
+    document.querySelectorAll('.nav-links a[href="/tools/all"], .mobile-menu a[href="/tools/all"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('✨ All Tools — 26+ utilities including PDF tools, image editors, calculators');
+        });
+    });
+    document.querySelectorAll('.nav-links a[href="/categories"], .mobile-menu a[href="/categories"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('📁 Categories: Document, Image, Dev, Calculator, Text, Color, Utility');
+        });
+    });
+    
+    // Initialize everything
+    initDarkMode();
+    initMobileMenu();
+    initNavActions();
+</script>
+</body>
+</html>
