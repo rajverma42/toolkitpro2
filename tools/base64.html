@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Base64 Encoder/Decoder | ToolkitPro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg-body: #f1f5f9; --bg-surface: #ffffff; --text-primary: #0f172a; --border-light: #e2e8f0; --primary: #2563eb; --accent: #f59e0b; }
+        body.dark { --bg-body: #0a0f1c; --bg-surface: #111827; --text-primary: #f1f5f9; --border-light: #1e293b; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-body); color: var(--text-primary); transition: 0.2s; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 28px; }
+        .navbar { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid var(--border-light); background: var(--bg-surface); }
+        .logo h1 { font-size: 1.85rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), #4f46e5); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .contact-email { background: #eff6ff; padding: 5px 14px; border-radius: 40px; font-size: 0.75rem; color: var(--primary); }
+        .dark-toggle { background: #eff6ff; border: none; border-radius: 40px; padding: 6px 16px; cursor: pointer; }
+        .hamburger { display: none; font-size: 1.8rem; cursor: pointer; }
+        .mobile-menu { display: none; flex-direction: column; background: var(--bg-surface); padding: 20px; border-radius: 24px; margin: 10px 0; gap: 14px; }
+        .mobile-menu.show { display: flex; }
+        .tool-card { background: var(--bg-surface); border-radius: 32px; padding: 2rem; max-width: 900px; margin: 40px auto; }
+        textarea { width: 100%; padding: 18px; border-radius: 20px; border: 1.5px solid var(--border-light); background: var(--bg-body); font-family: monospace; font-size: 0.9rem; resize: vertical; margin: 10px 0; }
+        .btn-group { display: flex; gap: 12px; flex-wrap: wrap; margin: 15px 0; }
+        .btn-primary { background: var(--primary); color: white; border: none; padding: 12px 24px; border-radius: 60px; cursor: pointer; }
+        footer { background: var(--bg-surface); border-top: 1px solid var(--border-light); padding: 35px 0; margin-top: 40px; text-align: center; }
+        @media (max-width: 768px) { .nav-links { display: none; } .hamburger { display: block; } }
+    </style>
+</head>
+<body>
+<div class="site-header"><div class="container"><div class="navbar"><div class="logo"><h1>ToolkitPro</h1></div><div class="nav-links"><a href="/">Home</a><a href="/tools/all">Tools</a><span class="contact-email"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</span><button id="darkToggle" class="dark-toggle"><i class="fas fa-moon"></i> Dark</button></div><div class="hamburger" id="hamburgerBtn">☰</div></div><div class="mobile-menu" id="mobileMenu"><a href="/">Home</a><a href="/tools/all">Tools</a><div class="contact-email">supporttoolkitpro@gmail.com</div></div></div></div>
+<div class="container"><div class="tool-card"><h1><i class="fas fa-code"></i> Base64 Encoder / Decoder</h1>
+<textarea id="input" rows="5" placeholder="Enter text to encode or base64 to decode..."></textarea>
+<div class="btn-group"><button class="btn-primary" onclick="encode()">Encode to Base64</button><button class="btn-primary" onclick="decode()">Decode from Base64</button><button class="btn-primary" onclick="clearAll()">Clear</button></div>
+<textarea id="output" rows="5" placeholder="Result will appear here..." readonly></textarea></div></div>
+<footer><div class="container"><p>© 2025 ToolkitPro — Free online tools | <a href="mailto:supporttoolkitpro@gmail.com">supporttoolkitpro@gmail.com</a></p></div></footer>
+<script>
+function encode() { let input = document.getElementById('input').value; document.getElementById('output').value = btoa(unescape(encodeURIComponent(input))); }
+function decode() { try { let output = decodeURIComponent(escape(atob(document.getElementById('input').value))); document.getElementById('output').value = output; } catch(e) { document.getElementById('output').value = 'Invalid Base64 string'; } }
+function clearAll() { document.getElementById('input').value = ''; document.getElementById('output').value = ''; }
+document.getElementById('darkToggle').onclick = () => { document.body.classList.toggle('dark'); localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light'); };
+if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+document.getElementById('hamburgerBtn').onclick = () => document.getElementById('mobileMenu').classList.toggle('show');
+</script>
+</body>
+</html>
