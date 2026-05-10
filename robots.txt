@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /tools/private/
+Sitemap: https://toolkit-pro.in/sitemap.xml
+
+# Crawl delay for better performance
+Crawl-delay: 1
+
+# Block AI training bots (optional)
+User-agent: GPTBot
+Disallow: /
