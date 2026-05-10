@@ -2,10 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Page Not Found - ToolkitPro</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background: linear-gradient(135deg, #f4f9ff 0%, #e8f0fe 100%);
@@ -16,14 +21,26 @@
             margin: 0;
             padding: 20px;
         }
+
+        /* Main wrapper to manage layout and push ad to bottom */
+        .page-wrapper {
+            width: 100%;
+            max-width: 680px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
         .error-container {
             text-align: center;
-            max-width: 600px;
-            padding: 3rem 2rem;
             background: white;
             border-radius: 2rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 3rem 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 6px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease;
         }
+
         .error-code {
             font-size: 8rem;
             font-weight: 800;
@@ -32,9 +49,25 @@
             background-clip: text;
             color: transparent;
             margin-bottom: 1rem;
+            letter-spacing: 4px;
         }
-        h1 { color: #0a2540; margin-bottom: 1rem; }
-        p { color: #5c6f91; margin-bottom: 2rem; }
+
+        h1 {
+            color: #0a2540;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        p {
+            color: #5c6f91;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+            max-width: 460px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         .btn {
             display: inline-block;
             background: #1e6bff;
@@ -43,69 +76,210 @@
             padding: 12px 28px;
             border-radius: 50px;
             font-weight: 600;
-            transition: 0.2s;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(30, 107, 255, 0.2);
         }
-        .btn:hover { background: #0f3b8c; transform: translateY(-2px); }
+
+        .btn:hover {
+            background: #0f3b8c;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(15, 59, 140, 0.2);
+        }
+
         .search-box {
-            margin: 2rem 0;
+            margin: 2rem 0 1.5rem;
             display: flex;
-            gap: 10px;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
+
         input {
-            flex: 1;
+            flex: 2;
+            min-width: 200px;
             padding: 12px 20px;
             border: 1px solid #e2edff;
             border-radius: 50px;
             font-size: 1rem;
             outline: none;
+            background: white;
+            transition: 0.2s;
+            font-family: inherit;
         }
+
+        input:focus {
+            border-color: #1e6bff;
+            box-shadow: 0 0 0 3px rgba(30, 107, 255, 0.2);
+        }
+
         button {
-            padding: 12px 24px;
+            padding: 12px 28px;
             background: #ff8c42;
             border: none;
             border-radius: 50px;
             color: white;
             font-weight: 600;
             cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            box-shadow: 0 2px 6px rgba(255, 140, 66, 0.2);
         }
+
+        button:hover {
+            background: #e57224;
+            transform: translateY(-1px);
+        }
+
+        .footer-links {
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: #8ba0bc;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #1e6bff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #0f3b8c;
+            text-decoration: underline;
+        }
+
+        /* AD CONTAINER - placed at the bottom, clean and unobtrusive */
+        .ad-bottom {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 1.5rem;
+            backdrop-filter: blur(2px);
+            padding: 0.75rem;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #7c8ea0;
+            transition: all 0.2s;
+        }
+
+        .ad-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #94a3b8;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        /* Responsive behavior */
         @media (max-width: 600px) {
-            .error-code { font-size: 5rem; }
-            .search-box { flex-direction: column; }
+            .error-container {
+                padding: 2rem 1.5rem;
+            }
+            .error-code {
+                font-size: 5rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .search-box {
+                flex-direction: column;
+                gap: 10px;
+            }
+            button {
+                width: 100%;
+            }
+            input {
+                width: 100%;
+            }
+            .footer-links {
+                gap: 1rem;
+            }
+        }
+
+        /* small decorative touch */
+        .error-container::before {
+            content: "🔍";
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+            opacity: 0.7;
         }
     </style>
 </head>
 <body>
+
+<div class="page-wrapper">
+    <!-- MAIN 404 CONTENT BLOCK -->
     <div class="error-container">
         <div class="error-code">404</div>
         <h1>Oops! Page Not Found</h1>
         <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
         
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Search for a tool...">
+            <input type="text" id="searchInput" placeholder="Search for a tool..." aria-label="Search tools">
             <button onclick="searchTool()">Search</button>
         </div>
         
         <a href="/" class="btn">← Back to Homepage</a>
         
-        <div style="margin-top: 2rem; font-size: 0.85rem; color: #8ba0bc;">
-            <a href="/" style="color: #1e6bff; text-decoration: none;">Home</a> • 
-            <a href="/contact.html" style="color: #1e6bff; text-decoration: none;">Contact</a> • 
-            <a href="/privacy-policy.html" style="color: #1e6bff; text-decoration: none;">Privacy</a>
+        <div class="footer-links">
+            <a href="/">Home</a> • 
+            <a href="/contact.html">Contact</a> • 
+            <a href="/privacy-policy.html">Privacy</a>
         </div>
     </div>
-    
-    <script>
-        function searchTool() {
-            const query = document.getElementById('searchInput').value.trim();
-            if(query) {
-                window.location.href = '/?search=' + encodeURIComponent(query);
-            }
+
+    <!-- AD BANNER SECTION - PLACED AT THE BOTTOM (BELOW CONTENT) -->
+    <div class="ad-bottom">
+        <span class="ad-label">Sponsored content</span>
+        <!-- The ad script container: exactly where you want it - bottom -->
+        <div id="container-c2608aed4d10e76bb8072ec639e963f7"></div>
+        <!-- Ad script loaded asynchronously but placed at the bottom -->
+    </div>
+</div>
+
+<script>
+    // Simple search handler
+    function searchTool() {
+        const query = document.getElementById('searchInput').value.trim();
+        if (query) {
+            window.location.href = '/?search=' + encodeURIComponent(query);
+        } else {
+            // optional gentle reminder
+            const inputEl = document.getElementById('searchInput');
+            inputEl.style.borderColor = "#ff8c42";
+            setTimeout(() => {
+                inputEl.style.borderColor = "#e2edff";
+            }, 1000);
         }
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if(e.key === 'Enter') searchTool();
-        });
-    </script>
-    <script async="async" data-cfasync="false" src="https://pl29407567.profitablecpmratenetwork.com/c2608aed4d10e76bb8072ec639e963f7/invoke.js"></script>
-<div id="container-c2608aed4d10e76bb8072ec639e963f7"></div>
+    }
+
+    // Enter key support
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            searchTool();
+        }
+    });
+
+    // Optional: small improvement for accessibility
+    const searchBtn = document.querySelector('button');
+    if (searchBtn) {
+        searchBtn.setAttribute('aria-label', 'Perform search');
+    }
+</script>
+
+<!-- 
+   AD SCRIPT: moved together with its container to the very bottom of the page.
+   The original script had async + data-cfasync attributes. Keeping integrity.
+   The ad container is now wrapped inside .ad-bottom which sits after main 404 content.
+   This ensures the ad loads at the bottom as requested: "ad ko niche lagao"
+-->
+<script async="async" data-cfasync="false" src="https://pl29407567.profitablecpmratenetwork.com/c2608aed4d10e76bb8072ec639e963f7/invoke.js"></script>
+
 </body>
 </html>
