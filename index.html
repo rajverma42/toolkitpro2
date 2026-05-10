@@ -1,83 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- ========== FAVICON / FIVECON ========== -->
-<!-- Standard favicon -->
-<link rel="icon" type="image/x-icon" href="/icons/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-
-<!-- For modern browsers / PWA -->
-<link rel="icon" type="image/png" sizes="192x192" href="icons/android-chrome-192x192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="icons/android-chrome-512x512.png">
-
-<!-- Apple iOS / iPadOS -->
-<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-
-<!-- For Android Chrome -->
-<link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#1e6bff">
+    <!-- ========== FAVICON / META ========== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    
-    <!-- Primary SEO Tags -->
-    <title>ToolkitPro | 22+ Free Online Tools - Image, PDF, Calculator, QR & More</title>
-    <meta name="title" content="ToolkitPro | Free Online Tools: Image Compressor, PDF Converter, QR Generator">
-    <meta name="description" content="22+ free online tools. Compress images, convert PDF to Word, generate QR codes, format JSON, calculate BMI, and more. Fast, secure, no registration required.">
-    <meta name="keywords" content="online tools, image compressor, PDF converter, QR code generator, JSON formatter, currency converter, password generator, free tools, web utilities">
+    <meta name="description" content="ToolkitPro - 22+ free online tools: Image Compressor, PDF Converter, QR Generator, JSON Formatter, BMI Calculator & more. Fast, secure, no registration.">
+    <meta name="keywords" content="online tools, image compressor, PDF converter, QR code generator, JSON formatter, currency converter, password generator, free tools">
     <meta name="author" content="ToolkitPro">
-    <meta name="robots" content="index, follow">
-    <meta name="language" content="English">
-    <meta name="revisit-after" content="7 days">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://toolkit-pro.in/">
-    <meta property="og:title" content="ToolkitPro - Free Online Tools Suite">
-    <meta property="og:description" content="22+ powerful online tools for image editing, document conversion, development utilities, and calculators. Use them free, no signup needed.">
-    <meta property="og:image" content="https://toolkit-pro.in/og-image.jpg">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://toolkit-pro.in/">
-    <meta property="twitter:title" content="ToolkitPro - Free Online Tools">
-    <meta property="twitter:description" content="22+ free online tools. Compress images, convert PDF, generate QR codes, more.">
-    <meta property="twitter:image" content="https://toolkit-pro.in/twitter-image.jpg">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://toolkit-pro.in/">
-    
-    <!-- PWA -->
-    <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#1e6bff">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="shortcut icon" href="/favicon.ico">
+    <title>ToolkitPro | 22+ Free Online Tools - Image, PDF, Calculator, QR & More</title>
     
     <!-- Google Fonts + Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <!-- Schema.org markup for Google -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "ToolkitPro",
-        "url": "https://toolkit-pro.in/",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://toolkit-pro.in/?search={search_term_string}",
-            "query-input": "required name=search_term_string"
-        },
-        "description": "Free collection of 22+ online tools including image compressor, PDF converter, QR generator, and calculator."
-    }
-    </script>
     
     <style>
     * {
@@ -86,55 +20,54 @@
       box-sizing: border-box;
     }
 
-    /* Smooth transitions */
-    body, .tool-card, .search-card, .navbar, .mobile-menu, footer, .icon-chip, .stat-chip, .cat-pill, .ad-below-search, .footer-ad, .dark-toggle, .tool-card *, .nav-links a, .mobile-menu a, .contact-email {
-      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    body, .tool-card, .search-card, .navbar, .mobile-menu, footer, .icon-chip, .stat-chip, .cat-pill, .dark-toggle {
+      transition: background-color 0.25s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s;
     }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: #f4f9ff;
-      color: #0a2540;
+      background: #f8fafc;
+      color: #0f172a;
     }
 
-    /* ========== LIGHT MODE ========== */
+    /* Light Mode (default) */
     :root {
-      --bg-body: #f4f9ff;
+      --bg-body: #f1f5f9;
       --bg-surface: #ffffff;
-      --text-primary: #0a2540;
-      --text-secondary: #3b5c7e;
-      --text-muted: #5c6f91;
-      --border-light: #e2edff;
-      --card-shadow: 0 8px 20px rgba(0, 40, 80, 0.05);
-      --hover-shadow: 0 20px 32px -12px rgba(30, 107, 255, 0.18);
-      --primary: #1e6bff;
-      --primary-deep: #0f3b8c;
-      --primary-soft: #eef5ff;
-      --ad-bg: #fef9e3;
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --border-light: #e2e8f0;
+      --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.05);
+      --hover-shadow: 0 20px 30px -12px rgba(30, 107, 255, 0.2);
+      --primary: #2563eb;
+      --primary-deep: #1e40af;
+      --primary-soft: #eff6ff;
+      --ad-bg: #fefce8;
       --input-bg: #ffffff;
       --btn-text: white;
-      --nav-text: #1f3a6b;
-      --nav-hover: #1e6bff;
+      --nav-text: #1e293b;
+      --nav-hover: #2563eb;
     }
 
-    /* ========== DARK MODE - EXTRA HIGH CONTRAST, CRYSTAL CLEAR ========== */
+    /* High Contrast Dark Mode */
     body.dark {
       --bg-body: #0a0f1c;
-      --bg-surface: #1a2538;
-      --text-primary: #f0f3fc;
-      --text-secondary: #cbd5ed;
-      --text-muted: #a0b3da;
-      --border-light: #334155;
-      --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-      --hover-shadow: 0 20px 32px -12px rgba(79, 140, 255, 0.5);
-      --primary: #5f9eff;
-      --primary-deep: #8bb4ff;
-      --primary-soft: #2a3a55;
-      --ad-bg: #1e2a3a;
-      --input-bg: #0f1626;
+      --bg-surface: #111827;
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --border-light: #1e293b;
+      --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+      --hover-shadow: 0 20px 32px -12px rgba(59, 130, 246, 0.5);
+      --primary: #3b82f6;
+      --primary-deep: #60a5fa;
+      --primary-soft: #1e293b;
+      --ad-bg: #1e293b;
+      --input-bg: #1f2a3e;
       --btn-text: #ffffff;
-      --nav-text: #e0e8ff;
-      --nav-hover: #7aabff;
+      --nav-text: #e2e8f0;
+      --nav-hover: #60a5fa;
     }
 
     body {
@@ -147,7 +80,7 @@
       padding: 0 28px;
     }
 
-    /* Header & Nav - CRYSTAL CLEAR TEXT */
+    /* Header */
     .navbar {
       display: flex;
       align-items: center;
@@ -160,9 +93,9 @@
       z-index: 1100;
     }
     .logo h1 {
-      font-size: 1.9rem;
+      font-size: 1.85rem;
       font-weight: 800;
-      background: linear-gradient(135deg, var(--primary), var(--primary-deep));
+      background: linear-gradient(135deg, var(--primary), #4f46e5);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -172,14 +105,14 @@
       text-decoration: none;
       font-weight: 600;
       color: var(--nav-text);
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
     .nav-links a:hover, .nav-links a.active { color: var(--nav-hover); }
     .contact-email {
       background: var(--primary-soft);
-      padding: 6px 16px;
+      padding: 5px 14px;
       border-radius: 40px;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 600;
       color: var(--primary);
     }
@@ -188,10 +121,10 @@
       display: none;
       flex-direction: column;
       background: var(--bg-surface);
-      padding: 24px;
-      border-radius: 28px;
-      margin: 12px 0 20px;
-      gap: 18px;
+      padding: 20px;
+      border-radius: 24px;
+      margin: 10px 0 15px;
+      gap: 14px;
       border: 1px solid var(--border-light);
     }
     .mobile-menu.show { display: flex; }
@@ -199,18 +132,17 @@
       text-decoration: none;
       font-weight: 600;
       color: var(--nav-text);
-      font-size: 1.1rem;
-      padding: 6px 0;
+      font-size: 1rem;
     }
-    .mobile-menu a:hover { color: var(--nav-hover); }
     .dark-toggle {
       background: var(--primary-soft);
       border: none;
       border-radius: 40px;
-      padding: 8px 16px;
+      padding: 6px 16px;
       cursor: pointer;
       font-weight: 600;
       color: var(--primary);
+      font-size: 0.85rem;
     }
 
     /* Hero */
@@ -218,177 +150,220 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 3rem;
-      padding: 48px 0 30px;
+      gap: 2.5rem;
+      padding: 40px 0 25px;
     }
     .hero-content { flex: 1.2; }
     .hero-badge {
       background: var(--primary-soft);
       display: inline-block;
-      padding: 6px 18px;
+      padding: 5px 16px;
       border-radius: 60px;
       font-weight: 700;
+      font-size: 0.85rem;
       color: var(--primary);
     }
-    .hero-content h1 { font-size: 3.2rem; font-weight: 800; color: var(--text-primary); }
-    .hero-content p { color: var(--text-secondary); margin: 1rem 0 1.5rem; }
-    .stats-mini { display: flex; gap: 20px; }
+    .hero-content h1 { font-size: 2.8rem; font-weight: 800; color: var(--text-primary); line-height: 1.2; }
+    .hero-content p { color: var(--text-secondary); margin: 0.8rem 0 1.2rem; font-size: 1rem; }
+    .stats-mini { display: flex; gap: 15px; }
     .stat-chip {
       background: var(--bg-surface);
-      padding: 6px 16px;
+      padding: 5px 14px;
       border-radius: 40px;
       box-shadow: var(--card-shadow);
       color: var(--text-primary);
+      font-weight: 500;
+      font-size: 0.85rem;
     }
-    .hero-illustration { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-illustration { display: flex; flex-wrap: wrap; gap: 10px; }
     .icon-chip {
       background: var(--bg-surface);
-      border-radius: 80px;
-      padding: 10px 22px;
+      border-radius: 60px;
+      padding: 8px 18px;
       box-shadow: var(--card-shadow);
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       color: var(--text-primary);
+      font-weight: 500;
+      font-size: 0.9rem;
     }
 
-    /* search + ad below */
-    .search-section { margin: 20px 0 16px; }
+    /* Search */
+    .search-section { margin: 15px 0 10px; }
     .search-card {
       background: var(--bg-surface);
-      border-radius: 70px;
-      padding: 6px;
+      border-radius: 60px;
+      padding: 4px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       box-shadow: var(--card-shadow);
       border: 1px solid var(--border-light);
     }
-    .search-card i { margin-left: 20px; color: var(--text-secondary); }
+    .search-card i { margin-left: 18px; color: var(--text-secondary); font-size: 1.1rem; }
     #searchInput {
       flex: 1;
       border: none;
-      padding: 14px 8px;
-      font-size: 1rem;
+      padding: 12px 6px;
+      font-size: 0.95rem;
       outline: none;
       background: var(--input-bg);
       color: var(--text-primary);
       border-radius: 60px;
     }
-    #searchInput::placeholder {
-      color: var(--text-muted);
-    }
     .search-card button {
       background: var(--primary);
       border: none;
-      padding: 10px 28px;
+      padding: 8px 24px;
       border-radius: 60px;
       color: var(--btn-text);
       font-weight: 600;
       cursor: pointer;
+      font-size: 0.85rem;
     }
-    /* Ad below search */
+    
+    /* ========== FIXED ADS - NO CUTTING, PROPER DISPLAY ========== */
     .ad-below-search {
       background: var(--ad-bg);
-      border-radius: 60px;
-      padding: 12px 20px;
-      margin: 16px 0 20px;
+      border-radius: 16px;
+      padding: 12px 16px;
+      margin: 12px 0 20px;
       text-align: center;
-      font-size: 0.85rem;
       border: 1px solid var(--border-light);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      color: var(--text-primary);
+      flex-direction: column;
+      gap: 8px;
+      overflow: visible;
+      min-height: 110px;
+    }
+    .ad-container-inline {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      min-height: 90px;
+      overflow: visible;
+    }
+    .ad-container-inline iframe,
+    .ad-container-inline ins {
+      max-width: 100%;
+      margin: 0 auto;
+      display: block;
+      border: none;
+    }
+    
+    .footer-ad {
+      background: var(--ad-bg);
+      margin: 16px 0 28px;
+      padding: 12px 16px;
+      border-radius: 16px;
+      text-align: center;
+      border: 1px solid var(--border-light);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      overflow: visible;
+      min-height: 110px;
+    }
+    .footer-ad-container {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      min-height: 90px;
+      overflow: visible;
+    }
+    .footer-ad-container iframe {
+      max-width: 100%;
     }
 
-    /* Main area - full width */
-    .main-dashboard { margin: 20px 0 40px; }
-    .tools-area { width: 100%; }
-
-    /* tools grid */
-    .section-header { display: flex; justify-content: space-between; align-items: baseline; margin: 28px 0 24px; flex-wrap: wrap; }
-    .section-header h2, .section-header h3 {
-      color: var(--text-primary);
-    }
+    /* Tools grid */
+    .section-header { display: flex; justify-content: space-between; align-items: baseline; margin: 24px 0 20px; flex-wrap: wrap; }
+    .section-header h2, .section-header h3 { color: var(--text-primary); font-weight: 700; font-size: 1.5rem; }
     .tools-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 28px;
-      margin-bottom: 40px;
+      gap: 24px;
+      margin-bottom: 35px;
     }
     .tool-card {
       background: var(--bg-surface);
-      border-radius: 28px;
+      border-radius: 24px;
       padding: 22px;
       box-shadow: var(--card-shadow);
       border: 1px solid var(--border-light);
       transition: transform 0.2s, box-shadow 0.2s;
     }
-    .tool-card:hover { transform: translateY(-5px); box-shadow: var(--hover-shadow); }
-    .card-icon { font-size: 2.2rem; margin-bottom: 14px; color: var(--primary); }
+    .tool-card:hover { transform: translateY(-4px); box-shadow: var(--hover-shadow); }
+    .card-icon { font-size: 2.2rem; margin-bottom: 12px; color: var(--primary); }
     .tool-card h3 { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
-    .tool-card p { color: var(--text-secondary); font-size: 0.85rem; margin: 8px 0 18px; line-height: 1.4; }
+    .tool-card p { color: var(--text-secondary); font-size: 0.8rem; margin: 6px 0 16px; line-height: 1.4; }
     .use-btn {
       background: transparent;
       border: 1.5px solid var(--primary);
       color: var(--primary);
-      padding: 8px 18px;
+      padding: 7px 18px;
       border-radius: 40px;
       font-weight: 600;
+      font-size: 0.85rem;
       display: inline-block;
       text-decoration: none;
       transition: 0.2s;
+      cursor: pointer;
     }
     .use-btn:hover { background: var(--primary); color: white; }
-    .no-results { text-align: center; padding: 50px; background: var(--bg-surface); border-radius: 40px; color: var(--text-secondary); }
-    .category-pills { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
+    .no-results { text-align: center; padding: 40px; background: var(--bg-surface); border-radius: 32px; color: var(--text-secondary); }
+    .category-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; margin-top: 12px; }
     .cat-pill {
       background: var(--primary-soft);
-      padding: 8px 22px;
+      padding: 6px 20px;
       border-radius: 60px;
       font-weight: 500;
+      font-size: 0.85rem;
       cursor: pointer;
       color: var(--text-primary);
     }
     .cat-pill.active, .cat-pill:hover { background: var(--primary); color: white; }
 
-    /* footer ad */
-    .footer-ad {
-      background: var(--ad-bg);
-      margin: 20px 0 30px;
-      padding: 16px;
-      border-radius: 32px;
-      text-align: center;
-      border: 1px solid var(--border-light);
-      color: var(--text-primary);
-    }
     footer {
       background: var(--bg-surface);
       border-top: 1px solid var(--border-light);
-      padding: 45px 0 30px;
+      padding: 35px 0 25px;
     }
     .footer-flex {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      gap: 25px;
+      gap: 20px;
     }
-    .footer-logo h3 { color: var(--primary); }
-    .footer-logo p { color: var(--text-secondary); }
-    .footer-contact a { color: var(--primary); text-decoration: none; }
-    .footer-contact p { color: var(--text-secondary); }
-    .footer-links { display: flex; gap: 28px; margin-top: 10px; flex-wrap: wrap; }
-    .footer-links a { color: var(--text-secondary); text-decoration: none; }
+    .footer-logo h3 { font-size: 1.3rem; }
+    .footer-logo p { font-size: 0.8rem; color: var(--text-secondary); }
+    .footer-contact p { font-size: 0.85rem; }
+    .footer-links { display: flex; gap: 22px; margin-top: 8px; flex-wrap: wrap; }
+    .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.8rem; }
     .footer-links a:hover { color: var(--primary); }
+
+    /* Ad label small text */
+    .ad-label {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
 
     @media (max-width: 900px) {
       .nav-links { display: none; }
       .hamburger { display: block; }
-      .hero-content h1 { font-size: 2.2rem; }
+      .hero-content h1 { font-size: 2rem; }
+      .container { padding: 0 18px; }
+      .ad-below-search, .footer-ad {
+        padding: 10px 12px;
+        min-height: 100px;
+      }
     }
     </style>
 </head>
@@ -405,7 +380,7 @@
         <a href="#" id="navBlog">📝 Blog</a>
         <a href="#" id="navAbout">👤 About</a>
         <a href="#" id="navContact">📞 Contact</a>
-        <span class="contact-email"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</span>
+        <span class="contact-email"><i class="far fa-envelope"></i> support@toolkitpro.in</span>
         <button id="darkModeToggle" class="dark-toggle"><i class="fas fa-moon"></i> Dark</button>
       </div>
       <div class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></div>
@@ -417,16 +392,58 @@
       <a href="#" data-mobile="blog">📝 Blog</a>
       <a href="#" data-mobile="about">👤 About</a>
       <a href="#" data-mobile="contact">📞 Contact</a>
-      <button id="mobileDarkToggle" class="dark-toggle" style="margin-top: 8px;"><i class="fas fa-moon"></i> Dark Mode</button>
-      <div class="contact-email" style="margin-top:8px;"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</div>
+      <button id="mobileDarkToggle" class="dark-toggle" style="margin-top: 6px;"><i class="fas fa-moon"></i> Dark Mode</button>
+      <div class="contact-email" style="margin-top:6px;"><i class="far fa-envelope"></i> support@toolkitpro.in</div>
     </div>
   </header>
 
-  <section id="heroSection"><div class="hero"><div class="hero-content"><div class="hero-badge"><i class="fas fa-star"></i> 22+ Essential Tools</div><h1>Smart Utilities,<br>No AI Overhead</h1><p>Convert, compress, calculate, encode — instant tools that work offline-first.</p><div class="stats-mini"><span class="stat-chip"><i class="fas fa-cubes"></i> 22 Tools</span><span class="stat-chip"><i class="fas fa-bolt"></i> Instant</span><span class="stat-chip"><i class="fas fa-shield-alt"></i> Private</span></div></div><div class="hero-illustration"><div class="icon-chip"><i class="fas fa-file-pdf"></i> PDF</div><div class="icon-chip"><i class="fas fa-image"></i> Image</div><div class="icon-chip"><i class="fas fa-calculator"></i> Calc</div><div class="icon-chip"><i class="fas fa-qrcode"></i> QR</div></div></div></section>
+  <section id="heroSection">
+    <div class="hero">
+      <div class="hero-content">
+        <div class="hero-badge"><i class="fas fa-star"></i> 26+ Essential Tools</div>
+        <h1>Smart Utilities,<br>Zero Bloat</h1>
+        <p>Convert, compress, calculate, encode — instant tools that respect your privacy.</p>
+        <div class="stats-mini">
+          <span class="stat-chip"><i class="fas fa-cubes"></i> 26 Tools</span>
+          <span class="stat-chip"><i class="fas fa-bolt"></i> Instant</span>
+          <span class="stat-chip"><i class="fas fa-shield-alt"></i> 100% Private</span>
+        </div>
+      </div>
+      <div class="hero-illustration">
+        <div class="icon-chip"><i class="fas fa-file-pdf"></i> PDF</div>
+        <div class="icon-chip"><i class="fas fa-image"></i> Image</div>
+        <div class="icon-chip"><i class="fas fa-calculator"></i> Calc</div>
+        <div class="icon-chip"><i class="fas fa-qrcode"></i> QR</div>
+        <div class="icon-chip"><i class="fas fa-code"></i> Dev</div>
+      </div>
+    </div>
+  </section>
 
-  <!-- Search + AD below search -->
-  <div class="search-section"><div class="search-card"><i class="fas fa-search"></i><input type="text" id="searchInput" placeholder="Search a tool... e.g., image compressor, PDF converter, QR generator"><button id="searchBtn">Find Tool</button></div></div>
-  <div class="ad-below-search" id="inlineAd"><i class="fas fa-ad" style="color:#f59e0b;"></i> <strong>Ad Space</strong> — Try ToolkitPro Premium (no ads) | Limited Offer</div>
+  <!-- Search Section -->
+  <div class="search-section">
+    <div class="search-card">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInput" placeholder="Search tool... e.g., image compressor, PDF to Word">
+      <button id="searchBtn">Find</button>
+    </div>
+  </div>
+  
+  <!-- ========== AD SLOT 1: BELOW SEARCH - FULLY VISIBLE ========== -->
+  <div class="ad-below-search">
+    <div class="ad-label"><i class="fas fa-ad"></i> Advertisement</div>
+    <div class="ad-container-inline">
+      <script>
+        atOptions = {
+          'key' : 'b6dc7debf459989eb26ba8449901ffe2',
+          'format' : 'iframe',
+          'height' : 90,
+          'width' : 728,
+          'params' : {}
+        };
+      </script>
+      <script src="https://www.highperformanceformat.com/b6dc7debf459989eb26ba8449901ffe2/invoke.js"></script>
+    </div>
+  </div>
 
   <div id="categoryPillsContainer" style="display: none;"></div>
   <div class="main-dashboard">
@@ -436,9 +453,21 @@
     </div>
   </div>
   
-  <!-- Footer Ad -->
-  <div class="footer-ad" id="footerAdBlock">
-    <i class="fas fa-gem"></i> <strong>ToolkitPro Partner</strong> — Boost productivity with our Chrome extension | <a href="#" style="color: var(--primary);">Learn more</a>
+  <!-- ========== AD SLOT 2: FOOTER AD - FULLY VISIBLE ========== -->
+  <div class="footer-ad">
+    <div class="ad-label"><i class="fas fa-ad"></i> Sponsored</div>
+    <div class="footer-ad-container">
+      <script>
+        atOptions = {
+          'key' : 'b6dc7debf459989eb26ba8449901ffe2',
+          'format' : 'iframe',
+          'height' : 90,
+          'width' : 728,
+          'params' : {}
+        };
+      </script>
+      <script src="https://www.highperformanceformat.com/b6dc7debf459989eb26ba8449901ffe2/invoke.js"></script>
+    </div>
   </div>
 </div>
 
@@ -447,56 +476,55 @@
     <div class="footer-flex">
       <div class="footer-logo">
         <h3>ToolkitPro</h3>
-        <p>Simplifying your digital life · 22+ non-AI tools</p>
+        <p>26+ non-AI tools · Free forever</p>
       </div>
       <div class="footer-contact">
-        <p><i class="far fa-envelope"></i> <a href="mailto:supporttoolkitpro@gmail.com">supporttoolkitpro@gmail.com</a></p>
+        <p><i class="far fa-envelope"></i> <a href="mailto:support@toolkitpro.in" style="color: var(--primary);">support@toolkitpro.in</a></p>
         <div class="footer-links">
-          <a href="/contact.html">Contact</a>
-          <a href="/disclaimer.html">Disclaimer</a>
-          <a href="/privacy-policy.html">Privacy Policy</a>
-          <a href="/terms.html">Terms of Use</a>
+          <a href="#">Contact</a>
+          <a href="#">Disclaimer</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms</a>
         </div>
       </div>
     </div>
-    <div style="text-align:center; margin-top:28px; font-size:0.7rem; color: var(--text-muted);">© 2025 ToolkitPro — Reliable utilities, ads support free access</div>
+    <div style="text-align:center; margin-top:22px; font-size:0.65rem; color: var(--text-muted);">© 2025 ToolkitPro — Reliable utilities, ads support free access</div>
   </div>
 </footer>
 
 <script>
-  // ==================== UPDATED TOOLS DB WITH ALL CORRECT LINKS ====================
+  // ==================== FULL TOOLS DATABASE (26 Tools) ====================
   const fullTools = [
-    { name: "PDF to Word Converter", desc: "Convert PDF to editable Word", icon: "fas fa-file-pdf", category: "Document", link: "/tools/pdf-word.html" },
-    { name: "Image Compressor", desc: "Reduce image size, preserve quality", icon: "fas fa-compress-alt", category: "Image", link: "/tools/image-compressor.html" },
-    { name: "QR Code Generator", desc: "Generate QR from text/URL", icon: "fas fa-qrcode", category: "Utility", link: "/tools/qr-generator.html" },
-    { name: "Image Converter", desc: "Convert between JPG, PNG, WEBP", icon: "fas fa-exchange-alt", category: "Image", link: "/tools/image-converter.html" },
-    { name: "Image Cropper", desc: "Crop images to any size", icon: "fas fa-crop-alt", category: "Image", link: "/tools/image-cropper.html" },
-    { name: "Image Resizer", desc: "Change image dimensions", icon: "fas fa-expand-alt", category: "Image", link: "/tools/image-resizer.html" },
-    { name: "Image Rotator", desc: "Rotate or flip images", icon: "fas fa-sync-alt", category: "Image", link: "/tools/image-rotator.html" },
-    { name: "JSON Formatter", desc: "Beautify & validate JSON", icon: "fas fa-brackets-curly", category: "Dev", link: "/tools/json-formatter.html" },
-    { name: "Password Generator", desc: "Strong random passwords", icon: "fas fa-key", category: "Utility", link: "/tools/password-gen.html" },
-    { name: "Text Case Converter", desc: "UPPER, lower, Title Case", icon: "fas fa-text-height", category: "Text", link: "/tools/text-case-converter.html" },
-    { name: "Currency Converter", desc: "Live exchange rates", icon: "fas fa-dollar-sign", category: "Calculator", link: "/tools/currency-converter.html" },
-    { name: "OCR Tool", desc: "Extract text from images", icon: "fas fa-font", category: "Image", link: "/tools/ocr-tool.html" },
-    { name: "Unit Converter", desc: "Length, mass, volume & temperature", icon: "fas fa-ruler-combined", category: "Utility", link: "/tools/unit-converter.html" },
-    { name: "Word Counter", desc: "Count words, characters", icon: "fas fa-calculator", category: "Text", link: "/tools/word-counter.html" },
-    { name: "Age Calculator", desc: "Calculate exact age from DOB", icon: "fas fa-birthday-cake", category: "Calculator", link: "/tools/age-calc.html" },
-    { name: "Base64 Encoder/Decoder", desc: "Text <-> base64", icon: "fas fa-code", category: "Dev", link: "/tools/base64.html" },
-    { name: "BMI Calculator", desc: "Body Mass Index", icon: "fas fa-heartbeat", category: "Calculator", link: "/tools/bmi.html" },
-    { name: "Color Picker", desc: "Pick color, get HEX/RGB", icon: "fas fa-eye-dropper", category: "Color", link: "/tools/color-picker.html" },
-    { name: "HTML Minifier", desc: "Minify HTML/CSS/JS", icon: "fab fa-html5", category: "Dev", link: "/tools/html-minify.html" },
-    { name: "PDF Merger", desc: "Combine multiple PDFs", icon: "fas fa-object-group", category: "Document", link: "/tools/pdf-merge.html" },
-    { name: "Text Reverser", desc: "Reverse string or words", icon: "fas fa-backward", category: "Text", link: "/tools/text-reverse.html" },
-    { name: "Loan EMI Calculator", desc: "Monthly installment", icon: "fas fa-chart-line", category: "Calculator", link: "/tools/emi-calc.html" },
-    { name: "HEX to RGB", desc: "Convert hex to RGB", icon: "fas fa-palette", category: "Color", link: "/tools/hex-rgb.html" },
-    { name: "GST Calculator", desc: "Compute GST", icon: "fas fa-percent", category: "Calculator", link: "/tools/gst-calc.html" },
-    { name: "URL Encoder/Decoder", desc: "Encode special chars", icon: "fas fa-link", category: "Dev", link: "/tools/url-codec.html" },
-    { name: "PDF Compressor", desc: "Reduce PDF file size", icon: "fas fa-compress", category: "Document", link: "/tools/pdf-compress.html" }
+    { name: "PDF to Word Converter", desc: "Convert PDF documents to editable Word files with high accuracy.", icon: "fas fa-file-pdf", category: "Document", link: "/tools/pdf-word.html" },
+    { name: "Image Compressor", desc: "Reduce image size while preserving quality. Supports JPG, PNG, WebP.", icon: "fas fa-compress-alt", category: "Image", link: "/tools/image-compressor.html" },
+    { name: "QR Code Generator", desc: "Generate custom QR codes from URL, text, or contact info.", icon: "fas fa-qrcode", category: "Utility", link: "/tools/qr-generator.html" },
+    { name: "Image Converter", desc: "Convert between JPG, PNG, WEBP, and BMP formats instantly.", icon: "fas fa-exchange-alt", category: "Image", link: "/tools/image-converter.html" },
+    { name: "Image Cropper", desc: "Crop images to any dimension with live preview.", icon: "fas fa-crop-alt", category: "Image", link: "/tools/image-cropper.html" },
+    { name: "Image Resizer", desc: "Resize images by percentage or exact pixels.", icon: "fas fa-expand-alt", category: "Image", link: "/tools/image-resizer.html" },
+    { name: "JSON Formatter", desc: "Beautify, validate, and minify JSON data.", icon: "fas fa-brackets-curly", category: "Dev", link: "/tools/json-formatter.html" },
+    { name: "Password Generator", desc: "Generate strong, random passwords with custom length.", icon: "fas fa-key", category: "Utility", link: "/tools/password-gen.html" },
+    { name: "Text Case Converter", desc: "Convert text to UPPER CASE, lower case, Title Case, and more.", icon: "fas fa-text-height", category: "Text", link: "/tools/text-case-converter.html" },
+    { name: "Currency Converter", desc: "Live exchange rates for 150+ currencies.", icon: "fas fa-dollar-sign", category: "Calculator", link: "/tools/currency-converter.html" },
+    { name: "OCR Tool", desc: "Extract text from scanned images and PDFs.", icon: "fas fa-font", category: "Image", link: "/tools/ocr-tool.html" },
+    { name: "Unit Converter", desc: "Convert length, mass, volume, temperature, and more.", icon: "fas fa-ruler-combined", category: "Utility", link: "/tools/unit-converter.html" },
+    { name: "Word Counter", desc: "Count words, characters, sentences, and paragraphs.", icon: "fas fa-calculator", category: "Text", link: "/tools/word-counter.html" },
+    { name: "Age Calculator", desc: "Calculate exact age from date of birth.", icon: "fas fa-birthday-cake", category: "Calculator", link: "/tools/age-calc.html" },
+    { name: "Base64 Encoder/Decoder", desc: "Encode text to base64 or decode back to readable text.", icon: "fas fa-code", category: "Dev", link: "/tools/base64.html" },
+    { name: "BMI Calculator", desc: "Body Mass Index calculator with health range indicator.", icon: "fas fa-heartbeat", category: "Calculator", link: "/tools/bmi.html" },
+    { name: "Color Picker", desc: "Pick any color from screen, get HEX, RGB, and HSL values.", icon: "fas fa-eye-dropper", category: "Color", link: "/tools/color-picker.html" },
+    { name: "HTML Minifier", desc: "Minify HTML/CSS/JS code to reduce file size.", icon: "fab fa-html5", category: "Dev", link: "/tools/html-minify.html" },
+    { name: "PDF Merger", desc: "Combine multiple PDF files into a single document.", icon: "fas fa-object-group", category: "Document", link: "/tools/pdf-merge.html" },
+    { name: "Text Reverser", desc: "Reverse entire string or reverse word order.", icon: "fas fa-backward", category: "Text", link: "/tools/text-reverse.html" },
+    { name: "Loan EMI Calculator", desc: "Calculate monthly EMI and total interest.", icon: "fas fa-chart-line", category: "Calculator", link: "/tools/emi-calc.html" },
+    { name: "HEX to RGB", desc: "Convert HEX color codes to RGB values instantly.", icon: "fas fa-palette", category: "Color", link: "/tools/hex-rgb.html" },
+    { name: "GST Calculator", desc: "Calculate GST inclusive/exclusive amounts.", icon: "fas fa-percent", category: "Calculator", link: "/tools/gst-calc.html" },
+    { name: "URL Encoder/Decoder", desc: "Encode special characters in URLs or decode them.", icon: "fas fa-link", category: "Dev", link: "/tools/url-codec.html" },
+    { name: "PDF Compressor", desc: "Reduce PDF file size while maintaining quality.", icon: "fas fa-compress", category: "Document", link: "/tools/pdf-compress.html" },
+    { name: "Image Rotator", desc: "Rotate or flip images by 90°, 180°, or custom angle.", icon: "fas fa-sync-alt", category: "Image", link: "/tools/image-rotator.html" }
   ];
   
-  const trendingTools = fullTools.slice(0,6);
+  const trendingTools = fullTools.slice(0, 6);
   
-  // DOM refs
   const trendingView = document.getElementById("trendingDefaultView");
   const searchResultsArea = document.getElementById("searchResultsArea");
   const heroSection = document.getElementById("heroSection");
@@ -505,134 +533,158 @@
   let activeCategory = "";
 
   function renderToolsGrid(toolsArray, title = "") {
-    if(!toolsArray.length) return `<div class="no-results"><i class="fas fa-search"></i> No tools found.</div>`;
+    if (!toolsArray.length) return `<div class="no-results"><i class="fas fa-search"></i> No tools match. Try other keywords.</div>`;
     let html = title ? `<div class="section-header"><h3>${title}</h3></div>` : "";
     html += `<div class="tools-grid">`;
     toolsArray.forEach(t => {
-      html += `<div class="tool-card"><div class="card-icon"><i class="${t.icon}"></i></div><h3>${escapeHtml(t.name)}</h3><p>${escapeHtml(t.desc)}</p><a href="${t.link}" class="use-btn">Use Tool →</a></div>`;
+      html += `<div class="tool-card">
+        <div class="card-icon"><i class="${t.icon}"></i></div>
+        <h3>${escapeHtml(t.name)}</h3>
+        <p>${escapeHtml(t.desc)}</p>
+        <a href="${t.link}" class="use-btn">Use Tool →</a>
+      </div>`;
     });
     html += `</div>`;
     return html;
   }
-  function escapeHtml(s) { return s.replace(/[&<>]/g, function(m){ return m==='&'?'&amp;': m==='<'?'&lt;':'&gt;';}); }
+  
+  function escapeHtml(str) {
+    return str.replace(/[&<>]/g, function(m) {
+      return m === '&' ? '&amp;' : (m === '<' ? '&lt;' : '&gt;');
+    });
+  }
 
   function showHome() {
-    currentView = "home"; activeCategory = "";
+    currentView = "home";
+    activeCategory = "";
     heroSection.style.display = "flex";
     categoryPillsDiv.style.display = "none";
-    if(trendingView) trendingView.innerHTML = `<div class="section-header"><h2><i class="fas fa-fire"></i> 🔥 Trending Tools</h2></div>${renderToolsGrid(trendingTools)}`;
+    if (trendingView) trendingView.innerHTML = `<div class="section-header"><h2><i class="fas fa-fire"></i> 🔥 Trending Tools</h2></div>${renderToolsGrid(trendingTools)}`;
     searchResultsArea.innerHTML = "";
     document.getElementById("searchInput").value = "";
     updateActiveNav("home");
   }
+
   function showAllTools() {
     currentView = "all";
     heroSection.style.display = "none";
     categoryPillsDiv.style.display = "none";
-    if(trendingView) trendingView.innerHTML = `<div class="section-header"><h2>✨ All Tools (${fullTools.length})</h2></div>${renderToolsGrid(fullTools)}`;
+    if (trendingView) trendingView.innerHTML = `<div class="section-header"><h2>✨ All Tools (${fullTools.length})</h2></div>${renderToolsGrid(fullTools)}`;
     searchResultsArea.innerHTML = "";
     updateActiveNav("all");
   }
+
   function showCategoriesView() {
     currentView = "category";
     heroSection.style.display = "none";
-    const cats = [...new Set(fullTools.map(t=>t.category))].sort();
-    let pillsHtml = `<div class="category-pills"><div class="cat-pill ${activeCategory===''?'active':''}" data-cat="all">All Categories</div>`;
-    cats.forEach(c=>{ pillsHtml += `<div class="cat-pill ${activeCategory===c?'active':''}" data-cat="${c}">${c}</div>`; });
+    const cats = [...new Set(fullTools.map(t => t.category))].sort();
+    let pillsHtml = `<div class="category-pills"><div class="cat-pill ${activeCategory === '' ? 'active' : ''}" data-cat="all">📌 All Categories</div>`;
+    cats.forEach(c => {
+      pillsHtml += `<div class="cat-pill ${activeCategory === c ? 'active' : ''}" data-cat="${c}">${c}</div>`;
+    });
     pillsHtml += `</div>`;
     categoryPillsDiv.innerHTML = pillsHtml;
     categoryPillsDiv.style.display = "block";
-    document.querySelectorAll('.cat-pill').forEach(p=>{
-      p.addEventListener('click',()=>{
-        const cat = p.getAttribute('data-cat');
-        activeCategory = (cat==="all")?"":cat;
+    
+    document.querySelectorAll('.cat-pill').forEach(pill => {
+      pill.addEventListener('click', (e) => {
+        const cat = pill.getAttribute('data-cat');
+        activeCategory = (cat === "all") ? "" : cat;
         filterByActiveCategory();
-        document.querySelectorAll('.cat-pill').forEach(p2=>p2.classList.remove('active'));
-        p.classList.add('active');
+        document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
       });
     });
     filterByActiveCategory();
     updateActiveNav("categories");
   }
+
   function filterByActiveCategory() {
-    let filtered = activeCategory ? fullTools.filter(t=>t.category===activeCategory) : fullTools;
-    if(trendingView) trendingView.innerHTML = `<div class="section-header"><h2>📂 ${activeCategory||"All Categories"} (${filtered.length})</h2></div>${renderToolsGrid(filtered)}`;
-    searchResultsArea.innerHTML="";
+    const filtered = activeCategory ? fullTools.filter(t => t.category === activeCategory) : fullTools;
+    if (trendingView) {
+      trendingView.innerHTML = `<div class="section-header"><h2>📂 ${activeCategory || "All Categories"} (${filtered.length})</h2></div>${renderToolsGrid(filtered)}`;
+    }
+    searchResultsArea.innerHTML = "";
   }
+
   function performSearch() {
-    const q = document.getElementById("searchInput").value.trim().toLowerCase();
-    if(q===""){ if(currentView==="home") showHome(); else if(currentView==="all") showAllTools(); else if(currentView==="category") showCategoriesView(); return; }
-    const filtered = fullTools.filter(t=> t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q) || t.category.toLowerCase().includes(q));
-    heroSection.style.display="none";
-    categoryPillsDiv.style.display="none";
-    if(trendingView) trendingView.innerHTML="";
-    searchResultsArea.innerHTML = `<div class="section-header"><h3><i class="fas fa-search"></i> Results: "${escapeHtml(q)}" (${filtered.length})</h3></div>${renderToolsGrid(filtered)}`;
+    const query = document.getElementById("searchInput").value.trim().toLowerCase();
+    if (query === "") {
+      if (currentView === "home") showHome();
+      else if (currentView === "all") showAllTools();
+      else if (currentView === "category") showCategoriesView();
+      return;
+    }
+    const filtered = fullTools.filter(t => 
+      t.name.toLowerCase().includes(query) || 
+      t.desc.toLowerCase().includes(query) || 
+      t.category.toLowerCase().includes(query)
+    );
+    heroSection.style.display = "none";
+    categoryPillsDiv.style.display = "none";
+    if (trendingView) trendingView.innerHTML = "";
+    searchResultsArea.innerHTML = `<div class="section-header"><h3><i class="fas fa-search"></i> Results: "${escapeHtml(query)}" (${filtered.length})</h3></div>${renderToolsGrid(filtered)}`;
   }
-  function updateActiveNav(page){
-    document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a=>a.classList.remove('active'));
-    if(page==='home') document.getElementById("navHome")?.classList.add('active');
-    if(page==='all') document.getElementById("navAllTools")?.classList.add('active');
-    if(page==='categories') document.getElementById("navCategories")?.classList.add('active');
+
+  function updateActiveNav(page) {
+    document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => a.classList.remove('active'));
+    if (page === 'home') document.getElementById("navHome")?.classList.add('active');
+    if (page === 'all') document.getElementById("navAllTools")?.classList.add('active');
+    if (page === 'categories') document.getElementById("navCategories")?.classList.add('active');
   }
-  
-  // HIGH CONTRAST DARK MODE - FULLY WORKING
+
   function initDarkMode() {
-    const darkModeToggle = document.getElementById("darkModeToggle");
-    const mobileDarkToggle = document.getElementById("mobileDarkToggle");
+    const darkToggle = document.getElementById("darkModeToggle");
+    const mobileDark = document.getElementById("mobileDarkToggle");
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark') document.body.classList.add('dark');
+    else if (saved === 'light') document.body.classList.remove('dark');
+    else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) document.body.classList.add('dark');
     
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      document.body.classList.add('dark');
-    } else if (savedTheme === 'light') {
-      document.body.classList.remove('dark');
-    } else {
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-      }
-    }
-    
-    function toggleDarkMode() {
+    function toggleDark() {
       document.body.classList.toggle('dark');
-      const isDark = document.body.classList.contains('dark');
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
     }
-    
-    if (darkModeToggle) darkModeToggle.addEventListener('click', toggleDarkMode);
-    if (mobileDarkToggle) mobileDarkToggle.addEventListener('click', toggleDarkMode);
+    if (darkToggle) darkToggle.addEventListener('click', toggleDark);
+    if (mobileDark) mobileDark.addEventListener('click', toggleDark);
   }
-  
-  // Navigation events
-  document.getElementById("navHome")?.addEventListener("click",(e)=>{e.preventDefault(); showHome();});
-  document.getElementById("navAllTools")?.addEventListener("click",(e)=>{e.preventDefault(); showAllTools();});
-  document.getElementById("navCategories")?.addEventListener("click",(e)=>{e.preventDefault(); showCategoriesView();});
-  document.getElementById("navBlog")?.addEventListener("click",(e)=>{e.preventDefault(); alert("📖 Blog: productivity tips & tool news");});
-  document.getElementById("navAbout")?.addEventListener("click",(e)=>{e.preventDefault(); alert("🔧 ToolkitPro — 22+ no-nonsense tools, made with ❤️");});
-  document.getElementById("navContact")?.addEventListener("click",(e)=>{e.preventDefault(); window.location.href = "/contact.html";});
+
+  document.getElementById("navHome")?.addEventListener("click", (e) => { e.preventDefault(); showHome(); });
+  document.getElementById("navAllTools")?.addEventListener("click", (e) => { e.preventDefault(); showAllTools(); });
+  document.getElementById("navCategories")?.addEventListener("click", (e) => { e.preventDefault(); showCategoriesView(); });
+  document.getElementById("navBlog")?.addEventListener("click", (e) => { e.preventDefault(); alert("📖 Coming soon: Tech tips & productivity hacks"); });
+  document.getElementById("navAbout")?.addEventListener("click", (e) => { e.preventDefault(); alert("🔧 ToolkitPro — 26+ privacy-first utilities. Ad-supported & always free."); });
+  document.getElementById("navContact")?.addEventListener("click", (e) => { e.preventDefault(); alert("📧 support@toolkitpro.in"); });
   document.getElementById("searchBtn")?.addEventListener("click", performSearch);
-  document.getElementById("searchInput")?.addEventListener("input", (e)=>{ if(e.target.value===""){ if(currentView==="home") showHome(); else if(currentView==="all") showAllTools(); else if(currentView==="category") showCategoriesView(); } else performSearch(); });
-  
-  // mobile menu
+  document.getElementById("searchInput")?.addEventListener("input", (e) => {
+    if (e.target.value === "") {
+      if (currentView === "home") showHome();
+      else if (currentView === "all") showAllTools();
+      else if (currentView === "category") showCategoriesView();
+    } else {
+      performSearch();
+    }
+  });
+
   const hamburger = document.getElementById("hamburgerBtn");
   const mobileMenuDiv = document.getElementById("mobileMenu");
-  hamburger?.addEventListener("click",()=>mobileMenuDiv.classList.toggle("show"));
-  document.querySelectorAll("[data-mobile]").forEach(el=>{
-    el.addEventListener("click",(e)=>{
+  hamburger?.addEventListener("click", () => mobileMenuDiv.classList.toggle("show"));
+  document.querySelectorAll("[data-mobile]").forEach(el => {
+    el.addEventListener("click", (e) => {
       e.preventDefault();
       const val = el.getAttribute("data-mobile");
-      if(val==="home") showHome();
-      if(val==="all") showAllTools();
-      if(val==="categories") showCategoriesView();
-      if(val==="blog") alert("📖 Blog soon");
-      if(val==="about") alert("ToolkitPro - ad supported utilities");
-      if(val==="contact") window.location.href = "/contact.html";
+      if (val === "home") showHome();
+      if (val === "all") showAllTools();
+      if (val === "categories") showCategoriesView();
+      if (val === "blog") alert("📖 Blog (coming)");
+      if (val === "about") alert("ToolkitPro: Simplify your digital life");
+      if (val === "contact") alert("📞 support@toolkitpro.in");
       mobileMenuDiv.classList.remove("show");
     });
   });
-  
+
   initDarkMode();
   showHome();
 </script>
-    <script async="async" data-cfasync="false" src="https://pl29407567.profitablecpmratenetwork.com/c2608aed4d10e76bb8072ec639e963f7/invoke.js"></script>
-<div id="container-c2608aed4d10e76bb8072ec639e963f7"></div>
 </body>
 </html>
