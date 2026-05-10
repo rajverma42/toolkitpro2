@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - ToolkitPro</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #f4f9ff 0%, #e8f0fe 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .error-container {
+            text-align: center;
+            max-width: 600px;
+            padding: 3rem 2rem;
+            background: white;
+            border-radius: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .error-code {
+            font-size: 8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e6bff, #ff8c42);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+        h1 { color: #0a2540; margin-bottom: 1rem; }
+        p { color: #5c6f91; margin-bottom: 2rem; }
+        .btn {
+            display: inline-block;
+            background: #1e6bff;
+            color: white;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .btn:hover { background: #0f3b8c; transform: translateY(-2px); }
+        .search-box {
+            margin: 2rem 0;
+            display: flex;
+            gap: 10px;
+        }
+        input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 1px solid #e2edff;
+            border-radius: 50px;
+            font-size: 1rem;
+            outline: none;
+        }
+        button {
+            padding: 12px 24px;
+            background: #ff8c42;
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        @media (max-width: 600px) {
+            .error-code { font-size: 5rem; }
+            .search-box { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-code">404</div>
+        <h1>Oops! Page Not Found</h1>
+        <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
+        
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search for a tool...">
+            <button onclick="searchTool()">Search</button>
+        </div>
+        
+        <a href="/" class="btn">← Back to Homepage</a>
+        
+        <div style="margin-top: 2rem; font-size: 0.85rem; color: #8ba0bc;">
+            <a href="/" style="color: #1e6bff; text-decoration: none;">Home</a> • 
+            <a href="/contact.html" style="color: #1e6bff; text-decoration: none;">Contact</a> • 
+            <a href="/privacy-policy.html" style="color: #1e6bff; text-decoration: none;">Privacy</a>
+        </div>
+    </div>
+    
+    <script>
+        function searchTool() {
+            const query = document.getElementById('searchInput').value.trim();
+            if(query) {
+                window.location.href = '/?search=' + encodeURIComponent(query);
+            }
+        }
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if(e.key === 'Enter') searchTool();
+        });
+    </script>
+</body>
+</html>
