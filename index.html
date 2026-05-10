@@ -1,13 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>ToolkitPro | Smart Tools · Dark Mode · Ad-Supported</title>
-  <!-- Google Fonts + Font Awesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <!-- Primary SEO Tags -->
+    <title>ToolkitPro | 22+ Free Online Tools - Image, PDF, Calculator, QR & More</title>
+    <meta name="title" content="ToolkitPro | Free Online Tools: Image Compressor, PDF Converter, QR Generator">
+    <meta name="description" content="22+ free online tools. Compress images, convert PDF to Word, generate QR codes, format JSON, calculate BMI, and more. Fast, secure, no registration required.">
+    <meta name="keywords" content="online tools, image compressor, PDF converter, QR code generator, JSON formatter, currency converter, password generator, free tools, web utilities">
+    <meta name="author" content="ToolkitPro">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://toolkit-pro.in/">
+    <meta property="og:title" content="ToolkitPro - Free Online Tools Suite">
+    <meta property="og:description" content="22+ powerful online tools for image editing, document conversion, development utilities, and calculators. Use them free, no signup needed.">
+    <meta property="og:image" content="https://toolkit-pro.in/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://toolkit-pro.in/">
+    <meta property="twitter:title" content="ToolkitPro - Free Online Tools">
+    <meta property="twitter:description" content="22+ free online tools. Compress images, convert PDF, generate QR codes, more.">
+    <meta property="twitter:image" content="https://toolkit-pro.in/twitter-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://toolkit-pro.in/">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#1e6bff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+    <!-- Google Fonts + Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Schema.org markup for Google -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "ToolkitPro",
+        "url": "https://toolkit-pro.in/",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://toolkit-pro.in/?search={search_term_string}",
+            "query-input": "required name=search_term_string"
+        },
+        "description": "Free collection of 22+ online tools including image compressor, PDF converter, QR generator, and calculator."
+    }
+    </script>
+    
+    <style>
     * {
       margin: 0;
       padding: 0;
@@ -309,7 +365,7 @@
     .footer-logo p { color: var(--text-secondary); }
     .footer-contact a { color: var(--primary); text-decoration: none; }
     .footer-contact p { color: var(--text-secondary); }
-    .footer-links { display: flex; gap: 28px; margin-top: 10px; }
+    .footer-links { display: flex; gap: 28px; margin-top: 10px; flex-wrap: wrap; }
     .footer-links a { color: var(--text-secondary); text-decoration: none; }
     .footer-links a:hover { color: var(--primary); }
 
@@ -318,7 +374,7 @@
       .hamburger { display: block; }
       .hero-content h1 { font-size: 2.2rem; }
     }
-  </style>
+    </style>
 </head>
 <body>
 
@@ -353,7 +409,7 @@
   <section id="heroSection"><div class="hero"><div class="hero-content"><div class="hero-badge"><i class="fas fa-star"></i> 22+ Essential Tools</div><h1>Smart Utilities,<br>No AI Overhead</h1><p>Convert, compress, calculate, encode — instant tools that work offline-first.</p><div class="stats-mini"><span class="stat-chip"><i class="fas fa-cubes"></i> 22 Tools</span><span class="stat-chip"><i class="fas fa-bolt"></i> Instant</span><span class="stat-chip"><i class="fas fa-shield-alt"></i> Private</span></div></div><div class="hero-illustration"><div class="icon-chip"><i class="fas fa-file-pdf"></i> PDF</div><div class="icon-chip"><i class="fas fa-image"></i> Image</div><div class="icon-chip"><i class="fas fa-calculator"></i> Calc</div><div class="icon-chip"><i class="fas fa-qrcode"></i> QR</div></div></div></section>
 
   <!-- Search + AD below search -->
-  <div class="search-section"><div class="search-card"><i class="fas fa-search"></i><input type="text" id="searchInput" placeholder="Search a tool... e.g., PDF merger, image compressor"><button id="searchBtn">Find Tool</button></div></div>
+  <div class="search-section"><div class="search-card"><i class="fas fa-search"></i><input type="text" id="searchInput" placeholder="Search a tool... e.g., image compressor, PDF converter, QR generator"><button id="searchBtn">Find Tool</button></div></div>
   <div class="ad-below-search" id="inlineAd"><i class="fas fa-ad" style="color:#f59e0b;"></i> <strong>Ad Space</strong> — Try ToolkitPro Premium (no ads) | Limited Offer</div>
 
   <div id="categoryPillsContainer" style="display: none;"></div>
@@ -371,25 +427,46 @@
 </div>
 
 <footer>
-  <div class="container"><div class="footer-flex"><div class="footer-logo"><h3>ToolkitPro</h3><p>Simplifying your digital life · 22+ non-AI tools</p></div><div class="footer-contact"><p><i class="far fa-envelope"></i> <a href="mailto:supporttoolkitpro@gmail.com">supporttoolkitpro@gmail.com</a></p><div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div></div></div><div style="text-align:center; margin-top:28px; font-size:0.7rem; color: var(--text-muted);">© 2025 ToolkitPro — Reliable utilities, ads support free access</div></div>
+  <div class="container">
+    <div class="footer-flex">
+      <div class="footer-logo">
+        <h3>ToolkitPro</h3>
+        <p>Simplifying your digital life · 22+ non-AI tools</p>
+      </div>
+      <div class="footer-contact">
+        <p><i class="far fa-envelope"></i> <a href="mailto:supporttoolkitpro@gmail.com">supporttoolkitpro@gmail.com</a></p>
+        <div class="footer-links">
+          <a href="/contact.html">Contact</a>
+          <a href="/disclaimer.html">Disclaimer</a>
+          <a href="/privacy-policy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:28px; font-size:0.7rem; color: var(--text-muted);">© 2025 ToolkitPro — Reliable utilities, ads support free access</div>
+  </div>
 </footer>
 
 <script>
-  // FULL TOOLS DB (22 tools, category based)
+  // ==================== UPDATED TOOLS DB WITH ALL CORRECT LINKS ====================
   const fullTools = [
     { name: "PDF to Word Converter", desc: "Convert PDF to editable Word", icon: "fas fa-file-pdf", category: "Document", link: "/tools/pdf-word.html" },
-    { name: "Image Compressor", desc: "Reduce image size, preserve quality", icon: "fas fa-compress-alt", category: "Image", link: "/tools/image-compress.html" },
-    { name: "QR Code Generator", desc: "Generate QR from text/URL", icon: "fas fa-qrcode", category: "Utility", link: "/tools/qr-gen.html" },
+    { name: "Image Compressor", desc: "Reduce image size, preserve quality", icon: "fas fa-compress-alt", category: "Image", link: "/tools/image-compressor.html" },
+    { name: "QR Code Generator", desc: "Generate QR from text/URL", icon: "fas fa-qrcode", category: "Utility", link: "/tools/qr-generator.html" },
+    { name: "Image Converter", desc: "Convert between JPG, PNG, WEBP", icon: "fas fa-exchange-alt", category: "Image", link: "/tools/image-converter.html" },
+    { name: "Image Cropper", desc: "Crop images to any size", icon: "fas fa-crop-alt", category: "Image", link: "/tools/image-cropper.html" },
+    { name: "Image Resizer", desc: "Change image dimensions", icon: "fas fa-expand-alt", category: "Image", link: "/tools/image-resizer.html" },
+    { name: "Image Rotator", desc: "Rotate or flip images", icon: "fas fa-sync-alt", category: "Image", link: "/tools/image-rotator.html" },
+    { name: "JSON Formatter", desc: "Beautify & validate JSON", icon: "fas fa-brackets-curly", category: "Dev", link: "/tools/json-formatter.html" },
+    { name: "Password Generator", desc: "Strong random passwords", icon: "fas fa-key", category: "Utility", link: "/tools/password-gen.html" },
+    { name: "Text Case Converter", desc: "UPPER, lower, Title Case", icon: "fas fa-text-height", category: "Text", link: "/tools/text-case-converter.html" },
+    { name: "Currency Converter", desc: "Live exchange rates", icon: "fas fa-dollar-sign", category: "Calculator", link: "/tools/currency-converter.html" },
+    { name: "OCR Tool", desc: "Extract text from images", icon: "fas fa-font", category: "Image", link: "/tools/ocr-tool.html" },
     { name: "Unit Converter", desc: "Length, mass, volume & temperature", icon: "fas fa-ruler-combined", category: "Utility", link: "/tools/unit-converter.html" },
     { name: "Word Counter", desc: "Count words, characters", icon: "fas fa-calculator", category: "Text", link: "/tools/word-counter.html" },
-    { name: "JSON Formatter", desc: "Beautify & validate JSON", icon: "fas fa-brackets-curly", category: "Dev", link: "/tools/json-formatter.html" },
     { name: "Age Calculator", desc: "Calculate exact age from DOB", icon: "fas fa-birthday-cake", category: "Calculator", link: "/tools/age-calc.html" },
     { name: "Base64 Encoder/Decoder", desc: "Text <-> base64", icon: "fas fa-code", category: "Dev", link: "/tools/base64.html" },
-    { name: "Password Generator", desc: "Strong random passwords", icon: "fas fa-key", category: "Utility", link: "/tools/password-gen.html" },
-    { name: "Image Resizer", desc: "Change image dimensions", icon: "fas fa-expand-alt", category: "Image", link: "/tools/image-resize.html" },
-    { name: "Text Case Converter", desc: "UPPER, lower, Title Case", icon: "fas fa-text-height", category: "Text", link: "/tools/text-case.html" },
     { name: "BMI Calculator", desc: "Body Mass Index", icon: "fas fa-heartbeat", category: "Calculator", link: "/tools/bmi.html" },
-    { name: "Currency Converter", desc: "Live exchange rates", icon: "fas fa-dollar-sign", category: "Calculator", link: "/tools/currency.html" },
     { name: "Color Picker", desc: "Pick color, get HEX/RGB", icon: "fas fa-eye-dropper", category: "Color", link: "/tools/color-picker.html" },
     { name: "HTML Minifier", desc: "Minify HTML/CSS/JS", icon: "fab fa-html5", category: "Dev", link: "/tools/html-minify.html" },
     { name: "PDF Merger", desc: "Combine multiple PDFs", icon: "fas fa-object-group", category: "Document", link: "/tools/pdf-merge.html" },
@@ -400,6 +477,7 @@
     { name: "URL Encoder/Decoder", desc: "Encode special chars", icon: "fas fa-link", category: "Dev", link: "/tools/url-codec.html" },
     { name: "PDF Compressor", desc: "Reduce PDF file size", icon: "fas fa-compress", category: "Document", link: "/tools/pdf-compress.html" }
   ];
+  
   const trendingTools = fullTools.slice(0,6);
   
   // DOM refs
@@ -486,7 +564,6 @@
     const darkModeToggle = document.getElementById("darkModeToggle");
     const mobileDarkToggle = document.getElementById("mobileDarkToggle");
     
-    // Check localStorage for saved theme
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
       document.body.classList.add('dark');
@@ -514,7 +591,7 @@
   document.getElementById("navCategories")?.addEventListener("click",(e)=>{e.preventDefault(); showCategoriesView();});
   document.getElementById("navBlog")?.addEventListener("click",(e)=>{e.preventDefault(); alert("📖 Blog: productivity tips & tool news");});
   document.getElementById("navAbout")?.addEventListener("click",(e)=>{e.preventDefault(); alert("🔧 ToolkitPro — 22+ no-nonsense tools, made with ❤️");});
-  document.getElementById("navContact")?.addEventListener("click",(e)=>{e.preventDefault(); alert("📧 supporttoolkitpro@gmail.com");});
+  document.getElementById("navContact")?.addEventListener("click",(e)=>{e.preventDefault(); window.location.href = "/contact.html";});
   document.getElementById("searchBtn")?.addEventListener("click", performSearch);
   document.getElementById("searchInput")?.addEventListener("input", (e)=>{ if(e.target.value===""){ if(currentView==="home") showHome(); else if(currentView==="all") showAllTools(); else if(currentView==="category") showCategoriesView(); } else performSearch(); });
   
@@ -531,7 +608,7 @@
       if(val==="categories") showCategoriesView();
       if(val==="blog") alert("📖 Blog soon");
       if(val==="about") alert("ToolkitPro - ad supported utilities");
-      if(val==="contact") alert("📧 supporttoolkitpro@gmail.com");
+      if(val==="contact") window.location.href = "/contact.html";
       mobileMenuDiv.classList.remove("show");
     });
   });
