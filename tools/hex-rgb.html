@@ -1,50 +1,687 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- ========== FAVICON / META / LEGAL FILE NAME ========== -->
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>HEX to RGB Converter | ToolkitPro</title>
+    <meta name="description" content="Free HEX to RGB Converter - Convert HEX color codes to RGB and HSL values instantly. Preview colors and copy codes for design and development.">
+    <meta name="keywords" content="HEX to RGB, color converter, HEX to RGB converter, RGB to HEX, color picker, design tool, web development">
+    <meta name="author" content="ToolkitPro">
+    <meta name="robots" content="index, follow">
+    <title>HEX to RGB Converter | ToolkitPro - Color Code Converter</title>
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="HEX to RGB Converter | ToolkitPro">
+    <meta property="og:description" content="Convert HEX color codes to RGB and HSL values instantly. Free online color converter for designers and developers.">
+    <meta property="og:type" content="website">
+    
+    <!-- Google Fonts + Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root { --bg-body: #f1f5f9; --bg-surface: #ffffff; --text-primary: #0f172a; --border-light: #e2e8f0; --primary: #2563eb; --accent: #f59e0b; }
-        body.dark { --bg-body: #0a0f1c; --bg-surface: #111827; --text-primary: #f1f5f9; --border-light: #1e293b; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg-body); color: var(--text-primary); transition: 0.2s; }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 28px; }
-        .navbar { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid var(--border-light); background: var(--bg-surface); }
-        .logo h1 { font-size: 1.85rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), #4f46e5); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .contact-email { background: #eff6ff; padding: 5px 14px; border-radius: 40px; font-size: 0.75rem; color: var(--primary); }
-        .dark-toggle { background: #eff6ff; border: none; border-radius: 40px; padding: 6px 16px; cursor: pointer; }
-        .hamburger { display: none; font-size: 1.8rem; cursor: pointer; }
-        .mobile-menu { display: none; flex-direction: column; background: var(--bg-surface); padding: 20px; border-radius: 24px; margin: 10px 0; gap: 14px; }
-        .mobile-menu.show { display: flex; }
-        .tool-card { background: var(--bg-surface); border-radius: 32px; padding: 2rem; max-width: 550px; margin: 40px auto; text-align: center; }
-        input { padding: 14px 20px; border-radius: 60px; border: 1.5px solid var(--border-light); font-size: 1rem; margin: 10px; width: 80%; }
-        .color-preview { width: 100px; height: 100px; border-radius: 20px; margin: 20px auto; }
-        .result-box { background: var(--bg-body); border-radius: 20px; padding: 20px; margin-top: 20px; }
-        .btn-primary { background: var(--primary); color: white; border: none; padding: 12px 24px; border-radius: 60px; cursor: pointer; margin: 5px; }
-        footer { background: var(--bg-surface); border-top: 1px solid var(--border-light); padding: 35px 0; margin-top: 40px; text-align: center; }
-        @media (max-width: 768px) { .nav-links { display: none; } .hamburger { display: block; } }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ========== THEME VARIABLES (Matching main site) ========== */
+        :root {
+            --bg-body: #f1f5f9;
+            --bg-surface: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+            --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.05);
+            --hover-shadow: 0 20px 30px -12px rgba(30, 107, 255, 0.2);
+            --primary: #2563eb;
+            --primary-deep: #1e40af;
+            --primary-soft: #eff6ff;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --nav-bg: #ffffff;
+            --nav-text: #1e293b;
+            --nav-hover: #2563eb;
+            --code-bg: #f8fafc;
+        }
+
+        body.dark {
+            --bg-body: #0a0f1c;
+            --bg-surface: #111827;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border-light: #1e293b;
+            --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            --hover-shadow: 0 20px 32px -12px rgba(59, 130, 246, 0.5);
+            --primary: #3b82f6;
+            --primary-deep: #60a5fa;
+            --primary-soft: #1e293b;
+            --accent: #fbbf24;
+            --success: #34d399;
+            --danger: #f87171;
+            --nav-bg: #111827;
+            --nav-text: #e2e8f0;
+            --nav-hover: #60a5fa;
+            --code-bg: #1e293b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-body);
+            color: var(--text-primary);
+            transition: background-color 0.25s ease, color 0.2s ease;
+        }
+
+        /* ========== HEADER & NAVIGATION ========== */
+        .site-header {
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 0;
+        }
+        .logo h1 {
+            font-size: 1.85rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), #4f46e5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--nav-text);
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--nav-hover);
+        }
+        .contact-email {
+            background: var(--primary-soft);
+            padding: 5px 14px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .dark-toggle {
+            background: var(--primary-soft);
+            border: none;
+            border-radius: 40px;
+            padding: 6px 16px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.85rem;
+        }
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            background: var(--bg-surface);
+            padding: 20px;
+            border-radius: 24px;
+            margin: 10px 0 15px;
+            gap: 14px;
+            border: 1px solid var(--border-light);
+        }
+        .mobile-menu.show {
+            display: flex;
+        }
+        .mobile-menu a {
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--nav-text);
+            font-size: 1rem;
+        }
+
+        /* ========== HEX to RGB CONVERTER CARD ========== */
+        .hero-section {
+            padding: 40px 0 20px;
+        }
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        .tool-card {
+            background: var(--bg-surface);
+            border-radius: 32px;
+            padding: 2.5rem;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-light);
+            max-width: 580px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .tool-card h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .tool-card .subhead {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            border-left: 3px solid var(--accent);
+            padding-left: 16px;
+            text-align: left;
+        }
+        
+        /* Input Group */
+        .input-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .hex-input {
+            flex: 2;
+            min-width: 200px;
+            padding: 14px 20px;
+            border-radius: 60px;
+            border: 1.5px solid var(--border-light);
+            background: var(--bg-body);
+            color: var(--text-primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.2s;
+            text-transform: uppercase;
+        }
+        .hex-input:focus {
+            border-color: var(--primary);
+        }
+        .convert-btn {
+            background: var(--primary);
+            border: none;
+            padding: 14px 28px;
+            border-radius: 60px;
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .convert-btn:hover {
+            background: var(--primary-deep);
+            transform: translateY(-2px);
+        }
+        
+        /* Color Preview */
+        .color-preview {
+            width: 120px;
+            height: 120px;
+            border-radius: 24px;
+            margin: 20px auto;
+            border: 3px solid var(--border-light);
+            transition: background-color 0.2s;
+            box-shadow: var(--card-shadow);
+        }
+        
+        /* Result Box */
+        .result-box {
+            background: var(--code-bg);
+            border-radius: 24px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        .result-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-light);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        .result-label {
+            font-weight: 600;
+            color: var(--text-primary);
+            background: var(--primary-soft);
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+        }
+        .result-value {
+            color: var(--accent);
+            font-weight: 500;
+            word-break: break-all;
+        }
+        .copy-value-btn {
+            background: var(--success);
+            border: none;
+            padding: 4px 12px;
+            border-radius: 40px;
+            color: white;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .copy-value-btn:hover {
+            opacity: 0.9;
+            transform: scale(0.98);
+        }
+        
+        /* Info Note */
+        .info-note {
+            background: var(--primary-soft);
+            border-radius: 16px;
+            padding: 10px 14px;
+            margin-top: 20px;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            text-align: left;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-light);
+            padding: 35px 0 25px;
+            margin-top: 50px;
+        }
+        .footer-flex {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        .footer-links {
+            display: flex;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        .copyright {
+            text-align: center;
+            margin-top: 22px;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 18px; }
+            .nav-links { display: none; }
+            .hamburger { display: block; }
+            .tool-card { padding: 1.5rem; }
+            .tool-card h1 { font-size: 1.5rem; }
+            .input-group { flex-direction: column; }
+            .convert-btn { width: 100%; }
+            .result-item { flex-direction: column; align-items: flex-start; }
+        }
     </style>
 </head>
 <body>
-<div class="site-header"><div class="container"><div class="navbar"><div class="logo"><h1>ToolkitPro</h1></div><div class="nav-links"><a href="/">Home</a><a href="/tools/all">Tools</a><span class="contact-email"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</span><button id="darkToggle" class="dark-toggle"><i class="fas fa-moon"></i> Dark</button></div><div class="hamburger" id="hamburgerBtn">☰</div></div><div class="mobile-menu" id="mobileMenu"><a href="/">Home</a><a href="/tools/all">Tools</a><div class="contact-email">supporttoolkitpro@gmail.com</div></div></div></div>
-<div class="container"><div class="tool-card"><h1><i class="fas fa-palette"></i> HEX to RGB Converter</h1>
-<input type="text" id="hex" placeholder="#2563eb" value="#2563eb"><button class="btn-primary" onclick="convert()">Convert</button>
-<div class="color-preview" id="preview" style="background-color: #2563eb;"></div>
-<div class="result-box"><div id="rgb">RGB: rgb(37, 99, 235)</div><div id="hsl">HSL: hsl(221, 83%, 53%)</div></div></div></div>
-<footer><div class="container"><p>© 2025 ToolkitPro — Free online tools | <a href="mailto:supporttoolkitpro@gmail.com">supporttoolkitpro@gmail.com</a></p></div></footer>
+
+<!-- ========== HEADER ========== -->
+<div class="site-header">
+    <div class="container">
+        <div class="navbar">
+            <div class="logo"><h1>ToolkitPro</h1></div>
+            <div class="nav-links">
+                <a href="/">🏠 Home</a>
+                <a href="/tools/all">🛠️ All Tools</a>
+                <a href="/categories">📁 Categories</a>
+                <a href="#" id="navBlog">📝 Blog</a>
+                <a href="#" id="navAbout">👤 About</a>
+                <a href="#" id="navContact">📞 Contact</a>
+                <span class="contact-email"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</span>
+                <button id="darkModeToggle" class="dark-toggle"><i class="fas fa-moon"></i> Dark</button>
+            </div>
+            <div class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="/">🏠 Home</a>
+            <a href="/tools/all">🛠️ All Tools</a>
+            <a href="/categories">📁 Categories</a>
+            <a href="#" id="mobileBlog">📝 Blog</a>
+            <a href="#" id="mobileAbout">👤 About</a>
+            <a href="#" id="mobileContact">📞 Contact</a>
+            <button id="mobileDarkToggle" class="dark-toggle" style="margin-top: 6px;"><i class="fas fa-moon"></i> Dark Mode</button>
+            <div class="contact-email" style="margin-top:6px;"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== MAIN HEX to RGB CONVERTER SECTION ========== -->
+<div class="container">
+    <div class="hero-section">
+        <div class="breadcrumb">
+            <a href="/">Home</a> / <a href="/tools/all">Tools</a> / <span>HEX to RGB Converter</span>
+        </div>
+        
+        <div class="tool-card">
+            <h1><i class="fas fa-palette"></i> HEX to RGB Converter</h1>
+            <div class="subhead">
+                Convert HEX color codes to RGB and HSL values instantly. Perfect for designers and developers.
+            </div>
+            
+            <div class="input-group">
+                <input type="text" id="hexInput" class="hex-input" placeholder="#2563eb or 2563eb" value="#2563eb" maxlength="7">
+                <button class="convert-btn" id="convertBtn">
+                    <i class="fas fa-sync-alt"></i> Convert
+                </button>
+            </div>
+            
+            <div class="color-preview" id="colorPreview" style="background-color: #2563eb;"></div>
+            
+            <div class="result-box">
+                <div class="result-item">
+                    <span class="result-label"><i class="fas fa-paint-bucket"></i> HEX</span>
+                    <span class="result-value" id="hexValue">#2563eb</span>
+                    <button class="copy-value-btn" onclick="copyValue('hex')">Copy</button>
+                </div>
+                <div class="result-item">
+                    <span class="result-label"><i class="fas fa-code"></i> RGB</span>
+                    <span class="result-value" id="rgbValue">rgb(37, 99, 235)</span>
+                    <button class="copy-value-btn" onclick="copyValue('rgb')">Copy</button>
+                </div>
+                <div class="result-item">
+                    <span class="result-label"><i class="fas fa-chart-line"></i> HSL</span>
+                    <span class="result-value" id="hslValue">hsl(221, 83%, 53%)</span>
+                    <button class="copy-value-btn" onclick="copyValue('hsl')">Copy</button>
+                </div>
+            </div>
+            
+            <div class="info-note">
+                <i class="fas fa-info-circle"></i> Enter HEX color code with or without # (e.g., #2563eb or 2563eb). Converts to RGB and HSL values instantly.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+    <div class="container">
+        <div class="footer-flex">
+            <div class="footer-logo">
+                <h3 style="font-size: 1.3rem; background: linear-gradient(135deg, var(--primary), #4f46e5); -webkit-background-clip: text; background-clip: text; color: transparent;">ToolkitPro</h3>
+                <p style="font-size: 0.8rem; color: var(--text-secondary);">26+ non-AI tools · Free forever</p>
+            </div>
+            <div class="footer-contact">
+                <p style="font-size: 0.85rem;"><i class="far fa-envelope"></i> <a href="mailto:supporttoolkitpro@gmail.com" style="color: var(--primary);">supporttoolkitpro@gmail.com</a></p>
+                <div class="footer-links">
+                    <a href="/privacy-policy.html">Privacy Policy</a>
+                    <a href="/disclaimer.html">Disclaimer</a>
+                    <a href="/terms.html">Terms of Use</a>
+                    <a href="/contact.html">Contact</a>
+                    <a href="/sitemap.html">Sitemap</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">© 2025 ToolkitPro — Reliable utilities, HEX to RGB converter & more</div>
+    </div>
+</footer>
+
 <script>
-function hexToRgb(hex) { let r = parseInt(hex.slice(1,3), 16), g = parseInt(hex.slice(3,5), 16), b = parseInt(hex.slice(5,7), 16); return {r,g,b}; }
-function rgbToHsl(r,g,b) { r/=255; g/=255; b/=255; let max=Math.max(r,g,b), min=Math.min(r,g,b), h,s,l=(max+min)/2; if(max===min) h=s=0; else { let d=max-min; s=l>0.5?d/(2-max-min):d/(max+min); if(max===r) h=(g-b)/d+(g<b?6:0); else if(max===g) h=(b-r)/d+2; else h=(r-g)/d+4; h/=6; } return {h:Math.round(h*360), s:Math.round(s*100), l:Math.round(l*100)}; }
-function convert() { let hex = document.getElementById('hex').value; if(!hex.startsWith('#')) hex = '#' + hex; let rgb = hexToRgb(hex); let hsl = rgbToHsl(rgb.r, rgb.g, rgb.b); document.getElementById('rgb').innerHTML = `RGB: rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`; document.getElementById('hsl').innerHTML = `HSL: hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`; document.getElementById('preview').style.backgroundColor = hex; }
-document.getElementById('darkToggle').onclick = () => { document.body.classList.toggle('dark'); localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light'); };
-if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
-document.getElementById('hamburgerBtn').onclick = () => document.getElementById('mobileMenu').classList.toggle('show');
-convert();
+    // ========== DOM Elements ==========
+    const hexInput = document.getElementById('hexInput');
+    const convertBtn = document.getElementById('convertBtn');
+    const colorPreview = document.getElementById('colorPreview');
+    const hexValueSpan = document.getElementById('hexValue');
+    const rgbValueSpan = document.getElementById('rgbValue');
+    const hslValueSpan = document.getElementById('hslValue');
+    
+    // Validate and normalize HEX
+    function normalizeHex(hex) {
+        let cleanHex = hex.trim();
+        if (cleanHex.startsWith('#')) {
+            cleanHex = cleanHex.substring(1);
+        }
+        // Convert 3-digit hex to 6-digit
+        if (cleanHex.length === 3) {
+            cleanHex = cleanHex.split('').map(c => c + c).join('');
+        }
+        // Validate HEX
+        const hexRegex = /^[0-9A-Fa-f]{6}$/;
+        if (!hexRegex.test(cleanHex)) {
+            return null;
+        }
+        return '#' + cleanHex.toUpperCase();
+    }
+    
+    // HEX to RGB
+    function hexToRgb(hex) {
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        return { r, g, b };
+    }
+    
+    // RGB to HSL
+    function rgbToHsl(r, g, b) {
+        r /= 255;
+        g /= 255;
+        b /= 255;
+        const max = Math.max(r, g, b);
+        const min = Math.min(r, g, b);
+        let h, s, l = (max + min) / 2;
+        
+        if (max === min) {
+            h = s = 0;
+        } else {
+            const d = max - min;
+            s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+            switch (max) {
+                case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                case g: h = (b - r) / d + 2; break;
+                case b: h = (r - g) / d + 4; break;
+            }
+            h /= 6;
+        }
+        return {
+            h: Math.round(h * 360),
+            s: Math.round(s * 100),
+            l: Math.round(l * 100)
+        };
+    }
+    
+    // Main conversion function
+    function convertColor() {
+        let inputHex = hexInput.value.trim();
+        let normalizedHex = normalizeHex(inputHex);
+        
+        if (!normalizedHex) {
+            // Show error styling
+            hexInput.style.borderColor = 'var(--danger)';
+            hexValueSpan.innerText = 'Invalid HEX';
+            rgbValueSpan.innerText = 'Invalid format';
+            hslValueSpan.innerText = 'Use #RRGGBB';
+            colorPreview.style.backgroundColor = '#cccccc';
+            setTimeout(() => {
+                hexInput.style.borderColor = 'var(--border-light)';
+            }, 1500);
+            return;
+        }
+        
+        hexInput.style.borderColor = 'var(--success)';
+        setTimeout(() => {
+            hexInput.style.borderColor = 'var(--border-light)';
+        }, 1000);
+        
+        const rgb = hexToRgb(normalizedHex);
+        const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+        
+        // Update display
+        hexValueSpan.innerText = normalizedHex.toUpperCase();
+        rgbValueSpan.innerText = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+        hslValueSpan.innerText = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+        colorPreview.style.backgroundColor = normalizedHex;
+        
+        // Update input to normalized format
+        hexInput.value = normalizedHex.toUpperCase();
+    }
+    
+    // Copy function
+    async function copyValue(type) {
+        let text = '';
+        if (type === 'hex') text = hexValueSpan.innerText;
+        else if (type === 'rgb') text = rgbValueSpan.innerText;
+        else text = hslValueSpan.innerText;
+        
+        try {
+            await navigator.clipboard.writeText(text);
+            // Find the button that was clicked and show feedback
+            const buttons = document.querySelectorAll('.copy-value-btn');
+            const targetBtn = Array.from(buttons).find(btn => 
+                (type === 'hex' && btn.parentElement.querySelector('#hexValue')) ||
+                (type === 'rgb' && btn.parentElement.querySelector('#rgbValue')) ||
+                (type === 'hsl' && btn.parentElement.querySelector('#hslValue'))
+            );
+            if (targetBtn) {
+                const originalText = targetBtn.innerHTML;
+                targetBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(() => {
+                    targetBtn.innerHTML = originalText;
+                }, 1500);
+            }
+        } catch (err) {
+            alert(`Copied: ${text}`);
+        }
+    }
+    
+    // Make copy function global
+    window.copyValue = copyValue;
+    
+    // Event listeners
+    convertBtn.addEventListener('click', convertColor);
+    hexInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            convertColor();
+        }
+    });
+    
+    // Convert on page load
+    convertColor();
+    
+    // ========== DARK MODE ==========
+    function initDarkMode() {
+        const darkToggle = document.getElementById("darkModeToggle");
+        const mobileDarkToggle = document.getElementById("mobileDarkToggle");
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark');
+        } else if (savedTheme === 'light') {
+            document.body.classList.remove('dark');
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark');
+        }
+        
+        function toggleDark() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+        }
+        
+        if (darkToggle) darkToggle.addEventListener('click', toggleDark);
+        if (mobileDarkToggle) mobileDarkToggle.addEventListener('click', toggleDark);
+    }
+    
+    // ========== Mobile Menu ==========
+    function initMobileMenu() {
+        const hamburger = document.getElementById("hamburgerBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+        if (hamburger && mobileMenu) {
+            hamburger.addEventListener("click", () => mobileMenu.classList.toggle("show"));
+        }
+        const mobileLinks = document.querySelectorAll("#mobileMenu a, #mobileBlog, #mobileAbout, #mobileContact");
+        mobileLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                if (mobileMenu) mobileMenu.classList.remove("show");
+            });
+        });
+    }
+    
+    // ========== Navigation Actions ==========
+    function initNavActions() {
+        document.getElementById("navBlog")?.addEventListener("click", (e) => { e.preventDefault(); alert("📖 Coming soon: Color theory & design tips"); });
+        document.getElementById("navAbout")?.addEventListener("click", (e) => { e.preventDefault(); alert("🔧 ToolkitPro — 26+ privacy-first utilities. HEX to RGB converter works 100% locally."); });
+        document.getElementById("navContact")?.addEventListener("click", (e) => { e.preventDefault(); alert("📧 supporttoolkitpro@gmail.com | We reply within 24 hours"); });
+        document.getElementById("mobileBlog")?.addEventListener("click", (e) => { e.preventDefault(); alert("📖 Blog coming soon"); });
+        document.getElementById("mobileAbout")?.addEventListener("click", (e) => { e.preventDefault(); alert("ToolkitPro — Simplify your digital life"); });
+        document.getElementById("mobileContact")?.addEventListener("click", (e) => { e.preventDefault(); alert("📧 supporttoolkitpro@gmail.com"); });
+    }
+    
+    // Home & other links
+    document.querySelectorAll('.nav-links a[href="/"], .mobile-menu a[href="/"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = '/';
+        });
+    });
+    document.querySelectorAll('.nav-links a[href="/tools/all"], .mobile-menu a[href="/tools/all"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('✨ All Tools — 26+ utilities including PDF tools, image editors, calculators');
+        });
+    });
+    document.querySelectorAll('.nav-links a[href="/categories"], .mobile-menu a[href="/categories"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('📁 Categories: Document, Image, Dev, Calculator, Text, Color, Utility');
+        });
+    });
+    
+    // Initialize everything
+    initDarkMode();
+    initMobileMenu();
+    initNavActions();
 </script>
 </body>
 </html>
