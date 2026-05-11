@@ -1,1 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ToolkitPro Blog - tips, guides, and tutorials for PDF tools, image tools, calculators, and online utilities." />
+  <title>Blog | ToolkitPro</title>
 
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+
+    .container {
+      max-width: 1250px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      text-decoration: none;
+      background: linear-gradient(135deg,#2563eb,#4f46e5);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #334155;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #2563eb;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 70px 0 50px;
+    }
+
+    .hero span {
+      display: inline-block;
+      background: #dbeafe;
+      color: #2563eb;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: auto;
+      color: #475569;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+      gap: 28px;
+      margin-bottom: 60px;
+    }
+
+    .blog-card {
+      background: #ffffff;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+      transition: 0.25s;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .blog-image {
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: white;
+      background: linear-gradient(135deg,#2563eb,#4f46e5);
+    }
+
+    .blog-content {
+      padding: 24px;
+    }
+
+    .blog-tag {
+      display: inline-block;
+      background: #eff6ff;
+      color: #2563eb;
+      padding: 5px 12px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .blog-content h2 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+    }
+
+    .blog-content p {
+      color: #475569;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    .read-btn {
+      display: inline-block;
+      text-decoration: none;
+      background: #2563eb;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      text-align: center;
+      padding: 30px 0;
+    }
+
+    footer p {
+      color: #64748b;
+      font-size: 0.85rem;
+    }
+
+    @media(max-width:768px){
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container navbar">
+    <a href="/index.html" class="logo">ToolkitPro</a>
+
+    <div class="nav-links">
+      <a href="/index.html">Home</a>
+      <a href="/blog.html" class="active">Blog</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <span><i class="fas fa-pen"></i> ToolkitPro Articles</span>
+    <h1>Latest Blog & Guides</h1>
+    <p>Explore tutorials, productivity tips, online tool guides, and digital utility resources from ToolkitPro.</p>
+  </div>
+</section>
+
+<section class="container">
+  <div class="blog-grid">
+
+    <div class="blog-card">
+      <div class="blog-image">
+        <i class="fas fa-file-pdf"></i>
+      </div>
+
+      <div class="blog-content">
+        <div class="blog-tag">PDF Tools</div>
+        <h2>How to Compress PDF Files Without Losing Quality</h2>
+        <p>
+          Learn how PDF compression works and discover simple ways to reduce file size while maintaining readability and document quality.
+        </p>
+        <a href="#" class="read-btn">Read Article</a>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-image">
+        <i class="fas fa-image"></i>
+      </div>
+
+      <div class="blog-content">
+        <div class="blog-tag">Image Tools</div>
+        <h2>Best Image Formats for Websites in 2025</h2>
+        <p>
+          Compare JPG, PNG, WebP, and SVG formats to understand which image type improves website speed and SEO performance.
+        </p>
+        <a href="#" class="read-btn">Read Article</a>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-image">
+        <i class="fas fa-lock"></i>
+      </div>
+
+      <div class="blog-content">
+        <div class="blog-tag">Security</div>
+        <h2>How to Create Strong Passwords Easily</h2>
+        <p>
+          Discover practical password security tips and how random password generators help protect online accounts.
+        </p>
+        <a href="#" class="read-btn">Read Article</a>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-image">
+        <i class="fas fa-code"></i>
+      </div>
+
+      <div class="blog-content">
+        <div class="blog-tag">Developer</div>
+        <h2>What is JSON Formatting & Why Developers Need It</h2>
+        <p>
+          Understand how JSON formatting improves readability, debugging, and API development for modern applications.
+        </p>
+        <a href="#" class="read-btn">Read Article</a>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-image">
+        <i class="fas fa-qrcode"></i>
+      </div>
+
+      <div class="blog-content">
+        <div class="blog-tag">QR Tools</div>
+        <h2>How QR Codes Help Businesses Grow Faster</h2>
+        <p>
+          Explore creative uses of QR codes in marketing, payments, product packaging, and customer engagement.
+        </p>
+        <a href="#" class="read-btn">Read Article</a>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-image">
+        <i class="fas fa-chart-line"></i>
+      </div>
+
+      <div class="blog-content">
+        <div class="blog-tag">Calculators</div>
+        <h2>Why Online Calculators Save Time Every Day</h2>
+        <p>
+          Learn how utility calculators simplify finance, education, health tracking, and daily productivity tasks.
+        </p>
+        <a href="#" class="read-btn">Read Article</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© 2025 ToolkitPro • supporttoolkitpro@gmail.com</p>
+  </div>
+</footer>
+
+</body>
+</html>
