@@ -1,48 +1,665 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- ========== FAVICON / META ========== -->
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Base64 Encoder/Decoder | ToolkitPro</title>
+    <meta name="description" content="Free Base64 Encoder/Decoder - Encode text to Base64 or decode Base64 strings back to readable text. Fast, secure, and 100% private.">
+    <meta name="keywords" content="base64 encoder, base64 decoder, encode to base64, decode base64, online base64 tool, developer tool">
+    <title>Base64 Encoder/Decoder | ToolkitPro - Free Encoding Tool</title>
+    
+    <!-- Google Fonts + Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root { --bg-body: #f1f5f9; --bg-surface: #ffffff; --text-primary: #0f172a; --border-light: #e2e8f0; --primary: #2563eb; --accent: #f59e0b; }
-        body.dark { --bg-body: #0a0f1c; --bg-surface: #111827; --text-primary: #f1f5f9; --border-light: #1e293b; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg-body); color: var(--text-primary); transition: 0.2s; }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 28px; }
-        .navbar { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid var(--border-light); background: var(--bg-surface); }
-        .logo h1 { font-size: 1.85rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), #4f46e5); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .contact-email { background: #eff6ff; padding: 5px 14px; border-radius: 40px; font-size: 0.75rem; color: var(--primary); }
-        .dark-toggle { background: #eff6ff; border: none; border-radius: 40px; padding: 6px 16px; cursor: pointer; }
-        .hamburger { display: none; font-size: 1.8rem; cursor: pointer; }
-        .mobile-menu { display: none; flex-direction: column; background: var(--bg-surface); padding: 20px; border-radius: 24px; margin: 10px 0; gap: 14px; }
-        .mobile-menu.show { display: flex; }
-        .tool-card { background: var(--bg-surface); border-radius: 32px; padding: 2rem; max-width: 900px; margin: 40px auto; }
-        textarea { width: 100%; padding: 18px; border-radius: 20px; border: 1.5px solid var(--border-light); background: var(--bg-body); font-family: monospace; font-size: 0.9rem; resize: vertical; margin: 10px 0; }
-        .btn-group { display: flex; gap: 12px; flex-wrap: wrap; margin: 15px 0; }
-        .btn-primary { background: var(--primary); color: white; border: none; padding: 12px 24px; border-radius: 60px; cursor: pointer; }
-        footer { background: var(--bg-surface); border-top: 1px solid var(--border-light); padding: 35px 0; margin-top: 40px; text-align: center; }
-        @media (max-width: 768px) { .nav-links { display: none; } .hamburger { display: block; } }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ========== THEME VARIABLES (Matching main site) ========== */
+        :root {
+            --bg-body: #f1f5f9;
+            --bg-surface: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+            --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.05);
+            --hover-shadow: 0 20px 30px -12px rgba(30, 107, 255, 0.2);
+            --primary: #2563eb;
+            --primary-deep: #1e40af;
+            --primary-soft: #eff6ff;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --nav-bg: #ffffff;
+            --nav-text: #1e293b;
+            --nav-hover: #2563eb;
+            --code-bg: #f8fafc;
+        }
+
+        body.dark {
+            --bg-body: #0a0f1c;
+            --bg-surface: #111827;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border-light: #1e293b;
+            --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            --hover-shadow: 0 20px 32px -12px rgba(59, 130, 246, 0.5);
+            --primary: #3b82f6;
+            --primary-deep: #60a5fa;
+            --primary-soft: #1e293b;
+            --accent: #fbbf24;
+            --success: #34d399;
+            --danger: #f87171;
+            --nav-bg: #111827;
+            --nav-text: #e2e8f0;
+            --nav-hover: #60a5fa;
+            --code-bg: #1e293b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-body);
+            color: var(--text-primary);
+            transition: background-color 0.25s ease, color 0.2s ease;
+        }
+
+        /* ========== HEADER & NAVIGATION ========== */
+        .site-header {
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 0;
+        }
+        .logo h1 {
+            font-size: 1.85rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), #4f46e5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--nav-text);
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--nav-hover);
+        }
+        .contact-email {
+            background: var(--primary-soft);
+            padding: 5px 14px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .dark-toggle {
+            background: var(--primary-soft);
+            border: none;
+            border-radius: 40px;
+            padding: 6px 16px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.85rem;
+        }
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            background: var(--bg-surface);
+            padding: 20px;
+            border-radius: 24px;
+            margin: 10px 0 15px;
+            gap: 14px;
+            border: 1px solid var(--border-light);
+        }
+        .mobile-menu.show {
+            display: flex;
+        }
+        .mobile-menu a {
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--nav-text);
+            font-size: 1rem;
+        }
+
+        /* ========== BASE64 TOOL CARD ========== */
+        .hero-section {
+            padding: 40px 0 20px;
+        }
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        .tool-card {
+            background: var(--bg-surface);
+            border-radius: 32px;
+            padding: 2.5rem;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-light);
+            max-width: 950px;
+            margin: 0 auto;
+        }
+        .tool-card h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .tool-card .subhead {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            border-left: 3px solid var(--accent);
+            padding-left: 16px;
+        }
+        
+        /* Textareas */
+        .textarea-label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .base64-textarea {
+            width: 100%;
+            padding: 18px;
+            border-radius: 20px;
+            border: 1.5px solid var(--border-light);
+            background: var(--code-bg);
+            color: var(--text-primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            resize: vertical;
+            outline: none;
+            transition: 0.2s;
+            margin: 10px 0;
+        }
+        .base64-textarea:focus {
+            border-color: var(--primary);
+        }
+        .base64-textarea[readonly] {
+            background: var(--primary-soft);
+            cursor: default;
+        }
+        
+        /* Button Group */
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .btn-primary {
+            background: var(--primary);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 60px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary:hover {
+            background: var(--primary-deep);
+            transform: translateY(-2px);
+        }
+        .btn-success {
+            background: var(--success);
+        }
+        .btn-success:hover {
+            background: var(--success);
+            opacity: 0.9;
+        }
+        .btn-danger {
+            background: var(--danger);
+        }
+        .btn-danger:hover {
+            background: var(--danger);
+            opacity: 0.9;
+        }
+        
+        /* Copy Button */
+        .copy-wrapper {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 8px;
+        }
+        .copy-btn {
+            background: var(--success);
+            border: none;
+            padding: 8px 18px;
+            border-radius: 40px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .copy-btn:hover {
+            opacity: 0.9;
+            transform: scale(0.98);
+        }
+        
+        /* Status Message */
+        .status-msg {
+            padding: 10px 16px;
+            border-radius: 12px;
+            margin-top: 12px;
+            font-size: 0.8rem;
+            display: none;
+        }
+        .status-success {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+            border-left: 3px solid var(--success);
+        }
+        .status-error {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--danger);
+            border-left: 3px solid var(--danger);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-light);
+            padding: 35px 0 25px;
+            margin-top: 50px;
+        }
+        .footer-flex {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        .footer-links {
+            display: flex;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        .copyright {
+            text-align: center;
+            margin-top: 22px;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 18px; }
+            .nav-links { display: none; }
+            .hamburger { display: block; }
+            .tool-card { padding: 1.5rem; }
+            .tool-card h1 { font-size: 1.5rem; }
+            .btn-group { justify-content: center; }
+        }
     </style>
 </head>
 <body>
-<div class="site-header"><div class="container"><div class="navbar"><div class="logo"><h1>ToolkitPro</h1></div><div class="nav-links"><a href="/">Home</a><a href="/tools/all">Tools</a><span class="contact-email"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</span><button id="darkToggle" class="dark-toggle"><i class="fas fa-moon"></i> Dark</button></div><div class="hamburger" id="hamburgerBtn">☰</div></div><div class="mobile-menu" id="mobileMenu"><a href="/">Home</a><a href="/tools/all">Tools</a><div class="contact-email">supporttoolkitpro@gmail.com</div></div></div></div>
-<div class="container"><div class="tool-card"><h1><i class="fas fa-code"></i> Base64 Encoder / Decoder</h1>
-<textarea id="input" rows="5" placeholder="Enter text to encode or base64 to decode..."></textarea>
-<div class="btn-group"><button class="btn-primary" onclick="encode()">Encode to Base64</button><button class="btn-primary" onclick="decode()">Decode from Base64</button><button class="btn-primary" onclick="clearAll()">Clear</button></div>
-<textarea id="output" rows="5" placeholder="Result will appear here..." readonly></textarea></div></div>
-<footer><div class="container"><p>© 2025 ToolkitPro — Free online tools | <a href="mailto:supporttoolkitpro@gmail.com">supporttoolkitpro@gmail.com</a></p></div></footer>
+
+<!-- ========== HEADER ========== -->
+<div class="site-header">
+    <div class="container">
+        <div class="navbar">
+            <div class="logo"><h1>ToolkitPro</h1></div>
+            <div class="nav-links">
+                <a href="/">🏠 Home</a>
+                <a href="/tools/all">🛠️ All Tools</a>
+                <a href="/categories">📁 Categories</a>
+                <a href="#" id="navBlog">📝 Blog</a>
+                <a href="#" id="navAbout">👤 About</a>
+                <a href="#" id="navContact">📞 Contact</a>
+                <span class="contact-email"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</span>
+                <button id="darkModeToggle" class="dark-toggle"><i class="fas fa-moon"></i> Dark</button>
+            </div>
+            <div class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="/">🏠 Home</a>
+            <a href="/tools/all">🛠️ All Tools</a>
+            <a href="/categories">📁 Categories</a>
+            <a href="#" id="mobileBlog">📝 Blog</a>
+            <a href="#" id="mobileAbout">👤 About</a>
+            <a href="#" id="mobileContact">📞 Contact</a>
+            <button id="mobileDarkToggle" class="dark-toggle" style="margin-top: 6px;"><i class="fas fa-moon"></i> Dark Mode</button>
+            <div class="contact-email" style="margin-top:6px;"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== MAIN BASE64 SECTION ========== -->
+<div class="container">
+    <div class="hero-section">
+        <div class="breadcrumb">
+            <a href="/">Home</a> / <a href="/tools/all">Tools</a> / <span>Base64 Encoder/Decoder</span>
+        </div>
+        
+        <div class="tool-card">
+            <h1><i class="fas fa-code"></i> Base64 Encoder / Decoder</h1>
+            <div class="subhead">
+                Encode text to Base64 format or decode Base64 strings back to readable text. Perfect for developers and data transfer.
+            </div>
+            
+            <!-- Input Section -->
+            <div class="textarea-label">
+                <i class="fas fa-edit"></i> Input
+            </div>
+            <textarea id="inputText" class="base64-textarea" rows="5" placeholder="Enter text to encode or Base64 string to decode...&#10;&#10;Example: Hello World!"></textarea>
+            
+            <!-- Button Group -->
+            <div class="btn-group">
+                <button class="btn-primary" id="encodeBtn">
+                    <i class="fas fa-arrow-up"></i> Encode to Base64
+                </button>
+                <button class="btn-primary btn-success" id="decodeBtn">
+                    <i class="fas fa-arrow-down"></i> Decode from Base64
+                </button>
+                <button class="btn-primary btn-danger" id="clearBtn">
+                    <i class="fas fa-trash-alt"></i> Clear All
+                </button>
+                <button class="btn-primary" id="swapBtn">
+                    <i class="fas fa-exchange-alt"></i> Swap Input ↔ Output
+                </button>
+            </div>
+            
+            <!-- Output Section -->
+            <div class="textarea-label">
+                <i class="fas fa-clipboard-list"></i> Output
+            </div>
+            <textarea id="outputText" class="base64-textarea" rows="5" readonly placeholder="Result will appear here..."></textarea>
+            
+            <div class="copy-wrapper">
+                <button class="copy-btn" id="copyOutputBtn">
+                    <i class="fas fa-copy"></i> Copy Output
+                </button>
+            </div>
+            
+            <!-- Status Message -->
+            <div id="statusMsg" class="status-msg"></div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+    <div class="container">
+        <div class="footer-flex">
+            <div class="footer-logo">
+                <h3 style="font-size: 1.3rem; background: linear-gradient(135deg, var(--primary), #4f46e5); -webkit-background-clip: text; background-clip: text; color: transparent;">ToolkitPro</h3>
+                <p style="font-size: 0.8rem; color: var(--text-secondary);">26+ non-AI tools · Free forever</p>
+            </div>
+            <div class="footer-contact">
+                <p style="font-size: 0.85rem;"><i class="far fa-envelope"></i> <a href="mailto:supporttoolkitpro@gmail.com" style="color: var(--primary);">supporttoolkitpro@gmail.com</a></p>
+                <div class="footer-links">
+                    <a href="/privacy-policy.html">Privacy Policy</a>
+                    <a href="/disclaimer.html">Disclaimer</a>
+                    <a href="/terms.html">Terms of Use</a>
+                    <a href="/contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">© 2025 ToolkitPro — Reliable utilities, Base64 encoder/decoder & more</div>
+    </div>
+</footer>
+
 <script>
-function encode() { let input = document.getElementById('input').value; document.getElementById('output').value = btoa(unescape(encodeURIComponent(input))); }
-function decode() { try { let output = decodeURIComponent(escape(atob(document.getElementById('input').value))); document.getElementById('output').value = output; } catch(e) { document.getElementById('output').value = 'Invalid Base64 string'; } }
-function clearAll() { document.getElementById('input').value = ''; document.getElementById('output').value = ''; }
-document.getElementById('darkToggle').onclick = () => { document.body.classList.toggle('dark'); localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light'); };
-if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
-document.getElementById('hamburgerBtn').onclick = () => document.getElementById('mobileMenu').classList.toggle('show');
+    // ========== DOM Elements ==========
+    const inputText = document.getElementById('inputText');
+    const outputText = document.getElementById('outputText');
+    const encodeBtn = document.getElementById('encodeBtn');
+    const decodeBtn = document.getElementById('decodeBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const swapBtn = document.getElementById('swapBtn');
+    const copyOutputBtn = document.getElementById('copyOutputBtn');
+    const statusMsg = document.getElementById('statusMsg');
+    
+    // Show status message
+    function showStatus(message, type) {
+        statusMsg.style.display = 'block';
+        statusMsg.className = `status-msg status-${type}`;
+        statusMsg.innerHTML = type === 'success' ? `<i class="fas fa-check-circle"></i> ${message}` : `<i class="fas fa-exclamation-triangle"></i> ${message}`;
+        setTimeout(() => {
+            statusMsg.style.display = 'none';
+        }, 3000);
+    }
+    
+    // Encode to Base64
+    function encodeToBase64() {
+        const input = inputText.value;
+        if (!input.trim()) {
+            showStatus('Please enter text to encode', 'error');
+            return;
+        }
+        
+        try {
+            // Handle Unicode characters properly
+            const utf8Bytes = unescape(encodeURIComponent(input));
+            const encoded = btoa(utf8Bytes);
+            outputText.value = encoded;
+            showStatus('Successfully encoded to Base64!', 'success');
+        } catch (e) {
+            outputText.value = '';
+            showStatus('Encoding failed: ' + e.message, 'error');
+        }
+    }
+    
+    // Decode from Base64
+    function decodeFromBase64() {
+        const input = inputText.value;
+        if (!input.trim()) {
+            showStatus('Please enter Base64 string to decode', 'error');
+            return;
+        }
+        
+        try {
+            const decoded = decodeURIComponent(escape(atob(input)));
+            outputText.value = decoded;
+            showStatus('Successfully decoded from Base64!', 'success');
+        } catch (e) {
+            outputText.value = '';
+            showStatus('Invalid Base64 string. Please check your input.', 'error');
+        }
+    }
+    
+    // Clear all fields
+    function clearAll() {
+        inputText.value = '';
+        outputText.value = '';
+        showStatus('Cleared all fields', 'success');
+    }
+    
+    // Swap input and output
+    function swapInputOutput() {
+        const input = inputText.value;
+        const output = outputText.value;
+        if (output) {
+            inputText.value = output;
+            outputText.value = input;
+            showStatus('Swapped input and output', 'success');
+        } else {
+            showStatus('Nothing to swap. Output is empty.', 'error');
+        }
+    }
+    
+    // Copy output to clipboard
+    async function copyOutput() {
+        const text = outputText.value;
+        if (!text) {
+            showStatus('Nothing to copy. Output is empty.', 'error');
+            return;
+        }
+        
+        try {
+            await navigator.clipboard.writeText(text);
+            const originalText = copyOutputBtn.innerHTML;
+            copyOutputBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            setTimeout(() => {
+                copyOutputBtn.innerHTML = originalText;
+            }, 2000);
+            showStatus('Copied to clipboard!', 'success');
+        } catch (err) {
+            // Fallback for older browsers
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            const originalText = copyOutputBtn.innerHTML;
+            copyOutputBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            setTimeout(() => {
+                copyOutputBtn.innerHTML = originalText;
+            }, 2000);
+            showStatus('Copied to clipboard!', 'success');
+        }
+    }
+    
+    // Event Listeners
+    encodeBtn.addEventListener('click', encodeToBase64);
+    decodeBtn.addEventListener('click', decodeFromBase64);
+    clearBtn.addEventListener('click', clearAll);
+    swapBtn.addEventListener('click', swapInputOutput);
+    copyOutputBtn.addEventListener('click', copyOutput);
+    
+    // Example placeholder text
+    if (inputText.value === '') {
+        inputText.value = 'Hello World!\nToolkitPro - Free Online Tools\nSupport: supporttoolkitpro@gmail.com';
+    }
+    
+    // ========== DARK MODE ==========
+    function initDarkMode() {
+        const darkToggle = document.getElementById("darkModeToggle");
+        const mobileDarkToggle = document.getElementById("mobileDarkToggle");
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark');
+        } else if (savedTheme === 'light') {
+            document.body.classList.remove('dark');
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark');
+        }
+        
+        function toggleDark() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+        }
+        
+        if (darkToggle) darkToggle.addEventListener('click', toggleDark);
+        if (mobileDarkToggle) mobileDarkToggle.addEventListener('click', toggleDark);
+    }
+    
+    // ========== Mobile Menu ==========
+    function initMobileMenu() {
+        const hamburger = document.getElementById("hamburgerBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+        if (hamburger && mobileMenu) {
+            hamburger.addEventListener("click", () => mobileMenu.classList.toggle("show"));
+        }
+        const mobileLinks = document.querySelectorAll("#mobileMenu a, #mobileBlog, #mobileAbout, #mobileContact");
+        mobileLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                if (mobileMenu) mobileMenu.classList.remove("show");
+            });
+        });
+    }
+    
+    // ========== Navigation Actions ==========
+    function initNavActions() {
+        document.getElementById("navBlog")?.addEventListener("click", (e) => { e.preventDefault(); alert("📖 Coming soon: Base64 tips & developer guides"); });
+        document.getElementById("navAbout")?.addEventListener("click", (e) => { e.preventDefault(); alert("🔧 ToolkitPro — 26+ privacy-first utilities. Base64 encoder/decoder works 100% locally."); });
+        document.getElementById("navContact")?.addEventListener("click", (e) => { e.preventDefault(); alert("📧 supporttoolkitpro@gmail.com | We reply within 24 hours"); });
+        document.getElementById("mobileBlog")?.addEventListener("click", (e) => { e.preventDefault(); alert("📖 Blog coming soon"); });
+        document.getElementById("mobileAbout")?.addEventListener("click", (e) => { e.preventDefault(); alert("ToolkitPro — Simplify your digital life"); });
+        document.getElementById("mobileContact")?.addEventListener("click", (e) => { e.preventDefault(); alert("📧 supporttoolkitpro@gmail.com"); });
+    }
+    
+    // Home & other links
+    document.querySelectorAll('.nav-links a[href="/"], .mobile-menu a[href="/"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = '/';
+        });
+    });
+    document.querySelectorAll('.nav-links a[href="/tools/all"], .mobile-menu a[href="/tools/all"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('✨ All Tools — 26+ utilities including PDF tools, image editors, calculators');
+        });
+    });
+    document.querySelectorAll('.nav-links a[href="/categories"], .mobile-menu a[href="/categories"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('📁 Categories: Document, Image, Dev, Calculator, Text, Color, Utility');
+        });
+    });
+    
+    // Initialize everything
+    initDarkMode();
+    initMobileMenu();
+    initNavActions();
 </script>
 </body>
 </html>
