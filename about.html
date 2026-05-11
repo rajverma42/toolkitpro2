@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Learn more about ToolkitPro - free online utility tools platform for PDF, Image, Calculator, QR, and developer tools." />
-  <title>About Us | ToolkitPro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Learn about ToolkitPro - free online utility tools platform offering 26+ tools for PDF, Image, Calculator, QR, and developer tasks. Fast, secure, and 100% free." />
+  <meta name="keywords" content="about toolkitpro, free online tools, pdf tools, image compressor, json formatter, privacy tools" />
+  <title>About Us | ToolkitPro - Free Online Tools</title>
 
+  <!-- Google Fonts + Font Awesome -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -16,228 +18,372 @@
       box-sizing: border-box;
     }
 
+    /* ========== THEME VARIABLES (Matching main site) ========== */
+    :root {
+      --bg-body: #f1f5f9;
+      --bg-surface: #ffffff;
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --border-light: #e2e8f0;
+      --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.05);
+      --primary: #2563eb;
+      --primary-deep: #1e40af;
+      --primary-soft: #eff6ff;
+      --accent: #f59e0b;
+      --nav-bg: #ffffff;
+      --nav-text: #1e293b;
+      --nav-hover: #2563eb;
+    }
+
+    body.dark {
+      --bg-body: #0a0f1c;
+      --bg-surface: #111827;
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --border-light: #1e293b;
+      --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+      --primary: #3b82f6;
+      --primary-deep: #60a5fa;
+      --primary-soft: #1e293b;
+      --accent: #fbbf24;
+      --nav-bg: #111827;
+      --nav-text: #e2e8f0;
+      --nav-hover: #60a5fa;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
-      background: #f1f5f9;
-      color: #0f172a;
+      background: var(--bg-body);
+      color: var(--text-primary);
+      transition: background-color 0.25s ease, color 0.2s ease;
       line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 0 20px;
-    }
-
-    header {
-      background: #ffffff;
-      border-bottom: 1px solid #e2e8f0;
+    /* ========== HEADER & NAVIGATION ========== */
+    .site-header {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-light);
       position: sticky;
       top: 0;
-      z-index: 1000;
+      z-index: 100;
     }
-
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
     .navbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 18px 0;
     }
-
-    .logo {
-      font-size: 1.8rem;
+    .logo h1 {
+      font-size: 1.85rem;
       font-weight: 800;
-      background: linear-gradient(135deg,#2563eb,#4f46e5);
+      background: linear-gradient(135deg, var(--primary), #4f46e5);
       -webkit-background-clip: text;
+      background-clip: text;
       color: transparent;
-      text-decoration: none;
+      cursor: pointer;
     }
-
     .nav-links {
       display: flex;
-      gap: 20px;
+      gap: 2rem;
+      align-items: center;
       flex-wrap: wrap;
     }
-
     .nav-links a {
       text-decoration: none;
-      color: #334155;
       font-weight: 600;
+      color: var(--nav-text);
       font-size: 0.95rem;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--nav-hover);
+    }
+    .contact-email {
+      background: var(--primary-soft);
+      padding: 5px 14px;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    .dark-toggle {
+      background: var(--primary-soft);
+      border: none;
+      border-radius: 40px;
+      padding: 6px 16px;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 0.85rem;
+      transition: 0.2s;
+    }
+    .dark-toggle:hover {
+      background: var(--primary);
+      color: white;
+    }
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--primary);
+    }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: var(--bg-surface);
+      padding: 20px;
+      border-radius: 24px;
+      margin: 10px 0 15px;
+      gap: 14px;
+      border: 1px solid var(--border-light);
+    }
+    .mobile-menu.show {
+      display: flex;
+    }
+    .mobile-menu a {
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--nav-text);
+      font-size: 1rem;
+      cursor: pointer;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: #2563eb;
-    }
-
+    /* ========== HERO SECTION ========== */
     .hero {
-      padding: 70px 0 50px;
+      padding: 60px 0 40px;
       text-align: center;
     }
-
     .hero-badge {
       display: inline-block;
-      background: #dbeafe;
-      color: #2563eb;
-      padding: 8px 18px;
-      border-radius: 50px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      padding: 8px 20px;
+      border-radius: 60px;
       font-size: 0.85rem;
       font-weight: 700;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
-
     .hero h1 {
       font-size: 3rem;
       margin-bottom: 18px;
       font-weight: 800;
+      color: var(--text-primary);
     }
-
     .hero p {
       max-width: 760px;
       margin: auto;
-      color: #475569;
+      color: var(--text-secondary);
       font-size: 1.05rem;
     }
 
+    /* ========== FEATURE GRID ========== */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
       margin: 50px 0;
     }
-
     .card {
-      background: #ffffff;
-      border-radius: 24px;
+      background: var(--bg-surface);
+      border-radius: 28px;
       padding: 28px;
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--card-shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 30px -12px rgba(37, 99, 235, 0.2);
+    }
     .card i {
-      font-size: 2rem;
-      color: #2563eb;
-      margin-bottom: 14px;
+      font-size: 2.4rem;
+      color: var(--primary);
+      margin-bottom: 16px;
     }
-
     .card h3 {
       margin-bottom: 12px;
-      font-size: 1.2rem;
+      font-size: 1.25rem;
+      color: var(--text-primary);
     }
-
     .card p {
-      color: #475569;
+      color: var(--text-secondary);
       font-size: 0.95rem;
+      line-height: 1.5;
     }
 
+    /* ========== ABOUT SECTION ========== */
     .about-section {
-      background: #ffffff;
-      padding: 45px;
-      border-radius: 28px;
-      border: 1px solid #e2e8f0;
-      margin-bottom: 40px;
+      background: var(--bg-surface);
+      padding: 48px;
+      border-radius: 32px;
+      border: 1px solid var(--border-light);
+      margin-bottom: 50px;
     }
-
     .about-section h2 {
-      margin-bottom: 18px;
-      font-size: 2rem;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      color: var(--text-primary);
     }
-
     .about-section p {
-      margin-bottom: 16px;
-      color: #475569;
+      margin-bottom: 18px;
+      color: var(--text-secondary);
     }
 
+    /* ========== STATS ========== */
     .stats {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
-      gap: 18px;
-      margin-top: 35px;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
     }
-
     .stat-box {
-      background: #eff6ff;
-      padding: 22px;
-      border-radius: 22px;
+      background: var(--primary-soft);
+      padding: 24px 16px;
+      border-radius: 28px;
       text-align: center;
+      transition: 0.2s;
     }
-
     .stat-box h3 {
-      font-size: 2rem;
-      color: #2563eb;
+      font-size: 2.2rem;
+      color: var(--primary);
+      font-weight: 800;
     }
-
     .stat-box p {
-      color: #334155;
+      color: var(--text-secondary);
       font-weight: 600;
       margin-top: 6px;
     }
 
-    footer {
-      margin-top: 50px;
-      background: #ffffff;
-      border-top: 1px solid #e2e8f0;
-      padding: 30px 0;
+    /* ========== AD SECTION ========== */
+    .ad-section {
+      background: var(--primary-soft);
+      border-radius: 20px;
+      padding: 12px;
+      margin: 30px auto;
       text-align: center;
+      border: 1px solid var(--border-light);
+      max-width: 728px;
+    }
+    .ad-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      display: block;
     }
 
-    footer p {
-      color: #64748b;
-      font-size: 0.85rem;
+    /* ========== FOOTER ========== */
+    footer {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-light);
+      padding: 35px 0 25px;
+      margin-top: 20px;
+    }
+    .footer-flex {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .footer-links-bottom {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+    .footer-links-bottom a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .footer-links-bottom a:hover {
+      color: var(--primary);
+    }
+    .copyright {
+      text-align: center;
+      margin-top: 22px;
+      font-size: 0.65rem;
+      color: var(--text-muted);
     }
 
-    @media(max-width:768px){
-      .hero h1 {
-        font-size: 2.2rem;
-      }
-
-      .about-section {
-        padding: 28px;
-      }
+    @media (max-width: 768px) {
+      .container { padding: 0 18px; }
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .hero h1 { font-size: 2rem; }
+      .about-section { padding: 28px; }
+      .hero { padding: 40px 0 25px; }
+      .grid { gap: 18px; }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <div class="container navbar">
-    <a href="/" class="logo">ToolkitPro</a>
-
-    <div class="nav-links">
-      <a href="/index.html">Home</a>
-      <a href="/blog.html">Blog</a>
-      <a href="/about.html" class="active">About</a>
-      <a href="/contact.html">Contact</a>
+<!-- ========== HEADER ========== -->
+<div class="site-header">
+  <div class="container">
+    <div class="navbar">
+      <div class="logo"><h1 onclick="window.location.href='/'">ToolkitPro</h1></div>
+      <div class="nav-links">
+        <a href="/" id="navHome">🏠 Home</a>
+        <a href="#" id="navAllTools">🛠️ All Tools</a>
+        <a href="#" id="navCategories">📁 Categories</a>
+        <a href="#" id="navBlog">📝 Blog</a>
+        <a href="#" id="navAbout" class="active">👤 About</a>
+        <a href="#" id="navContact">📞 Contact</a>
+        <span class="contact-email"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</span>
+        <button id="darkModeToggle" class="dark-toggle"><i class="fas fa-moon"></i> Dark</button>
+      </div>
+      <div class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="/" data-mobile="home">🏠 Home</a>
+      <a href="#" data-mobile="all">🛠️ All Tools</a>
+      <a href="#" data-mobile="categories">📁 Categories</a>
+      <a href="#" data-mobile="blog">📝 Blog</a>
+      <a href="#" data-mobile="about">👤 About</a>
+      <a href="#" data-mobile="contact">📞 Contact</a>
+      <button id="mobileDarkToggle" class="dark-toggle" style="margin-top: 6px;"><i class="fas fa-moon"></i> Dark Mode</button>
+      <div class="contact-email" style="margin-top:6px;"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</div>
     </div>
   </div>
-</header>
+</div>
 
-<section class="hero">
-  <div class="container">
+<!-- ========== MAIN CONTENT ========== -->
+<div class="container">
+  <section class="hero">
     <div class="hero-badge"><i class="fas fa-shield-alt"></i> Fast • Free • Secure</div>
     <h1>About ToolkitPro</h1>
     <p>
       ToolkitPro is a modern online utility platform built to provide fast, secure, and free tools for everyone.
       From image compression and PDF conversion to QR generation and calculators — our mission is to simplify digital tasks.
     </p>
-  </div>
-</section>
+  </section>
 
-<section class="container">
   <div class="grid">
     <div class="card">
       <i class="fas fa-bolt"></i>
       <h3>Fast Performance</h3>
       <p>All tools are optimized for instant results with lightweight client-side processing and responsive UI.</p>
     </div>
-
     <div class="card">
       <i class="fas fa-lock"></i>
       <h3>Privacy Focused</h3>
       <p>Your files and data stay secure. Most tools work directly in your browser without server storage.</p>
     </div>
-
     <div class="card">
       <i class="fas fa-mobile-alt"></i>
       <h3>Fully Responsive</h3>
@@ -247,51 +393,170 @@
 
   <div class="about-section">
     <h2>Our Mission</h2>
-
     <p>
       We created ToolkitPro to offer reliable online utilities without unnecessary complexity.
       Many websites overload users with slow interfaces and confusing layouts. ToolkitPro focuses on speed, simplicity, and user experience.
     </p>
-
     <p>
       Whether you need to compress an image, merge PDFs, generate secure passwords, or format JSON data,
       ToolkitPro provides practical tools that save time and work instantly.
     </p>
-
     <p>
       Our platform continuously grows with new features and performance improvements to help students,
       developers, creators, professionals, and everyday users.
     </p>
 
     <div class="stats">
-      <div class="stat-box">
-        <h3>26+</h3>
-        <p>Online Tools</p>
-      </div>
-
-      <div class="stat-box">
-        <h3>100%</h3>
-        <p>Free Access</p>
-      </div>
-
-      <div class="stat-box">
-        <h3>24/7</h3>
-        <p>Availability</p>
-      </div>
-
-      <div class="stat-box">
-        <h3>Fast</h3>
-        <p>Processing</p>
-      </div>
+      <div class="stat-box"><h3>26+</h3><p>Online Tools</p></div>
+      <div class="stat-box"><h3>100%</h3><p>Free Access</p></div>
+      <div class="stat-box"><h3>24/7</h3><p>Availability</p></div>
+      <div class="stat-box"><h3>Instant</h3><p>Processing</p></div>
     </div>
   </div>
-</section>
 
+  <!-- Ad Section -->
+  <div class="ad-section">
+    <span class="ad-label"><i class="fas fa-ad"></i> Advertisement</span>
+    <div id="container-about-ad"></div>
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
 <footer>
   <div class="container">
-    <p>© 2025 ToolkitPro • supporttoolkitpro@gmail.com</p>
+    <div class="footer-flex">
+      <div class="footer-logo">
+        <h3 style="font-size: 1.3rem; background: linear-gradient(135deg, var(--primary), #4f46e5); -webkit-background-clip: text; background-clip: text; color: transparent;">ToolkitPro</h3>
+        <p style="font-size: 0.8rem; color: var(--text-secondary);">26+ non-AI tools · Free forever</p>
+      </div>
+      <div class="footer-contact">
+        <p style="font-size: 0.85rem;"><i class="far fa-envelope"></i> <a href="mailto:supporttoolkitpro@gmail.com" style="color: var(--primary);">supporttoolkitpro@gmail.com</a></p>
+        <div class="footer-links-bottom">
+          <a href="#" id="footerPrivacy">Privacy Policy</a>
+          <a href="#" id="footerDisclaimer">Disclaimer</a>
+          <a href="#" id="footerTerms">Terms of Use</a>
+          <a href="#" id="footerContact">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">© 2025 ToolkitPro — Reliable utilities, always improving</div>
   </div>
 </footer>
 
+<script>
+  // ========== DARK MODE ==========
+  function initDarkMode() {
+    const darkToggle = document.getElementById("darkModeToggle");
+    const mobileDarkToggle = document.getElementById("mobileDarkToggle");
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark');
+    } else if (savedTheme === 'light') {
+      document.body.classList.remove('dark');
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.body.classList.add('dark');
+    }
+    
+    function toggleDark() {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    }
+    
+    if (darkToggle) darkToggle.addEventListener('click', toggleDark);
+    if (mobileDarkToggle) mobileDarkToggle.addEventListener('click', toggleDark);
+  }
+
+  // ========== MOBILE MENU ==========
+  function initMobileMenu() {
+    const hamburger = document.getElementById("hamburgerBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener("click", () => mobileMenu.classList.toggle("show"));
+    }
+    const allMobileLinks = document.querySelectorAll("#mobileMenu a, #mobileMenu button");
+    allMobileLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        if (mobileMenu) mobileMenu.classList.remove("show");
+      });
+    });
+  }
+
+  // ========== NAVIGATION HANDLERS (Full working with file names) ==========
+  function initNavActions() {
+    // Home
+    document.getElementById("navHome")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/'; });
+    // All Tools - redirect to main page with view parameter
+    document.getElementById("navAllTools")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/?view=all'; });
+    // Categories
+    document.getElementById("navCategories")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/?view=categories'; });
+    // Blog
+    document.getElementById("navBlog")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/blog.html'; });
+    // About (current page, just prevent reload)
+    document.getElementById("navAbout")?.addEventListener("click", (e) => { e.preventDefault(); });
+    // Contact
+    document.getElementById("navContact")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
+    
+    // Mobile menu handlers
+    document.querySelectorAll("[data-mobile]").forEach(el => {
+      el.addEventListener("click", (e) => {
+        e.preventDefault();
+        const val = el.getAttribute("data-mobile");
+        if (val === "home") window.location.href = '/';
+        else if (val === "all") window.location.href = '/?view=all';
+        else if (val === "categories") window.location.href = '/?view=categories';
+        else if (val === "blog") window.location.href = '/blog.html';
+        else if (val === "about") window.location.href = '/about.html';
+        else if (val === "contact") window.location.href = '/contact.html';
+      });
+    });
+    
+    // Footer legal links
+    document.getElementById("footerPrivacy")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/privacy-policy.html'; });
+    document.getElementById("footerDisclaimer")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/disclaimer.html'; });
+    document.getElementById("footerTerms")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/terms.html'; });
+    document.getElementById("footerContact")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
+    
+    // Logo click
+    const logo = document.querySelector(".logo h1");
+    if (logo) logo.addEventListener("click", () => { window.location.href = '/'; });
+  }
+
+  // ========== ACTIVE NAV MARKER ==========
+  function setActiveNav() {
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => a.classList.remove('active'));
+    if (currentPath.includes('about')) {
+      document.getElementById("navAbout")?.classList.add('active');
+    } else if (currentPath.includes('blog')) {
+      document.getElementById("navBlog")?.classList.add('active');
+    } else if (currentPath.includes('contact')) {
+      document.getElementById("navContact")?.classList.add('active');
+    }
+    // For home page detection
+    if (currentPath === '/' || currentPath === '/index.html') {
+      document.getElementById("navHome")?.classList.add('active');
+    }
+  }
+
+  // Initialize everything
+  initDarkMode();
+  initMobileMenu();
+  initNavActions();
+  setActiveNav();
+
+  // Ad script (optional - same network as main site)
+  // The ad container is present but script can be added if needed
+  // For demonstration, we add a simple placeholder ad script similar to main site
+  const adContainer = document.getElementById('container-about-ad');
+  if (adContainer) {
+    // Optional: dynamic ad insertion (simulated for demo)
+    // In production, replace with actual ad network code
+    const adScript = document.createElement('script');
+    adScript.async = true;
+    adScript.setAttribute('data-cfasync', 'false');
+    adScript.src = 'https://pl29407567.profitablecpmratenetwork.com/c2608aed4d10e76bb8072ec639e963f7/invoke.js';
+    adContainer.appendChild(adScript);
+  }
+</script>
 </body>
 </html>
