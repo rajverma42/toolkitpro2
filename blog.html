@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="ToolkitPro Blog - tips, guides, and tutorials for PDF tools, image tools, calculators, and online utilities." />
-  <title>Blog | ToolkitPro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="ToolkitPro Blog - tips, guides, and tutorials for PDF tools, image tools, calculators, QR generators, and online utilities. Learn how to work smarter." />
+  <meta name="keywords" content="toolkitpro blog, online tools guide, pdf tips, image compression, qr code tutorial, json formatting, password security" />
+  <title>Blog | ToolkitPro - Tips, Guides & Tutorials</title>
 
+  <!-- Google Fonts + Font Awesome -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -16,298 +18,632 @@
       box-sizing: border-box;
     }
 
+    /* ========== THEME VARIABLES (Matching main site) ========== */
+    :root {
+      --bg-body: #f1f5f9;
+      --bg-surface: #ffffff;
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --border-light: #e2e8f0;
+      --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.05);
+      --primary: #2563eb;
+      --primary-deep: #1e40af;
+      --primary-soft: #eff6ff;
+      --accent: #f59e0b;
+      --nav-bg: #ffffff;
+      --nav-text: #1e293b;
+      --nav-hover: #2563eb;
+    }
+
+    body.dark {
+      --bg-body: #0a0f1c;
+      --bg-surface: #111827;
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --border-light: #1e293b;
+      --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+      --primary: #3b82f6;
+      --primary-deep: #60a5fa;
+      --primary-soft: #1e293b;
+      --accent: #fbbf24;
+      --nav-bg: #111827;
+      --nav-text: #e2e8f0;
+      --nav-hover: #60a5fa;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
-      background: #f1f5f9;
-      color: #0f172a;
+      background: var(--bg-body);
+      color: var(--text-primary);
+      transition: background-color 0.25s ease, color 0.2s ease;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
-    .container {
-      max-width: 1250px;
-      margin: auto;
-      padding: 0 20px;
-    }
-
-    header {
-      background: #ffffff;
-      border-bottom: 1px solid #e2e8f0;
+    /* ========== HEADER & NAVIGATION ========== */
+    .site-header {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-light);
       position: sticky;
       top: 0;
-      z-index: 1000;
+      z-index: 100;
     }
-
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
     .navbar {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       padding: 18px 0;
     }
-
-    .logo {
-      font-size: 1.8rem;
+    .logo h1 {
+      font-size: 1.85rem;
       font-weight: 800;
-      text-decoration: none;
-      background: linear-gradient(135deg,#2563eb,#4f46e5);
+      background: linear-gradient(135deg, var(--primary), #4f46e5);
       -webkit-background-clip: text;
+      background-clip: text;
       color: transparent;
+      cursor: pointer;
     }
-
     .nav-links {
       display: flex;
-      gap: 20px;
+      gap: 2rem;
+      align-items: center;
       flex-wrap: wrap;
     }
-
     .nav-links a {
       text-decoration: none;
-      color: #334155;
       font-weight: 600;
+      color: var(--nav-text);
+      font-size: 0.95rem;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--nav-hover);
+    }
+    .contact-email {
+      background: var(--primary-soft);
+      padding: 5px 14px;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    .dark-toggle {
+      background: var(--primary-soft);
+      border: none;
+      border-radius: 40px;
+      padding: 6px 16px;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 0.85rem;
+      transition: 0.2s;
+    }
+    .dark-toggle:hover {
+      background: var(--primary);
+      color: white;
+    }
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--primary);
+    }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: var(--bg-surface);
+      padding: 20px;
+      border-radius: 24px;
+      margin: 10px 0 15px;
+      gap: 14px;
+      border: 1px solid var(--border-light);
+    }
+    .mobile-menu.show {
+      display: flex;
+    }
+    .mobile-menu a {
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--nav-text);
+      font-size: 1rem;
+      cursor: pointer;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: #2563eb;
-    }
-
+    /* ========== HERO SECTION ========== */
     .hero {
       text-align: center;
-      padding: 70px 0 50px;
+      padding: 60px 0 40px;
     }
-
-    .hero span {
+    .hero-badge {
       display: inline-block;
-      background: #dbeafe;
-      color: #2563eb;
-      padding: 8px 16px;
-      border-radius: 50px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      padding: 8px 20px;
+      border-radius: 60px;
       font-size: 0.85rem;
       font-weight: 700;
       margin-bottom: 18px;
     }
-
     .hero h1 {
       font-size: 3rem;
       font-weight: 800;
       margin-bottom: 16px;
+      color: var(--text-primary);
     }
-
     .hero p {
       max-width: 700px;
       margin: auto;
-      color: #475569;
+      color: var(--text-secondary);
+      font-size: 1.05rem;
     }
 
+    /* ========== BLOG GRID ========== */
     .blog-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
-      gap: 28px;
-      margin-bottom: 60px;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 30px;
+      margin: 40px 0 60px;
     }
-
     .blog-card {
-      background: #ffffff;
-      border-radius: 24px;
+      background: var(--bg-surface);
+      border-radius: 28px;
       overflow: hidden;
-      border: 1px solid #e2e8f0;
-      transition: 0.25s;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      border: 1px solid var(--border-light);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: var(--card-shadow);
     }
-
     .blog-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px -12px rgba(37, 99, 235, 0.2);
     }
-
     .blog-image {
-      height: 220px;
+      height: 200px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 3rem;
+      font-size: 3.5rem;
+      background: linear-gradient(135deg, var(--primary), #4f46e5);
       color: white;
-      background: linear-gradient(135deg,#2563eb,#4f46e5);
     }
-
     .blog-content {
       padding: 24px;
     }
-
     .blog-tag {
       display: inline-block;
-      background: #eff6ff;
-      color: #2563eb;
-      padding: 5px 12px;
-      border-radius: 50px;
-      font-size: 0.75rem;
+      background: var(--primary-soft);
+      color: var(--primary);
+      padding: 5px 14px;
+      border-radius: 60px;
+      font-size: 0.7rem;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
+      letter-spacing: 0.3px;
     }
-
     .blog-content h2 {
       font-size: 1.3rem;
       margin-bottom: 12px;
+      color: var(--text-primary);
+      line-height: 1.4;
     }
-
     .blog-content p {
-      color: #475569;
-      font-size: 0.95rem;
-      line-height: 1.7;
-      margin-bottom: 18px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
     }
-
     .read-btn {
       display: inline-block;
       text-decoration: none;
-      background: #2563eb;
+      background: var(--primary);
       color: white;
-      padding: 10px 18px;
-      border-radius: 50px;
+      padding: 10px 22px;
+      border-radius: 60px;
       font-weight: 600;
-      font-size: 0.9rem;
-    }
-
-    footer {
-      background: #ffffff;
-      border-top: 1px solid #e2e8f0;
-      text-align: center;
-      padding: 30px 0;
-    }
-
-    footer p {
-      color: #64748b;
       font-size: 0.85rem;
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .read-btn:hover {
+      background: var(--primary-deep);
+      transform: translateX(4px);
     }
 
-    @media(max-width:768px){
-      .hero h1 {
-        font-size: 2.2rem;
-      }
+    /* ========== AD SECTION ========== */
+    .ad-section {
+      background: var(--primary-soft);
+      border-radius: 20px;
+      padding: 12px;
+      margin: 20px auto 40px;
+      text-align: center;
+      border: 1px solid var(--border-light);
+      max-width: 728px;
+    }
+    .ad-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-light);
+      padding: 35px 0 25px;
+      margin-top: 20px;
+    }
+    .footer-flex {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .footer-links-bottom {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+    .footer-links-bottom a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .footer-links-bottom a:hover {
+      color: var(--primary);
+    }
+    .copyright {
+      text-align: center;
+      margin-top: 22px;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 18px; }
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .hero h1 { font-size: 2rem; }
+      .hero { padding: 40px 0 25px; }
+      .blog-grid { gap: 20px; }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <div class="container navbar">
-    <a href="/index.html" class="logo">ToolkitPro</a>
-
-    <div class="nav-links">
-      <a href="/index.html">Home</a>
-      <a href="/blog.html" class="active">Blog</a>
-      <a href="/about.html">About</a>
-      <a href="/contact.html">Contact</a>
+<!-- ========== HEADER ========== -->
+<div class="site-header">
+  <div class="container">
+    <div class="navbar">
+      <div class="logo"><h1 onclick="window.location.href='/'">ToolkitPro</h1></div>
+      <div class="nav-links">
+        <a href="/" id="navHome">🏠 Home</a>
+        <a href="#" id="navAllTools">🛠️ All Tools</a>
+        <a href="#" id="navCategories">📁 Categories</a>
+        <a href="#" id="navBlog" class="active">📝 Blog</a>
+        <a href="#" id="navAbout">👤 About</a>
+        <a href="#" id="navContact">📞 Contact</a>
+        <span class="contact-email"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</span>
+        <button id="darkModeToggle" class="dark-toggle"><i class="fas fa-moon"></i> Dark</button>
+      </div>
+      <div class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="/" data-mobile="home">🏠 Home</a>
+      <a href="#" data-mobile="all">🛠️ All Tools</a>
+      <a href="#" data-mobile="categories">📁 Categories</a>
+      <a href="#" data-mobile="blog">📝 Blog</a>
+      <a href="#" data-mobile="about">👤 About</a>
+      <a href="#" data-mobile="contact">📞 Contact</a>
+      <button id="mobileDarkToggle" class="dark-toggle" style="margin-top: 6px;"><i class="fas fa-moon"></i> Dark Mode</button>
+      <div class="contact-email" style="margin-top:6px;"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</div>
     </div>
   </div>
-</header>
+</div>
 
-<section class="hero">
-  <div class="container">
-    <span><i class="fas fa-pen"></i> ToolkitPro Articles</span>
+<!-- ========== HERO SECTION ========== -->
+<div class="container">
+  <section class="hero">
+    <div class="hero-badge"><i class="fas fa-pen-fancy"></i> ToolkitPro Articles</div>
     <h1>Latest Blog & Guides</h1>
     <p>Explore tutorials, productivity tips, online tool guides, and digital utility resources from ToolkitPro.</p>
-  </div>
-</section>
+  </section>
 
-<section class="container">
+  <!-- ========== BLOG GRID (6 Blog Posts) ========== -->
   <div class="blog-grid">
-
+    <!-- Blog 1: PDF Compression -->
     <div class="blog-card">
-      <div class="blog-image">
-        <i class="fas fa-file-pdf"></i>
-      </div>
-
+      <div class="blog-image"><i class="fas fa-file-pdf"></i></div>
       <div class="blog-content">
-        <div class="blog-tag">PDF Tools</div>
+        <div class="blog-tag">📄 PDF Tools</div>
         <h2>How to Compress PDF Files Without Losing Quality</h2>
-        <p>
-          Learn how PDF compression works and discover simple ways to reduce file size while maintaining readability and document quality.
-        </p>
-        <a href="#" class="read-btn">Read Article</a>
+        <p>Learn how PDF compression works and discover simple ways to reduce file size while maintaining readability and document quality for email and web sharing.</p>
+        <button class="read-btn" data-blog="pdf-compress">Read Article →</button>
       </div>
     </div>
 
+    <!-- Blog 2: Image Formats -->
     <div class="blog-card">
-      <div class="blog-image">
-        <i class="fas fa-image"></i>
-      </div>
-
+      <div class="blog-image"><i class="fas fa-image"></i></div>
       <div class="blog-content">
-        <div class="blog-tag">Image Tools</div>
+        <div class="blog-tag">🖼️ Image Tools</div>
         <h2>Best Image Formats for Websites in 2025</h2>
-        <p>
-          Compare JPG, PNG, WebP, and SVG formats to understand which image type improves website speed and SEO performance.
-        </p>
-        <a href="#" class="read-btn">Read Article</a>
+        <p>Compare JPG, PNG, WebP, and SVG formats to understand which image type improves website speed, SEO performance, and user experience.</p>
+        <button class="read-btn" data-blog="image-formats">Read Article →</button>
       </div>
     </div>
 
+    <!-- Blog 3: Password Security -->
     <div class="blog-card">
-      <div class="blog-image">
-        <i class="fas fa-lock"></i>
-      </div>
-
+      <div class="blog-image"><i class="fas fa-lock"></i></div>
       <div class="blog-content">
-        <div class="blog-tag">Security</div>
+        <div class="blog-tag">🔐 Security</div>
         <h2>How to Create Strong Passwords Easily</h2>
-        <p>
-          Discover practical password security tips and how random password generators help protect online accounts.
-        </p>
-        <a href="#" class="read-btn">Read Article</a>
+        <p>Discover practical password security tips and how random password generators help protect online accounts from cyber threats and data breaches.</p>
+        <button class="read-btn" data-blog="password-security">Read Article →</button>
       </div>
     </div>
 
+    <!-- Blog 4: JSON Formatting -->
     <div class="blog-card">
-      <div class="blog-image">
-        <i class="fas fa-code"></i>
-      </div>
-
+      <div class="blog-image"><i class="fas fa-code"></i></div>
       <div class="blog-content">
-        <div class="blog-tag">Developer</div>
+        <div class="blog-tag">⚙️ Developer</div>
         <h2>What is JSON Formatting & Why Developers Need It</h2>
-        <p>
-          Understand how JSON formatting improves readability, debugging, and API development for modern applications.
-        </p>
-        <a href="#" class="read-btn">Read Article</a>
+        <p>Understand how JSON formatting improves readability, debugging, and API development for modern web applications and data exchange.</p>
+        <button class="read-btn" data-blog="json-guide">Read Article →</button>
       </div>
     </div>
 
+    <!-- Blog 5: QR Codes for Business -->
     <div class="blog-card">
-      <div class="blog-image">
-        <i class="fas fa-qrcode"></i>
-      </div>
-
+      <div class="blog-image"><i class="fas fa-qrcode"></i></div>
       <div class="blog-content">
-        <div class="blog-tag">QR Tools</div>
+        <div class="blog-tag">📱 QR Tools</div>
         <h2>How QR Codes Help Businesses Grow Faster</h2>
-        <p>
-          Explore creative uses of QR codes in marketing, payments, product packaging, and customer engagement.
-        </p>
-        <a href="#" class="read-btn">Read Article</a>
+        <p>Explore creative uses of QR codes in marketing, payments, product packaging, contactless menus, and customer engagement strategies.</p>
+        <button class="read-btn" data-blog="qr-business">Read Article →</button>
       </div>
     </div>
 
+    <!-- Blog 6: Online Calculators -->
     <div class="blog-card">
-      <div class="blog-image">
-        <i class="fas fa-chart-line"></i>
-      </div>
-
+      <div class="blog-image"><i class="fas fa-chart-line"></i></div>
       <div class="blog-content">
-        <div class="blog-tag">Calculators</div>
+        <div class="blog-tag">🧮 Calculators</div>
         <h2>Why Online Calculators Save Time Every Day</h2>
-        <p>
-          Learn how utility calculators simplify finance, education, health tracking, and daily productivity tasks.
-        </p>
-        <a href="#" class="read-btn">Read Article</a>
+        <p>Learn how utility calculators simplify finance, education, health tracking, EMI planning, and daily productivity tasks in seconds.</p>
+        <button class="read-btn" data-blog="calculators-guide">Read Article →</button>
       </div>
     </div>
-
   </div>
-</section>
 
+  <!-- Ad Section -->
+  <div class="ad-section">
+    <span class="ad-label"><i class="fas fa-ad"></i> Advertisement</span>
+    <div id="container-blog-ad"></div>
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
 <footer>
   <div class="container">
-    <p>© 2025 ToolkitPro • supporttoolkitpro@gmail.com</p>
+    <div class="footer-flex">
+      <div class="footer-logo">
+        <h3 style="font-size: 1.3rem; background: linear-gradient(135deg, var(--primary), #4f46e5); -webkit-background-clip: text; background-clip: text; color: transparent;">ToolkitPro</h3>
+        <p style="font-size: 0.8rem; color: var(--text-secondary);">26+ non-AI tools · Free forever</p>
+      </div>
+      <div class="footer-contact">
+        <p style="font-size: 0.85rem;"><i class="far fa-envelope"></i> <a href="mailto:supporttoolkitpro@gmail.com" style="color: var(--primary);">supporttoolkitpro@gmail.com</a></p>
+        <div class="footer-links-bottom">
+          <a href="#" id="footerPrivacy">Privacy Policy</a>
+          <a href="#" id="footerDisclaimer">Disclaimer</a>
+          <a href="#" id="footerTerms">Terms of Use</a>
+          <a href="#" id="footerContact">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">© 2025 ToolkitPro — Reliable utilities, always improving</div>
   </div>
 </footer>
 
+<script>
+  // ========== BLOG POST CONTENT FOR MODAL / ALERT (Simulated article reading) ==========
+  const blogContentMap = {
+    'pdf-compress': {
+      title: 'How to Compress PDF Files Without Losing Quality',
+      content: `PDF compression is essential for sharing documents via email or uploading to websites. 
+      Most PDF compressors work by removing metadata, compressing images, and optimizing fonts. 
+      ToolkitPro's PDF Compressor reduces file size by up to 70% while preserving text clarity and image quality. 
+      For best results, always choose "balanced" compression mode.`
+    },
+    'image-formats': {
+      title: 'Best Image Formats for Websites in 2025',
+      content: `WebP is now the universal standard for web images, offering 30% smaller file sizes than JPEG. 
+      Use PNG for logos and images requiring transparency. SVG is perfect for icons and illustrations. 
+      ToolkitPro Image Converter supports all these formats with one-click conversion.`
+    },
+    'password-security': {
+      title: 'How to Create Strong Passwords Easily',
+      content: `Weak passwords cause 80% of data breaches. Use 12+ characters with uppercase, lowercase, numbers, and symbols. 
+      ToolkitPro Password Generator creates cryptographically strong passwords instantly. Never reuse passwords across sites.`
+    },
+    'json-guide': {
+      title: 'What is JSON Formatting & Why Developers Need It',
+      content: `JSON (JavaScript Object Notation) is lightweight data interchange format. 
+      Pretty-printing JSON makes debugging APIs 10x faster. ToolkitPro JSON Formatter validates and beautifies 
+      messy JSON in real-time, showing line numbers and syntax highlighting.`
+    },
+    'qr-business': {
+      title: 'How QR Codes Help Businesses Grow Faster',
+      content: `QR codes bridge physical and digital worlds. Restaurants use them for contactless menus. 
+      Retailers add QR codes to product packaging for user manuals. ToolkitPro QR Generator creates 
+      customizable QR codes for URLs, vCards, WiFi credentials, and more.`
+    },
+    'calculators-guide': {
+      title: 'Why Online Calculators Save Time Every Day',
+      content: `Online calculators eliminate manual math errors. Use EMI calculators for loan planning, 
+      BMI calculators for health tracking, and GST calculators for business invoicing. 
+      ToolkitPro offers 8+ calculators designed for instant, accurate results.`
+    }
+  };
+
+  // ========== DARK MODE ==========
+  function initDarkMode() {
+    const darkToggle = document.getElementById("darkModeToggle");
+    const mobileDarkToggle = document.getElementById("mobileDarkToggle");
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark');
+    } else if (savedTheme === 'light') {
+      document.body.classList.remove('dark');
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.body.classList.add('dark');
+    }
+    
+    function toggleDark() {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    }
+    
+    if (darkToggle) darkToggle.addEventListener('click', toggleDark);
+    if (mobileDarkToggle) mobileDarkToggle.addEventListener('click', toggleDark);
+  }
+
+  // ========== MOBILE MENU ==========
+  function initMobileMenu() {
+    const hamburger = document.getElementById("hamburgerBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener("click", () => mobileMenu.classList.toggle("show"));
+    }
+    const allMobileLinks = document.querySelectorAll("#mobileMenu a, #mobileMenu button");
+    allMobileLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        if (mobileMenu) mobileMenu.classList.remove("show");
+      });
+    });
+  }
+
+  // ========== NAVIGATION HANDLERS (Full working with file names) ==========
+  function initNavActions() {
+    document.getElementById("navHome")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/'; });
+    document.getElementById("navAllTools")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/?view=all'; });
+    document.getElementById("navCategories")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/?view=categories'; });
+    document.getElementById("navBlog")?.addEventListener("click", (e) => { e.preventDefault(); });
+    document.getElementById("navAbout")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/about.html'; });
+    document.getElementById("navContact")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
+    
+    // Mobile menu handlers
+    document.querySelectorAll("[data-mobile]").forEach(el => {
+      el.addEventListener("click", (e) => {
+        e.preventDefault();
+        const val = el.getAttribute("data-mobile");
+        if (val === "home") window.location.href = '/';
+        else if (val === "all") window.location.href = '/?view=all';
+        else if (val === "categories") window.location.href = '/?view=categories';
+        else if (val === "blog") window.location.href = '/blog.html';
+        else if (val === "about") window.location.href = '/about.html';
+        else if (val === "contact") window.location.href = '/contact.html';
+      });
+    });
+    
+    // Footer legal links
+    document.getElementById("footerPrivacy")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/privacy-policy.html'; });
+    document.getElementById("footerDisclaimer")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/disclaimer.html'; });
+    document.getElementById("footerTerms")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/terms.html'; });
+    document.getElementById("footerContact")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
+    
+    // Logo click
+    const logo = document.querySelector(".logo h1");
+    if (logo) logo.addEventListener("click", () => { window.location.href = '/'; });
+  }
+
+  // ========== BLOG READ BUTTON HANDLERS ==========
+  function initBlogHandlers() {
+    const readBtns = document.querySelectorAll('.read-btn');
+    readBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const blogId = btn.getAttribute('data-blog');
+        const blogData = blogContentMap[blogId];
+        if (blogData) {
+          // Create a modal-style alert or redirect to article page
+          // For demo, we show a nice alert. In production, redirect to /blog/article-name.html
+          const isDark = document.body.classList.contains('dark');
+          const modalHtml = `
+            <div id="articleModal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:flex; align-items:center; justify-content:center; z-index:10000; backdrop-filter:blur(4px);">
+              <div style="background:${isDark ? '#1e293b' : '#ffffff'}; max-width:550px; width:90%; border-radius:32px; padding:28px; box-shadow:0 25px 50px -12px black; border:1px solid ${isDark ? '#334155' : '#e2e8f0'};">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                  <h2 style="color:${isDark ? '#f1f5f9' : '#0f172a'}; font-size:1.5rem;">📖 ${blogData.title}</h2>
+                  <button id="closeModalBtn" style="background:transparent; border:none; font-size:1.8rem; cursor:pointer; color:${isDark ? '#94a3b8' : '#64748b'};">&times;</button>
+                </div>
+                <p style="color:${isDark ? '#cbd5e1' : '#334155'}; line-height:1.7; margin-bottom:24px;">${blogData.content}</p>
+                <div style="display:flex; gap:12px; justify-content:flex-end;">
+                  <button id="modalCloseBtn" style="background:var(--primary); color:white; border:none; padding:10px 24px; border-radius:40px; font-weight:600; cursor:pointer;">Close</button>
+                </div>
+                <p style="font-size:0.7rem; color:${isDark ? '#64748b' : '#94a3b8'}; margin-top:16px; text-align:center;">🚀 Try the related tool on ToolkitPro homepage</p>
+              </div>
+            </div>
+          `;
+          document.body.insertAdjacentHTML('beforeend', modalHtml);
+          document.body.style.overflow = 'hidden';
+          
+          const closeModal = () => {
+            const modal = document.getElementById('articleModal');
+            if (modal) modal.remove();
+            document.body.style.overflow = '';
+          };
+          document.getElementById('closeModalBtn')?.addEventListener('click', closeModal);
+          document.getElementById('modalCloseBtn')?.addEventListener('click', closeModal);
+          document.getElementById('articleModal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'articleModal') closeModal();
+          });
+        } else {
+          alert('📄 Full article coming soon. Stay tuned for detailed guides!');
+        }
+      });
+    });
+  }
+
+  // ========== ACTIVE NAV MARKER ==========
+  function setActiveNav() {
+    document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => a.classList.remove('active'));
+    document.getElementById("navBlog")?.classList.add('active');
+  }
+
+  // Initialize everything
+  initDarkMode();
+  initMobileMenu();
+  initNavActions();
+  initBlogHandlers();
+  setActiveNav();
+
+  // Ad script (optional - same network as main site)
+  const adContainer = document.getElementById('container-blog-ad');
+  if (adContainer) {
+    const adScript = document.createElement('script');
+    adScript.async = true;
+    adScript.setAttribute('data-cfasync', 'false');
+    adScript.src = 'https://pl29407567.profitablecpmratenetwork.com/c2608aed4d10e76bb8072ec639e963f7/invoke.js';
+    adContainer.appendChild(adScript);
+  }
+</script>
+
+<!-- Ad network script (same pattern as main site for consistency) -->
+<script async="async" data-cfasync="false" src="https://pl29407567.profitablecpmratenetwork.com/c2608aed4d10e76bb8072ec639e963f7/invoke.js"></script>
 </body>
 </html>
