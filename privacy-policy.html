@@ -5,8 +5,8 @@
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔒</text></svg>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Privacy Policy for ToolkitPro - Learn how we collect, use, and protect your data. Your privacy is our priority.">
-    <meta name="keywords" content="privacy policy, data protection, privacy, terms, ToolkitPro">
+    <meta name="description" content="Privacy Policy for ToolkitPro - Learn how we collect, use, and protect your data. Your privacy is our priority when using our free online tools.">
+    <meta name="keywords" content="privacy policy, data protection, privacy, terms, ToolkitPro, online tools privacy">
     <title>Privacy Policy | ToolkitPro - Your Privacy Matters</title>
     
     <!-- Google Fonts + Font Awesome -->
@@ -90,6 +90,7 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            cursor: pointer;
         }
         .nav-links {
             display: flex;
@@ -102,6 +103,7 @@
             color: var(--nav-text);
             font-size: 0.95rem;
             transition: 0.2s;
+            cursor: pointer;
         }
         .nav-links a:hover, .nav-links a.active {
             color: var(--nav-hover);
@@ -123,6 +125,11 @@
             font-weight: 600;
             color: var(--primary);
             font-size: 0.85rem;
+            transition: 0.2s;
+        }
+        .dark-toggle:hover {
+            background: var(--primary);
+            color: white;
         }
         .hamburger {
             display: none;
@@ -148,6 +155,7 @@
             font-weight: 600;
             color: var(--nav-text);
             font-size: 1rem;
+            cursor: pointer;
         }
 
         /* ========== PRIVACY POLICY CONTENT ========== */
@@ -209,23 +217,35 @@
         }
         .policy-section p {
             color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.7;
             margin-bottom: 1rem;
         }
         .policy-section ul {
             margin: 1rem 0 1rem 2rem;
             color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.7;
         }
         .policy-section li {
             margin-bottom: 0.5rem;
         }
-        .contact-box {
+        .highlight-box {
             background: var(--primary-soft);
+            border-left: 4px solid var(--primary);
+            border-radius: 16px;
+            padding: 1.2rem;
+            margin: 1.5rem 0;
+        }
+        .highlight-box i {
+            color: var(--primary);
+            margin-right: 10px;
+        }
+        .contact-box {
+            background: linear-gradient(135deg, var(--primary-soft), var(--bg-surface));
             border-radius: 20px;
             padding: 1.5rem;
             margin-top: 2rem;
             text-align: center;
+            border: 1px solid var(--border-light);
         }
         .contact-box i {
             font-size: 2rem;
@@ -239,6 +259,7 @@
             color: var(--primary);
             text-decoration: none;
             font-weight: 600;
+            font-size: 1.1rem;
         }
         .contact-email-link:hover {
             text-decoration: underline;
@@ -246,12 +267,20 @@
         
         /* Ad Container */
         .ad-container {
-            background: var(--ad-bg);
-            margin: 20px 0;
-            padding: 10px;
-            border-radius: 16px;
+            background: var(--primary-soft);
+            margin-top: 30px;
+            padding: 12px;
+            border-radius: 20px;
             text-align: center;
             border: 1px solid var(--border-light);
+            max-width: 728px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .ad-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
         }
         
         /* Footer */
@@ -277,6 +306,7 @@
             color: var(--text-secondary);
             text-decoration: none;
             font-size: 0.8rem;
+            cursor: pointer;
         }
         .footer-links a:hover {
             color: var(--primary);
@@ -304,11 +334,11 @@
 <div class="site-header">
     <div class="container">
         <div class="navbar">
-            <div class="logo"><h1>ToolkitPro</h1></div>
+            <div class="logo"><h1 onclick="window.location.href='/'">ToolkitPro</h1></div>
             <div class="nav-links">
-                <a href="/">🏠 Home</a>
-                <a href="/tools/all">🛠️ All Tools</a>
-                <a href="/categories">📁 Categories</a>
+                <a href="/" id="navHome">🏠 Home</a>
+                <a href="#" id="navAllTools">🛠️ All Tools</a>
+                <a href="#" id="navCategories">📁 Categories</a>
                 <a href="#" id="navBlog">📝 Blog</a>
                 <a href="#" id="navAbout">👤 About</a>
                 <a href="#" id="navContact">📞 Contact</a>
@@ -318,12 +348,12 @@
             <div class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></div>
         </div>
         <div class="mobile-menu" id="mobileMenu">
-            <a href="/">🏠 Home</a>
-            <a href="/tools/all">🛠️ All Tools</a>
-            <a href="/categories">📁 Categories</a>
-            <a href="#" id="mobileBlog">📝 Blog</a>
-            <a href="#" id="mobileAbout">👤 About</a>
-            <a href="#" id="mobileContact">📞 Contact</a>
+            <a href="/" data-mobile="home">🏠 Home</a>
+            <a href="#" data-mobile="all">🛠️ All Tools</a>
+            <a href="#" data-mobile="categories">📁 Categories</a>
+            <a href="#" data-mobile="blog">📝 Blog</a>
+            <a href="#" data-mobile="about">👤 About</a>
+            <a href="#" data-mobile="contact">📞 Contact</a>
             <button id="mobileDarkToggle" class="dark-toggle" style="margin-top: 6px;"><i class="fas fa-moon"></i> Dark Mode</button>
             <div class="contact-email" style="margin-top:6px;"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</div>
         </div>
@@ -341,7 +371,7 @@
             <div class="policy-header">
                 <h1><i class="fas fa-shield-alt"></i> Privacy Policy</h1>
                 <div class="last-updated">
-                    <i class="far fa-calendar-alt"></i> Last updated: May 10, 2026
+                    <i class="far fa-calendar-alt"></i> Last updated: May 12, 2026
                 </div>
             </div>
             
@@ -359,6 +389,11 @@
                     <li><strong>Device Information:</strong> Browser type, operating system, IP address, and device identifiers.</li>
                     <li><strong>Cookies:</strong> Small data files stored on your device to enhance user experience.</li>
                 </ul>
+            </div>
+            
+            <div class="highlight-box">
+                <i class="fas fa-shield-alt"></i>
+                <strong>Important Privacy Guarantee:</strong> All our image, document, and data processing tools work locally in your browser. Your files are never uploaded to our servers, ensuring your privacy remains protected at all times.
             </div>
             
             <div class="policy-section">
@@ -384,7 +419,7 @@
                 <p>Our advertising partners include:</p>
                 <ul>
                     <li><strong>Google AdSense</strong> - Uses cookies to serve ads based on your prior visits to our website and other sites on the internet.</li>
-                    <li><strong>High Performance Format</strong> - Uses cookies and web beacons for ad delivery and measurement.</li>
+                    <li><strong>High Performance Format Network</strong> - Uses cookies and web beacons for ad delivery and measurement.</li>
                 </ul>
                 <p>You may opt out of personalized advertising by visiting Google's Ad Settings or the Network Advertising Initiative opt-out page.</p>
             </div>
@@ -392,7 +427,6 @@
             <div class="policy-section">
                 <h2>Data Security</h2>
                 <p>We implement appropriate technical and organizational security measures to protect your personal information. However, please note that no method of transmission over the Internet or method of electronic storage is 100% secure.</p>
-                <p><strong>Important Note:</strong> All our image, document, and data processing tools work locally in your browser. Your files are never uploaded to our servers, ensuring your privacy remains protected.</p>
             </div>
             
             <div class="policy-section">
@@ -414,16 +448,15 @@
                 <i class="fas fa-envelope"></i>
                 <h3>Contact Us</h3>
                 <p>If you have any questions about this Privacy Policy, please contact us:</p>
-                <p><strong>Email:</strong> <a href="mailto:supporttoolkitpro@gmail.com" class="contact-email-link">supporttoolkitpro@gmail.com</a></p>
-                <p><strong>Website:</strong> https://toolkit-pro.in/</p>
+                <p><a href="mailto:supporttoolkitpro@gmail.com" class="contact-email-link">supporttoolkitpro@gmail.com</a></p>
+                <p style="font-size: 0.85rem; margin-top: 8px;">We typically respond within 24 hours</p>
             </div>
         </div>
         
         <!-- Ad Container -->
-        <div class="ad-container" style="background: var(--primary-soft); margin-top: 30px; border-radius: 20px; padding: 12px; text-align: center;">
-            <div style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 8px;">Advertisement</div>
-            <script async="async" data-cfasync="false" src="https://pl29407567.profitablecpmratenetwork.com/c2608aed4d10e76bb8072ec639e963f7/invoke.js"></script>
-            <div id="container-c2608aed4d10e76bb8072ec639e963f7"></div>
+        <div class="ad-container">
+            <div class="ad-label"><i class="fas fa-ad"></i> Advertisement</div>
+            <div id="container-privacy-ad"></div>
         </div>
     </div>
 </div>
@@ -439,10 +472,10 @@
             <div class="footer-contact">
                 <p style="font-size: 0.85rem;"><i class="far fa-envelope"></i> <a href="mailto:supporttoolkitpro@gmail.com" style="color: var(--primary);">supporttoolkitpro@gmail.com</a></p>
                 <div class="footer-links">
-                    <a href="/privacy-policy.html">Privacy Policy</a>
-                    <a href="/terms.html">Terms of Use</a>
-                    <a href="/disclaimer.html">Disclaimer</a>
-                    <a href="/contact.html">Contact</a>
+                    <a href="#" id="footerPrivacy">Privacy Policy</a>
+                    <a href="#" id="footerTerms">Terms of Use</a>
+                    <a href="#" id="footerDisclaimer">Disclaimer</a>
+                    <a href="#" id="footerContact">Contact</a>
                 </div>
             </div>
         </div>
@@ -480,7 +513,7 @@
         if (hamburger && mobileMenu) {
             hamburger.addEventListener("click", () => mobileMenu.classList.toggle("show"));
         }
-        const mobileLinks = document.querySelectorAll("#mobileMenu a, #mobileBlog, #mobileAbout, #mobileContact");
+        const mobileLinks = document.querySelectorAll("#mobileMenu a, #mobileMenu button");
         mobileLinks.forEach(link => {
             link.addEventListener("click", () => {
                 if (mobileMenu) mobileMenu.classList.remove("show");
@@ -488,40 +521,64 @@
         });
     }
     
-    // ========== Navigation Actions ==========
+    // ========== Navigation Actions (Full working with file redirects) ==========
     function initNavActions() {
-        document.getElementById("navBlog")?.addEventListener("click", (e) => { e.preventDefault(); alert("📖 Coming soon: Tech tips & productivity guides"); });
-        document.getElementById("navAbout")?.addEventListener("click", (e) => { e.preventDefault(); alert("🔧 ToolkitPro — 26+ privacy-first utilities. We respect your privacy."); });
-        document.getElementById("navContact")?.addEventListener("click", (e) => { e.preventDefault(); alert("📧 supporttoolkitpro@gmail.com | We reply within 24 hours"); });
-        document.getElementById("mobileBlog")?.addEventListener("click", (e) => { e.preventDefault(); alert("📖 Blog coming soon"); });
-        document.getElementById("mobileAbout")?.addEventListener("click", (e) => { e.preventDefault(); alert("ToolkitPro — Simplify your digital life"); });
-        document.getElementById("mobileContact")?.addEventListener("click", (e) => { e.preventDefault(); alert("📧 supporttoolkitpro@gmail.com"); });
+        // Main navigation
+        document.getElementById("navHome")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/'; });
+        document.getElementById("navAllTools")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/?view=all'; });
+        document.getElementById("navCategories")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/?view=categories'; });
+        document.getElementById("navBlog")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/blog.html'; });
+        document.getElementById("navAbout")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/about.html'; });
+        document.getElementById("navContact")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
+        
+        // Mobile menu handlers
+        document.querySelectorAll("[data-mobile]").forEach(el => {
+            el.addEventListener("click", (e) => {
+                e.preventDefault();
+                const val = el.getAttribute("data-mobile");
+                if (val === "home") window.location.href = '/';
+                else if (val === "all") window.location.href = '/?view=all';
+                else if (val === "categories") window.location.href = '/?view=categories';
+                else if (val === "blog") window.location.href = '/blog.html';
+                else if (val === "about") window.location.href = '/about.html';
+                else if (val === "contact") window.location.href = '/contact.html';
+            });
+        });
+        
+        // Footer legal links
+        document.getElementById("footerPrivacy")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/privacy-policy.html'; });
+        document.getElementById("footerTerms")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/terms.html'; });
+        document.getElementById("footerDisclaimer")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/disclaimer.html'; });
+        document.getElementById("footerContact")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
+        
+        // Logo click
+        const logo = document.querySelector(".logo h1");
+        if (logo) logo.addEventListener("click", () => { window.location.href = '/'; });
     }
     
-    // Home & other links
-    document.querySelectorAll('.nav-links a[href="/"], .mobile-menu a[href="/"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.location.href = '/';
-        });
-    });
-    document.querySelectorAll('.nav-links a[href="/tools/all"], .mobile-menu a[href="/tools/all"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('✨ All Tools — 26+ utilities including PDF tools, image editors, calculators');
-        });
-    });
-    document.querySelectorAll('.nav-links a[href="/categories"], .mobile-menu a[href="/categories"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('📁 Categories: Document, Image, Dev, Calculator, Text, Color, Utility');
-        });
-    });
+    // Set active nav (no active for privacy page)
+    function setActiveNav() {
+        document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => a.classList.remove('active'));
+    }
     
     // Initialize everything
     initDarkMode();
     initMobileMenu();
     initNavActions();
+    setActiveNav();
+    
+    // Ad script (same network as main site)
+    const adContainer = document.getElementById('container-privacy-ad');
+    if (adContainer) {
+        const adScript = document.createElement('script');
+        adScript.async = true;
+        adScript.setAttribute('data-cfasync', 'false');
+        adScript.src = 'https://pl29407567.profitablecpmratenetwork.com/c2608aed4d10e76bb8072ec639e963f7/invoke.js';
+        adContainer.appendChild(adScript);
+    }
 </script>
+
+<!-- Ad network script -->
+<script async="async" data-cfasync="false" src="https://pl29407567.profitablecpmratenetwork.com/c2608aed4d10e76bb8072ec639e963f7/invoke.js"></script>
 </body>
 </html>
