@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="Free EMI Calculator - Calculate your monthly loan EMI, total interest, and total payment. Plan your home loan, car loan, or personal loan easily.">
-    <meta name="keywords" content="EMI calculator, loan EMI, monthly installment, home loan calculator, car loan calculator, financial tool">
-    <title>EMI Calculator | ToolkitPro - Calculate Your Loan EMI</title>
+    <meta name="keywords" content="EMI calculator, loan EMI, monthly installment, home loan calculator, car loan calculator, financial tool, ToolkitPro">
+    <title>EMI Calculator | ToolkitPro - Calculate Your Loan EMI Instantly</title>
     
     <!-- Google Fonts + Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -29,7 +29,6 @@
             --text-muted: #64748b;
             --border-light: #e2e8f0;
             --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.05);
-            --hover-shadow: 0 20px 30px -12px rgba(30, 107, 255, 0.2);
             --primary: #2563eb;
             --primary-deep: #1e40af;
             --primary-soft: #eff6ff;
@@ -48,7 +47,6 @@
             --text-muted: #94a3b8;
             --border-light: #1e293b;
             --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-            --hover-shadow: 0 20px 32px -12px rgba(59, 130, 246, 0.5);
             --primary: #3b82f6;
             --primary-deep: #60a5fa;
             --primary-soft: #1e293b;
@@ -92,6 +90,7 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            cursor: pointer;
         }
         .nav-links {
             display: flex;
@@ -104,6 +103,7 @@
             color: var(--nav-text);
             font-size: 0.95rem;
             transition: 0.2s;
+            cursor: pointer;
         }
         .nav-links a:hover, .nav-links a.active {
             color: var(--nav-hover);
@@ -125,6 +125,11 @@
             font-weight: 600;
             color: var(--primary);
             font-size: 0.85rem;
+            transition: 0.2s;
+        }
+        .dark-toggle:hover {
+            background: var(--primary);
+            color: white;
         }
         .hamburger {
             display: none;
@@ -150,10 +155,11 @@
             font-weight: 600;
             color: var(--nav-text);
             font-size: 1rem;
+            cursor: pointer;
         }
 
-        /* ========== EMI CALCULATOR CARD ========== */
-        .hero-section {
+        /* ========== EMI CALCULATOR TOOL STYLES ========== */
+        .tool-page {
             padding: 40px 0 20px;
         }
         .breadcrumb {
@@ -174,7 +180,7 @@
             padding: 2.5rem;
             box-shadow: var(--card-shadow);
             border: 1px solid var(--border-light);
-            max-width: 580px;
+            max-width: 600px;
             margin: 0 auto;
             text-align: center;
         }
@@ -190,7 +196,7 @@
         }
         .tool-card .subhead {
             color: var(--text-secondary);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
             font-size: 0.95rem;
             border-left: 3px solid var(--accent);
             padding-left: 16px;
@@ -203,13 +209,13 @@
             text-align: left;
         }
         .input-label {
-            font-weight: 500;
+            font-weight: 600;
             font-size: 0.85rem;
             margin-bottom: 8px;
             display: flex;
             align-items: center;
             gap: 8px;
-            color: var(--text-secondary);
+            color: var(--text-primary);
         }
         .input-field {
             width: 100%;
@@ -221,9 +227,11 @@
             font-size: 1rem;
             outline: none;
             transition: 0.2s;
+            font-family: 'Inter', sans-serif;
         }
         .input-field:focus {
             border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
         
         /* Button */
@@ -262,11 +270,12 @@
             font-weight: 800;
             color: var(--accent);
             margin-bottom: 12px;
+            word-break: break-word;
         }
         .result-details {
             display: flex;
             justify-content: space-between;
-            gap: 16px;
+            gap: 12px;
             flex-wrap: wrap;
             margin-top: 16px;
             padding-top: 16px;
@@ -274,15 +283,20 @@
         }
         .detail-card {
             flex: 1;
-            min-width: 120px;
+            min-width: 110px;
             background: var(--bg-surface);
             border-radius: 16px;
-            padding: 12px;
+            padding: 12px 8px;
+            text-align: center;
         }
         .detail-label {
             font-size: 0.7rem;
             color: var(--text-muted);
-            margin-bottom: 4px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
         }
         .detail-value {
             font-size: 1rem;
@@ -294,13 +308,32 @@
         .info-note {
             background: var(--primary-soft);
             border-radius: 16px;
-            padding: 10px 14px;
+            padding: 12px 16px;
             margin-top: 20px;
             font-size: 0.7rem;
             color: var(--text-secondary);
             text-align: left;
+            line-height: 1.5;
         }
         
+        /* Ad Container */
+        .ad-container {
+            background: var(--primary-soft);
+            margin-top: 30px;
+            padding: 12px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid var(--border-light);
+            max-width: 728px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .ad-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
         /* Footer */
         footer {
             background: var(--bg-surface);
@@ -324,6 +357,7 @@
             color: var(--text-secondary);
             text-decoration: none;
             font-size: 0.8rem;
+            cursor: pointer;
         }
         .footer-links a:hover {
             color: var(--primary);
@@ -352,11 +386,11 @@
 <div class="site-header">
     <div class="container">
         <div class="navbar">
-            <div class="logo"><h1>ToolkitPro</h1></div>
+            <div class="logo"><h1 onclick="window.location.href='/'">ToolkitPro</h1></div>
             <div class="nav-links">
-                <a href="/">🏠 Home</a>
-                <a href="/tools/all">🛠️ All Tools</a>
-                <a href="/categories">📁 Categories</a>
+                <a href="/" id="navHome">🏠 Home</a>
+                <a href="#" id="navAllTools">🛠️ All Tools</a>
+                <a href="#" id="navCategories">📁 Categories</a>
                 <a href="#" id="navBlog">📝 Blog</a>
                 <a href="#" id="navAbout">👤 About</a>
                 <a href="#" id="navContact">📞 Contact</a>
@@ -366,29 +400,29 @@
             <div class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></div>
         </div>
         <div class="mobile-menu" id="mobileMenu">
-            <a href="/">🏠 Home</a>
-            <a href="/tools/all">🛠️ All Tools</a>
-            <a href="/categories">📁 Categories</a>
-            <a href="#" id="mobileBlog">📝 Blog</a>
-            <a href="#" id="mobileAbout">👤 About</a>
-            <a href="#" id="mobileContact">📞 Contact</a>
+            <a href="/" data-mobile="home">🏠 Home</a>
+            <a href="#" data-mobile="all">🛠️ All Tools</a>
+            <a href="#" data-mobile="categories">📁 Categories</a>
+            <a href="#" data-mobile="blog">📝 Blog</a>
+            <a href="#" data-mobile="about">👤 About</a>
+            <a href="#" data-mobile="contact">📞 Contact</a>
             <button id="mobileDarkToggle" class="dark-toggle" style="margin-top: 6px;"><i class="fas fa-moon"></i> Dark Mode</button>
             <div class="contact-email" style="margin-top:6px;"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</div>
         </div>
     </div>
 </div>
 
-<!-- ========== MAIN EMI CALCULATOR SECTION ========== -->
+<!-- ========== EMI CALCULATOR TOOL ========== -->
 <div class="container">
-    <div class="hero-section">
+    <div class="tool-page">
         <div class="breadcrumb">
-            <a href="/">Home</a> / <a href="/tools/all">Tools</a> / <span>EMI Calculator</span>
+            <a href="/">Home</a> / <span>EMI Calculator</span>
         </div>
         
         <div class="tool-card">
             <h1><i class="fas fa-chart-line"></i> EMI Calculator</h1>
             <div class="subhead">
-                Calculate your monthly loan EMI, total interest payable, and total payment amount. Plan your finances better.
+                <i class="fas fa-calculator"></i> Calculate your monthly loan EMI, total interest payable, and total payment amount. Plan your finances better.
             </div>
             
             <div class="input-group">
@@ -422,8 +456,14 @@
             </div>
             
             <div class="info-note">
-                <i class="fas fa-info-circle"></i> EMI calculation is based on the reducing balance method. This is an estimate; actual loan terms may vary by lender.
+                <i class="fas fa-info-circle"></i> EMI calculation is based on the reducing balance method. This is an estimate; actual loan terms may vary by lender. For home loans, car loans, or personal loans.
             </div>
+        </div>
+        
+        <!-- Ad Container -->
+        <div class="ad-container">
+            <div class="ad-label"><i class="fas fa-ad"></i> Advertisement</div>
+            <div id="container-emi-ad"></div>
         </div>
     </div>
 </div>
@@ -439,10 +479,10 @@
             <div class="footer-contact">
                 <p style="font-size: 0.85rem;"><i class="far fa-envelope"></i> <a href="mailto:supporttoolkitpro@gmail.com" style="color: var(--primary);">supporttoolkitpro@gmail.com</a></p>
                 <div class="footer-links">
-                    <a href="/privacy-policy.html">Privacy Policy</a>
-                    <a href="/disclaimer.html">Disclaimer</a>
-                    <a href="/terms.html">Terms of Use</a>
-                    <a href="/contact.html">Contact</a>
+                    <a href="#" id="footerPrivacy">Privacy Policy</a>
+                    <a href="#" id="footerDisclaimer">Disclaimer</a>
+                    <a href="#" id="footerTerms">Terms of Use</a>
+                    <a href="#" id="footerContact">Contact</a>
                 </div>
             </div>
         </div>
@@ -451,42 +491,26 @@
 </footer>
 
 <script>
-    // ========== DOM Elements ==========
-    const loanAmountInput = document.getElementById('loanAmount');
-    const interestRateInput = document.getElementById('interestRate');
-    const loanTenureInput = document.getElementById('loanTenure');
-    const calculateBtn = document.getElementById('calculateBtn');
-    const emiValueSpan = document.getElementById('emiValue');
-    const resultDetailsDiv = document.getElementById('resultDetails');
-    
-    // Format number as Indian currency
-    function formatCurrency(amount) {
-        return new Intl.NumberFormat('en-IN', {
-            maximumFractionDigits: 2,
-            minimumFractionDigits: 2
-        }).format(amount);
-    }
-    
-    // Calculate EMI
+    // ========== EMI CALCULATION FUNCTION ==========
     function calculateEMI() {
-        let P = parseFloat(loanAmountInput.value);
-        let annualRate = parseFloat(interestRateInput.value);
-        let n = parseFloat(loanTenureInput.value);
+        let P = parseFloat(document.getElementById('loanAmount').value);
+        let annualRate = parseFloat(document.getElementById('interestRate').value);
+        let n = parseFloat(document.getElementById('loanTenure').value);
         
         // Validate inputs
         if (isNaN(P) || P <= 0) {
-            emiValueSpan.innerHTML = 'Invalid Amount';
-            resultDetailsDiv.innerHTML = '';
+            document.getElementById('emiValue').innerHTML = 'Invalid Amount';
+            document.getElementById('resultDetails').innerHTML = '<div class="detail-card"><div class="detail-label">Error</div><div class="detail-value">Enter valid amount</div></div>';
             return;
         }
         if (isNaN(annualRate) || annualRate < 0) {
-            emiValueSpan.innerHTML = 'Invalid Rate';
-            resultDetailsDiv.innerHTML = '';
+            document.getElementById('emiValue').innerHTML = 'Invalid Rate';
+            document.getElementById('resultDetails').innerHTML = '<div class="detail-card"><div class="detail-label">Error</div><div class="detail-value">Enter valid interest rate</div></div>';
             return;
         }
         if (isNaN(n) || n <= 0) {
-            emiValueSpan.innerHTML = 'Invalid Tenure';
-            resultDetailsDiv.innerHTML = '';
+            document.getElementById('emiValue').innerHTML = 'Invalid Tenure';
+            document.getElementById('resultDetails').innerHTML = '<div class="detail-card"><div class="detail-label">Error</div><div class="detail-value">Enter valid tenure</div></div>';
             return;
         }
         
@@ -504,29 +528,40 @@
         let totalPayment = emi * n;
         let totalInterest = totalPayment - P;
         
-        // Display results
-        emiValueSpan.innerHTML = `₹ ${formatCurrency(emi)}`;
+        // Format as Indian Rupees
+        const formatter = new Intl.NumberFormat('en-IN', {
+            maximumFractionDigits: 2,
+            minimumFractionDigits: 2
+        });
         
-        resultDetailsDiv.innerHTML = `
+        // Display results
+        document.getElementById('emiValue').innerHTML = `₹ ${formatter.format(emi)} / month`;
+        
+        document.getElementById('resultDetails').innerHTML = `
             <div class="detail-card">
                 <div class="detail-label"><i class="fas fa-chart-simple"></i> Total Interest</div>
-                <div class="detail-value">₹ ${formatCurrency(totalInterest)}</div>
+                <div class="detail-value">₹ ${formatter.format(totalInterest)}</div>
             </div>
             <div class="detail-card">
                 <div class="detail-label"><i class="fas fa-wallet"></i> Total Payment</div>
-                <div class="detail-value">₹ ${formatCurrency(totalPayment)}</div>
+                <div class="detail-value">₹ ${formatter.format(totalPayment)}</div>
             </div>
             <div class="detail-card">
-                <div class="detail-label"><i class="fas fa-calendar-week"></i> Monthly EMI</div>
-                <div class="detail-value">₹ ${formatCurrency(emi)}</div>
+                <div class="detail-label"><i class="fas fa-calendar-week"></i> Tenure</div>
+                <div class="detail-value">${Math.floor(n)} months (${Math.floor(n/12)} years)</div>
             </div>
         `;
     }
     
-    // Auto-calculate on input change
-    loanAmountInput.addEventListener('input', calculateEMI);
-    interestRateInput.addEventListener('input', calculateEMI);
-    loanTenureInput.addEventListener('input', calculateEMI);
+    // ========== Event Listeners (Real-time updates) ==========
+    const loanAmount = document.getElementById('loanAmount');
+    const interestRate = document.getElementById('interestRate');
+    const loanTenure = document.getElementById('loanTenure');
+    const calculateBtn = document.getElementById('calculateBtn');
+    
+    loanAmount.addEventListener('input', calculateEMI);
+    interestRate.addEventListener('input', calculateEMI);
+    loanTenure.addEventListener('input', calculateEMI);
     calculateBtn.addEventListener('click', calculateEMI);
     
     // Calculate on page load
@@ -554,14 +589,14 @@
         if (mobileDarkToggle) mobileDarkToggle.addEventListener('click', toggleDark);
     }
     
-    // ========== Mobile Menu ==========
+    // ========== MOBILE MENU ==========
     function initMobileMenu() {
         const hamburger = document.getElementById("hamburgerBtn");
         const mobileMenu = document.getElementById("mobileMenu");
         if (hamburger && mobileMenu) {
             hamburger.addEventListener("click", () => mobileMenu.classList.toggle("show"));
         }
-        const mobileLinks = document.querySelectorAll("#mobileMenu a, #mobileBlog, #mobileAbout, #mobileContact");
+        const mobileLinks = document.querySelectorAll("#mobileMenu a, #mobileMenu button");
         mobileLinks.forEach(link => {
             link.addEventListener("click", () => {
                 if (mobileMenu) mobileMenu.classList.remove("show");
@@ -569,40 +604,57 @@
         });
     }
     
-    // ========== Navigation Actions ==========
+    // ========== NAVIGATION ACTIONS ==========
     function initNavActions() {
-        document.getElementById("navBlog")?.addEventListener("click", (e) => { e.preventDefault(); alert("📖 Coming soon: Financial planning tips"); });
-        document.getElementById("navAbout")?.addEventListener("click", (e) => { e.preventDefault(); alert("🔧 ToolkitPro — 26+ privacy-first utilities. EMI calculator provides accurate loan estimates."); });
-        document.getElementById("navContact")?.addEventListener("click", (e) => { e.preventDefault(); alert("📧 supporttoolkitpro@gmail.com | We reply within 24 hours"); });
-        document.getElementById("mobileBlog")?.addEventListener("click", (e) => { e.preventDefault(); alert("📖 Blog coming soon"); });
-        document.getElementById("mobileAbout")?.addEventListener("click", (e) => { e.preventDefault(); alert("ToolkitPro — Simplify your digital life"); });
-        document.getElementById("mobileContact")?.addEventListener("click", (e) => { e.preventDefault(); alert("📧 supporttoolkitpro@gmail.com"); });
+        document.getElementById("navHome")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/'; });
+        document.getElementById("navAllTools")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/?view=all'; });
+        document.getElementById("navCategories")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/?view=categories'; });
+        document.getElementById("navBlog")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/blog.html'; });
+        document.getElementById("navAbout")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/about.html'; });
+        document.getElementById("navContact")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
+        
+        // Mobile menu handlers
+        document.querySelectorAll("[data-mobile]").forEach(el => {
+            el.addEventListener("click", (e) => {
+                e.preventDefault();
+                const val = el.getAttribute("data-mobile");
+                if (val === "home") window.location.href = '/';
+                else if (val === "all") window.location.href = '/?view=all';
+                else if (val === "categories") window.location.href = '/?view=categories';
+                else if (val === "blog") window.location.href = '/blog.html';
+                else if (val === "about") window.location.href = '/about.html';
+                else if (val === "contact") window.location.href = '/contact.html';
+            });
+        });
+        
+        // Footer legal links
+        document.getElementById("footerPrivacy")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/privacy-policy.html'; });
+        document.getElementById("footerDisclaimer")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/disclaimer.html'; });
+        document.getElementById("footerTerms")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/terms.html'; });
+        document.getElementById("footerContact")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
+        
+        // Logo click
+        const logo = document.querySelector(".logo h1");
+        if (logo) logo.addEventListener("click", () => { window.location.href = '/'; });
     }
-    
-    // Home & other links
-    document.querySelectorAll('.nav-links a[href="/"], .mobile-menu a[href="/"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.location.href = '/';
-        });
-    });
-    document.querySelectorAll('.nav-links a[href="/tools/all"], .mobile-menu a[href="/tools/all"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('✨ All Tools — 26+ utilities including PDF tools, image editors, calculators');
-        });
-    });
-    document.querySelectorAll('.nav-links a[href="/categories"], .mobile-menu a[href="/categories"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('📁 Categories: Document, Image, Dev, Calculator, Text, Color, Utility');
-        });
-    });
     
     // Initialize everything
     initDarkMode();
     initMobileMenu();
     initNavActions();
+    
+    // Ad script (same network as main site)
+    const adContainer = document.getElementById('container-emi-ad');
+    if (adContainer) {
+        const adScript = document.createElement('script');
+        adScript.async = true;
+        adScript.setAttribute('data-cfasync', 'false');
+        adScript.src = 'https://pl29407567.profitablecpmratenetwork.com/c2608aed4d10e76bb8072ec639e963f7/invoke.js';
+        adContainer.appendChild(adScript);
+    }
 </script>
+
+<!-- Ad network script -->
+<script async="async" data-cfasync="false" src="https://pl29407567.profitablecpmratenetwork.com/c2608aed4d10e76bb8072ec639e963f7/invoke.js"></script>
 </body>
 </html>
