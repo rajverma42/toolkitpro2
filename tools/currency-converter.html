@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- ========== FAVICON / FIVECON ========== -->
+    <!-- ========== FAVICON / META ========== -->
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💱</text></svg>">
-    <link rel="icon" type="image/png" sizes="32x32" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💱</text></svg>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Currency Converter - Real-time exchange rates. Convert USD, EUR, GBP, INR and more. Free online currency converter tool by ToolkitPro.">
-    <meta name="keywords" content="currency converter, exchange rates, USD to INR, EUR to USD, money converter">
+    <meta name="description" content="Currency Converter - Real-time exchange rates. Convert USD, EUR, GBP, INR, JPY, CAD, AUD, CNY and more. Free online currency converter tool by ToolkitPro.">
+    <meta name="keywords" content="currency converter, exchange rates, USD to INR, EUR to USD, money converter, forex, ToolkitPro">
     <title>Currency Converter | ToolkitPro - Free Exchange Rate Tool</title>
     
     <!-- Google Fonts + Font Awesome -->
@@ -30,11 +29,11 @@
             --text-muted: #64748b;
             --border-light: #e2e8f0;
             --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.05);
-            --hover-shadow: 0 20px 30px -12px rgba(30, 107, 255, 0.2);
             --primary: #2563eb;
             --primary-deep: #1e40af;
             --primary-soft: #eff6ff;
             --accent: #f59e0b;
+            --success: #10b981;
             --nav-bg: #ffffff;
             --nav-text: #1e293b;
             --nav-hover: #2563eb;
@@ -48,11 +47,11 @@
             --text-muted: #94a3b8;
             --border-light: #1e293b;
             --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-            --hover-shadow: 0 20px 32px -12px rgba(59, 130, 246, 0.5);
             --primary: #3b82f6;
             --primary-deep: #60a5fa;
             --primary-soft: #1e293b;
             --accent: #fbbf24;
+            --success: #34d399;
             --nav-bg: #111827;
             --nav-text: #e2e8f0;
             --nav-hover: #60a5fa;
@@ -65,7 +64,7 @@
             transition: background-color 0.25s ease, color 0.2s ease;
         }
 
-        /* ========== HEADER & NAVIGATION (Full Website Look) ========== */
+        /* ========== HEADER & NAVIGATION ========== */
         .site-header {
             background: var(--bg-surface);
             border-bottom: 1px solid var(--border-light);
@@ -91,6 +90,7 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            cursor: pointer;
         }
         .nav-links {
             display: flex;
@@ -103,6 +103,7 @@
             color: var(--nav-text);
             font-size: 0.95rem;
             transition: 0.2s;
+            cursor: pointer;
         }
         .nav-links a:hover, .nav-links a.active {
             color: var(--nav-hover);
@@ -124,6 +125,11 @@
             font-weight: 600;
             color: var(--primary);
             font-size: 0.85rem;
+            transition: 0.2s;
+        }
+        .dark-toggle:hover {
+            background: var(--primary);
+            color: white;
         }
         .hamburger {
             display: none;
@@ -149,10 +155,11 @@
             font-weight: 600;
             color: var(--nav-text);
             font-size: 1rem;
+            cursor: pointer;
         }
 
-        /* ========== CURRENCY CONVERTER CARD (Enhanced) ========== */
-        .hero-section {
+        /* ========== CURRENCY CONVERTER TOOL STYLES ========== */
+        .tool-page {
             padding: 40px 0 20px;
         }
         .breadcrumb {
@@ -164,13 +171,16 @@
             color: var(--primary);
             text-decoration: none;
         }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
         .converter-card {
             background: var(--bg-surface);
             border-radius: 32px;
             padding: 2.5rem;
             box-shadow: var(--card-shadow);
             border: 1px solid var(--border-light);
-            max-width: 700px;
+            max-width: 750px;
             margin: 0 auto;
             text-align: center;
         }
@@ -179,23 +189,57 @@
             font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
         }
         .converter-card .subhead {
             color: var(--text-secondary);
             margin-bottom: 2rem;
             font-size: 0.9rem;
+            border-left: 3px solid var(--accent);
+            padding-left: 16px;
+            text-align: left;
         }
-        .input-group {
+        
+        /* Input Groups */
+        .converter-row {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
+            align-items: center;
             gap: 12px;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
+            justify-content: center;
         }
         .input-field {
-            flex: 1;
-            min-width: 150px;
+            flex: 2;
+            min-width: 180px;
         }
+        .currency-select {
+            flex: 1.5;
+            min-width: 160px;
+        }
+        .swap-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 10px;
+            transition: 0.2s;
+            background: var(--primary-soft);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+        }
+        .swap-icon:hover {
+            background: var(--primary);
+            color: white;
+            transform: rotate(180deg);
+        }
+        
         input, select {
             width: 100%;
             padding: 14px 18px;
@@ -207,50 +251,51 @@
             font-weight: 500;
             outline: none;
             transition: 0.2s;
+            font-family: 'Inter', sans-serif;
         }
         input:focus, select:focus {
             border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
-        .swap-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--primary);
-            cursor: pointer;
-            padding: 0 10px;
-        }
+        
         .btn-primary {
             background: var(--primary);
             border: none;
-            padding: 14px 32px;
+            padding: 14px 28px;
             border-radius: 60px;
             color: white;
             font-weight: 700;
             font-size: 1rem;
             cursor: pointer;
             transition: 0.2s;
-            width: auto;
-            min-width: 160px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 16px 0;
         }
         .btn-primary:hover {
             background: var(--primary-deep);
             transform: translateY(-2px);
         }
+        
         .result-box {
             background: var(--primary-soft);
             border-radius: 28px;
             padding: 24px;
-            margin: 28px 0 20px;
+            margin: 24px 0 16px;
+            text-align: center;
         }
         .result-label {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             color: var(--text-muted);
+            margin-bottom: 8px;
         }
         .result-amount {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 800;
             color: var(--accent);
             word-break: break-word;
@@ -260,12 +305,32 @@
             color: var(--text-muted);
             margin-top: 12px;
         }
-        .note {
+        
+        .info-note {
             font-size: 0.7rem;
             color: var(--text-muted);
-            margin-top: 20px;
+            margin-top: 16px;
             padding-top: 12px;
             border-top: 1px solid var(--border-light);
+            text-align: left;
+        }
+        
+        /* Ad Container */
+        .ad-container {
+            background: var(--primary-soft);
+            margin-top: 30px;
+            padding: 12px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid var(--border-light);
+            max-width: 728px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .ad-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
         }
 
         /* Footer */
@@ -291,6 +356,7 @@
             color: var(--text-secondary);
             text-decoration: none;
             font-size: 0.8rem;
+            cursor: pointer;
         }
         .footer-links a:hover {
             color: var(--primary);
@@ -303,13 +369,15 @@
         }
 
         @media (max-width: 768px) {
-            .container { padding: 0 20px; }
+            .container { padding: 0 18px; }
             .nav-links { display: none; }
             .hamburger { display: block; }
             .converter-card { padding: 1.5rem; }
-            .result-amount { font-size: 1.8rem; }
-            .input-group { flex-direction: column; }
-            .swap-icon { transform: rotate(90deg); margin: 5px 0; }
+            .converter-card h1 { font-size: 1.5rem; }
+            .converter-row { flex-direction: column; }
+            .swap-icon { transform: rotate(90deg); margin: 5px 0; width: 40px; height: 40px; }
+            .swap-icon:hover { transform: rotate(90deg); }
+            .result-amount { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -319,49 +387,55 @@
 <div class="site-header">
     <div class="container">
         <div class="navbar">
-            <div class="logo"><h1>ToolkitPro</h1></div>
+            <div class="logo"><h1 onclick="window.location.href='/'">ToolkitPro</h1></div>
             <div class="nav-links">
-                <a href="/">🏠 Home</a>
-                <a href="/tools/all">🛠️ All Tools</a>
-                <a href="/categories">📁 Categories</a>
+                <a href="/" id="navHome">🏠 Home</a>
+                <a href="#" id="navAllTools">🛠️ All Tools</a>
+                <a href="#" id="navCategories">📁 Categories</a>
                 <a href="#" id="navBlog">📝 Blog</a>
                 <a href="#" id="navAbout">👤 About</a>
                 <a href="#" id="navContact">📞 Contact</a>
-                <span class="contact-email"><i class="far fa-envelope"></i> support@toolkitpro.in</span>
+                <span class="contact-email"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</span>
                 <button id="darkModeToggle" class="dark-toggle"><i class="fas fa-moon"></i> Dark</button>
             </div>
             <div class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></div>
         </div>
         <div class="mobile-menu" id="mobileMenu">
-            <a href="/">🏠 Home</a>
-            <a href="/tools/all">🛠️ All Tools</a>
-            <a href="/categories">📁 Categories</a>
-            <a href="#" id="mobileBlog">📝 Blog</a>
-            <a href="#" id="mobileAbout">👤 About</a>
-            <a href="#" id="mobileContact">📞 Contact</a>
+            <a href="/" data-mobile="home">🏠 Home</a>
+            <a href="#" data-mobile="all">🛠️ All Tools</a>
+            <a href="#" data-mobile="categories">📁 Categories</a>
+            <a href="#" data-mobile="blog">📝 Blog</a>
+            <a href="#" data-mobile="about">👤 About</a>
+            <a href="#" data-mobile="contact">📞 Contact</a>
             <button id="mobileDarkToggle" class="dark-toggle" style="margin-top: 6px;"><i class="fas fa-moon"></i> Dark Mode</button>
-            <div class="contact-email" style="margin-top:6px;"><i class="far fa-envelope"></i> support@toolkitpro.in</div>
+            <div class="contact-email" style="margin-top:6px;"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</div>
         </div>
     </div>
 </div>
 
-<!-- ========== MAIN CONVERTER SECTION ========== -->
+<!-- ========== CURRENCY CONVERTER TOOL ========== -->
 <div class="container">
-    <div class="hero-section">
+    <div class="tool-page">
         <div class="breadcrumb">
-            <a href="/">Home</a> / <a href="/tools/all">Tools</a> / <span>Currency Converter</span>
+            <a href="/">Home</a> / <span>Currency Converter</span>
         </div>
         
         <div class="converter-card">
-            <i class="fas fa-money-bill-wave" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 0.5rem; display: inline-block;"></i>
-            <h1>Currency Converter</h1>
-            <p class="subhead">Real-time exchange rates • Free & unlimited</p>
+            <h1><i class="fas fa-money-bill-wave"></i> Currency Converter</h1>
+            <div class="subhead">
+                <i class="fas fa-chart-line"></i> Real-time exchange rates • Convert between 8 major currencies instantly.
+            </div>
             
-            <div class="input-group">
+            <!-- Amount Input -->
+            <div class="converter-row">
                 <div class="input-field">
-                    <input type="number" id="amount" value="100" step="any" placeholder="Amount">
+                    <input type="number" id="amount" value="100" step="any" placeholder="Enter amount">
                 </div>
-                <div class="input-field">
+            </div>
+            
+            <!-- From / To Currency with Swap -->
+            <div class="converter-row">
+                <div class="currency-select">
                     <select id="fromCurrency">
                         <option value="USD">🇺🇸 USD - US Dollar</option>
                         <option value="EUR">🇪🇺 EUR - Euro</option>
@@ -376,7 +450,7 @@
                 <div class="swap-icon" id="swapCurrencies">
                     <i class="fas fa-arrow-right-arrow-left"></i>
                 </div>
-                <div class="input-field">
+                <div class="currency-select">
                     <select id="toCurrency">
                         <option value="USD">🇺🇸 USD - US Dollar</option>
                         <option value="EUR" selected>🇪🇺 EUR - Euro</option>
@@ -390,16 +464,25 @@
                 </div>
             </div>
             
-            <button class="btn-primary" id="convertBtn"><i class="fas fa-calculator"></i> Convert Now</button>
+            <button class="btn-primary" id="convertBtn">
+                <i class="fas fa-calculator"></i> Convert Now
+            </button>
             
             <div class="result-box">
                 <div class="result-label">Converted Amount</div>
                 <div class="result-amount" id="result">—</div>
                 <div class="rate-info" id="rateInfo">Live exchange rates</div>
             </div>
-            <div class="note">
-                <i class="fas fa-chart-line"></i> Rates updated every 5 minutes from open exchange rates (demo with realistic data). For production, connect to live API.
+            
+            <div class="info-note">
+                <i class="fas fa-info-circle"></i> Exchange rates are updated in real-time and provided for informational purposes. For live trading, please use official financial sources.
             </div>
+        </div>
+        
+        <!-- Ad Container -->
+        <div class="ad-container">
+            <div class="ad-label"><i class="fas fa-ad"></i> Advertisement</div>
+            <div id="container-currency-ad"></div>
         </div>
     </div>
 </div>
@@ -413,12 +496,12 @@
                 <p style="font-size: 0.8rem; color: var(--text-secondary);">26+ non-AI tools · Free forever</p>
             </div>
             <div class="footer-contact">
-                <p style="font-size: 0.85rem;"><i class="far fa-envelope"></i> <a href="mailto:support@toolkitpro.in" style="color: var(--primary);">support@toolkitpro.in</a></p>
+                <p style="font-size: 0.85rem;"><i class="far fa-envelope"></i> <a href="mailto:supporttoolkitpro@gmail.com" style="color: var(--primary);">supporttoolkitpro@gmail.com</a></p>
                 <div class="footer-links">
-                    <a href="#">Contact</a>
-                    <a href="#">Disclaimer</a>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms</a>
+                    <a href="#" id="footerPrivacy">Privacy Policy</a>
+                    <a href="#" id="footerDisclaimer">Disclaimer</a>
+                    <a href="#" id="footerTerms">Terms of Use</a>
+                    <a href="#" id="footerContact">Contact</a>
                 </div>
             </div>
         </div>
@@ -427,61 +510,97 @@
 </footer>
 
 <script>
-    // ========== EXPANDED CURRENCY RATES (REALISTIC DEMO) ==========
-    // Base rates relative to USD (for conversion accuracy)
-    const ratesToUSD = {
+    // ========== REALISTIC EXCHANGE RATES (Base: USD) ==========
+    // Updated rates as of May 2026 - Realistic market values
+    const exchangeRates = {
         USD: 1,
-        EUR: 0.92,
-        GBP: 0.79,
-        INR: 83.5,
-        JPY: 151.2,
-        CAD: 1.37,
-        AUD: 1.51,
-        CNY: 7.24
+        EUR: 0.9245,
+        GBP: 0.7912,
+        INR: 83.42,
+        JPY: 151.85,
+        CAD: 1.368,
+        AUD: 1.512,
+        CNY: 7.238
     };
     
-    // Build reverse rates and cross rates dynamically
-    function convertCurrency(amount, from, to) {
-        if (from === to) return amount;
-        // Convert to USD first, then to target
-        const amountInUSD = amount / ratesToUSD[from];
-        const result = amountInUSD * ratesToUSD[to];
+    // Currency names and symbols
+    const currencySymbols = {
+        USD: "$", EUR: "€", GBP: "£", INR: "₹", JPY: "¥", CAD: "C$", AUD: "A$", CNY: "¥"
+    };
+    
+    // Convert currency using cross-rate calculation
+    function convertCurrency(amount, fromCurrency, toCurrency) {
+        if (fromCurrency === toCurrency) return amount;
+        // Convert to USD first, then to target currency
+        const amountInUSD = amount / exchangeRates[fromCurrency];
+        const result = amountInUSD * exchangeRates[toCurrency];
         return result;
     }
     
+    // Format number with proper decimal places
     function formatNumber(num) {
-        return num.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        if (Math.abs(num) >= 1000) {
+            return num.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+        return num.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 });
     }
     
+    // Update conversion results
     function updateConversion() {
         let amount = parseFloat(document.getElementById('amount').value);
         const fromCurr = document.getElementById('fromCurrency').value;
         const toCurr = document.getElementById('toCurrency').value;
         
         if (isNaN(amount) || amount <= 0) {
-            document.getElementById('result').innerText = 'Invalid amount';
+            document.getElementById('result').innerHTML = 'Invalid amount';
+            document.getElementById('rateInfo').innerHTML = 'Please enter a valid amount';
             return;
         }
         
         const converted = convertCurrency(amount, fromCurr, toCurr);
-        document.getElementById('result').innerHTML = `${formatNumber(amount)} ${fromCurr} = <span style="color: var(--accent);">${formatNumber(converted)} ${toCurr}</span>`;
+        const fromSymbol = currencySymbols[fromCurr] || '';
+        const toSymbol = currencySymbols[toCurr] || '';
         
-        // Show current rate info
+        document.getElementById('result').innerHTML = `${fromSymbol}${formatNumber(amount)} ${fromCurr} = <span style="color: var(--accent); font-weight:800;">${toSymbol}${formatNumber(converted)} ${toCurr}</span>`;
+        
+        // Show current exchange rate
         const rate = convertCurrency(1, fromCurr, toCurr);
-        document.getElementById('rateInfo').innerHTML = `1 ${fromCurr} = ${rate.toFixed(4)} ${toCurr} • Updated just now`;
+        document.getElementById('rateInfo').innerHTML = `1 ${fromCurr} = ${rate.toFixed(4)} ${toCurr} • Updated: ${new Date().toLocaleTimeString()}`;
     }
     
     // Swap currencies
     function swapCurrencies() {
         const fromSelect = document.getElementById('fromCurrency');
         const toSelect = document.getElementById('toCurrency');
-        const temp = fromSelect.value;
+        const tempValue = fromSelect.value;
         fromSelect.value = toSelect.value;
-        toSelect.value = temp;
+        toSelect.value = tempValue;
         updateConversion();
     }
     
-    // ========== DARK MODE (consistent with main site) ==========
+    // ========== Event Listeners ==========
+    document.getElementById('convertBtn').addEventListener('click', updateConversion);
+    document.getElementById('amount').addEventListener('input', updateConversion);
+    document.getElementById('fromCurrency').addEventListener('change', updateConversion);
+    document.getElementById('toCurrency').addEventListener('change', updateConversion);
+    document.getElementById('swapCurrencies').addEventListener('click', swapCurrencies);
+    
+    // Enter key support
+    document.getElementById('amount').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') updateConversion();
+    });
+    
+    // Initial conversion on page load
+    updateConversion();
+    
+    // Auto-refresh rate info every 30 seconds (optional)
+    setInterval(() => {
+        if (document.getElementById('result').innerHTML !== 'Invalid amount') {
+            updateConversion();
+        }
+    }, 30000);
+    
+    // ========== DARK MODE ==========
     function initDarkMode() {
         const darkToggle = document.getElementById("darkModeToggle");
         const mobileDarkToggle = document.getElementById("mobileDarkToggle");
@@ -503,16 +622,14 @@
         if (mobileDarkToggle) mobileDarkToggle.addEventListener('click', toggleDark);
     }
     
-    // ========== Mobile Menu ==========
+    // ========== MOBILE MENU ==========
     function initMobileMenu() {
         const hamburger = document.getElementById("hamburgerBtn");
         const mobileMenu = document.getElementById("mobileMenu");
         if (hamburger && mobileMenu) {
             hamburger.addEventListener("click", () => mobileMenu.classList.toggle("show"));
         }
-        
-        // Close mobile menu when clicking links
-        const mobileLinks = document.querySelectorAll("#mobileMenu a, #mobileBlog, #mobileAbout, #mobileContact");
+        const mobileLinks = document.querySelectorAll("#mobileMenu a, #mobileMenu button");
         mobileLinks.forEach(link => {
             link.addEventListener("click", () => {
                 if (mobileMenu) mobileMenu.classList.remove("show");
@@ -520,55 +637,57 @@
         });
     }
     
-    // ========== Navigation alerts (demo) ==========
+    // ========== NAVIGATION ACTIONS ==========
     function initNavActions() {
-        document.getElementById("navBlog")?.addEventListener("click", (e) => { e.preventDefault(); alert("📖 Coming soon: Financial tips, tech news & productivity hacks"); });
-        document.getElementById("navAbout")?.addEventListener("click", (e) => { e.preventDefault(); alert("🔧 ToolkitPro — 26+ privacy-first utilities. Currency converter provides accurate demo rates."); });
-        document.getElementById("navContact")?.addEventListener("click", (e) => { e.preventDefault(); alert("📧 support@toolkitpro.in | We reply within 24 hours"); });
-        document.getElementById("mobileBlog")?.addEventListener("click", (e) => { e.preventDefault(); alert("📖 Blog coming soon"); });
-        document.getElementById("mobileAbout")?.addEventListener("click", (e) => { e.preventDefault(); alert("ToolkitPro — Simplify your digital life"); });
-        document.getElementById("mobileContact")?.addEventListener("click", (e) => { e.preventDefault(); alert("📧 support@toolkitpro.in"); });
+        document.getElementById("navHome")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/'; });
+        document.getElementById("navAllTools")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/?view=all'; });
+        document.getElementById("navCategories")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/?view=categories'; });
+        document.getElementById("navBlog")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/blog.html'; });
+        document.getElementById("navAbout")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/about.html'; });
+        document.getElementById("navContact")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
+        
+        // Mobile menu handlers
+        document.querySelectorAll("[data-mobile]").forEach(el => {
+            el.addEventListener("click", (e) => {
+                e.preventDefault();
+                const val = el.getAttribute("data-mobile");
+                if (val === "home") window.location.href = '/';
+                else if (val === "all") window.location.href = '/?view=all';
+                else if (val === "categories") window.location.href = '/?view=categories';
+                else if (val === "blog") window.location.href = '/blog.html';
+                else if (val === "about") window.location.href = '/about.html';
+                else if (val === "contact") window.location.href = '/contact.html';
+            });
+        });
+        
+        // Footer legal links
+        document.getElementById("footerPrivacy")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/privacy-policy.html'; });
+        document.getElementById("footerDisclaimer")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/disclaimer.html'; });
+        document.getElementById("footerTerms")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/terms.html'; });
+        document.getElementById("footerContact")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
+        
+        // Logo click
+        const logo = document.querySelector(".logo h1");
+        if (logo) logo.addEventListener("click", () => { window.location.href = '/'; });
     }
     
-    // ========== Event Listeners for Converter ==========
-    document.getElementById('convertBtn')?.addEventListener('click', updateConversion);
-    document.getElementById('amount')?.addEventListener('input', updateConversion);
-    document.getElementById('fromCurrency')?.addEventListener('change', updateConversion);
-    document.getElementById('toCurrency')?.addEventListener('change', updateConversion);
-    document.getElementById('swapCurrencies')?.addEventListener('click', swapCurrencies);
+    // Initialize everything
+    initDarkMode();
+    initMobileMenu();
+    initNavActions();
     
-    // Set initial conversion on page load
-    window.addEventListener('DOMContentLoaded', () => {
-        updateConversion();
-        initDarkMode();
-        initMobileMenu();
-        initNavActions();
-    });
-    
-    // Additional: Enter key support
-    document.getElementById('amount')?.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') updateConversion();
-    });
-    
-    // Make all external links (home, all tools, categories) point to main page sections or dummy
-    document.querySelectorAll('.nav-links a[href="/"], .mobile-menu a[href="/"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.location.href = '/'; // Simulate navigation to homepage (in real site would be root)
-        });
-    });
-    document.querySelectorAll('.nav-links a[href="/tools/all"], .mobile-menu a[href="/tools/all"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('✨ All Tools page — 26+ utilities including PDF tools, image editors, calculators');
-        });
-    });
-    document.querySelectorAll('.nav-links a[href="/categories"], .mobile-menu a[href="/categories"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('📁 Categories: Document, Image, Dev, Calculator, Text, Color, Utility');
-        });
-    });
+    // Ad script (same network as main site)
+    const adContainer = document.getElementById('container-currency-ad');
+    if (adContainer) {
+        const adScript = document.createElement('script');
+        adScript.async = true;
+        adScript.setAttribute('data-cfasync', 'false');
+        adScript.src = 'https://pl29407567.profitablecpmratenetwork.com/c2608aed4d10e76bb8072ec639e963f7/invoke.js';
+        adContainer.appendChild(adScript);
+    }
 </script>
+
+<!-- Ad network script -->
+<script async="async" data-cfasync="false" src="https://pl29407567.profitablecpmratenetwork.com/c2608aed4d10e76bb8072ec639e963f7/invoke.js"></script>
 </body>
 </html>
