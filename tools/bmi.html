@@ -5,8 +5,8 @@
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Free BMI Calculator - Calculate your Body Mass Index instantly. Get your BMI score and health category (Underweight, Normal, Overweight, Obese).">
-    <meta name="keywords" content="BMI calculator, body mass index, health calculator, weight tracker, fitness tool, online calculator">
+    <meta name="description" content="Free BMI Calculator - Calculate your Body Mass Index instantly. Get your BMI score and health category (Underweight, Normal, Overweight, Obese). Supports kg/lb and cm/m/ft.">
+    <meta name="keywords" content="BMI calculator, body mass index, health calculator, weight tracker, fitness tool, online calculator, ToolkitPro">
     <title>BMI Calculator | ToolkitPro - Check Your Body Mass Index</title>
     
     <!-- Google Fonts + Font Awesome -->
@@ -29,7 +29,6 @@
             --text-muted: #64748b;
             --border-light: #e2e8f0;
             --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.05);
-            --hover-shadow: 0 20px 30px -12px rgba(30, 107, 255, 0.2);
             --primary: #2563eb;
             --primary-deep: #1e40af;
             --primary-soft: #eff6ff;
@@ -50,7 +49,6 @@
             --text-muted: #94a3b8;
             --border-light: #1e293b;
             --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-            --hover-shadow: 0 20px 32px -12px rgba(59, 130, 246, 0.5);
             --primary: #3b82f6;
             --primary-deep: #60a5fa;
             --primary-soft: #1e293b;
@@ -96,6 +94,7 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            cursor: pointer;
         }
         .nav-links {
             display: flex;
@@ -108,6 +107,7 @@
             color: var(--nav-text);
             font-size: 0.95rem;
             transition: 0.2s;
+            cursor: pointer;
         }
         .nav-links a:hover, .nav-links a.active {
             color: var(--nav-hover);
@@ -129,6 +129,11 @@
             font-weight: 600;
             color: var(--primary);
             font-size: 0.85rem;
+            transition: 0.2s;
+        }
+        .dark-toggle:hover {
+            background: var(--primary);
+            color: white;
         }
         .hamburger {
             display: none;
@@ -154,10 +159,11 @@
             font-weight: 600;
             color: var(--nav-text);
             font-size: 1rem;
+            cursor: pointer;
         }
 
-        /* ========== BMI CALCULATOR CARD ========== */
-        .hero-section {
+        /* ========== BMI CALCULATOR TOOL STYLES ========== */
+        .tool-page {
             padding: 40px 0 20px;
         }
         .breadcrumb {
@@ -194,7 +200,7 @@
         }
         .tool-card .subhead {
             color: var(--text-secondary);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
             font-size: 0.95rem;
             border-left: 3px solid var(--accent);
             padding-left: 16px;
@@ -214,12 +220,13 @@
             text-align: left;
         }
         .input-label {
-            font-weight: 500;
+            font-weight: 600;
             font-size: 0.85rem;
             margin-bottom: 6px;
             display: flex;
             align-items: center;
             gap: 6px;
+            color: var(--text-primary);
         }
         .input-field {
             width: 100%;
@@ -231,14 +238,16 @@
             font-size: 1rem;
             outline: none;
             transition: 0.2s;
+            font-family: 'Inter', sans-serif;
         }
         .input-field:focus {
             border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
         .unit-select {
-            width: 80px;
-            margin-left: 8px;
-            padding: 12px 8px;
+            width: auto;
+            min-width: 85px;
+            cursor: pointer;
         }
         
         /* Button */
@@ -257,7 +266,7 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            margin: 16px 0;
+            margin: 20px 0 16px;
         }
         .btn-primary:hover {
             background: var(--primary-deep);
@@ -273,10 +282,11 @@
             text-align: center;
         }
         .bmi-value {
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             font-weight: 800;
             color: var(--accent);
             margin-bottom: 8px;
+            letter-spacing: -0.5px;
         }
         .bmi-category {
             font-size: 1.2rem;
@@ -284,12 +294,12 @@
             margin-bottom: 12px;
         }
         .bmi-range {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
-            margin-top: 12px;
+            margin-top: 14px;
             display: flex;
             justify-content: center;
-            gap: 16px;
+            gap: 12px;
             flex-wrap: wrap;
         }
         .range-dot {
@@ -310,13 +320,32 @@
         .info-note {
             background: var(--primary-soft);
             border-radius: 16px;
-            padding: 12px 16px;
-            margin-top: 16px;
+            padding: 14px 16px;
+            margin-top: 20px;
             font-size: 0.7rem;
             color: var(--text-secondary);
             text-align: left;
+            line-height: 1.5;
         }
         
+        /* Ad Container */
+        .ad-container {
+            background: var(--primary-soft);
+            margin-top: 30px;
+            padding: 12px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid var(--border-light);
+            max-width: 728px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .ad-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
         /* Footer */
         footer {
             background: var(--bg-surface);
@@ -340,6 +369,7 @@
             color: var(--text-secondary);
             text-decoration: none;
             font-size: 0.8rem;
+            cursor: pointer;
         }
         .footer-links a:hover {
             color: var(--primary);
@@ -360,6 +390,7 @@
             .input-row { flex-direction: column; }
             .input-group { width: 100%; }
             .bmi-value { font-size: 2.5rem; }
+            .bmi-range { gap: 8px; font-size: 0.7rem; }
         }
     </style>
 </head>
@@ -369,11 +400,11 @@
 <div class="site-header">
     <div class="container">
         <div class="navbar">
-            <div class="logo"><h1>ToolkitPro</h1></div>
+            <div class="logo"><h1 onclick="window.location.href='/'">ToolkitPro</h1></div>
             <div class="nav-links">
-                <a href="/">🏠 Home</a>
-                <a href="/tools/all">🛠️ All Tools</a>
-                <a href="/categories">📁 Categories</a>
+                <a href="/" id="navHome">🏠 Home</a>
+                <a href="#" id="navAllTools">🛠️ All Tools</a>
+                <a href="#" id="navCategories">📁 Categories</a>
                 <a href="#" id="navBlog">📝 Blog</a>
                 <a href="#" id="navAbout">👤 About</a>
                 <a href="#" id="navContact">📞 Contact</a>
@@ -383,29 +414,29 @@
             <div class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></div>
         </div>
         <div class="mobile-menu" id="mobileMenu">
-            <a href="/">🏠 Home</a>
-            <a href="/tools/all">🛠️ All Tools</a>
-            <a href="/categories">📁 Categories</a>
-            <a href="#" id="mobileBlog">📝 Blog</a>
-            <a href="#" id="mobileAbout">👤 About</a>
-            <a href="#" id="mobileContact">📞 Contact</a>
+            <a href="/" data-mobile="home">🏠 Home</a>
+            <a href="#" data-mobile="all">🛠️ All Tools</a>
+            <a href="#" data-mobile="categories">📁 Categories</a>
+            <a href="#" data-mobile="blog">📝 Blog</a>
+            <a href="#" data-mobile="about">👤 About</a>
+            <a href="#" data-mobile="contact">📞 Contact</a>
             <button id="mobileDarkToggle" class="dark-toggle" style="margin-top: 6px;"><i class="fas fa-moon"></i> Dark Mode</button>
             <div class="contact-email" style="margin-top:6px;"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</div>
         </div>
     </div>
 </div>
 
-<!-- ========== MAIN BMI CALCULATOR SECTION ========== -->
+<!-- ========== BMI CALCULATOR TOOL ========== -->
 <div class="container">
-    <div class="hero-section">
+    <div class="tool-page">
         <div class="breadcrumb">
-            <a href="/">Home</a> / <a href="/tools/all">Tools</a> / <span>BMI Calculator</span>
+            <a href="/">Home</a> / <span>BMI Calculator</span>
         </div>
         
         <div class="tool-card">
             <h1><i class="fas fa-heartbeat"></i> BMI Calculator</h1>
             <div class="subhead">
-                Calculate your Body Mass Index (BMI) to assess your weight status. Enter your weight and height below.
+                <i class="fas fa-chart-line"></i> Calculate your Body Mass Index (BMI) to assess your weight status. Enter your weight and height below.
             </div>
             
             <!-- Weight Input -->
@@ -415,7 +446,7 @@
                     <input type="number" id="weight" class="input-field" placeholder="Weight" value="70" step="0.1">
                 </div>
                 <div class="input-group">
-                    <div class="input-label"><i class="fas fa-chart-line"></i> Unit</div>
+                    <div class="input-label"><i class="fas fa-ruler"></i> Unit</div>
                     <select id="weightUnit" class="input-field unit-select">
                         <option value="kg">kg</option>
                         <option value="lb">lb</option>
@@ -430,7 +461,7 @@
                     <input type="number" id="height" class="input-field" placeholder="Height" value="170" step="0.1">
                 </div>
                 <div class="input-group">
-                    <div class="input-label"><i class="fas fa-chart-line"></i> Unit</div>
+                    <div class="input-label"><i class="fas fa-ruler"></i> Unit</div>
                     <select id="heightUnit" class="input-field unit-select">
                         <option value="cm">cm</option>
                         <option value="m">m</option>
@@ -455,8 +486,14 @@
             </div>
             
             <div class="info-note">
-                <i class="fas fa-info-circle"></i> BMI is a measure of body fat based on height and weight. It applies to adult men and women. Consult a healthcare provider for a complete health assessment.
+                <i class="fas fa-info-circle"></i> BMI is a measure of body fat based on height and weight that applies to adult men and women. While BMI correlates with body fat, it does not directly measure body fat. Consult a healthcare provider for a complete health assessment.
             </div>
+        </div>
+        
+        <!-- Ad Container -->
+        <div class="ad-container">
+            <div class="ad-label"><i class="fas fa-ad"></i> Advertisement</div>
+            <div id="container-bmi-ad"></div>
         </div>
     </div>
 </div>
@@ -472,10 +509,10 @@
             <div class="footer-contact">
                 <p style="font-size: 0.85rem;"><i class="far fa-envelope"></i> <a href="mailto:supporttoolkitpro@gmail.com" style="color: var(--primary);">supporttoolkitpro@gmail.com</a></p>
                 <div class="footer-links">
-                    <a href="/privacy-policy.html">Privacy Policy</a>
-                    <a href="/disclaimer.html">Disclaimer</a>
-                    <a href="/terms.html">Terms of Use</a>
-                    <a href="/contact.html">Contact</a>
+                    <a href="#" id="footerPrivacy">Privacy Policy</a>
+                    <a href="#" id="footerDisclaimer">Disclaimer</a>
+                    <a href="#" id="footerTerms">Terms of Use</a>
+                    <a href="#" id="footerContact">Contact</a>
                 </div>
             </div>
         </div>
@@ -484,7 +521,7 @@
 </footer>
 
 <script>
-    // ========== BMI Calculation Function ==========
+    // ========== BMI CALCULATION FUNCTION (Supports Multiple Units) ==========
     function calculateBMI() {
         let weight = parseFloat(document.getElementById('weight').value);
         let height = parseFloat(document.getElementById('height').value);
@@ -494,18 +531,18 @@
         // Validate inputs
         if (isNaN(weight) || weight <= 0) {
             document.getElementById('bmiValue').innerHTML = '?';
-            document.getElementById('bmiCategory').innerHTML = 'Enter valid weight';
+            document.getElementById('bmiCategory').innerHTML = '<span class="category-normal">Enter valid weight</span>';
             return;
         }
         if (isNaN(height) || height <= 0) {
             document.getElementById('bmiValue').innerHTML = '?';
-            document.getElementById('bmiCategory').innerHTML = 'Enter valid height';
+            document.getElementById('bmiCategory').innerHTML = '<span class="category-normal">Enter valid height</span>';
             return;
         }
         
         // Convert weight to kg
         if (weightUnit === 'lb') {
-            weight = weight * 0.453592;
+            weight = weight * 0.45359237;
         }
         
         // Convert height to meters
@@ -517,35 +554,48 @@
         
         // Calculate BMI
         let bmi = weight / (height * height);
+        bmi = Math.round(bmi * 10) / 10;
         
         // Determine category
         let category = '';
         let categoryClass = '';
+        let description = '';
+        
         if (bmi < 18.5) {
             category = 'Underweight';
             categoryClass = 'category-underweight';
-        } else if (bmi < 25) {
+            description = 'You may need to gain weight for optimal health.';
+        } else if (bmi >= 18.5 && bmi < 25) {
             category = 'Normal weight';
             categoryClass = 'category-normal';
-        } else if (bmi < 30) {
+            description = 'Healthy weight range. Maintain with good diet and exercise.';
+        } else if (bmi >= 25 && bmi < 30) {
             category = 'Overweight';
             categoryClass = 'category-overweight';
+            description = 'Consider lifestyle changes for better health.';
         } else {
             category = 'Obese';
             categoryClass = 'category-obese';
+            description = 'Consult a healthcare provider for guidance.';
         }
         
         // Display results
-        document.getElementById('bmiValue').innerHTML = bmi.toFixed(1);
-        document.getElementById('bmiCategory').innerHTML = `<span class="${categoryClass}">${category}</span>`;
+        document.getElementById('bmiValue').innerHTML = bmi;
+        document.getElementById('bmiCategory').innerHTML = `<span class="${categoryClass}">${category}</span><span style="display:block; font-size:0.7rem; margin-top:4px; color: var(--text-muted);">${description}</span>`;
     }
     
-    // ========== Event Listeners ==========
-    document.getElementById('calculateBtn').addEventListener('click', calculateBMI);
-    document.getElementById('weight').addEventListener('input', calculateBMI);
-    document.getElementById('height').addEventListener('input', calculateBMI);
-    document.getElementById('weightUnit').addEventListener('change', calculateBMI);
-    document.getElementById('heightUnit').addEventListener('change', calculateBMI);
+    // ========== Event Listeners (Real-time updates) ==========
+    const calculateBtn = document.getElementById('calculateBtn');
+    const weightInput = document.getElementById('weight');
+    const heightInput = document.getElementById('height');
+    const weightUnitSelect = document.getElementById('weightUnit');
+    const heightUnitSelect = document.getElementById('heightUnit');
+    
+    calculateBtn.addEventListener('click', calculateBMI);
+    weightInput.addEventListener('input', calculateBMI);
+    heightInput.addEventListener('input', calculateBMI);
+    weightUnitSelect.addEventListener('change', calculateBMI);
+    heightUnitSelect.addEventListener('change', calculateBMI);
     
     // Calculate on page load
     calculateBMI();
@@ -572,14 +622,14 @@
         if (mobileDarkToggle) mobileDarkToggle.addEventListener('click', toggleDark);
     }
     
-    // ========== Mobile Menu ==========
+    // ========== MOBILE MENU ==========
     function initMobileMenu() {
         const hamburger = document.getElementById("hamburgerBtn");
         const mobileMenu = document.getElementById("mobileMenu");
         if (hamburger && mobileMenu) {
             hamburger.addEventListener("click", () => mobileMenu.classList.toggle("show"));
         }
-        const mobileLinks = document.querySelectorAll("#mobileMenu a, #mobileBlog, #mobileAbout, #mobileContact");
+        const mobileLinks = document.querySelectorAll("#mobileMenu a, #mobileMenu button");
         mobileLinks.forEach(link => {
             link.addEventListener("click", () => {
                 if (mobileMenu) mobileMenu.classList.remove("show");
@@ -587,40 +637,57 @@
         });
     }
     
-    // ========== Navigation Actions ==========
+    // ========== NAVIGATION ACTIONS ==========
     function initNavActions() {
-        document.getElementById("navBlog")?.addEventListener("click", (e) => { e.preventDefault(); alert("📖 Coming soon: Health & fitness tips"); });
-        document.getElementById("navAbout")?.addEventListener("click", (e) => { e.preventDefault(); alert("🔧 ToolkitPro — 26+ privacy-first utilities. BMI calculator works 100% locally."); });
-        document.getElementById("navContact")?.addEventListener("click", (e) => { e.preventDefault(); alert("📧 supporttoolkitpro@gmail.com | We reply within 24 hours"); });
-        document.getElementById("mobileBlog")?.addEventListener("click", (e) => { e.preventDefault(); alert("📖 Blog coming soon"); });
-        document.getElementById("mobileAbout")?.addEventListener("click", (e) => { e.preventDefault(); alert("ToolkitPro — Simplify your digital life"); });
-        document.getElementById("mobileContact")?.addEventListener("click", (e) => { e.preventDefault(); alert("📧 supporttoolkitpro@gmail.com"); });
+        document.getElementById("navHome")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/'; });
+        document.getElementById("navAllTools")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/?view=all'; });
+        document.getElementById("navCategories")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/?view=categories'; });
+        document.getElementById("navBlog")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/blog.html'; });
+        document.getElementById("navAbout")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/about.html'; });
+        document.getElementById("navContact")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
+        
+        // Mobile menu handlers
+        document.querySelectorAll("[data-mobile]").forEach(el => {
+            el.addEventListener("click", (e) => {
+                e.preventDefault();
+                const val = el.getAttribute("data-mobile");
+                if (val === "home") window.location.href = '/';
+                else if (val === "all") window.location.href = '/?view=all';
+                else if (val === "categories") window.location.href = '/?view=categories';
+                else if (val === "blog") window.location.href = '/blog.html';
+                else if (val === "about") window.location.href = '/about.html';
+                else if (val === "contact") window.location.href = '/contact.html';
+            });
+        });
+        
+        // Footer legal links
+        document.getElementById("footerPrivacy")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/privacy-policy.html'; });
+        document.getElementById("footerDisclaimer")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/disclaimer.html'; });
+        document.getElementById("footerTerms")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/terms.html'; });
+        document.getElementById("footerContact")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
+        
+        // Logo click
+        const logo = document.querySelector(".logo h1");
+        if (logo) logo.addEventListener("click", () => { window.location.href = '/'; });
     }
-    
-    // Home & other links
-    document.querySelectorAll('.nav-links a[href="/"], .mobile-menu a[href="/"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.location.href = '/';
-        });
-    });
-    document.querySelectorAll('.nav-links a[href="/tools/all"], .mobile-menu a[href="/tools/all"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('✨ All Tools — 26+ utilities including PDF tools, image editors, calculators');
-        });
-    });
-    document.querySelectorAll('.nav-links a[href="/categories"], .mobile-menu a[href="/categories"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('📁 Categories: Document, Image, Dev, Calculator, Text, Color, Utility');
-        });
-    });
     
     // Initialize everything
     initDarkMode();
     initMobileMenu();
     initNavActions();
+    
+    // Ad script (same network as main site)
+    const adContainer = document.getElementById('container-bmi-ad');
+    if (adContainer) {
+        const adScript = document.createElement('script');
+        adScript.async = true;
+        adScript.setAttribute('data-cfasync', 'false');
+        adScript.src = 'https://pl29407567.profitablecpmratenetwork.com/c2608aed4d10e76bb8072ec639e963f7/invoke.js';
+        adContainer.appendChild(adScript);
+    }
 </script>
+
+<!-- Ad network script -->
+<script async="async" data-cfasync="false" src="https://pl29407567.profitablecpmratenetwork.com/c2608aed4d10e76bb8072ec639e963f7/invoke.js"></script>
 </body>
 </html>
