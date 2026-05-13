@@ -5,8 +5,8 @@
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Free Base64 Encoder/Decoder - Encode text to Base64 or decode Base64 strings back to readable text. Fast, secure, and 100% private.">
-    <meta name="keywords" content="base64 encoder, base64 decoder, encode to base64, decode base64, online base64 tool, developer tool">
+    <meta name="description" content="Free Base64 Encoder/Decoder - Encode text to Base64 or decode Base64 strings back to readable text. Fast, secure, and 100% private client-side tool.">
+    <meta name="keywords" content="base64 encoder, base64 decoder, encode to base64, decode base64, online base64 tool, developer tool, ToolkitPro">
     <title>Base64 Encoder/Decoder | ToolkitPro - Free Encoding Tool</title>
     
     <!-- Google Fonts + Font Awesome -->
@@ -30,7 +30,6 @@
             --text-muted: #64748b;
             --border-light: #e2e8f0;
             --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.05);
-            --hover-shadow: 0 20px 30px -12px rgba(30, 107, 255, 0.2);
             --primary: #2563eb;
             --primary-deep: #1e40af;
             --primary-soft: #eff6ff;
@@ -51,7 +50,6 @@
             --text-muted: #94a3b8;
             --border-light: #1e293b;
             --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-            --hover-shadow: 0 20px 32px -12px rgba(59, 130, 246, 0.5);
             --primary: #3b82f6;
             --primary-deep: #60a5fa;
             --primary-soft: #1e293b;
@@ -97,6 +95,7 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            cursor: pointer;
         }
         .nav-links {
             display: flex;
@@ -109,6 +108,7 @@
             color: var(--nav-text);
             font-size: 0.95rem;
             transition: 0.2s;
+            cursor: pointer;
         }
         .nav-links a:hover, .nav-links a.active {
             color: var(--nav-hover);
@@ -130,6 +130,11 @@
             font-weight: 600;
             color: var(--primary);
             font-size: 0.85rem;
+            transition: 0.2s;
+        }
+        .dark-toggle:hover {
+            background: var(--primary);
+            color: white;
         }
         .hamburger {
             display: none;
@@ -155,10 +160,11 @@
             font-weight: 600;
             color: var(--nav-text);
             font-size: 1rem;
+            cursor: pointer;
         }
 
-        /* ========== BASE64 TOOL CARD ========== */
-        .hero-section {
+        /* ========== BASE64 TOOL STYLES ========== */
+        .tool-page {
             padding: 40px 0 20px;
         }
         .breadcrumb {
@@ -193,7 +199,7 @@
         }
         .tool-card .subhead {
             color: var(--text-secondary);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
             font-size: 0.95rem;
             border-left: 3px solid var(--accent);
             padding-left: 16px;
@@ -206,6 +212,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            color: var(--text-primary);
         }
         .base64-textarea {
             width: 100%;
@@ -224,6 +231,7 @@
         }
         .base64-textarea:focus {
             border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
         .base64-textarea[readonly] {
             background: var(--primary-soft);
@@ -261,6 +269,7 @@
         .btn-success:hover {
             background: var(--success);
             opacity: 0.9;
+            transform: translateY(-2px);
         }
         .btn-danger {
             background: var(--danger);
@@ -268,6 +277,7 @@
         .btn-danger:hover {
             background: var(--danger);
             opacity: 0.9;
+            transform: translateY(-2px);
         }
         
         /* Copy Button */
@@ -297,23 +307,50 @@
         
         /* Status Message */
         .status-msg {
-            padding: 10px 16px;
-            border-radius: 12px;
-            margin-top: 12px;
-            font-size: 0.8rem;
+            padding: 12px 16px;
+            border-radius: 16px;
+            margin-top: 16px;
+            font-size: 0.85rem;
             display: none;
         }
         .status-success {
-            background: rgba(16, 185, 129, 0.15);
+            background: rgba(16, 185, 129, 0.12);
             color: var(--success);
             border-left: 3px solid var(--success);
         }
         .status-error {
-            background: rgba(239, 68, 68, 0.15);
+            background: rgba(239, 68, 68, 0.12);
             color: var(--danger);
             border-left: 3px solid var(--danger);
         }
         
+        .info-note {
+            margin-top: 18px;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-align: center;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-light);
+        }
+        
+        /* Ad Container */
+        .ad-container {
+            background: var(--primary-soft);
+            margin-top: 30px;
+            padding: 12px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid var(--border-light);
+            max-width: 728px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .ad-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
         /* Footer */
         footer {
             background: var(--bg-surface);
@@ -337,6 +374,7 @@
             color: var(--text-secondary);
             text-decoration: none;
             font-size: 0.8rem;
+            cursor: pointer;
         }
         .footer-links a:hover {
             color: var(--primary);
@@ -355,6 +393,7 @@
             .tool-card { padding: 1.5rem; }
             .tool-card h1 { font-size: 1.5rem; }
             .btn-group { justify-content: center; }
+            .btn-primary { padding: 10px 18px; font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -364,11 +403,11 @@
 <div class="site-header">
     <div class="container">
         <div class="navbar">
-            <div class="logo"><h1>ToolkitPro</h1></div>
+            <div class="logo"><h1 onclick="window.location.href='/'">ToolkitPro</h1></div>
             <div class="nav-links">
-                <a href="/">🏠 Home</a>
-                <a href="/tools/all">🛠️ All Tools</a>
-                <a href="/categories">📁 Categories</a>
+                <a href="/" id="navHome">🏠 Home</a>
+                <a href="#" id="navAllTools">🛠️ All Tools</a>
+                <a href="#" id="navCategories">📁 Categories</a>
                 <a href="#" id="navBlog">📝 Blog</a>
                 <a href="#" id="navAbout">👤 About</a>
                 <a href="#" id="navContact">📞 Contact</a>
@@ -378,34 +417,34 @@
             <div class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></div>
         </div>
         <div class="mobile-menu" id="mobileMenu">
-            <a href="/">🏠 Home</a>
-            <a href="/tools/all">🛠️ All Tools</a>
-            <a href="/categories">📁 Categories</a>
-            <a href="#" id="mobileBlog">📝 Blog</a>
-            <a href="#" id="mobileAbout">👤 About</a>
-            <a href="#" id="mobileContact">📞 Contact</a>
+            <a href="/" data-mobile="home">🏠 Home</a>
+            <a href="#" data-mobile="all">🛠️ All Tools</a>
+            <a href="#" data-mobile="categories">📁 Categories</a>
+            <a href="#" data-mobile="blog">📝 Blog</a>
+            <a href="#" data-mobile="about">👤 About</a>
+            <a href="#" data-mobile="contact">📞 Contact</a>
             <button id="mobileDarkToggle" class="dark-toggle" style="margin-top: 6px;"><i class="fas fa-moon"></i> Dark Mode</button>
             <div class="contact-email" style="margin-top:6px;"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</div>
         </div>
     </div>
 </div>
 
-<!-- ========== MAIN BASE64 SECTION ========== -->
+<!-- ========== MAIN BASE64 ENCODER/DECODER TOOL ========== -->
 <div class="container">
-    <div class="hero-section">
+    <div class="tool-page">
         <div class="breadcrumb">
-            <a href="/">Home</a> / <a href="/tools/all">Tools</a> / <span>Base64 Encoder/Decoder</span>
+            <a href="/">Home</a> / <span>Base64 Encoder/Decoder</span>
         </div>
         
         <div class="tool-card">
             <h1><i class="fas fa-code"></i> Base64 Encoder / Decoder</h1>
             <div class="subhead">
-                Encode text to Base64 format or decode Base64 strings back to readable text. Perfect for developers and data transfer.
+                <i class="fas fa-shield-alt"></i> Encode text to Base64 format or decode Base64 strings back to readable text. Perfect for developers, API testing, and data transfer.
             </div>
             
             <!-- Input Section -->
             <div class="textarea-label">
-                <i class="fas fa-edit"></i> Input
+                <i class="fas fa-edit"></i> Input Text
             </div>
             <textarea id="inputText" class="base64-textarea" rows="5" placeholder="Enter text to encode or Base64 string to decode...&#10;&#10;Example: Hello World!"></textarea>
             
@@ -427,7 +466,7 @@
             
             <!-- Output Section -->
             <div class="textarea-label">
-                <i class="fas fa-clipboard-list"></i> Output
+                <i class="fas fa-clipboard-list"></i> Output Result
             </div>
             <textarea id="outputText" class="base64-textarea" rows="5" readonly placeholder="Result will appear here..."></textarea>
             
@@ -439,6 +478,16 @@
             
             <!-- Status Message -->
             <div id="statusMsg" class="status-msg"></div>
+            
+            <div class="info-note">
+                <i class="fas fa-globe"></i> All processing happens locally in your browser — your data never leaves your device. Supports UTF-8 characters (emojis, international text).
+            </div>
+        </div>
+        
+        <!-- Ad Container -->
+        <div class="ad-container">
+            <div class="ad-label"><i class="fas fa-ad"></i> Advertisement</div>
+            <div id="container-base64-ad"></div>
         </div>
     </div>
 </div>
@@ -454,10 +503,10 @@
             <div class="footer-contact">
                 <p style="font-size: 0.85rem;"><i class="far fa-envelope"></i> <a href="mailto:supporttoolkitpro@gmail.com" style="color: var(--primary);">supporttoolkitpro@gmail.com</a></p>
                 <div class="footer-links">
-                    <a href="/privacy-policy.html">Privacy Policy</a>
-                    <a href="/disclaimer.html">Disclaimer</a>
-                    <a href="/terms.html">Terms of Use</a>
-                    <a href="/contact.html">Contact</a>
+                    <a href="#" id="footerPrivacy">Privacy Policy</a>
+                    <a href="#" id="footerDisclaimer">Disclaimer</a>
+                    <a href="#" id="footerTerms">Terms of Use</a>
+                    <a href="#" id="footerContact">Contact</a>
                 </div>
             </div>
         </div>
@@ -486,7 +535,7 @@
         }, 3000);
     }
     
-    // Encode to Base64
+    // Encode to Base64 (supports UTF-8)
     function encodeToBase64() {
         const input = inputText.value;
         if (!input.trim()) {
@@ -495,18 +544,18 @@
         }
         
         try {
-            // Handle Unicode characters properly
+            // Handle Unicode characters properly using UTF-8
             const utf8Bytes = unescape(encodeURIComponent(input));
             const encoded = btoa(utf8Bytes);
             outputText.value = encoded;
-            showStatus('Successfully encoded to Base64!', 'success');
+            showStatus('✓ Successfully encoded to Base64!', 'success');
         } catch (e) {
             outputText.value = '';
             showStatus('Encoding failed: ' + e.message, 'error');
         }
     }
     
-    // Decode from Base64
+    // Decode from Base64 (supports UTF-8)
     function decodeFromBase64() {
         const input = inputText.value;
         if (!input.trim()) {
@@ -517,10 +566,10 @@
         try {
             const decoded = decodeURIComponent(escape(atob(input)));
             outputText.value = decoded;
-            showStatus('Successfully decoded from Base64!', 'success');
+            showStatus('✓ Successfully decoded from Base64!', 'success');
         } catch (e) {
             outputText.value = '';
-            showStatus('Invalid Base64 string. Please check your input.', 'error');
+            showStatus('Invalid Base64 string. Please check your input and try again.', 'error');
         }
     }
     
@@ -535,19 +584,23 @@
     function swapInputOutput() {
         const input = inputText.value;
         const output = outputText.value;
-        if (output) {
+        if (output && output.trim()) {
             inputText.value = output;
             outputText.value = input;
             showStatus('Swapped input and output', 'success');
+        } else if (input && input.trim()) {
+            outputText.value = input;
+            inputText.value = '';
+            showStatus('Moved input to output', 'success');
         } else {
-            showStatus('Nothing to swap. Output is empty.', 'error');
+            showStatus('Nothing to swap. Both fields are empty.', 'error');
         }
     }
     
     // Copy output to clipboard
     async function copyOutput() {
         const text = outputText.value;
-        if (!text) {
+        if (!text || !text.trim()) {
             showStatus('Nothing to copy. Output is empty.', 'error');
             return;
         }
@@ -577,6 +630,13 @@
         }
     }
     
+    // Set example text on load
+    function setExampleText() {
+        if (inputText.value === '') {
+            inputText.value = 'Hello World!\nToolkitPro - Free Online Tools 🚀\nSupport: supporttoolkitpro@gmail.com';
+        }
+    }
+    
     // Event Listeners
     encodeBtn.addEventListener('click', encodeToBase64);
     decodeBtn.addEventListener('click', decodeFromBase64);
@@ -584,10 +644,8 @@
     swapBtn.addEventListener('click', swapInputOutput);
     copyOutputBtn.addEventListener('click', copyOutput);
     
-    // Example placeholder text
-    if (inputText.value === '') {
-        inputText.value = 'Hello World!\nToolkitPro - Free Online Tools\nSupport: supporttoolkitpro@gmail.com';
-    }
+    // Initialize with example
+    setExampleText();
     
     // ========== DARK MODE ==========
     function initDarkMode() {
@@ -611,14 +669,14 @@
         if (mobileDarkToggle) mobileDarkToggle.addEventListener('click', toggleDark);
     }
     
-    // ========== Mobile Menu ==========
+    // ========== MOBILE MENU ==========
     function initMobileMenu() {
         const hamburger = document.getElementById("hamburgerBtn");
         const mobileMenu = document.getElementById("mobileMenu");
         if (hamburger && mobileMenu) {
             hamburger.addEventListener("click", () => mobileMenu.classList.toggle("show"));
         }
-        const mobileLinks = document.querySelectorAll("#mobileMenu a, #mobileBlog, #mobileAbout, #mobileContact");
+        const mobileLinks = document.querySelectorAll("#mobileMenu a, #mobileMenu button");
         mobileLinks.forEach(link => {
             link.addEventListener("click", () => {
                 if (mobileMenu) mobileMenu.classList.remove("show");
@@ -626,40 +684,57 @@
         });
     }
     
-    // ========== Navigation Actions ==========
+    // ========== NAVIGATION ACTIONS ==========
     function initNavActions() {
-        document.getElementById("navBlog")?.addEventListener("click", (e) => { e.preventDefault(); alert("📖 Coming soon: Base64 tips & developer guides"); });
-        document.getElementById("navAbout")?.addEventListener("click", (e) => { e.preventDefault(); alert("🔧 ToolkitPro — 26+ privacy-first utilities. Base64 encoder/decoder works 100% locally."); });
-        document.getElementById("navContact")?.addEventListener("click", (e) => { e.preventDefault(); alert("📧 supporttoolkitpro@gmail.com | We reply within 24 hours"); });
-        document.getElementById("mobileBlog")?.addEventListener("click", (e) => { e.preventDefault(); alert("📖 Blog coming soon"); });
-        document.getElementById("mobileAbout")?.addEventListener("click", (e) => { e.preventDefault(); alert("ToolkitPro — Simplify your digital life"); });
-        document.getElementById("mobileContact")?.addEventListener("click", (e) => { e.preventDefault(); alert("📧 supporttoolkitpro@gmail.com"); });
+        document.getElementById("navHome")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/'; });
+        document.getElementById("navAllTools")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/?view=all'; });
+        document.getElementById("navCategories")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/?view=categories'; });
+        document.getElementById("navBlog")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/blog.html'; });
+        document.getElementById("navAbout")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/about.html'; });
+        document.getElementById("navContact")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
+        
+        // Mobile menu handlers
+        document.querySelectorAll("[data-mobile]").forEach(el => {
+            el.addEventListener("click", (e) => {
+                e.preventDefault();
+                const val = el.getAttribute("data-mobile");
+                if (val === "home") window.location.href = '/';
+                else if (val === "all") window.location.href = '/?view=all';
+                else if (val === "categories") window.location.href = '/?view=categories';
+                else if (val === "blog") window.location.href = '/blog.html';
+                else if (val === "about") window.location.href = '/about.html';
+                else if (val === "contact") window.location.href = '/contact.html';
+            });
+        });
+        
+        // Footer legal links
+        document.getElementById("footerPrivacy")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/privacy-policy.html'; });
+        document.getElementById("footerDisclaimer")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/disclaimer.html'; });
+        document.getElementById("footerTerms")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/terms.html'; });
+        document.getElementById("footerContact")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
+        
+        // Logo click
+        const logo = document.querySelector(".logo h1");
+        if (logo) logo.addEventListener("click", () => { window.location.href = '/'; });
     }
-    
-    // Home & other links
-    document.querySelectorAll('.nav-links a[href="/"], .mobile-menu a[href="/"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.location.href = '/';
-        });
-    });
-    document.querySelectorAll('.nav-links a[href="/tools/all"], .mobile-menu a[href="/tools/all"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('✨ All Tools — 26+ utilities including PDF tools, image editors, calculators');
-        });
-    });
-    document.querySelectorAll('.nav-links a[href="/categories"], .mobile-menu a[href="/categories"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('📁 Categories: Document, Image, Dev, Calculator, Text, Color, Utility');
-        });
-    });
     
     // Initialize everything
     initDarkMode();
     initMobileMenu();
     initNavActions();
+    
+    // Ad script (same network as main site)
+    const adContainer = document.getElementById('container-base64-ad');
+    if (adContainer) {
+        const adScript = document.createElement('script');
+        adScript.async = true;
+        adScript.setAttribute('data-cfasync', 'false');
+        adScript.src = 'https://pl29407567.profitablecpmratenetwork.com/c2608aed4d10e76bb8072ec639e963f7/invoke.js';
+        adContainer.appendChild(adScript);
+    }
 </script>
+
+<!-- Ad network script -->
+<script async="async" data-cfasync="false" src="https://pl29407567.profitablecpmratenetwork.com/c2608aed4d10e76bb8072ec639e963f7/invoke.js"></script>
 </body>
 </html>
