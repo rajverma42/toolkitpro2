@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- ========== FAVICON / META / LEGAL FILE NAME ========== -->
+    <!-- ========== FAVICON / META ========== -->
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Free HEX to RGB Converter - Convert HEX color codes to RGB and HSL values instantly. Preview colors and copy codes for design and development.">
-    <meta name="keywords" content="HEX to RGB, color converter, HEX to RGB converter, RGB to HEX, color picker, design tool, web development">
+    <meta name="description" content="Free HEX to RGB Converter - Convert HEX color codes to RGB and HSL values instantly. Preview colors and copy codes for design and web development.">
+    <meta name="keywords" content="HEX to RGB, color converter, HEX to RGB converter, RGB to HEX, color picker, design tool, web development, ToolkitPro">
     <meta name="author" content="ToolkitPro">
     <meta name="robots" content="index, follow">
     <title>HEX to RGB Converter | ToolkitPro - Color Code Converter</title>
@@ -37,7 +37,6 @@
             --text-muted: #64748b;
             --border-light: #e2e8f0;
             --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.05);
-            --hover-shadow: 0 20px 30px -12px rgba(30, 107, 255, 0.2);
             --primary: #2563eb;
             --primary-deep: #1e40af;
             --primary-soft: #eff6ff;
@@ -58,7 +57,6 @@
             --text-muted: #94a3b8;
             --border-light: #1e293b;
             --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-            --hover-shadow: 0 20px 32px -12px rgba(59, 130, 246, 0.5);
             --primary: #3b82f6;
             --primary-deep: #60a5fa;
             --primary-soft: #1e293b;
@@ -104,6 +102,7 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            cursor: pointer;
         }
         .nav-links {
             display: flex;
@@ -116,6 +115,7 @@
             color: var(--nav-text);
             font-size: 0.95rem;
             transition: 0.2s;
+            cursor: pointer;
         }
         .nav-links a:hover, .nav-links a.active {
             color: var(--nav-hover);
@@ -137,6 +137,11 @@
             font-weight: 600;
             color: var(--primary);
             font-size: 0.85rem;
+            transition: 0.2s;
+        }
+        .dark-toggle:hover {
+            background: var(--primary);
+            color: white;
         }
         .hamburger {
             display: none;
@@ -162,10 +167,11 @@
             font-weight: 600;
             color: var(--nav-text);
             font-size: 1rem;
+            cursor: pointer;
         }
 
-        /* ========== HEX to RGB CONVERTER CARD ========== */
-        .hero-section {
+        /* ========== HEX to RGB CONVERTER TOOL STYLES ========== */
+        .tool-page {
             padding: 40px 0 20px;
         }
         .breadcrumb {
@@ -186,7 +192,7 @@
             padding: 2.5rem;
             box-shadow: var(--card-shadow);
             border: 1px solid var(--border-light);
-            max-width: 580px;
+            max-width: 600px;
             margin: 0 auto;
             text-align: center;
         }
@@ -202,7 +208,7 @@
         }
         .tool-card .subhead {
             color: var(--text-secondary);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
             font-size: 0.95rem;
             border-left: 3px solid var(--accent);
             padding-left: 16px;
@@ -213,7 +219,7 @@
         .input-group {
             display: flex;
             gap: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -233,6 +239,7 @@
         }
         .hex-input:focus {
             border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
         .convert-btn {
             background: var(--primary);
@@ -244,6 +251,9 @@
             font-size: 1rem;
             cursor: pointer;
             transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
         .convert-btn:hover {
             background: var(--primary-deep);
@@ -290,38 +300,63 @@
             padding: 4px 12px;
             border-radius: 40px;
             font-size: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
         .result-value {
             color: var(--accent);
             font-weight: 500;
             word-break: break-all;
+            flex: 1;
+            padding-left: 10px;
         }
         .copy-value-btn {
             background: var(--success);
             border: none;
-            padding: 4px 12px;
+            padding: 5px 14px;
             border-radius: 40px;
             color: white;
             font-size: 0.7rem;
+            font-weight: 600;
             cursor: pointer;
             transition: 0.2s;
         }
         .copy-value-btn:hover {
             opacity: 0.9;
-            transform: scale(0.98);
+            transform: scale(0.96);
         }
         
         /* Info Note */
         .info-note {
             background: var(--primary-soft);
             border-radius: 16px;
-            padding: 10px 14px;
+            padding: 12px 16px;
             margin-top: 20px;
             font-size: 0.7rem;
             color: var(--text-secondary);
             text-align: left;
+            line-height: 1.5;
         }
         
+        /* Ad Container */
+        .ad-container {
+            background: var(--primary-soft);
+            margin-top: 30px;
+            padding: 12px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid var(--border-light);
+            max-width: 728px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .ad-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
         /* Footer */
         footer {
             background: var(--bg-surface);
@@ -345,6 +380,7 @@
             color: var(--text-secondary);
             text-decoration: none;
             font-size: 0.8rem;
+            cursor: pointer;
         }
         .footer-links a:hover {
             color: var(--primary);
@@ -363,8 +399,10 @@
             .tool-card { padding: 1.5rem; }
             .tool-card h1 { font-size: 1.5rem; }
             .input-group { flex-direction: column; }
-            .convert-btn { width: 100%; }
+            .convert-btn { width: 100%; justify-content: center; }
             .result-item { flex-direction: column; align-items: flex-start; }
+            .result-value { padding-left: 0; }
+            .copy-value-btn { align-self: flex-end; }
         }
     </style>
 </head>
@@ -374,11 +412,11 @@
 <div class="site-header">
     <div class="container">
         <div class="navbar">
-            <div class="logo"><h1>ToolkitPro</h1></div>
+            <div class="logo"><h1 onclick="window.location.href='/'">ToolkitPro</h1></div>
             <div class="nav-links">
-                <a href="/">🏠 Home</a>
-                <a href="/tools/all">🛠️ All Tools</a>
-                <a href="/categories">📁 Categories</a>
+                <a href="/" id="navHome">🏠 Home</a>
+                <a href="#" id="navAllTools">🛠️ All Tools</a>
+                <a href="#" id="navCategories">📁 Categories</a>
                 <a href="#" id="navBlog">📝 Blog</a>
                 <a href="#" id="navAbout">👤 About</a>
                 <a href="#" id="navContact">📞 Contact</a>
@@ -388,29 +426,29 @@
             <div class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></div>
         </div>
         <div class="mobile-menu" id="mobileMenu">
-            <a href="/">🏠 Home</a>
-            <a href="/tools/all">🛠️ All Tools</a>
-            <a href="/categories">📁 Categories</a>
-            <a href="#" id="mobileBlog">📝 Blog</a>
-            <a href="#" id="mobileAbout">👤 About</a>
-            <a href="#" id="mobileContact">📞 Contact</a>
+            <a href="/" data-mobile="home">🏠 Home</a>
+            <a href="#" data-mobile="all">🛠️ All Tools</a>
+            <a href="#" data-mobile="categories">📁 Categories</a>
+            <a href="#" data-mobile="blog">📝 Blog</a>
+            <a href="#" data-mobile="about">👤 About</a>
+            <a href="#" data-mobile="contact">📞 Contact</a>
             <button id="mobileDarkToggle" class="dark-toggle" style="margin-top: 6px;"><i class="fas fa-moon"></i> Dark Mode</button>
             <div class="contact-email" style="margin-top:6px;"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</div>
         </div>
     </div>
 </div>
 
-<!-- ========== MAIN HEX to RGB CONVERTER SECTION ========== -->
+<!-- ========== HEX to RGB CONVERTER TOOL ========== -->
 <div class="container">
-    <div class="hero-section">
+    <div class="tool-page">
         <div class="breadcrumb">
-            <a href="/">Home</a> / <a href="/tools/all">Tools</a> / <span>HEX to RGB Converter</span>
+            <a href="/">Home</a> / <span>HEX to RGB Converter</span>
         </div>
         
         <div class="tool-card">
             <h1><i class="fas fa-palette"></i> HEX to RGB Converter</h1>
             <div class="subhead">
-                Convert HEX color codes to RGB and HSL values instantly. Perfect for designers and developers.
+                <i class="fas fa-sync-alt"></i> Convert HEX color codes to RGB and HSL values instantly. Perfect for designers and developers.
             </div>
             
             <div class="input-group">
@@ -426,23 +464,29 @@
                 <div class="result-item">
                     <span class="result-label"><i class="fas fa-paint-bucket"></i> HEX</span>
                     <span class="result-value" id="hexValue">#2563eb</span>
-                    <button class="copy-value-btn" onclick="copyValue('hex')">Copy</button>
+                    <button class="copy-value-btn" data-type="hex">Copy</button>
                 </div>
                 <div class="result-item">
                     <span class="result-label"><i class="fas fa-code"></i> RGB</span>
                     <span class="result-value" id="rgbValue">rgb(37, 99, 235)</span>
-                    <button class="copy-value-btn" onclick="copyValue('rgb')">Copy</button>
+                    <button class="copy-value-btn" data-type="rgb">Copy</button>
                 </div>
                 <div class="result-item">
                     <span class="result-label"><i class="fas fa-chart-line"></i> HSL</span>
                     <span class="result-value" id="hslValue">hsl(221, 83%, 53%)</span>
-                    <button class="copy-value-btn" onclick="copyValue('hsl')">Copy</button>
+                    <button class="copy-value-btn" data-type="hsl">Copy</button>
                 </div>
             </div>
             
             <div class="info-note">
-                <i class="fas fa-info-circle"></i> Enter HEX color code with or without # (e.g., #2563eb or 2563eb). Converts to RGB and HSL values instantly.
+                <i class="fas fa-info-circle"></i> Enter HEX color code with or without # (e.g., #2563eb or 2563eb). Supports 3-digit and 6-digit HEX codes. Converts to RGB and HSL values instantly.
             </div>
+        </div>
+        
+        <!-- Ad Container -->
+        <div class="ad-container">
+            <div class="ad-label"><i class="fas fa-ad"></i> Advertisement</div>
+            <div id="container-hexrgb-ad"></div>
         </div>
     </div>
 </div>
@@ -458,11 +502,10 @@
             <div class="footer-contact">
                 <p style="font-size: 0.85rem;"><i class="far fa-envelope"></i> <a href="mailto:supporttoolkitpro@gmail.com" style="color: var(--primary);">supporttoolkitpro@gmail.com</a></p>
                 <div class="footer-links">
-                    <a href="/privacy-policy.html">Privacy Policy</a>
-                    <a href="/disclaimer.html">Disclaimer</a>
-                    <a href="/terms.html">Terms of Use</a>
-                    <a href="/contact.html">Contact</a>
-                    <a href="/sitemap.html">Sitemap</a>
+                    <a href="#" id="footerPrivacy">Privacy Policy</a>
+                    <a href="#" id="footerDisclaimer">Disclaimer</a>
+                    <a href="#" id="footerTerms">Terms of Use</a>
+                    <a href="#" id="footerContact">Contact</a>
                 </div>
             </div>
         </div>
@@ -533,28 +576,36 @@
         };
     }
     
+    // Show status feedback on input
+    function showInputStatus(isValid) {
+        if (isValid) {
+            hexInput.style.borderColor = 'var(--success)';
+            setTimeout(() => {
+                hexInput.style.borderColor = 'var(--border-light)';
+            }, 800);
+        } else {
+            hexInput.style.borderColor = 'var(--danger)';
+            setTimeout(() => {
+                hexInput.style.borderColor = 'var(--border-light)';
+            }, 1500);
+        }
+    }
+    
     // Main conversion function
     function convertColor() {
         let inputHex = hexInput.value.trim();
         let normalizedHex = normalizeHex(inputHex);
         
         if (!normalizedHex) {
-            // Show error styling
-            hexInput.style.borderColor = 'var(--danger)';
+            showInputStatus(false);
             hexValueSpan.innerText = 'Invalid HEX';
             rgbValueSpan.innerText = 'Invalid format';
             hslValueSpan.innerText = 'Use #RRGGBB';
             colorPreview.style.backgroundColor = '#cccccc';
-            setTimeout(() => {
-                hexInput.style.borderColor = 'var(--border-light)';
-            }, 1500);
             return;
         }
         
-        hexInput.style.borderColor = 'var(--success)';
-        setTimeout(() => {
-            hexInput.style.borderColor = 'var(--border-light)';
-        }, 1000);
+        showInputStatus(true);
         
         const rgb = hexToRgb(normalizedHex);
         const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
@@ -570,21 +621,21 @@
     }
     
     // Copy function
-    async function copyValue(type) {
+    async function copyColorValue(type) {
         let text = '';
         if (type === 'hex') text = hexValueSpan.innerText;
         else if (type === 'rgb') text = rgbValueSpan.innerText;
         else text = hslValueSpan.innerText;
         
+        if (text === 'Invalid HEX' || text === 'Invalid format' || text === 'Use #RRGGBB') {
+            return;
+        }
+        
         try {
             await navigator.clipboard.writeText(text);
-            // Find the button that was clicked and show feedback
+            // Show feedback on the specific button
             const buttons = document.querySelectorAll('.copy-value-btn');
-            const targetBtn = Array.from(buttons).find(btn => 
-                (type === 'hex' && btn.parentElement.querySelector('#hexValue')) ||
-                (type === 'rgb' && btn.parentElement.querySelector('#rgbValue')) ||
-                (type === 'hsl' && btn.parentElement.querySelector('#hslValue'))
-            );
+            const targetBtn = Array.from(buttons).find(btn => btn.getAttribute('data-type') === type);
             if (targetBtn) {
                 const originalText = targetBtn.innerHTML;
                 targetBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
@@ -597,8 +648,13 @@
         }
     }
     
-    // Make copy function global
-    window.copyValue = copyValue;
+    // Add click listeners to copy buttons
+    document.querySelectorAll('.copy-value-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const type = btn.getAttribute('data-type');
+            copyColorValue(type);
+        });
+    });
     
     // Event listeners
     convertBtn.addEventListener('click', convertColor);
@@ -633,14 +689,14 @@
         if (mobileDarkToggle) mobileDarkToggle.addEventListener('click', toggleDark);
     }
     
-    // ========== Mobile Menu ==========
+    // ========== MOBILE MENU ==========
     function initMobileMenu() {
         const hamburger = document.getElementById("hamburgerBtn");
         const mobileMenu = document.getElementById("mobileMenu");
         if (hamburger && mobileMenu) {
             hamburger.addEventListener("click", () => mobileMenu.classList.toggle("show"));
         }
-        const mobileLinks = document.querySelectorAll("#mobileMenu a, #mobileBlog, #mobileAbout, #mobileContact");
+        const mobileLinks = document.querySelectorAll("#mobileMenu a, #mobileMenu button");
         mobileLinks.forEach(link => {
             link.addEventListener("click", () => {
                 if (mobileMenu) mobileMenu.classList.remove("show");
@@ -648,40 +704,57 @@
         });
     }
     
-    // ========== Navigation Actions ==========
+    // ========== NAVIGATION ACTIONS ==========
     function initNavActions() {
-        document.getElementById("navBlog")?.addEventListener("click", (e) => { e.preventDefault(); alert("📖 Coming soon: Color theory & design tips"); });
-        document.getElementById("navAbout")?.addEventListener("click", (e) => { e.preventDefault(); alert("🔧 ToolkitPro — 26+ privacy-first utilities. HEX to RGB converter works 100% locally."); });
-        document.getElementById("navContact")?.addEventListener("click", (e) => { e.preventDefault(); alert("📧 supporttoolkitpro@gmail.com | We reply within 24 hours"); });
-        document.getElementById("mobileBlog")?.addEventListener("click", (e) => { e.preventDefault(); alert("📖 Blog coming soon"); });
-        document.getElementById("mobileAbout")?.addEventListener("click", (e) => { e.preventDefault(); alert("ToolkitPro — Simplify your digital life"); });
-        document.getElementById("mobileContact")?.addEventListener("click", (e) => { e.preventDefault(); alert("📧 supporttoolkitpro@gmail.com"); });
+        document.getElementById("navHome")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/'; });
+        document.getElementById("navAllTools")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/?view=all'; });
+        document.getElementById("navCategories")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/?view=categories'; });
+        document.getElementById("navBlog")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/blog.html'; });
+        document.getElementById("navAbout")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/about.html'; });
+        document.getElementById("navContact")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
+        
+        // Mobile menu handlers
+        document.querySelectorAll("[data-mobile]").forEach(el => {
+            el.addEventListener("click", (e) => {
+                e.preventDefault();
+                const val = el.getAttribute("data-mobile");
+                if (val === "home") window.location.href = '/';
+                else if (val === "all") window.location.href = '/?view=all';
+                else if (val === "categories") window.location.href = '/?view=categories';
+                else if (val === "blog") window.location.href = '/blog.html';
+                else if (val === "about") window.location.href = '/about.html';
+                else if (val === "contact") window.location.href = '/contact.html';
+            });
+        });
+        
+        // Footer legal links
+        document.getElementById("footerPrivacy")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/privacy-policy.html'; });
+        document.getElementById("footerDisclaimer")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/disclaimer.html'; });
+        document.getElementById("footerTerms")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/terms.html'; });
+        document.getElementById("footerContact")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
+        
+        // Logo click
+        const logo = document.querySelector(".logo h1");
+        if (logo) logo.addEventListener("click", () => { window.location.href = '/'; });
     }
-    
-    // Home & other links
-    document.querySelectorAll('.nav-links a[href="/"], .mobile-menu a[href="/"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.location.href = '/';
-        });
-    });
-    document.querySelectorAll('.nav-links a[href="/tools/all"], .mobile-menu a[href="/tools/all"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('✨ All Tools — 26+ utilities including PDF tools, image editors, calculators');
-        });
-    });
-    document.querySelectorAll('.nav-links a[href="/categories"], .mobile-menu a[href="/categories"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('📁 Categories: Document, Image, Dev, Calculator, Text, Color, Utility');
-        });
-    });
     
     // Initialize everything
     initDarkMode();
     initMobileMenu();
     initNavActions();
+    
+    // Ad script (same network as main site)
+    const adContainer = document.getElementById('container-hexrgb-ad');
+    if (adContainer) {
+        const adScript = document.createElement('script');
+        adScript.async = true;
+        adScript.setAttribute('data-cfasync', 'false');
+        adScript.src = 'https://pl29407567.profitablecpmratenetwork.com/c2608aed4d10e76bb8072ec639e963f7/invoke.js';
+        adContainer.appendChild(adScript);
+    }
 </script>
+
+<!-- Ad network script -->
+<script async="async" data-cfasync="false" src="https://pl29407567.profitablecpmratenetwork.com/c2608aed4d10e76bb8072ec639e963f7/invoke.js"></script>
 </body>
 </html>
