@@ -4,47 +4,677 @@
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>HTML Minifier | ToolkitPro</title>
+    <meta name="description" content="Free HTML Minifier - Minify HTML, CSS, and JavaScript code. Reduce file size, remove extra spaces, and optimize your code for faster loading.">
+    <meta name="keywords" content="HTML minifier, CSS minifier, JS minifier, code compressor, minify code, web performance, ToolkitPro">
+    <title>HTML Minifier | ToolkitPro - Minify HTML, CSS & JS Code</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root { --bg-body: #f1f5f9; --bg-surface: #ffffff; --text-primary: #0f172a; --border-light: #e2e8f0; --primary: #2563eb; --accent: #f59e0b; }
-        body.dark { --bg-body: #0a0f1c; --bg-surface: #111827; --text-primary: #f1f5f9; --border-light: #1e293b; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg-body); color: var(--text-primary); transition: 0.2s; }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 28px; }
-        .navbar { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid var(--border-light); background: var(--bg-surface); }
-        .logo h1 { font-size: 1.85rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), #4f46e5); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .contact-email { background: #eff6ff; padding: 5px 14px; border-radius: 40px; font-size: 0.75rem; color: var(--primary); }
-        .dark-toggle { background: #eff6ff; border: none; border-radius: 40px; padding: 6px 16px; cursor: pointer; }
-        .hamburger { display: none; font-size: 1.8rem; cursor: pointer; }
-        .mobile-menu { display: none; flex-direction: column; background: var(--bg-surface); padding: 20px; border-radius: 24px; margin: 10px 0; gap: 14px; }
-        .mobile-menu.show { display: flex; }
-        .tool-card { background: var(--bg-surface); border-radius: 32px; padding: 2rem; max-width: 1000px; margin: 40px auto; }
-        textarea { width: 100%; padding: 18px; border-radius: 20px; border: 1.5px solid var(--border-light); background: var(--bg-body); font-family: monospace; font-size: 0.85rem; resize: vertical; margin: 10px 0; }
-        .btn-group { display: flex; gap: 12px; flex-wrap: wrap; margin: 15px 0; }
-        .btn-primary { background: var(--primary); color: white; border: none; padding: 12px 24px; border-radius: 60px; cursor: pointer; }
-        .stats { font-size: 0.8rem; color: var(--text-secondary); margin-top: 10px; }
-        footer { background: var(--bg-surface); border-top: 1px solid var(--border-light); padding: 35px 0; margin-top: 40px; text-align: center; }
-        @media (max-width: 768px) { .nav-links { display: none; } .hamburger { display: block; } }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ========== THEME VARIABLES (Matching main site) ========== */
+        :root {
+            --bg-body: #f1f5f9;
+            --bg-surface: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+            --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.05);
+            --primary: #2563eb;
+            --primary-deep: #1e40af;
+            --primary-soft: #eff6ff;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --nav-bg: #ffffff;
+            --nav-text: #1e293b;
+            --nav-hover: #2563eb;
+            --code-bg: #f8fafc;
+        }
+
+        body.dark {
+            --bg-body: #0a0f1c;
+            --bg-surface: #111827;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border-light: #1e293b;
+            --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            --primary: #3b82f6;
+            --primary-deep: #60a5fa;
+            --primary-soft: #1e293b;
+            --accent: #fbbf24;
+            --success: #34d399;
+            --nav-bg: #111827;
+            --nav-text: #e2e8f0;
+            --nav-hover: #60a5fa;
+            --code-bg: #1e293b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-body);
+            color: var(--text-primary);
+            transition: background-color 0.25s ease, color 0.2s ease;
+        }
+
+        /* ========== HEADER & NAVIGATION ========== */
+        .site-header {
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 0;
+        }
+        .logo h1 {
+            font-size: 1.85rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), #4f46e5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            cursor: pointer;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--nav-text);
+            font-size: 0.95rem;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--nav-hover);
+        }
+        .contact-email {
+            background: var(--primary-soft);
+            padding: 5px 14px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .dark-toggle {
+            background: var(--primary-soft);
+            border: none;
+            border-radius: 40px;
+            padding: 6px 16px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.85rem;
+            transition: 0.2s;
+        }
+        .dark-toggle:hover {
+            background: var(--primary);
+            color: white;
+        }
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            background: var(--bg-surface);
+            padding: 20px;
+            border-radius: 24px;
+            margin: 10px 0 15px;
+            gap: 14px;
+            border: 1px solid var(--border-light);
+        }
+        .mobile-menu.show {
+            display: flex;
+        }
+        .mobile-menu a {
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--nav-text);
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        /* ========== MINIFIER TOOL STYLES ========== */
+        .tool-page {
+            padding: 40px 0 20px;
+        }
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        .tool-card {
+            background: var(--bg-surface);
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-light);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .tool-card h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .tool-card .subhead {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            border-left: 3px solid var(--accent);
+            padding-left: 16px;
+        }
+        
+        /* Textareas */
+        .textarea-label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-primary);
+        }
+        textarea {
+            width: 100%;
+            padding: 18px;
+            border-radius: 20px;
+            border: 1.5px solid var(--border-light);
+            background: var(--code-bg);
+            color: var(--text-primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            resize: vertical;
+            margin: 10px 0;
+            outline: none;
+            transition: 0.2s;
+        }
+        textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        textarea[readonly] {
+            background: var(--primary-soft);
+            cursor: default;
+        }
+        
+        /* Button Group */
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary:hover {
+            background: var(--primary-deep);
+            transform: translateY(-2px);
+        }
+        .btn-success {
+            background: var(--success);
+        }
+        .btn-success:hover {
+            background: var(--success);
+            opacity: 0.9;
+        }
+        
+        /* Stats */
+        .stats {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 12px;
+            padding: 10px;
+            background: var(--bg-body);
+            border-radius: 16px;
+            display: inline-block;
+        }
+        
+        /* Info Note */
+        .info-note {
+            background: var(--primary-soft);
+            border-radius: 16px;
+            padding: 12px 16px;
+            margin-top: 20px;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            text-align: left;
+            line-height: 1.5;
+        }
+        
+        /* Ad Container */
+        .ad-container {
+            background: var(--primary-soft);
+            margin-top: 30px;
+            padding: 12px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid var(--border-light);
+            max-width: 728px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .ad-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-light);
+            padding: 35px 0 25px;
+            margin-top: 50px;
+        }
+        .footer-flex {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        .footer-links {
+            display: flex;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        .copyright {
+            text-align: center;
+            margin-top: 22px;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 18px; }
+            .nav-links { display: none; }
+            .hamburger { display: block; }
+            .tool-card { padding: 1.5rem; }
+            .tool-card h1 { font-size: 1.3rem; }
+            .btn-group { justify-content: center; }
+        }
     </style>
 </head>
 <body>
-<div class="site-header"><div class="container"><div class="navbar"><div class="logo"><h1>ToolkitPro</h1></div><div class="nav-links"><a href="/">Home</a><a href="/tools/all">Tools</a><span class="contact-email"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</span><button id="darkToggle" class="dark-toggle"><i class="fas fa-moon"></i> Dark</button></div><div class="hamburger" id="hamburgerBtn">☰</div></div><div class="mobile-menu" id="mobileMenu"><a href="/">Home</a><a href="/tools/all">Tools</a><div class="contact-email">supporttoolkitpro@gmail.com</div></div></div></div>
-<div class="container"><div class="tool-card"><h1><i class="fab fa-html5"></i> HTML / CSS / JS Minifier</h1>
-<textarea id="input" rows="8" placeholder="Paste your HTML, CSS, or JavaScript code here..."></textarea>
-<div class="btn-group"><button class="btn-primary" onclick="minify()">Minify Code</button><button class="btn-primary" onclick="copyResult()">Copy Result</button><button class="btn-primary" onclick="clearAll()">Clear</button></div>
-<textarea id="output" rows="8" placeholder="Minified output will appear here..." readonly></textarea>
-<div class="stats" id="stats"></div></div></div>
-<footer><div class="container"><p>© 2025 ToolkitPro — Free online tools | <a href="mailto:supporttoolkitpro@gmail.com">supporttoolkitpro@gmail.com</a></p></div></footer>
+
+<!-- ========== HEADER ========== -->
+<div class="site-header">
+    <div class="container">
+        <div class="navbar">
+            <div class="logo"><h1 onclick="window.location.href='/'">ToolkitPro</h1></div>
+            <div class="nav-links">
+                <a href="/" id="navHome">🏠 Home</a>
+                <a href="#" id="navAllTools">🛠️ All Tools</a>
+                <a href="#" id="navCategories">📁 Categories</a>
+                <a href="#" id="navBlog">📝 Blog</a>
+                <a href="#" id="navAbout">👤 About</a>
+                <a href="#" id="navContact">📞 Contact</a>
+                <span class="contact-email"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</span>
+                <button id="darkModeToggle" class="dark-toggle"><i class="fas fa-moon"></i> Dark</button>
+            </div>
+            <div class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="/" data-mobile="home">🏠 Home</a>
+            <a href="#" data-mobile="all">🛠️ All Tools</a>
+            <a href="#" data-mobile="categories">📁 Categories</a>
+            <a href="#" data-mobile="blog">📝 Blog</a>
+            <a href="#" data-mobile="about">👤 About</a>
+            <a href="#" data-mobile="contact">📞 Contact</a>
+            <button id="mobileDarkToggle" class="dark-toggle" style="margin-top: 6px;"><i class="fas fa-moon"></i> Dark Mode</button>
+            <div class="contact-email" style="margin-top:6px;"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== HTML MINIFIER TOOL ========== -->
+<div class="container">
+    <div class="tool-page">
+        <div class="breadcrumb">
+            <a href="/">Home</a> / <span>HTML Minifier</span>
+        </div>
+        
+        <div class="tool-card">
+            <h1><i class="fab fa-html5"></i> HTML / CSS / JS Minifier</h1>
+            <div class="subhead">
+                <i class="fas fa-compress-alt"></i> Minify your HTML, CSS, or JavaScript code. Reduce file size, remove extra spaces, and optimize for faster loading.
+            </div>
+            
+            <div class="textarea-label">
+                <i class="fas fa-code"></i> Input Code
+            </div>
+            <textarea id="input" rows="8" placeholder="Paste your HTML, CSS, or JavaScript code here...&#10;&#10;Example:&#10;&lt;div&gt;&#10;    &lt;p&gt;Hello World!&lt;/p&gt;&#10;&lt;/div&gt;"></textarea>
+            
+            <div class="btn-group">
+                <button class="btn-primary" id="minifyBtn"><i class="fas fa-compress-alt"></i> Minify Code</button>
+                <button class="btn-primary btn-success" id="copyBtn"><i class="fas fa-copy"></i> Copy Result</button>
+                <button class="btn-primary" id="clearBtn"><i class="fas fa-trash-alt"></i> Clear All</button>
+            </div>
+            
+            <div class="textarea-label">
+                <i class="fas fa-clipboard-list"></i> Minified Output
+            </div>
+            <textarea id="output" rows="8" placeholder="Minified output will appear here..." readonly></textarea>
+            
+            <div class="stats" id="stats"></div>
+            
+            <div class="info-note">
+                <i class="fas fa-info-circle"></i> This minifier removes extra whitespace, line breaks, and unnecessary characters from HTML, CSS, and JavaScript. Preserves content inside &lt;pre&gt;, &lt;textarea&gt;, and &lt;script&gt; tags appropriately. All processing happens locally in your browser.
+            </div>
+        </div>
+        
+        <!-- Ad Container -->
+        <div class="ad-container">
+            <div class="ad-label"><i class="fas fa-ad"></i> Advertisement</div>
+            <div id="container-minifier-ad"></div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+    <div class="container">
+        <div class="footer-flex">
+            <div class="footer-logo">
+                <h3 style="font-size: 1.3rem; background: linear-gradient(135deg, var(--primary), #4f46e5); -webkit-background-clip: text; background-clip: text; color: transparent;">ToolkitPro</h3>
+                <p style="font-size: 0.8rem; color: var(--text-secondary);">26+ non-AI tools · Free forever</p>
+            </div>
+            <div class="footer-contact">
+                <p style="font-size: 0.85rem;"><i class="far fa-envelope"></i> <a href="mailto:supporttoolkitpro@gmail.com" style="color: var(--primary);">supporttoolkitpro@gmail.com</a></p>
+                <div class="footer-links">
+                    <a href="#" id="footerPrivacy">Privacy Policy</a>
+                    <a href="#" id="footerDisclaimer">Disclaimer</a>
+                    <a href="#" id="footerTerms">Terms of Use</a>
+                    <a href="#" id="footerContact">Contact</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">© 2025 ToolkitPro — Reliable utilities, HTML minifier & more</div>
+    </div>
+</footer>
+
 <script>
-function minify() { let code = document.getElementById('input').value; let minified = code.replace(/\s+/g, ' ').replace(/>\s+</g, '><').replace(/\s*([{}:;,])\s*/g, '$1').trim(); document.getElementById('output').value = minified; let originalSize = code.length; let newSize = minified.length; let saved = ((originalSize - newSize) / originalSize * 100).toFixed(1); document.getElementById('stats').innerHTML = `Original: ${originalSize.toLocaleString()} bytes | Minified: ${newSize.toLocaleString()} bytes | Saved: ${saved}%`; }
-function copyResult() { let out = document.getElementById('output').value; if(out) { navigator.clipboard.writeText(out); alert('Copied!'); } else alert('Nothing to copy'); }
-function clearAll() { document.getElementById('input').value = ''; document.getElementById('output').value = ''; document.getElementById('stats').innerHTML = ''; }
-document.getElementById('darkToggle').onclick = () => { document.body.classList.toggle('dark'); localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light'); };
-if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
-document.getElementById('hamburgerBtn').onclick = () => document.getElementById('mobileMenu').classList.toggle('show');
+    // ========== DOM Elements ==========
+    const inputTextarea = document.getElementById('input');
+    const outputTextarea = document.getElementById('output');
+    const minifyBtn = document.getElementById('minifyBtn');
+    const copyBtn = document.getElementById('copyBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const statsDiv = document.getElementById('stats');
+    
+    // Advanced minification function (better than simple regex)
+    function minifyCode(code) {
+        if (!code || code.trim() === '') {
+            return '';
+        }
+        
+        let minified = code;
+        
+        // Step 1: Remove HTML comments (but keep conditional comments and IE directives)
+        minified = minified.replace(/<!--(?!\[if\s).*?-->/gs, '');
+        
+        // Step 2: Remove extra whitespace between tags
+        minified = minified.replace(/>\s+</g, '><');
+        
+        // Step 3: Remove leading/trailing spaces within tags (preserve text content)
+        minified = minified.replace(/\s+([=<>{}:;,\[\]()])/g, '$1');
+        minified = minified.replace(/([=<>{}:;,\[\]()])\s+/g, '$1');
+        
+        // Step 4: Collapse multiple spaces to single space
+        minified = minified.replace(/\s{2,}/g, ' ');
+        
+        // Step 5: Remove spaces around operators in CSS/JS (careful with text)
+        minified = minified.replace(/\s*([{};:,])\s*/g, '$1');
+        minified = minified.replace(/\s*([+\-*/%=<>!&|])\s*/g, '$1');
+        
+        // Step 6: Remove newlines and tabs
+        minified = minified.replace(/[\n\r\t]/g, '');
+        
+        // Step 7: Trim
+        minified = minified.trim();
+        
+        return minified;
+    }
+    
+    // Minify and update stats
+    function minify() {
+        const inputCode = inputTextarea.value;
+        if (!inputCode.trim()) {
+            outputTextarea.value = '';
+            statsDiv.innerHTML = 'Enter some code to minify';
+            return;
+        }
+        
+        const minifiedCode = minifyCode(inputCode);
+        outputTextarea.value = minifiedCode;
+        
+        const originalSize = inputCode.length;
+        const newSize = minifiedCode.length;
+        const savedPercent = originalSize > 0 ? ((originalSize - newSize) / originalSize * 100).toFixed(1) : 0;
+        
+        statsDiv.innerHTML = `📊 Original: ${originalSize.toLocaleString()} bytes | Minified: ${newSize.toLocaleString()} bytes | Saved: ${savedPercent}%`;
+    }
+    
+    // Copy result to clipboard
+    async function copyResult() {
+        const result = outputTextarea.value;
+        if (!result || result.trim() === '') {
+            alert('Nothing to copy. Please minify some code first.');
+            return;
+        }
+        
+        try {
+            await navigator.clipboard.writeText(result);
+            const originalText = copyBtn.innerHTML;
+            copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            setTimeout(() => {
+                copyBtn.innerHTML = originalText;
+            }, 1500);
+        } catch (err) {
+            alert('Failed to copy. You can manually select and copy the text.');
+        }
+    }
+    
+    // Clear all fields
+    function clearAll() {
+        inputTextarea.value = '';
+        outputTextarea.value = '';
+        statsDiv.innerHTML = '';
+    }
+    
+    // Set example code on load
+    function setExampleCode() {
+        if (inputTextarea.value === '') {
+            inputTextarea.value = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to ToolkitPro</h1>
+        <p>This is an example HTML document with CSS and JavaScript.</p>
+        <button onclick="alert('Hello!')">Click Me</button>
+    </div>
+    <script>
+        console.log('Page loaded successfully!');
+    </script>
+</body>
+</html>`;
+        }
+    }
+    
+    // Set example on load
+    setExampleCode();
+    
+    // Event listeners
+    minifyBtn.addEventListener('click', minify);
+    copyBtn.addEventListener('click', copyResult);
+    clearBtn.addEventListener('click', clearAll);
+    
+    // Optional: Auto-minify on input (with debounce)
+    let debounceTimer;
+    inputTextarea.addEventListener('input', () => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(minify, 500);
+    });
+    
+    // ========== DARK MODE ==========
+    function initDarkMode() {
+        const darkToggle = document.getElementById("darkModeToggle");
+        const mobileDarkToggle = document.getElementById("mobileDarkToggle");
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark');
+        } else if (savedTheme === 'light') {
+            document.body.classList.remove('dark');
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark');
+        }
+        
+        function toggleDark() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+        }
+        
+        if (darkToggle) darkToggle.addEventListener('click', toggleDark);
+        if (mobileDarkToggle) mobileDarkToggle.addEventListener('click', toggleDark);
+    }
+    
+    // ========== MOBILE MENU ==========
+    function initMobileMenu() {
+        const hamburger = document.getElementById("hamburgerBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+        if (hamburger && mobileMenu) {
+            hamburger.addEventListener("click", () => mobileMenu.classList.toggle("show"));
+        }
+        const mobileLinks = document.querySelectorAll("#mobileMenu a, #mobileMenu button");
+        mobileLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                if (mobileMenu) mobileMenu.classList.remove("show");
+            });
+        });
+    }
+    
+    // ========== NAVIGATION ACTIONS ==========
+    function initNavActions() {
+        document.getElementById("navHome")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/'; });
+        document.getElementById("navAllTools")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/?view=all'; });
+        document.getElementById("navCategories")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/?view=categories'; });
+        document.getElementById("navBlog")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/blog.html'; });
+        document.getElementById("navAbout")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/about.html'; });
+        document.getElementById("navContact")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
+        
+        // Mobile menu handlers
+        document.querySelectorAll("[data-mobile]").forEach(el => {
+            el.addEventListener("click", (e) => {
+                e.preventDefault();
+                const val = el.getAttribute("data-mobile");
+                if (val === "home") window.location.href = '/';
+                else if (val === "all") window.location.href = '/?view=all';
+                else if (val === "categories") window.location.href = '/?view=categories';
+                else if (val === "blog") window.location.href = '/blog.html';
+                else if (val === "about") window.location.href = '/about.html';
+                else if (val === "contact") window.location.href = '/contact.html';
+            });
+        });
+        
+        // Footer legal links
+        document.getElementById("footerPrivacy")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/privacy-policy.html'; });
+        document.getElementById("footerDisclaimer")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/disclaimer.html'; });
+        document.getElementById("footerTerms")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/terms.html'; });
+        document.getElementById("footerContact")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
+        
+        // Logo click
+        const logo = document.querySelector(".logo h1");
+        if (logo) logo.addEventListener("click", () => { window.location.href = '/'; });
+    }
+    
+    // Initialize everything
+    initDarkMode();
+    initMobileMenu();
+    initNavActions();
+    
+    // Ad script (same network as main site)
+    const adContainer = document.getElementById('container-minifier-ad');
+    if (adContainer) {
+        const adScript = document.createElement('script');
+        adScript.async = true;
+        adScript.setAttribute('data-cfasync', 'false');
+        adScript.src = 'https://pl29407567.profitablecpmratenetwork.com/c2608aed4d10e76bb8072ec639e963f7/invoke.js';
+        adContainer.appendChild(adScript);
+    }
 </script>
+
+<!-- Ad network script -->
+<script async="async" data-cfasync="false" src="https://pl29407567.profitablecpmratenetwork.com/c2608aed4d10e76bb8072ec639e963f7/invoke.js"></script>
 </body>
 </html>
