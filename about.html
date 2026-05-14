@@ -8,7 +8,7 @@
   <title>About Us | ToolkitPro - Free Online Tools</title>
 
   <!-- Google Fonts + Font Awesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <style>
@@ -18,7 +18,7 @@
       box-sizing: border-box;
     }
 
-    /* ========== THEME VARIABLES (Matching main site) ========== */
+    /* ========== THEME VARIABLES ========== */
     :root {
       --bg-body: #f1f5f9;
       --bg-surface: #ffffff;
@@ -34,6 +34,7 @@
       --nav-bg: #ffffff;
       --nav-text: #1e293b;
       --nav-hover: #2563eb;
+      --ad-bg: #fefce8;
     }
 
     body.dark {
@@ -51,6 +52,7 @@
       --nav-bg: #111827;
       --nav-text: #e2e8f0;
       --nav-hover: #60a5fa;
+      --ad-bg: #1e293b;
     }
 
     body {
@@ -59,8 +61,6 @@
       color: var(--text-primary);
       transition: background-color 0.25s ease, color 0.2s ease;
       line-height: 1.7;
-      display: flex;
-      flex-direction: column;
       min-height: 100vh;
     }
 
@@ -159,67 +159,113 @@
       cursor: pointer;
     }
 
-    /* ========== HERO SECTION ========== */
-    .hero {
-      padding: 60px 0 40px;
-      text-align: center;
+    /* ========== TOOLS DISPLAY SECTION ========== */
+    .tools-display-section {
+      margin: 40px 0;
+      display: none;
     }
-    .hero-badge {
-      display: inline-block;
-      background: var(--primary-soft);
-      color: var(--primary);
-      padding: 8px 20px;
-      border-radius: 60px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      margin-bottom: 20px;
+    .tools-display-section.active {
+      display: block;
     }
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 18px;
-      font-weight: 800;
+    .tools-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .tools-header h2 {
+      font-size: 1.8rem;
       color: var(--text-primary);
+      font-weight: 700;
     }
-    .hero p {
-      max-width: 760px;
-      margin: auto;
-      color: var(--text-secondary);
-      font-size: 1.05rem;
+    .back-btn {
+      background: var(--primary-soft);
+      border: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      color: var(--primary);
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: 0.2s;
     }
-
-    /* ========== FEATURE GRID ========== */
-    .grid {
+    .back-btn:hover {
+      background: var(--primary);
+      color: white;
+    }
+    .category-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+    .cat-pill {
+      background: var(--primary-soft);
+      padding: 8px 24px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: var(--text-primary);
+      transition: 0.2s;
+    }
+    .cat-pill.active, .cat-pill:hover {
+      background: var(--primary);
+      color: white;
+    }
+    .tools-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 28px;
-      margin: 50px 0;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
     }
-    .card {
+    .tool-card {
       background: var(--bg-surface);
-      border-radius: 28px;
-      padding: 28px;
-      border: 1px solid var(--border-light);
+      border-radius: 24px;
+      padding: 24px;
       box-shadow: var(--card-shadow);
+      border: 1px solid var(--border-light);
       transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
     }
-    .card:hover {
+    .tool-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 20px 30px -12px rgba(37, 99, 235, 0.2);
     }
-    .card i {
-      font-size: 2.4rem;
+    .tool-card i {
+      font-size: 2.2rem;
       color: var(--primary);
+      margin-bottom: 12px;
+    }
+    .tool-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .tool-card p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      line-height: 1.5;
       margin-bottom: 16px;
     }
-    .card h3 {
-      margin-bottom: 12px;
-      font-size: 1.25rem;
-      color: var(--text-primary);
+    .tool-badge {
+      display: inline-block;
+      background: var(--primary-soft);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--primary);
     }
-    .card p {
+    .no-results {
+      text-align: center;
+      padding: 60px;
+      background: var(--bg-surface);
+      border-radius: 32px;
       color: var(--text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.5;
     }
 
     /* ========== ABOUT SECTION ========== */
@@ -239,8 +285,6 @@
       margin-bottom: 18px;
       color: var(--text-secondary);
     }
-
-    /* ========== STATS ========== */
     .stats {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -252,7 +296,6 @@
       padding: 24px 16px;
       border-radius: 28px;
       text-align: center;
-      transition: 0.2s;
     }
     .stat-box h3 {
       font-size: 2.2rem;
@@ -264,13 +307,105 @@
       font-weight: 600;
       margin-top: 6px;
     }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+      margin: 50px 0;
+    }
+    .feature-card {
+      background: var(--bg-surface);
+      border-radius: 28px;
+      padding: 28px;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--card-shadow);
+    }
+    .feature-card i {
+      font-size: 2.4rem;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+    .feature-card h3 {
+      margin-bottom: 12px;
+      font-size: 1.25rem;
+    }
+
+    /* ========== AD SECTION ABOVE FOOTER ========== */
+    .ad-section-above-footer {
+      background: var(--ad-bg);
+      border-radius: 24px;
+      padding: 20px 24px;
+      margin: 40px 0 30px;
+      text-align: center;
+      border: 1px solid var(--border-light);
+      transition: all 0.3s ease;
+    }
+    .ad-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .ad-label i {
+      font-size: 0.75rem;
+    }
+    .ad-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100px;
+      width: 100%;
+    }
+    .ad-placeholder {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary-soft), var(--bg-surface));
+      padding: 20px 40px;
+      border-radius: 16px;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: 1px dashed var(--primary);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .ad-placeholder:hover {
+      background: var(--primary);
+      color: white;
+      border-color: transparent;
+    }
+    /* Ad banner simulation - in production replace with actual ad code */
+    .demo-ad-banner {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 12px;
+      padding: 24px 20px;
+      text-align: center;
+      color: white;
+      font-weight: 600;
+      width: 100%;
+      max-width: 728px;
+      margin: 0 auto;
+    }
+    .demo-ad-banner p {
+      margin: 0;
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+    .demo-ad-banner strong {
+      font-size: 1rem;
+      display: block;
+      margin-bottom: 5px;
+    }
 
     /* ========== FOOTER ========== */
     footer {
       background: var(--bg-surface);
       border-top: 1px solid var(--border-light);
       padding: 35px 0 25px;
-      margin-top: 20px;
     }
     .footer-flex {
       display: flex;
@@ -304,10 +439,10 @@
       .container { padding: 0 18px; }
       .nav-links { display: none; }
       .hamburger { display: block; }
-      .hero h1 { font-size: 2rem; }
       .about-section { padding: 28px; }
-      .hero { padding: 40px 0 25px; }
-      .grid { gap: 18px; }
+      .tools-header h2 { font-size: 1.4rem; }
+      .ad-section-above-footer { padding: 15px; }
+      .ad-placeholder { padding: 12px 20px; font-size: 0.8rem; }
     }
   </style>
 </head>
@@ -317,9 +452,9 @@
 <div class="site-header">
   <div class="container">
     <div class="navbar">
-      <div class="logo"><h1 onclick="window.location.href='/'">ToolkitPro</h1></div>
+      <div class="logo"><h1>ToolkitPro</h1></div>
       <div class="nav-links">
-        <a href="/" id="navHome">🏠 Home</a>
+        <a href="#" id="navHome">🏠 Home</a>
         <a href="#" id="navAllTools">🛠️ All Tools</a>
         <a href="#" id="navCategories">📁 Categories</a>
         <a href="#" id="navBlog">📝 Blog</a>
@@ -331,7 +466,7 @@
       <div class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></div>
     </div>
     <div class="mobile-menu" id="mobileMenu">
-      <a href="/" data-mobile="home">🏠 Home</a>
+      <a href="#" data-mobile="home">🏠 Home</a>
       <a href="#" data-mobile="all">🛠️ All Tools</a>
       <a href="#" data-mobile="categories">📁 Categories</a>
       <a href="#" data-mobile="blog">📝 Blog</a>
@@ -345,53 +480,83 @@
 
 <!-- ========== MAIN CONTENT ========== -->
 <div class="container">
-  <section class="hero">
-    <div class="hero-badge"><i class="fas fa-shield-alt"></i> Fast • Free • Secure</div>
-    <h1>About ToolkitPro</h1>
-    <p>
-      ToolkitPro is a modern online utility platform built to provide fast, secure, and free tools for everyone.
-      From image compression and PDF conversion to QR generation and calculators — our mission is to simplify digital tasks.
-    </p>
-  </section>
+  <!-- About Section (visible by default) -->
+  <div id="aboutContent">
+    <div class="hero" style="text-align: center; padding: 40px 0 20px;">
+      <div class="hero-badge" style="display: inline-block; background: var(--primary-soft); color: var(--primary); padding: 8px 20px; border-radius: 60px;">
+        <i class="fas fa-shield-alt"></i> Fast • Free • Secure
+      </div>
+      <h1 style="font-size: 3rem; margin: 20px 0; color: var(--text-primary);">About ToolkitPro</h1>
+      <p style="max-width: 760px; margin: auto; color: var(--text-secondary);">
+        ToolkitPro is a modern online utility platform built to provide fast, secure, and free tools for everyone.
+      </p>
+    </div>
 
-  <div class="grid">
-    <div class="card">
-      <i class="fas fa-bolt"></i>
-      <h3>Fast Performance</h3>
-      <p>All tools are optimized for instant results with lightweight client-side processing and responsive UI.</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <i class="fas fa-bolt"></i>
+        <h3>Fast Performance</h3>
+        <p>All tools are optimized for instant results with lightweight client-side processing.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-lock"></i>
+        <h3>Privacy Focused</h3>
+        <p>Your files and data stay secure. Most tools work directly in your browser.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-mobile-alt"></i>
+        <h3>Fully Responsive</h3>
+        <p>ToolkitPro works smoothly on mobile, tablet, and desktop devices.</p>
+      </div>
     </div>
-    <div class="card">
-      <i class="fas fa-lock"></i>
-      <h3>Privacy Focused</h3>
-      <p>Your files and data stay secure. Most tools work directly in your browser without server storage.</p>
-    </div>
-    <div class="card">
-      <i class="fas fa-mobile-alt"></i>
-      <h3>Fully Responsive</h3>
-      <p>ToolkitPro works smoothly on mobile, tablet, and desktop devices with a clean modern interface.</p>
+
+    <div class="about-section">
+      <h2>Our Mission</h2>
+      <p>We created ToolkitPro to offer reliable online utilities without unnecessary complexity. Many websites overload users with slow interfaces and confusing layouts. ToolkitPro focuses on speed, simplicity, and user experience.</p>
+      <p>Whether you need to compress an image, merge PDFs, generate secure passwords, or format JSON data, ToolkitPro provides practical tools that save time and work instantly.</p>
+      <p>Our platform continuously grows with new features and performance improvements to help students, developers, creators, professionals, and everyday users.</p>
+
+      <div class="stats">
+        <div class="stat-box"><h3>26+</h3><p>Online Tools</p></div>
+        <div class="stat-box"><h3>100%</h3><p>Free Access</p></div>
+        <div class="stat-box"><h3>24/7</h3><p>Availability</p></div>
+        <div class="stat-box"><h3>Instant</h3><p>Processing</p></div>
+      </div>
     </div>
   </div>
 
-  <div class="about-section">
-    <h2>Our Mission</h2>
-    <p>
-      We created ToolkitPro to offer reliable online utilities without unnecessary complexity.
-      Many websites overload users with slow interfaces and confusing layouts. ToolkitPro focuses on speed, simplicity, and user experience.
-    </p>
-    <p>
-      Whether you need to compress an image, merge PDFs, generate secure passwords, or format JSON data,
-      ToolkitPro provides practical tools that save time and work instantly.
-    </p>
-    <p>
-      Our platform continuously grows with new features and performance improvements to help students,
-      developers, creators, professionals, and everyday users.
-    </p>
+  <!-- Tools Display Section (hidden by default) -->
+  <div id="toolsDisplay" class="tools-display-section">
+    <div class="tools-header">
+      <h2 id="toolsTitle">All Tools</h2>
+      <button class="back-btn" id="backToAbout"><i class="fas fa-arrow-left"></i> Back to About</button>
+    </div>
+    <div id="categoryFilters" class="category-pills"></div>
+    <div id="toolsGridContainer"></div>
+  </div>
 
-    <div class="stats">
-      <div class="stat-box"><h3>26+</h3><p>Online Tools</p></div>
-      <div class="stat-box"><h3>100%</h3><p>Free Access</p></div>
-      <div class="stat-box"><h3>24/7</h3><p>Availability</p></div>
-      <div class="stat-box"><h3>Instant</h3><p>Processing</p></div>
+  <!-- ========== AD SECTION ABOVE FOOTER ========== -->
+  <div class="ad-section-above-footer">
+    <div class="ad-label">
+      <i class="fas fa-ad"></i> Advertisement
+    </div>
+    <div class="ad-container">
+      <!-- Demo Ad Banner - Replace with your actual ad code (e.g., Google AdSense, Media.net, etc.) -->
+      <div class="demo-ad-banner" id="adBanner">
+        <strong><i class="fas fa-star"></i> Sponsor Message</strong>
+        <p>Your Ad Here - Reach millions of ToolkitPro users daily!</p>
+        <p style="font-size: 0.7rem; margin-top: 8px;">Contact: advertise@toolkitpro.com</p>
+      </div>
+      <!-- 
+        For production, replace the above div with actual ad script, for example:
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-xxxxxxxxxxxx"
+             data-ad-slot="xxxxxxxxxx"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      -->
     </div>
   </div>
 </div>
@@ -419,194 +584,193 @@
 </footer>
 
 <script>
-  // ========== DARK MODE ==========
+  // ==================== COMPLETE TOOLS DATABASE (26 Tools) ====================
+  const fullToolsList = [
+    { name: "PDF to Word Converter", desc: "Convert PDF documents to editable Word files with high accuracy.", icon: "fas fa-file-pdf", category: "Document", link: "/tools/pdf-word.html" },
+    { name: "Image Compressor", desc: "Reduce image size while preserving quality. Supports JPG, PNG, WebP.", icon: "fas fa-compress-alt", category: "Image", link: "/tools/image-compressor.html" },
+    { name: "QR Code Generator", desc: "Generate custom QR codes from URL, text, or contact info.", icon: "fas fa-qrcode", category: "Utility", link: "/tools/qr-generator.html" },
+    { name: "Image Converter", desc: "Convert between JPG, PNG, WEBP, and BMP formats instantly.", icon: "fas fa-exchange-alt", category: "Image", link: "/tools/image-converter.html" },
+    { name: "Image Cropper", desc: "Crop images to any dimension with live preview.", icon: "fas fa-crop-alt", category: "Image", link: "/tools/image-cropper.html" },
+    { name: "Image Resizer", desc: "Resize images by percentage or exact pixels.", icon: "fas fa-expand-alt", category: "Image", link: "/tools/image-resizer.html" },
+    { name: "JSON Formatter", desc: "Beautify, validate, and minify JSON data.", icon: "fas fa-brackets-curly", category: "Dev", link: "/tools/json-formatter.html" },
+    { name: "Password Generator", desc: "Generate strong, random passwords with custom length.", icon: "fas fa-key", category: "Utility", link: "/tools/password-gen.html" },
+    { name: "Text Case Converter", desc: "Convert text to UPPER CASE, lower case, Title Case, and more.", icon: "fas fa-text-height", category: "Text", link: "/tools/text-case-converter.html" },
+    { name: "Currency Converter", desc: "Live exchange rates for 150+ currencies.", icon: "fas fa-dollar-sign", category: "Calculator", link: "/tools/currency-converter.html" },
+    { name: "OCR Tool", desc: "Extract text from scanned images and PDFs.", icon: "fas fa-font", category: "Image", link: "/tools/ocr-tool.html" },
+    { name: "Unit Converter", desc: "Convert length, mass, volume, temperature, and more.", icon: "fas fa-ruler-combined", category: "Utility", link: "/tools/unit-converter.html" },
+    { name: "Word Counter", desc: "Count words, characters, sentences, and paragraphs.", icon: "fas fa-calculator", category: "Text", link: "/tools/word-counter.html" },
+    { name: "Age Calculator", desc: "Calculate exact age from date of birth.", icon: "fas fa-birthday-cake", category: "Calculator", link: "/tools/age-calc.html" },
+    { name: "Base64 Encoder/Decoder", desc: "Encode text to base64 or decode back to readable text.", icon: "fas fa-code", category: "Dev", link: "/tools/base64.html" },
+    { name: "BMI Calculator", desc: "Body Mass Index calculator with health range indicator.", icon: "fas fa-heartbeat", category: "Calculator", link: "/tools/bmi.html" },
+    { name: "Color Picker", desc: "Pick any color from screen, get HEX, RGB, and HSL values.", icon: "fas fa-eye-dropper", category: "Color", link: "/tools/color-picker.html" },
+    { name: "HTML Minifier", desc: "Minify HTML/CSS/JS code to reduce file size.", icon: "fab fa-html5", category: "Dev", link: "/tools/html-minify.html" },
+    { name: "PDF Merger", desc: "Combine multiple PDF files into a single document.", icon: "fas fa-object-group", category: "Document", link: "/tools/pdf-merge.html" },
+    { name: "Text Reverser", desc: "Reverse entire string or reverse word order.", icon: "fas fa-backward", category: "Text", link: "/tools/text-reverse.html" },
+    { name: "Loan EMI Calculator", desc: "Calculate monthly EMI and total interest.", icon: "fas fa-chart-line", category: "Calculator", link: "/tools/emi-calc.html" },
+    { name: "HEX to RGB", desc: "Convert HEX color codes to RGB values instantly.", icon: "fas fa-palette", category: "Color", link: "/tools/hex-rgb.html" },
+    { name: "GST Calculator", desc: "Calculate GST inclusive/exclusive amounts.", icon: "fas fa-percent", category: "Calculator", link: "/tools/gst-calc.html" },
+    { name: "URL Encoder/Decoder", desc: "Encode special characters in URLs or decode them.", icon: "fas fa-link", category: "Dev", link: "/tools/url-codec.html" },
+    { name: "PDF Compressor", desc: "Reduce PDF file size while maintaining quality.", icon: "fas fa-compress", category: "Document", link: "/tools/pdf-compress.html" },
+    { name: "Image Rotator", desc: "Rotate or flip images by 90°, 180°, or custom angle.", icon: "fas fa-sync-alt", category: "Image", link: "/tools/image-rotator.html" }
+  ];
+
+  let currentView = 'about';
+  let currentCategory = '';
+
+  const aboutContent = document.getElementById('aboutContent');
+  const toolsDisplay = document.getElementById('toolsDisplay');
+  const toolsTitle = document.getElementById('toolsTitle');
+  const categoryFiltersDiv = document.getElementById('categoryFilters');
+  const toolsGridContainer = document.getElementById('toolsGridContainer');
+
+  function renderTools(toolsArray, title) {
+    if (!toolsArray || toolsArray.length === 0) {
+      toolsGridContainer.innerHTML = '<div class="no-results"><i class="fas fa-search"></i> No tools found in this category.</div>';
+      return;
+    }
+    let html = `<div class="tools-grid">`;
+    toolsArray.forEach(tool => {
+      html += `
+        <div class="tool-card" onclick="window.location.href='${tool.link}'">
+          <i class="${tool.icon}"></i>
+          <h3>${escapeHtml(tool.name)}</h3>
+          <p>${escapeHtml(tool.desc)}</p>
+          <span class="tool-badge">${tool.category}</span>
+        </div>
+      `;
+    });
+    html += `</div>`;
+    toolsGridContainer.innerHTML = html;
+    if (title) toolsTitle.innerText = title;
+  }
+
+  function showAllTools() {
+    currentView = 'allTools';
+    currentCategory = '';
+    aboutContent.style.display = 'none';
+    toolsDisplay.classList.add('active');
+    categoryFiltersDiv.style.display = 'none';
+    renderTools(fullToolsList, 'All Tools (26+ Tools)');
+    updateActiveNav('allTools');
+  }
+
+  function showCategories() {
+    currentView = 'categories';
+    currentCategory = '';
+    aboutContent.style.display = 'none';
+    toolsDisplay.classList.add('active');
+    
+    const categories = [...new Set(fullToolsList.map(t => t.category))].sort();
+    let pillsHtml = `<div class="category-pills">
+      <div class="cat-pill ${currentCategory === '' ? 'active' : ''}" data-cat="all">📌 All Categories</div>`;
+    categories.forEach(cat => {
+      pillsHtml += `<div class="cat-pill" data-cat="${cat}">${cat}</div>`;
+    });
+    pillsHtml += `</div>`;
+    categoryFiltersDiv.innerHTML = pillsHtml;
+    categoryFiltersDiv.style.display = 'block';
+    renderTools(fullToolsList, 'All Categories');
+    toolsTitle.innerText = 'Browse by Category';
+    
+    document.querySelectorAll('.cat-pill').forEach(pill => {
+      pill.addEventListener('click', (e) => {
+        const cat = pill.getAttribute('data-cat');
+        currentCategory = (cat === 'all') ? '' : cat;
+        document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        const filtered = currentCategory ? fullToolsList.filter(t => t.category === currentCategory) : fullToolsList;
+        const titleText = currentCategory ? `${currentCategory} (${filtered.length} tools)` : `All Categories (${filtered.length} tools)`;
+        renderTools(filtered, titleText);
+      });
+    });
+    updateActiveNav('categories');
+  }
+
+  function showAbout() {
+    currentView = 'about';
+    aboutContent.style.display = 'block';
+    toolsDisplay.classList.remove('active');
+    updateActiveNav('about');
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/[&<>]/g, function(m) {
+      return m === '&' ? '&amp;' : (m === '<' ? '&lt;' : '&gt;');
+    });
+  }
+
+  function updateActiveNav(page) {
+    document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+    document.querySelectorAll('.mobile-menu a').forEach(link => link.classList.remove('active'));
+    if (page === 'about') {
+      document.getElementById('navAbout')?.classList.add('active');
+      document.querySelector("[data-mobile='about']")?.classList.add('active');
+    } else if (page === 'allTools') {
+      document.getElementById('navAllTools')?.classList.add('active');
+      document.querySelector("[data-mobile='all']")?.classList.add('active');
+    } else if (page === 'categories') {
+      document.getElementById('navCategories')?.classList.add('active');
+      document.querySelector("[data-mobile='categories']")?.classList.add('active');
+    }
+  }
+
+  function setupNavigation() {
+    document.getElementById('navHome')?.addEventListener('click', (e) => { e.preventDefault(); window.location.href = '/'; });
+    document.getElementById('navAllTools')?.addEventListener('click', (e) => { e.preventDefault(); showAllTools(); });
+    document.getElementById('navCategories')?.addEventListener('click', (e) => { e.preventDefault(); showCategories(); });
+    document.getElementById('navBlog')?.addEventListener('click', (e) => { e.preventDefault(); window.location.href = '/blog.html'; });
+    document.getElementById('navAbout')?.addEventListener('click', (e) => { e.preventDefault(); showAbout(); });
+    document.getElementById('navContact')?.addEventListener('click', (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
+    
+    document.querySelector("[data-mobile='home']")?.addEventListener('click', (e) => { e.preventDefault(); window.location.href = '/'; });
+    document.querySelector("[data-mobile='all']")?.addEventListener('click', (e) => { e.preventDefault(); showAllTools(); document.getElementById('mobileMenu')?.classList.remove('show'); });
+    document.querySelector("[data-mobile='categories']")?.addEventListener('click', (e) => { e.preventDefault(); showCategories(); document.getElementById('mobileMenu')?.classList.remove('show'); });
+    document.querySelector("[data-mobile='blog']")?.addEventListener('click', (e) => { e.preventDefault(); window.location.href = '/blog.html'; });
+    document.querySelector("[data-mobile='about']")?.addEventListener('click', (e) => { e.preventDefault(); showAbout(); document.getElementById('mobileMenu')?.classList.remove('show'); });
+    document.querySelector("[data-mobile='contact']")?.addEventListener('click', (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
+    
+    document.getElementById('backToAbout')?.addEventListener('click', () => { showAbout(); });
+    document.querySelector('.logo h1')?.addEventListener('click', () => { window.location.href = '/'; });
+    
+    document.getElementById('footerPrivacy')?.addEventListener('click', (e) => { e.preventDefault(); window.location.href = '/privacy-policy.html'; });
+    document.getElementById('footerDisclaimer')?.addEventListener('click', (e) => { e.preventDefault(); window.location.href = '/disclaimer.html'; });
+    document.getElementById('footerTerms')?.addEventListener('click', (e) => { e.preventDefault(); window.location.href = '/terms.html'; });
+    document.getElementById('footerContact')?.addEventListener('click', (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
+  }
+
   function initDarkMode() {
     const darkToggle = document.getElementById("darkModeToggle");
     const mobileDarkToggle = document.getElementById("mobileDarkToggle");
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      document.body.classList.add('dark');
-    } else if (savedTheme === 'light') {
-      document.body.classList.remove('dark');
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.body.classList.add('dark');
-    }
+    if (savedTheme === 'dark') document.body.classList.add('dark');
+    else if (savedTheme === 'light') document.body.classList.remove('dark');
+    else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) document.body.classList.add('dark');
     
     function toggleDark() {
       document.body.classList.toggle('dark');
       localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
     }
-    
     if (darkToggle) darkToggle.addEventListener('click', toggleDark);
     if (mobileDarkToggle) mobileDarkToggle.addEventListener('click', toggleDark);
   }
 
-  // ========== MOBILE MENU ==========
   function initMobileMenu() {
     const hamburger = document.getElementById("hamburgerBtn");
     const mobileMenu = document.getElementById("mobileMenu");
     if (hamburger && mobileMenu) {
       hamburger.addEventListener("click", () => mobileMenu.classList.toggle("show"));
-    }
-    const allMobileLinks = document.querySelectorAll("#mobileMenu a, #mobileMenu button");
-    allMobileLinks.forEach(link => {
-      link.addEventListener("click", () => {
-        if (mobileMenu) mobileMenu.classList.remove("show");
-      });
-    });
-  }
-
-  // ========== ENHANCED NAVIGATION: FIXED ALL TOOLS & CATEGORIES ==========
-  // This function ensures "All Tools" and "Categories" actually navigate to
-  // a fully functional tools listing page (simulated with proper hash navigation).
-  // Since we are on about.html, we redirect to index.html with appropriate query/hash
-  // to trigger the main page's tools display, making the links fully functional.
-  function initFixedNavActions() {
-    // Helper to navigate to main page with tool listing view
-    const goToAllTools = () => {
-      // Redirect to homepage with #all-tools anchor, and also pass view=all for compatibility
-      window.location.href = '/?view=all#all-tools';
-    };
-    
-    const goToCategories = () => {
-      // Redirect to homepage with categories view
-      window.location.href = '/?view=categories#categories';
-    };
-
-    // Home link
-    const homeLink = document.getElementById("navHome");
-    if (homeLink) homeLink.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/'; });
-    
-    // ALL TOOLS - FIXED: now properly redirects to main site with tools view
-    const allToolsLink = document.getElementById("navAllTools");
-    if (allToolsLink) {
-      allToolsLink.addEventListener("click", (e) => {
-        e.preventDefault();
-        goToAllTools();
+      document.addEventListener('click', (event) => {
+        if (!mobileMenu.contains(event.target) && !hamburger.contains(event.target) && mobileMenu.classList.contains('show')) {
+          mobileMenu.classList.remove('show');
+        }
       });
     }
-    
-    // CATEGORIES - FIXED: now redirects to categories view on main page
-    const categoriesLink = document.getElementById("navCategories");
-    if (categoriesLink) {
-      categoriesLink.addEventListener("click", (e) => {
-        e.preventDefault();
-        goToCategories();
-      });
-    }
-    
-    // Blog link
-    const blogLink = document.getElementById("navBlog");
-    if (blogLink) blogLink.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/blog.html'; });
-    
-    // About link (current page)
-    const aboutLink = document.getElementById("navAbout");
-    if (aboutLink) aboutLink.addEventListener("click", (e) => { e.preventDefault(); /* stay on about page */ });
-    
-    // Contact link
-    const contactLink = document.getElementById("navContact");
-    if (contactLink) contactLink.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
-    
-    // ----- MOBILE MENU HANDLERS (FIXED SAME BEHAVIOR) -----
-    const mobileHome = document.querySelector("[data-mobile='home']");
-    if (mobileHome) mobileHome.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/'; });
-    
-    const mobileAll = document.querySelector("[data-mobile='all']");
-    if (mobileAll) mobileAll.addEventListener("click", (e) => { e.preventDefault(); goToAllTools(); });
-    
-    const mobileCategories = document.querySelector("[data-mobile='categories']");
-    if (mobileCategories) mobileCategories.addEventListener("click", (e) => { e.preventDefault(); goToCategories(); });
-    
-    const mobileBlog = document.querySelector("[data-mobile='blog']");
-    if (mobileBlog) mobileBlog.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/blog.html'; });
-    
-    const mobileAbout = document.querySelector("[data-mobile='about']");
-    if (mobileAbout) mobileAbout.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/about.html'; });
-    
-    const mobileContact = document.querySelector("[data-mobile='contact']");
-    if (mobileContact) mobileContact.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
-    
-    // Footer links - legal pages redirection
-    const footerPrivacy = document.getElementById("footerPrivacy");
-    if (footerPrivacy) footerPrivacy.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/privacy-policy.html'; });
-    
-    const footerDisclaimer = document.getElementById("footerDisclaimer");
-    if (footerDisclaimer) footerDisclaimer.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/disclaimer.html'; });
-    
-    const footerTerms = document.getElementById("footerTerms");
-    if (footerTerms) footerTerms.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/terms.html'; });
-    
-    const footerContact = document.getElementById("footerContact");
-    if (footerContact) footerContact.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
-    
-    // Logo click redirect to home
-    const logo = document.querySelector(".logo h1");
-    if (logo) logo.addEventListener("click", () => { window.location.href = '/'; });
   }
 
-  // ========== ACTIVE NAV MARKER ==========
-  function setActiveNav() {
-    const currentPath = window.location.pathname;
-    // Reset active classes
-    document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => a.classList.remove('active'));
-    if (currentPath.includes('about') || currentPath.includes('about.html')) {
-      const aboutNav = document.getElementById("navAbout");
-      if (aboutNav) aboutNav.classList.add('active');
-      const mobileAbout = document.querySelector("[data-mobile='about']");
-      if (mobileAbout) mobileAbout.classList.add('active');
-    } else if (currentPath.includes('blog')) {
-      const blogNav = document.getElementById("navBlog");
-      if (blogNav) blogNav.classList.add('active');
-    } else if (currentPath.includes('contact')) {
-      const contactNav = document.getElementById("navContact");
-      if (contactNav) contactNav.classList.add('active');
-    } else if (currentPath === '/' || currentPath === '/index.html') {
-      const homeNav = document.getElementById("navHome");
-      if (homeNav) homeNav.classList.add('active');
-    }
-  }
-
-  // ========== REMOVE ALL ADS (Ensure no ad code runs) ==========
-  function removeAdScriptsAndElements() {
-    // In original code there was an ad section and a script that attempted to inject an ad.
-    // We completely remove the ad container and any related script insertion.
-    const adSection = document.querySelector('.ad-section');
-    if (adSection) adSection.remove();
-    
-    // Additionally, check for any dynamically added ad scripts that might have been appended
-    // (just to be future-safe)
-    const allScripts = document.querySelectorAll('script');
-    for (let script of allScripts) {
-      if (script.src && (script.src.includes('profitablecpmrate') || script.src.includes('pl29407567') || script.src.includes('c2608aed'))) {
-        script.remove();
-      }
-    }
-    // Also remove any iframe or ins elements that might be ad-related
-    const adContainers = document.querySelectorAll('[id*="container-"], [class*="ad"]');
-    adContainers.forEach(el => {
-      if (el.id && (el.id.includes('ad') || el.id.includes('container-about'))) el.remove();
-    });
-  }
-
-  // ========== EXECUTE FIXES ==========
   initDarkMode();
   initMobileMenu();
-  initFixedNavActions();   // This fixes all tools & categories navigation fully
-  setActiveNav();
-  removeAdScriptsAndElements(); // Removes any ad code / ad section completely
-  
-  // Additional check: there might still be a stray ad script due to original snippet.
-  // We also ensure that the ad container that was originally there (if any) is gone.
-  // Since we already removed .ad-section, the job is done.
-  // Also, if any inline ad script from original remained, we clear it.
-  // The previous code had a variable adContainer and a script src, we prevent any possibility.
-  // Optionally we also clean up the DOM after page load.
-  window.addEventListener('DOMContentLoaded', function() {
-    // Final cleanup for any residual ad-like elements
-    const possibleAds = document.querySelectorAll('[class*="ad-"], [id*="ad-"], [id*="container-about-ad"]');
-    possibleAds.forEach(el => el.remove());
-    // If for any reason a script tries to inject something later, we block via CSP? but just removal suffices.
-  });
+  setupNavigation();
+  showAbout();
 </script>
 </body>
 </html>
