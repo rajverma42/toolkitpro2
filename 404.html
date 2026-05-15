@@ -367,26 +367,26 @@
 <div class="site-header">
     <div class="container">
         <div class="navbar">
-            <div class="logo"><h1 onclick="window.location.href='/'">ToolkitPro</h1></div>
+            <div class="logo"><h1 onclick="window.location.href='index.html'">ToolkitPro</h1></div>
             <div class="nav-links">
-                <a href="/" id="navHome">🏠 Home</a>
-                <a href="#" id="navAllTools">🛠️ All Tools</a>
-                <a href="#" id="navCategories">📁 Categories</a>
-                <a href="#" id="navBlog">📝 Blog</a>
-                <a href="#" id="navAbout">👤 About</a>
-                <a href="#" id="navContact">📞 Contact</a>
+                <a href="index.html" id="navHome">🏠 Home</a>
+                <a href="all-tools.html" id="navAllTools">🛠️ All Tools</a>
+                <a href="categories.html" id="navCategories">📁 Categories</a>
+                <a href="blog.html" id="navBlog">📝 Blog</a>
+                <a href="about.html" id="navAbout">👤 About</a>
+                <a href="contact.html" id="navContact">📞 Contact</a>
                 <span class="contact-email"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</span>
                 <button id="darkModeToggle" class="dark-toggle"><i class="fas fa-moon"></i> Dark</button>
             </div>
             <div class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></div>
         </div>
         <div class="mobile-menu" id="mobileMenu">
-            <a href="/" data-mobile="home">🏠 Home</a>
-            <a href="#" data-mobile="all">🛠️ All Tools</a>
-            <a href="#" data-mobile="categories">📁 Categories</a>
-            <a href="#" data-mobile="blog">📝 Blog</a>
-            <a href="#" data-mobile="about">👤 About</a>
-            <a href="#" data-mobile="contact">📞 Contact</a>
+            <a href="index.html" data-mobile="home">🏠 Home</a>
+            <a href="all-tools.html" data-mobile="all">🛠️ All Tools</a>
+            <a href="categories.html" data-mobile="categories">📁 Categories</a>
+            <a href="blog.html" data-mobile="blog">📝 Blog</a>
+            <a href="about.html" data-mobile="about">👤 About</a>
+            <a href="contact.html" data-mobile="contact">📞 Contact</a>
             <button id="mobileDarkToggle" class="dark-toggle" style="margin-top: 6px;"><i class="fas fa-moon"></i> Dark Mode</button>
             <div class="contact-email" style="margin-top:6px;"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</div>
         </div>
@@ -397,7 +397,7 @@
 <div class="container">
     <div class="hero-section">
         <div class="breadcrumb">
-            <a href="/">Home</a> / <span>404 - Page Not Found</span>
+            <a href="index.html">Home</a> / <span>404 - Page Not Found</span>
         </div>
         
         <div class="error-card">
@@ -420,10 +420,10 @@
             </button>
             
             <div class="footer-links">
-                <a href="#" id="homeLinkFooter">Home</a>
-                <a href="#" id="contactLinkFooter">Contact</a>
-                <a href="#" id="privacyLinkFooter">Privacy Policy</a>
-                <a href="#" id="disclaimerLinkFooter">Disclaimer</a>
+                <a href="index.html" id="homeLinkFooter">Home</a>
+                <a href="contact.html" id="contactLinkFooter">Contact</a>
+                <a href="privacy-policy.html" id="privacyLinkFooter">Privacy Policy</a>
+                <a href="disclaimer.html" id="disclaimerLinkFooter">Disclaimer</a>
             </div>
         </div>
         
@@ -446,10 +446,10 @@
             <div class="footer-contact">
                 <p style="font-size: 0.85rem;"><i class="far fa-envelope"></i> <a href="mailto:supporttoolkitpro@gmail.com" style="color: var(--primary);">supporttoolkitpro@gmail.com</a></p>
                 <div class="footer-links-bottom">
-                    <a href="#" id="footerPrivacy">Privacy Policy</a>
-                    <a href="#" id="footerDisclaimer">Disclaimer</a>
-                    <a href="#" id="footerTerms">Terms of Use</a>
-                    <a href="#" id="footerContact">Contact</a>
+                    <a href="privacy-policy.html" id="footerPrivacy">Privacy Policy</a>
+                    <a href="disclaimer.html" id="footerDisclaimer">Disclaimer</a>
+                    <a href="terms.html" id="footerTerms">Terms of Use</a>
+                    <a href="contact.html" id="footerContact">Contact</a>
                 </div>
             </div>
         </div>
@@ -460,32 +460,32 @@
 <script>
     // ========== FULL TOOLS DATABASE (26 Tools for search) ==========
     const fullTools = [
-        { name: "PDF to Word Converter", desc: "Convert PDF documents to editable Word files with high accuracy.", icon: "fas fa-file-pdf", category: "Document", link: "/tools/pdf-word.html" },
-        { name: "Image Compressor", desc: "Reduce image size while preserving quality. Supports JPG, PNG, WebP.", icon: "fas fa-compress-alt", category: "Image", link: "/tools/image-compressor.html" },
-        { name: "QR Code Generator", desc: "Generate custom QR codes from URL, text, or contact info.", icon: "fas fa-qrcode", category: "Utility", link: "/tools/qr-generator.html" },
-        { name: "Image Converter", desc: "Convert between JPG, PNG, WEBP, and BMP formats instantly.", icon: "fas fa-exchange-alt", category: "Image", link: "/tools/image-converter.html" },
-        { name: "Image Cropper", desc: "Crop images to any dimension with live preview.", icon: "fas fa-crop-alt", category: "Image", link: "/tools/image-cropper.html" },
-        { name: "Image Resizer", desc: "Resize images by percentage or exact pixels.", icon: "fas fa-expand-alt", category: "Image", link: "/tools/image-resizer.html" },
-        { name: "JSON Formatter", desc: "Beautify, validate, and minify JSON data.", icon: "fas fa-brackets-curly", category: "Dev", link: "/tools/json-formatter.html" },
-        { name: "Password Generator", desc: "Generate strong, random passwords with custom length.", icon: "fas fa-key", category: "Utility", link: "/tools/password-gen.html" },
-        { name: "Text Case Converter", desc: "Convert text to UPPER CASE, lower case, Title Case, and more.", icon: "fas fa-text-height", category: "Text", link: "/tools/text-case-converter.html" },
-        { name: "Currency Converter", desc: "Live exchange rates for 150+ currencies.", icon: "fas fa-dollar-sign", category: "Calculator", link: "/tools/currency-converter.html" },
-        { name: "OCR Tool", desc: "Extract text from scanned images and PDFs.", icon: "fas fa-font", category: "Image", link: "/tools/ocr-tool.html" },
-        { name: "Unit Converter", desc: "Convert length, mass, volume, temperature, and more.", icon: "fas fa-ruler-combined", category: "Utility", link: "/tools/unit-converter.html" },
-        { name: "Word Counter", desc: "Count words, characters, sentences, and paragraphs.", icon: "fas fa-calculator", category: "Text", link: "/tools/word-counter.html" },
-        { name: "Age Calculator", desc: "Calculate exact age from date of birth.", icon: "fas fa-birthday-cake", category: "Calculator", link: "/tools/age-calc.html" },
-        { name: "Base64 Encoder/Decoder", desc: "Encode text to base64 or decode back to readable text.", icon: "fas fa-code", category: "Dev", link: "/tools/base64.html" },
-        { name: "BMI Calculator", desc: "Body Mass Index calculator with health range indicator.", icon: "fas fa-heartbeat", category: "Calculator", link: "/tools/bmi.html" },
-        { name: "Color Picker", desc: "Pick any color from screen, get HEX, RGB, and HSL values.", icon: "fas fa-eye-dropper", category: "Color", link: "/tools/color-picker.html" },
-        { name: "HTML Minifier", desc: "Minify HTML/CSS/JS code to reduce file size.", icon: "fab fa-html5", category: "Dev", link: "/tools/html-minify.html" },
-        { name: "PDF Merger", desc: "Combine multiple PDF files into a single document.", icon: "fas fa-object-group", category: "Document", link: "/tools/pdf-merge.html" },
-        { name: "Text Reverser", desc: "Reverse entire string or reverse word order.", icon: "fas fa-backward", category: "Text", link: "/tools/text-reverse.html" },
-        { name: "Loan EMI Calculator", desc: "Calculate monthly EMI and total interest.", icon: "fas fa-chart-line", category: "Calculator", link: "/tools/emi-calc.html" },
-        { name: "HEX to RGB", desc: "Convert HEX color codes to RGB values instantly.", icon: "fas fa-palette", category: "Color", link: "/tools/hex-rgb.html" },
-        { name: "GST Calculator", desc: "Calculate GST inclusive/exclusive amounts.", icon: "fas fa-percent", category: "Calculator", link: "/tools/gst-calc.html" },
-        { name: "URL Encoder/Decoder", desc: "Encode special characters in URLs or decode them.", icon: "fas fa-link", category: "Dev", link: "/tools/url-codec.html" },
-        { name: "PDF Compressor", desc: "Reduce PDF file size while maintaining quality.", icon: "fas fa-compress", category: "Document", link: "/tools/pdf-compress.html" },
-        { name: "Image Rotator", desc: "Rotate or flip images by 90°, 180°, or custom angle.", icon: "fas fa-sync-alt", category: "Image", link: "/tools/image-rotator.html" }
+        { name: "PDF to Word Converter", desc: "Convert PDF documents to editable Word files with high accuracy.", icon: "fas fa-file-pdf", category: "Document", link: "tools/pdf-word.html" },
+        { name: "Image Compressor", desc: "Reduce image size while preserving quality. Supports JPG, PNG, WebP.", icon: "fas fa-compress-alt", category: "Image", link: "tools/image-compressor.html" },
+        { name: "QR Code Generator", desc: "Generate custom QR codes from URL, text, or contact info.", icon: "fas fa-qrcode", category: "Utility", link: "tools/qr-generator.html" },
+        { name: "Image Converter", desc: "Convert between JPG, PNG, WEBP, and BMP formats instantly.", icon: "fas fa-exchange-alt", category: "Image", link: "tools/image-converter.html" },
+        { name: "Image Cropper", desc: "Crop images to any dimension with live preview.", icon: "fas fa-crop-alt", category: "Image", link: "tools/image-cropper.html" },
+        { name: "Image Resizer", desc: "Resize images by percentage or exact pixels.", icon: "fas fa-expand-alt", category: "Image", link: "tools/image-resizer.html" },
+        { name: "JSON Formatter", desc: "Beautify, validate, and minify JSON data.", icon: "fas fa-brackets-curly", category: "Dev", link: "tools/json-formatter.html" },
+        { name: "Password Generator", desc: "Generate strong, random passwords with custom length.", icon: "fas fa-key", category: "Utility", link: "tools/password-generator.html" },
+        { name: "Text Case Converter", desc: "Convert text to UPPER CASE, lower case, Title Case, and more.", icon: "fas fa-text-height", category: "Text", link: "tools/text-case-converter.html" },
+        { name: "Currency Converter", desc: "Live exchange rates for 150+ currencies.", icon: "fas fa-dollar-sign", category: "Calculator", link: "tools/currency-converter.html" },
+        { name: "OCR Tool", desc: "Extract text from scanned images and PDFs.", icon: "fas fa-font", category: "Image", link: "tools/ocr-tool.html" },
+        { name: "Unit Converter", desc: "Convert length, mass, volume, temperature, and more.", icon: "fas fa-ruler-combined", category: "Utility", link: "tools/unit-converter.html" },
+        { name: "Word Counter", desc: "Count words, characters, sentences, and paragraphs.", icon: "fas fa-calculator", category: "Text", link: "tools/word-counter.html" },
+        { name: "Age Calculator", desc: "Calculate exact age from date of birth.", icon: "fas fa-birthday-cake", category: "Calculator", link: "tools/age-calculator.html" },
+        { name: "Base64 Encoder/Decoder", desc: "Encode text to base64 or decode back to readable text.", icon: "fas fa-code", category: "Dev", link: "tools/base64.html" },
+        { name: "BMI Calculator", desc: "Body Mass Index calculator with health range indicator.", icon: "fas fa-heartbeat", category: "Calculator", link: "tools/bmi-calculator.html" },
+        { name: "Color Picker", desc: "Pick any color from screen, get HEX, RGB, and HSL values.", icon: "fas fa-eye-dropper", category: "Color", link: "tools/color-picker.html" },
+        { name: "HTML Minifier", desc: "Minify HTML/CSS/JS code to reduce file size.", icon: "fab fa-html5", category: "Dev", link: "tools/html-minifier.html" },
+        { name: "PDF Merger", desc: "Combine multiple PDF files into a single document.", icon: "fas fa-object-group", category: "Document", link: "tools/pdf-merger.html" },
+        { name: "Text Reverser", desc: "Reverse entire string or reverse word order.", icon: "fas fa-backward", category: "Text", link: "tools/text-reverser.html" },
+        { name: "Loan EMI Calculator", desc: "Calculate monthly EMI and total interest.", icon: "fas fa-chart-line", category: "Calculator", link: "tools/emi-calculator.html" },
+        { name: "HEX to RGB", desc: "Convert HEX color codes to RGB values instantly.", icon: "fas fa-palette", category: "Color", link: "tools/hex-to-rgb.html" },
+        { name: "GST Calculator", desc: "Calculate GST inclusive/exclusive amounts.", icon: "fas fa-percent", category: "Calculator", link: "tools/gst-calculator.html" },
+        { name: "URL Encoder/Decoder", desc: "Encode special characters in URLs or decode them.", icon: "fas fa-link", category: "Dev", link: "tools/url-encoder-decoder.html" },
+        { name: "PDF Compressor", desc: "Reduce PDF file size while maintaining quality.", icon: "fas fa-compress", category: "Document", link: "tools/pdf-compressor.html" },
+        { name: "Image Rotator", desc: "Rotate or flip images by 90°, 180°, or custom angle.", icon: "fas fa-sync-alt", category: "Image", link: "tools/image-rotator.html" }
     ];
 
     // ========== Search Handler with redirect to main page with search param ==========
@@ -494,7 +494,7 @@
         if (query) {
             // Store search query in localStorage and redirect to homepage with search parameter
             localStorage.setItem('toolkitSearchQuery', query);
-            window.location.href = '/?search=' + encodeURIComponent(query);
+            window.location.href = 'index.html?search=' + encodeURIComponent(query);
         } else {
             const inputEl = document.getElementById('searchInput');
             inputEl.style.borderColor = "var(--accent)";
@@ -507,14 +507,20 @@
     }
     
     // Enter key support
-    document.getElementById('searchInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            searchToolAndRedirect();
-        }
-    });
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                searchToolAndRedirect();
+            }
+        });
+    }
     
-    document.getElementById('searchBtn').addEventListener('click', searchToolAndRedirect);
+    const searchBtn = document.getElementById('searchBtn');
+    if (searchBtn) {
+        searchBtn.addEventListener('click', searchToolAndRedirect);
+    }
     
     // ========== DARK MODE ==========
     function initDarkMode() {
@@ -558,45 +564,38 @@
     function initNavActions() {
         // Home button
         const homeBtn = document.getElementById("homeBtn");
-        if (homeBtn) homeBtn.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/'; });
+        if (homeBtn) homeBtn.addEventListener("click", (e) => { e.preventDefault(); window.location.href = 'index.html'; });
         
-        // Nav links
-        document.getElementById("navHome")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/'; });
-        document.getElementById("navAllTools")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/?view=all'; });
-        document.getElementById("navCategories")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/?view=categories'; });
-        document.getElementById("navBlog")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/blog.html'; });
-        document.getElementById("navAbout")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/about.html'; });
-        document.getElementById("navContact")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
+        // Nav links are already using href attributes, no need for extra handlers
+        // But we need to ensure they work properly
         
-        // Mobile menu handlers
-        document.querySelectorAll("[data-mobile]").forEach(el => {
-            el.addEventListener("click", (e) => {
-                e.preventDefault();
-                const val = el.getAttribute("data-mobile");
-                if (val === "home") window.location.href = '/';
-                else if (val === "all") window.location.href = '/?view=all';
-                else if (val === "categories") window.location.href = '/?view=categories';
-                else if (val === "blog") window.location.href = '/blog.html';
-                else if (val === "about") window.location.href = '/about.html';
-                else if (val === "contact") window.location.href = '/contact.html';
-            });
-        });
+        // Logo click is already handled inline
         
         // Footer action links
-        document.getElementById("homeLinkFooter")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/'; });
-        document.getElementById("contactLinkFooter")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
-        document.getElementById("privacyLinkFooter")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/privacy-policy.html'; });
-        document.getElementById("disclaimerLinkFooter")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/disclaimer.html'; });
+        const homeLinkFooter = document.getElementById("homeLinkFooter");
+        if (homeLinkFooter) homeLinkFooter.addEventListener("click", (e) => { e.preventDefault(); window.location.href = 'index.html'; });
+        
+        const contactLinkFooter = document.getElementById("contactLinkFooter");
+        if (contactLinkFooter) contactLinkFooter.addEventListener("click", (e) => { e.preventDefault(); window.location.href = 'contact.html'; });
+        
+        const privacyLinkFooter = document.getElementById("privacyLinkFooter");
+        if (privacyLinkFooter) privacyLinkFooter.addEventListener("click", (e) => { e.preventDefault(); window.location.href = 'privacy-policy.html'; });
+        
+        const disclaimerLinkFooter = document.getElementById("disclaimerLinkFooter");
+        if (disclaimerLinkFooter) disclaimerLinkFooter.addEventListener("click", (e) => { e.preventDefault(); window.location.href = 'disclaimer.html'; });
         
         // Footer bottom links
-        document.getElementById("footerPrivacy")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/privacy-policy.html'; });
-        document.getElementById("footerDisclaimer")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/disclaimer.html'; });
-        document.getElementById("footerTerms")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/terms.html'; });
-        document.getElementById("footerContact")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
+        const footerPrivacy = document.getElementById("footerPrivacy");
+        if (footerPrivacy) footerPrivacy.addEventListener("click", (e) => { e.preventDefault(); window.location.href = 'privacy-policy.html'; });
         
-        // Logo click
-        const logo = document.querySelector(".logo h1");
-        if (logo) logo.addEventListener("click", () => { window.location.href = '/'; });
+        const footerDisclaimer = document.getElementById("footerDisclaimer");
+        if (footerDisclaimer) footerDisclaimer.addEventListener("click", (e) => { e.preventDefault(); window.location.href = 'disclaimer.html'; });
+        
+        const footerTerms = document.getElementById("footerTerms");
+        if (footerTerms) footerTerms.addEventListener("click", (e) => { e.preventDefault(); window.location.href = 'terms.html'; });
+        
+        const footerContact = document.getElementById("footerContact");
+        if (footerContact) footerContact.addEventListener("click", (e) => { e.preventDefault(); window.location.href = 'contact.html'; });
     }
     
     // Initialize everything
@@ -607,15 +606,21 @@
     // Add active class to current nav based on path
     function setActiveNav() {
         const path = window.location.pathname;
+        const pageName = path.split('/').pop();
         document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => a.classList.remove('active'));
-        if (path === '/' || path === '/index.html') {
+        
+        if (pageName === '404.html' || pageName === '' || pageName === 'index.html') {
             document.getElementById("navHome")?.classList.add('active');
-        } else if (path.includes('blog')) {
+        } else if (pageName === 'blog.html') {
             document.getElementById("navBlog")?.classList.add('active');
-        } else if (path.includes('about')) {
+        } else if (pageName === 'about.html') {
             document.getElementById("navAbout")?.classList.add('active');
-        } else if (path.includes('contact')) {
+        } else if (pageName === 'contact.html') {
             document.getElementById("navContact")?.classList.add('active');
+        } else if (pageName === 'all-tools.html') {
+            document.getElementById("navAllTools")?.classList.add('active');
+        } else if (pageName === 'categories.html') {
+            document.getElementById("navCategories")?.classList.add('active');
         }
     }
     setActiveNav();
