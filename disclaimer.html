@@ -1,490 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- ========== FAVICON / META ========== -->
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚠️</text></svg>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Disclaimer for ToolkitPro - Important legal information about the use of our free online tools and services. Read our liability and usage policies.">
-    <meta name="keywords" content="disclaimer, legal notice, terms of use, ToolkitPro, liability, tool usage disclaimer">
-    <title>Disclaimer | ToolkitPro - Legal Information</title>
-    
-    <!-- Google Fonts + Font Awesome -->
+    <meta name="description" content="Disclaimer for ToolkitPro - Important legal information about the use of our free online tools.">
+    <title>Disclaimer | ToolkitPro</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* ========== THEME VARIABLES (Matching main site) ========== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --bg-body: #f1f5f9;
-            --bg-surface: #ffffff;
-            --text-primary: #0f172a;
-            --text-secondary: #334155;
-            --text-muted: #64748b;
-            --border-light: #e2e8f0;
-            --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.05);
-            --hover-shadow: 0 20px 30px -12px rgba(30, 107, 255, 0.2);
-            --primary: #2563eb;
-            --primary-deep: #1e40af;
-            --primary-soft: #eff6ff;
-            --accent: #f59e0b;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --nav-bg: #ffffff;
-            --nav-text: #1e293b;
-            --nav-hover: #2563eb;
+            --bg-body: #f1f5f9; --bg-surface: #ffffff; --text-primary: #0f172a;
+            --text-secondary: #334155; --border-light: #e2e8f0; --card-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            --primary: #2563eb; --primary-soft: #eff6ff; --accent: #f59e0b;
+            --nav-text: #1e293b; --nav-hover: #2563eb;
         }
-
         body.dark {
-            --bg-body: #0a0f1c;
-            --bg-surface: #111827;
-            --text-primary: #f1f5f9;
-            --text-secondary: #cbd5e1;
-            --text-muted: #94a3b8;
-            --border-light: #1e293b;
-            --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-            --primary: #3b82f6;
-            --primary-deep: #60a5fa;
-            --primary-soft: #1e293b;
-            --accent: #fbbf24;
-            --success: #34d399;
-            --warning: #fbbf24;
-            --danger: #f87171;
-            --nav-bg: #111827;
-            --nav-text: #e2e8f0;
-            --nav-hover: #60a5fa;
+            --bg-body: #0a0f1c; --bg-surface: #111827; --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1; --border-light: #1e293b; --card-shadow: 0 8px 20px rgba(0,0,0,0.6);
+            --primary: #3b82f6; --primary-soft: #1e293b; --accent: #fbbf24;
+            --nav-text: #e2e8f0; --nav-hover: #60a5fa;
         }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-body);
-            color: var(--text-primary);
-            transition: background-color 0.25s ease, color 0.2s ease;
-        }
-
-        /* ========== HEADER & NAVIGATION ========== */
-        .site-header {
-            background: var(--bg-surface);
-            border-bottom: 1px solid var(--border-light);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 28px;
-        }
-        .navbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 18px 0;
-        }
-        .logo h1 {
-            font-size: 1.85rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), #4f46e5);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            cursor: pointer;
-        }
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-        .nav-links a {
-            text-decoration: none;
-            font-weight: 600;
-            color: var(--nav-text);
-            font-size: 0.95rem;
-            transition: 0.2s;
-            cursor: pointer;
-        }
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--nav-hover);
-        }
-        .contact-email {
-            background: var(--primary-soft);
-            padding: 5px 14px;
-            border-radius: 40px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--primary);
-        }
-        .dark-toggle {
-            background: var(--primary-soft);
-            border: none;
-            border-radius: 40px;
-            padding: 6px 16px;
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 0.85rem;
-            transition: 0.2s;
-        }
-        .dark-toggle:hover {
-            background: var(--primary);
-            color: white;
-        }
-        .hamburger {
-            display: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: var(--primary);
-        }
-        .mobile-menu {
-            display: none;
-            flex-direction: column;
-            background: var(--bg-surface);
-            padding: 20px;
-            border-radius: 24px;
-            margin: 10px 0 15px;
-            gap: 14px;
-            border: 1px solid var(--border-light);
-        }
-        .mobile-menu.show {
-            display: flex;
-        }
-        .mobile-menu a {
-            text-decoration: none;
-            font-weight: 600;
-            color: var(--nav-text);
-            font-size: 1rem;
-            cursor: pointer;
-        }
-
-        /* ========== DISCLAIMER CONTENT ========== */
-        .hero-section {
-            padding: 40px 0 20px;
-        }
-        .breadcrumb {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-        }
-        .breadcrumb a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-        .breadcrumb a:hover {
-            text-decoration: underline;
-        }
-        .disclaimer-card {
-            background: var(--bg-surface);
-            border-radius: 32px;
-            padding: 2.5rem;
-            box-shadow: var(--card-shadow);
-            border: 1px solid var(--border-light);
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .disclaimer-header {
-            text-align: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 2px solid var(--border-light);
-        }
-        .disclaimer-header h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 0.5rem;
-        }
-        .warning-badge {
-            background: rgba(245, 158, 11, 0.15);
-            display: inline-block;
-            padding: 8px 20px;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            color: var(--accent);
-            margin-top: 10px;
-        }
-        .last-updated {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-top: 8px;
-        }
-        .disclaimer-section {
-            margin-bottom: 2rem;
-        }
-        .disclaimer-section h2 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--primary-soft);
-            display: inline-block;
-        }
-        .disclaimer-section p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-        .disclaimer-section ul {
-            margin: 1rem 0 1rem 2rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-        .disclaimer-section li {
-            margin-bottom: 0.5rem;
-        }
-        .highlight {
-            background: var(--primary-soft);
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-family: monospace;
-        }
-        .info-box {
-            background: var(--primary-soft);
-            border-left: 4px solid var(--primary);
-            border-radius: 16px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-        }
-        .info-box i {
-            color: var(--primary);
-            margin-right: 10px;
-        }
-        .contact-box {
-            background: linear-gradient(135deg, var(--primary-soft), var(--bg-surface));
-            border-radius: 20px;
-            padding: 1.5rem;
-            margin-top: 2rem;
-            text-align: center;
-            border: 1px solid var(--border-light);
-        }
-        .contact-box i {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-        .contact-box p {
-            margin-bottom: 0.5rem;
-        }
-        .contact-email-link {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-        .contact-email-link:hover {
-            text-decoration: underline;
-        }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-body); color: var(--text-primary); transition: 0.25s; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 28px; }
+        .navbar { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid var(--border-light); background: var(--bg-surface); position: sticky; top: 0; z-index: 100; }
+        .logo h1 { font-size: 1.85rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), #4f46e5); -webkit-background-clip: text; background-clip: text; color: transparent; cursor: pointer; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { text-decoration: none; font-weight: 600; color: var(--nav-text); font-size: 0.95rem; cursor: pointer; }
+        .nav-links a:hover, .nav-links a.active { color: var(--nav-hover); }
+        .contact-email { background: var(--primary-soft); padding: 5px 14px; border-radius: 40px; font-size: 0.75rem; font-weight: 600; color: var(--primary); }
+        .dark-toggle { background: var(--primary-soft); border: none; border-radius: 40px; padding: 6px 16px; cursor: pointer; font-weight: 600; color: var(--primary); font-size: 0.85rem; }
+        .hamburger { display: none; font-size: 1.8rem; cursor: pointer; color: var(--primary); }
+        .mobile-menu { display: none; flex-direction: column; background: var(--bg-surface); padding: 20px; border-radius: 24px; margin: 10px 0 15px; gap: 14px; border: 1px solid var(--border-light); }
+        .mobile-menu.show { display: flex; }
+        .mobile-menu a { text-decoration: none; font-weight: 600; color: var(--nav-text); font-size: 1rem; cursor: pointer; }
         
-        /* Ad Container */
-        .ad-container {
-            background: var(--primary-soft);
-            margin-top: 30px;
-            padding: 12px;
-            border-radius: 20px;
-            text-align: center;
-            border: 1px solid var(--border-light);
-            max-width: 728px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .ad-label {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-        }
+        .hero-section { padding: 40px 0 20px; }
+        .breadcrumb { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; }
+        .breadcrumb a { color: var(--primary); text-decoration: none; }
+        .disclaimer-card { background: var(--bg-surface); border-radius: 32px; padding: 2.5rem; box-shadow: var(--card-shadow); border: 1px solid var(--border-light); max-width: 1000px; margin: 0 auto; }
+        .disclaimer-header { text-align: center; margin-bottom: 2rem; border-bottom: 2px solid var(--border-light); padding-bottom: 1.5rem; }
+        .disclaimer-header h1 { font-size: 2rem; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 12px; }
+        .warning-badge { background: rgba(245,158,11,0.15); display: inline-block; padding: 8px 20px; border-radius: 40px; font-size: 0.85rem; color: var(--accent); margin-top: 10px; }
+        .disclaimer-section { margin-bottom: 2rem; }
+        .disclaimer-section h2 { font-size: 1.3rem; font-weight: 600; color: var(--primary); margin-bottom: 1rem; border-bottom: 2px solid var(--primary-soft); display: inline-block; }
+        .disclaimer-section p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; }
+        .disclaimer-section ul { margin: 1rem 0 1rem 2rem; color: var(--text-secondary); line-height: 1.7; }
+        .info-box { background: var(--primary-soft); border-left: 4px solid var(--primary); border-radius: 16px; padding: 1.2rem; margin: 1.5rem 0; }
         
-        /* Footer */
-        footer {
-            background: var(--bg-surface);
-            border-top: 1px solid var(--border-light);
-            padding: 35px 0 25px;
-            margin-top: 50px;
-        }
-        .footer-flex {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-        }
-        .footer-links {
-            display: flex;
-            gap: 22px;
-            flex-wrap: wrap;
-        }
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.8rem;
-            cursor: pointer;
-        }
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-        .copyright {
-            text-align: center;
-            margin-top: 22px;
-            font-size: 0.65rem;
-            color: var(--text-muted);
-        }
-
-        @media (max-width: 768px) {
-            .container { padding: 0 18px; }
-            .nav-links { display: none; }
-            .hamburger { display: block; }
-            .disclaimer-card { padding: 1.5rem; }
-            .disclaimer-header h1 { font-size: 1.5rem; }
-            .disclaimer-section h2 { font-size: 1.1rem; }
-        }
+        footer { background: var(--bg-surface); border-top: 1px solid var(--border-light); padding: 35px 0 25px; margin-top: 50px; }
+        .footer-flex { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; }
+        .footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
+        .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.8rem; cursor: pointer; }
+        .copyright { text-align: center; margin-top: 22px; font-size: 0.65rem; color: var(--text-muted); }
+        
+        @media (max-width: 768px) { .container { padding: 0 18px; } .nav-links { display: none; } .hamburger { display: block; } .disclaimer-card { padding: 1.5rem; } .disclaimer-header h1 { font-size: 1.5rem; } }
     </style>
 </head>
 <body>
 
-<!-- ========== HEADER ========== -->
 <div class="site-header">
     <div class="container">
         <div class="navbar">
-            <div class="logo"><h1 onclick="window.location.href='/'">ToolkitPro</h1></div>
+            <div class="logo"><h1 onclick="window.location.href='index.html'">ToolkitPro</h1></div>
             <div class="nav-links">
-                <a href="/" id="navHome">🏠 Home</a>
-                <a href="#" id="navAllTools">🛠️ All Tools</a>
-                <a href="#" id="navCategories">📁 Categories</a>
-                <a href="#" id="navBlog">📝 Blog</a>
-                <a href="#" id="navAbout">👤 About</a>
-                <a href="#" id="navContact">📞 Contact</a>
+                <a href="index.html">🏠 Home</a>
+                <a href="all-tools.html">🛠️ All Tools</a>
+                <a href="categories.html">📁 Categories</a>
+                <a href="blog.html">📝 Blog</a>
+                <a href="about.html">👤 About</a>
+                <a href="contact.html">📞 Contact</a>
                 <span class="contact-email"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</span>
                 <button id="darkModeToggle" class="dark-toggle"><i class="fas fa-moon"></i> Dark</button>
             </div>
             <div class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></div>
         </div>
         <div class="mobile-menu" id="mobileMenu">
-            <a href="/" data-mobile="home">🏠 Home</a>
-            <a href="#" data-mobile="all">🛠️ All Tools</a>
-            <a href="#" data-mobile="categories">📁 Categories</a>
-            <a href="#" data-mobile="blog">📝 Blog</a>
-            <a href="#" data-mobile="about">👤 About</a>
-            <a href="#" data-mobile="contact">📞 Contact</a>
+            <a href="index.html">🏠 Home</a>
+            <a href="all-tools.html">🛠️ All Tools</a>
+            <a href="categories.html">📁 Categories</a>
+            <a href="blog.html">📝 Blog</a>
+            <a href="about.html">👤 About</a>
+            <a href="contact.html">📞 Contact</a>
             <button id="mobileDarkToggle" class="dark-toggle" style="margin-top: 6px;"><i class="fas fa-moon"></i> Dark Mode</button>
             <div class="contact-email" style="margin-top:6px;"><i class="far fa-envelope"></i> supporttoolkitpro@gmail.com</div>
         </div>
     </div>
 </div>
 
-<!-- ========== DISCLAIMER CONTENT ========== -->
 <div class="container">
     <div class="hero-section">
-        <div class="breadcrumb">
-            <a href="/">Home</a> / <span>Disclaimer</span>
-        </div>
-        
+        <div class="breadcrumb"><a href="index.html">Home</a> / <span>Disclaimer</span></div>
         <div class="disclaimer-card">
-            <div class="disclaimer-header">
-                <h1><i class="fas fa-exclamation-triangle"></i> Disclaimer</h1>
-                <div class="warning-badge">
-                    <i class="fas fa-gavel"></i> Important Legal Information
-                </div>
-                <div class="last-updated">
-                    <i class="far fa-calendar-alt"></i> Last updated: May 12, 2026
-                </div>
-            </div>
+            <div class="disclaimer-header"><h1><i class="fas fa-exclamation-triangle"></i> Disclaimer</h1><div class="warning-badge"><i class="fas fa-gavel"></i> Important Legal Information</div><div class="last-updated" style="color: var(--text-muted); font-size:0.85rem; margin-top:8px;"><i class="far fa-calendar-alt"></i> Last updated: May 12, 2026</div></div>
             
-            <div class="disclaimer-section">
-                <h2>General Information</h2>
-                <p>All the information on this website - <strong>https://toolkit-pro.in/</strong> - is published in good faith and for general information purpose only. ToolkitPro does not make any warranties about the completeness, reliability, and accuracy of this information. Any action you take upon the information you find on this website (ToolkitPro), is strictly at your own risk.</p>
-                <p>ToolkitPro will not be liable for any losses and/or damages in connection with the use of our website or tools.</p>
-            </div>
-            
-            <div class="disclaimer-section">
-                <h2>Tool Usage Disclaimer</h2>
-                <p>Our online tools are provided "as is" without any warranties, expressed or implied. While we strive to ensure all tools function correctly:</p>
-                <ul>
-                    <li><strong>Image Tools:</strong> All image processing (compression, conversion, cropping, resizing, rotation) happens locally in your browser. We do not store or upload your images.</li>
-                    <li><strong>PDF Tools:</strong> PDF conversion and manipulation are provided for demonstration purposes. For production use, please verify results with original documents.</li>
-                    <li><strong>OCR Tool:</strong> The OCR functionality is provided as a demo. For professional OCR needs, consider dedicated software solutions.</li>
-                    <li><strong>Currency Converter:</strong> Exchange rates are for informational purposes only. For live trading, please use official financial sources.</li>
-                    <li><strong>Password Generator:</strong> While we use cryptographically secure randomization, always use additional security measures for sensitive accounts.</li>
-                </ul>
-            </div>
-            
-            <div class="info-box">
-                <i class="fas fa-shield-alt"></i>
-                <strong>Privacy Guarantee:</strong> All our image, document, and data processing tools work locally in your browser. Your files are never uploaded to our servers, ensuring your privacy remains protected at all times.
-            </div>
-            
-            <div class="disclaimer-section">
-                <h2>External Links Disclaimer</h2>
-                <p>Our website may contain links to external websites that are not provided or maintained by us. Please note that we do not guarantee the accuracy, relevance, timeliness, or completeness of any information on these external websites.</p>
-            </div>
-            
-            <div class="disclaimer-section">
-                <h2>Advertising Disclaimer</h2>
-                <p>ToolkitPro uses third-party advertising networks to display ads. These networks may use cookies and web beacons to serve relevant advertisements. We do not have control over the content of these ads.</p>
-                <p>Our advertising partners include:</p>
-                <ul>
-                    <li>High Performance Format Network</li>
-                    <li>Google AdSense (where applicable)</li>
-                </ul>
-            </div>
-            
-            <div class="disclaimer-section">
-                <h2>Professional Advice Disclaimer</h2>
-                <p>The information provided by ToolkitPro is for general informational purposes only. It is not intended to be a substitute for professional advice. You should not act upon the information provided without seeking professional advice tailored to your specific situation.</p>
-            </div>
-            
-            <div class="disclaimer-section">
-                <h2>Consent</h2>
-                <p>By using our website, you hereby consent to our disclaimer and agree to its terms and conditions.</p>
-            </div>
-            
-            <div class="disclaimer-section">
-                <h2>Updates to This Disclaimer</h2>
-                <p>Should we update, amend, or make any changes to this document, those changes will be prominently posted here. We reserve the right to modify this disclaimer at any time without prior notice.</p>
-            </div>
-            
-            <div class="contact-box">
-                <i class="fas fa-envelope"></i>
-                <h3>Have Questions?</h3>
-                <p>If you have any questions about this disclaimer or need clarification, please contact us:</p>
-                <p><a href="mailto:supporttoolkitpro@gmail.com" class="contact-email-link">supporttoolkitpro@gmail.com</a></p>
-                <p style="font-size: 0.8rem; margin-top: 8px;">We typically respond within 24 hours</p>
-            </div>
-        </div>
-        
-        <!-- Ad Container -->
-        <div class="ad-container">
-            <div class="ad-label"><i class="fas fa-ad"></i> Advertisement</div>
-            <div id="container-disclaimer-ad"></div>
+            <div class="disclaimer-section"><h2>General Information</h2><p>All information on this website is published in good faith for general information purposes. ToolkitPro does not make warranties about completeness, reliability, or accuracy.</p></div>
+            <div class="disclaimer-section"><h2>Tool Usage Disclaimer</h2><p>Our online tools are provided "as is". While we strive for accuracy:</p><ul><li>Image tools process locally - we don't store your images</li><li>PDF tools are for demonstration purposes</li><li>Currency rates are for informational use only</li><li>Passwords should be used with additional security measures</li></ul></div>
+            <div class="info-box"><i class="fas fa-shield-alt"></i> <strong>Privacy Guarantee:</strong> All processing happens locally in your browser. Your files are never uploaded to our servers.</div>
+            <div class="disclaimer-section"><h2>Consent</h2><p>By using our website, you consent to our disclaimer and agree to its terms.</p></div>
+            <div class="disclaimer-section"><h2>Contact</h2><p>Questions? Email: <a href="mailto:supporttoolkitpro@gmail.com">supporttoolkitpro@gmail.com</a></p></div>
         </div>
     </div>
 </div>
 
-<!-- ========== FOOTER ========== -->
 <footer>
     <div class="container">
         <div class="footer-flex">
-            <div class="footer-logo">
-                <h3 style="font-size: 1.3rem; background: linear-gradient(135deg, var(--primary), #4f46e5); -webkit-background-clip: text; background-clip: text; color: transparent;">ToolkitPro</h3>
-                <p style="font-size: 0.8rem; color: var(--text-secondary);">26+ non-AI tools · Free forever</p>
-            </div>
+            <div class="footer-logo"><h3>ToolkitPro</h3><p>26+ non-AI tools · Free forever</p></div>
             <div class="footer-contact">
-                <p style="font-size: 0.85rem;"><i class="far fa-envelope"></i> <a href="mailto:supporttoolkitpro@gmail.com" style="color: var(--primary);">supporttoolkitpro@gmail.com</a></p>
-                <div class="footer-links">
-                    <a href="#" id="footerPrivacy">Privacy Policy</a>
-                    <a href="#" id="footerDisclaimer">Disclaimer</a>
-                    <a href="#" id="footerTerms">Terms of Use</a>
-                    <a href="#" id="footerContact">Contact</a>
-                </div>
+                <p><i class="far fa-envelope"></i> <a href="mailto:supporttoolkitpro@gmail.com" style="color: var(--primary);">supporttoolkitpro@gmail.com</a></p>
+                <div class="footer-links"><a href="contact.html">Contact</a><a href="disclaimer.html">Disclaimer</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms.html">Terms</a></div>
             </div>
         </div>
         <div class="copyright">© 2025 ToolkitPro — Reliable utilities, transparent disclaimer</div>
@@ -492,101 +118,25 @@
 </footer>
 
 <script>
-    // ========== DARK MODE ==========
     function initDarkMode() {
         const darkToggle = document.getElementById("darkModeToggle");
-        const mobileDarkToggle = document.getElementById("mobileDarkToggle");
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            document.body.classList.add('dark');
-        } else if (savedTheme === 'light') {
-            document.body.classList.remove('dark');
-        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.body.classList.add('dark');
-        }
-        
-        function toggleDark() {
-            document.body.classList.toggle('dark');
-            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-        }
-        
-        if (darkToggle) darkToggle.addEventListener('click', toggleDark);
-        if (mobileDarkToggle) mobileDarkToggle.addEventListener('click', toggleDark);
+        const mobileDark = document.getElementById("mobileDarkToggle");
+        const saved = localStorage.getItem('theme');
+        if (saved === 'dark') document.body.classList.add('dark');
+        else if (saved === 'light') document.body.classList.remove('dark');
+        else if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.body.classList.add('dark');
+        function toggleDark() { document.body.classList.toggle('dark'); localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light'); }
+        darkToggle?.addEventListener('click', toggleDark);
+        mobileDark?.addEventListener('click', toggleDark);
     }
-    
-    // ========== Mobile Menu ==========
     function initMobileMenu() {
         const hamburger = document.getElementById("hamburgerBtn");
         const mobileMenu = document.getElementById("mobileMenu");
-        if (hamburger && mobileMenu) {
-            hamburger.addEventListener("click", () => mobileMenu.classList.toggle("show"));
-        }
-        const mobileLinks = document.querySelectorAll("#mobileMenu a, #mobileMenu button");
-        mobileLinks.forEach(link => {
-            link.addEventListener("click", () => {
-                if (mobileMenu) mobileMenu.classList.remove("show");
-            });
-        });
+        hamburger?.addEventListener("click", () => mobileMenu.classList.toggle("show"));
+        document.querySelectorAll("#mobileMenu a, #mobileMenu button").forEach(link => link.addEventListener("click", () => mobileMenu.classList.remove("show")));
     }
-    
-    // ========== Navigation Actions (Full working with file redirects) ==========
-    function initNavActions() {
-        // Main navigation
-        document.getElementById("navHome")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/'; });
-        document.getElementById("navAllTools")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/?view=all'; });
-        document.getElementById("navCategories")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/?view=categories'; });
-        document.getElementById("navBlog")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/blog.html'; });
-        document.getElementById("navAbout")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/about.html'; });
-        document.getElementById("navContact")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
-        
-        // Mobile menu handlers
-        document.querySelectorAll("[data-mobile]").forEach(el => {
-            el.addEventListener("click", (e) => {
-                e.preventDefault();
-                const val = el.getAttribute("data-mobile");
-                if (val === "home") window.location.href = '/';
-                else if (val === "all") window.location.href = '/?view=all';
-                else if (val === "categories") window.location.href = '/?view=categories';
-                else if (val === "blog") window.location.href = '/blog.html';
-                else if (val === "about") window.location.href = '/about.html';
-                else if (val === "contact") window.location.href = '/contact.html';
-            });
-        });
-        
-        // Footer legal links
-        document.getElementById("footerPrivacy")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/privacy-policy.html'; });
-        document.getElementById("footerDisclaimer")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/disclaimer.html'; });
-        document.getElementById("footerTerms")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/terms.html'; });
-        document.getElementById("footerContact")?.addEventListener("click", (e) => { e.preventDefault(); window.location.href = '/contact.html'; });
-        
-        // Logo click
-        const logo = document.querySelector(".logo h1");
-        if (logo) logo.addEventListener("click", () => { window.location.href = '/'; });
-    }
-    
-    // Set active nav item for current page (no active nav for disclaimer)
-    function setActiveNav() {
-        document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => a.classList.remove('active'));
-    }
-    
-    // Initialize everything
     initDarkMode();
     initMobileMenu();
-    initNavActions();
-    setActiveNav();
-    
-    // Ad script (same network as main site)
-    const adContainer = document.getElementById('container-disclaimer-ad');
-    if (adContainer) {
-        const adScript = document.createElement('script');
-        adScript.async = true;
-        adScript.setAttribute('data-cfasync', 'false');
-        adScript.src = 'https://pl29407567.profitablecpmratenetwork.com/c2608aed4d10e76bb8072ec639e963f7/invoke.js';
-        adContainer.appendChild(adScript);
-    }
 </script>
-
-<!-- Ad network script -->
-<script async="async" data-cfasync="false" src="https://pl29407567.profitablecpmratenetwork.com/c2608aed4d10e76bb8072ec639e963f7/invoke.js"></script>
 </body>
 </html>
